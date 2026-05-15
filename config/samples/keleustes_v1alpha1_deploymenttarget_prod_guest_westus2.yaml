@@ -1,0 +1,12 @@
+apiVersion: keleustes.skaphos.dev/v1alpha1
+kind: DeploymentTarget
+metadata:
+  name: prod-guest-westus2
+spec:
+  environment: prod
+  cell: guest-prod
+  region: westus2
+  cluster:
+    name: aks-prod-guest-westus2-001
+    kubeconfigSecretRef:
+      name: aks-prod-guest-westus2

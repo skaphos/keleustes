@@ -1,0 +1,21 @@
+apiVersion: keleustes.skaphos.dev/v1alpha1
+kind: Promotion
+metadata:
+  name: marshaller-api-1-8-2-to-prod-wave4
+spec:
+  application: marshaller-api
+  release: marshaller-api-1.8.2
+  from:
+    environment: qa
+  to:
+    environment: prod
+    cells:
+      - guest-prod
+    regions:
+      - westus2
+  mode: pullRequest
+  change:
+    provider: servicenow
+    id: CRQ123456
+  policyRefs:
+    - name: prod-standard

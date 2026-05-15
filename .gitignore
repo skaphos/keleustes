@@ -1,0 +1,60 @@
+# Binaries
+bin/
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+Dockerfile.cross
+
+# Test artifacts
+*.test
+*.out
+coverage.out
+coverage
+cover*.out
+*.coverprofile
+
+# Go workspace
+go.work
+go.work.sum
+
+# Build artifacts
+dist/
+
+# Generated Kubernetes files (keep vendored)
+!vendor/**/zz_generated.*
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+.codex
+.claude
+.cursor/
+.windsurf/
+.continue/
+.aider*
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Local junk
+.cache/
+.gocache
+
+# Design docs (local-only)
+DESIGN.md
+
+# Frontend
+ui/node_modules/
+ui/dist/
+ui/.next/
+
+# Graphify
+.graphify_ast.json
+.graphify_detect.json
+.graphify_python
+graphify-out/

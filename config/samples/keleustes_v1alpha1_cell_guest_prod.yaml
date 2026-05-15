@@ -1,0 +1,11 @@
+apiVersion: keleustes.skaphos.dev/v1alpha1
+kind: Cell
+metadata:
+  name: guest-prod
+spec:
+  environment: prod
+  purpose: guest-facing
+  failureBoundary: guest
+  regions:
+    - westus2
+    - westcentralus

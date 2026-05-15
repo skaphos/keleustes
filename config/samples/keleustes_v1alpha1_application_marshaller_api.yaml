@@ -1,0 +1,22 @@
+apiVersion: keleustes.skaphos.dev/v1alpha1
+kind: Application
+metadata:
+  name: marshaller-api
+spec:
+  owner:
+    team: platform-services
+    contact: "#platform-services"
+  sourceRefs:
+    - name: marshaller-api
+  deployment:
+    strategy: gitops
+    manifest:
+      type: kustomize
+      repo: github.com/example/platform-state
+      basePath: apps/marshaller-api
+  topology:
+    environments:
+      - dev
+      - test
+      - qa
+      - prod

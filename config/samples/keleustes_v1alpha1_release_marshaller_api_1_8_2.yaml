@@ -1,0 +1,18 @@
+apiVersion: keleustes.skaphos.dev/v1alpha1
+kind: Release
+metadata:
+  name: marshaller-api-1.8.2
+spec:
+  application: marshaller-api
+  artifacts:
+    - type: image
+      ref: ghcr.io/example/marshaller-api:1.8.2
+      digest: sha256:abc0000000000000000000000000000000000000000000000000000000000000
+      version: "1.8.2"
+    - type: chart
+      ref: oci://ghcr.io/example/charts/marshaller-api
+      version: "0.12.4"
+  provenance:
+    commit: abc1234
+    buildUrl: https://github.com/example/marshaller-api/actions/runs/123
+    sbomRef: ghcr.io/example/marshaller-api/sbom:1.8.2

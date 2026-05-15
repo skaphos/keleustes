@@ -1,0 +1,13 @@
+apiVersion: keleustes.skaphos.dev/v1alpha1
+kind: PromotionPolicy
+metadata:
+  name: prod-standard
+spec:
+  required:
+    - imageSigned
+    - sbomPresent
+    - vulnThreshold
+    - sourceHealthy
+    - targetUnlocked
+    - changeApproved
+    - ownerApproved

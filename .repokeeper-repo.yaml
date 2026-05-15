@@ -1,0 +1,16 @@
+apiVersion: repokeeper/v1
+kind: RepoMetadata
+repo_id: github.com/skaphos/keleustes
+name: Keleustes
+labels:
+    kind: tool
+    org: skaphos
+    role: gitops-delivery-control-plane
+    tool: keleustes
+entrypoints:
+    readme: README.md
+related_repos:
+    - repo_id: github.com/skaphos/fathom
+      relationship: integrates-with
+    - repo_id: github.com/skaphos/meridian
+      relationship: integrates-with

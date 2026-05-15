@@ -1,0 +1,12 @@
+namespace: skaphos-keleustes-system
+
+namePrefix: keleustes-
+
+commonLabels:
+  app.kubernetes.io/part-of: keleustes
+  app.kubernetes.io/managed-by: kustomize
+
+resources:
+- ../crd
+- ../rbac
+- ../manager

@@ -1,0 +1,3 @@
+# This kustomization aggregates the controller-gen produced CRDs under
+# config/crd/bases. Run `task manifests` to populate the bases directory.
+resources: []

@@ -1,0 +1,201 @@
+version: "3"
+
+vars:
+  TASK_RUNNER: go -C tools tool task -d ..
+  CONTROLLER_GEN: go run sigs.k8s.io/controller-tools/cmd/controller-gen@v0.18.0
+  KUSTOMIZE: go run sigs.k8s.io/kustomize/kustomize/v5@v5.6.0
+  SETUP_ENVTEST: go run sigs.k8s.io/controller-runtime/tools/setup-envtest@latest
+  GOLANGCI_RUNNER: go run github.com/golangci/golangci-lint/v2/cmd/golangci-lint@v2.11.4
+  GOIMPORTS_RUNNER: go run golang.org/x/tools/cmd/goimports@v0.42.0
+  STATICCHECK_RUNNER: go run honnef.co/go/tools/cmd/staticcheck@v0.7.0
+  GOVULNCHECK_RUNNER: go run golang.org/x/vuln/cmd/govulncheck@v1.1.4
+  ENVTEST_K8S_VERSION: "1.33"
+  IMG: '{{.IMG | default "controller:latest"}}'
+  CTL_IMG: '{{.CTL_IMG | default "keleustesctl:latest"}}'
+  VERSION: '{{.VERSION | default "0.0.1"}}'
+  IMAGE_TAG_BASE: '{{.IMAGE_TAG_BASE | default "skaphos.dev/keleustes"}}'
+  BUNDLE_IMG: '{{.BUNDLE_IMG | default (printf "%s-bundle:v%s" .IMAGE_TAG_BASE .VERSION)}}'
+  CATALOG_IMG: '{{.CATALOG_IMG | default (printf "%s-catalog:v%s" .IMAGE_TAG_BASE .VERSION)}}'
+  KIND_CLUSTER: '{{.KIND_CLUSTER | default "keleustes-test-e2e"}}'
+
+tasks:
+  default:
+    desc: List available tasks
+    cmds:
+      - '{{.TASK_RUNNER}} --list'
+
+  list:
+    desc: List available tasks
+    cmds:
+      - '{{.TASK_RUNNER}} --list'
+
+  # --- Codegen ---
+
+  manifests:
+    desc: Generate CRDs, RBAC, and webhook manifests via controller-gen
+    cmds:
+      - '{{.CONTROLLER_GEN}} rbac:roleName=manager-role crd webhook paths="./..." output:crd:artifacts:config=config/crd/bases'
+
+  generate:
+    desc: Generate DeepCopy implementations via controller-gen
+    cmds:
+      - '{{.CONTROLLER_GEN}} object:headerFile="hack/boilerplate.go.txt" paths="./..."'
+
+  # --- Quality ---
+
+  fmt:
+    desc: Format code
+    cmds:
+      - '{{.GOIMPORTS_RUNNER}} -w .'
+      - go fmt ./...
+
+  vet:
+    desc: Run go vet
+    cmds:
+      - go vet ./...
+
+  lint:
+    desc: Run golangci-lint
+    cmds:
+      - task: manifests
+      - task: generate
+      - '{{.GOLANGCI_RUNNER}} run ./...'
+
+  lint-fix:
+    desc: Run golangci-lint with --fix
+    cmds:
+      - '{{.GOLANGCI_RUNNER}} run --fix ./...'
+
+  staticcheck:
+    desc: Run staticcheck
+    cmds:
+      - '{{.STATICCHECK_RUNNER}} ./...'
+
+  vuln:
+    desc: Run vulnerability scan
+    cmds:
+      - '{{.GOVULNCHECK_RUNNER}} ./...'
+
+  # --- Tests ---
+
+  test:
+    desc: Run unit tests against envtest
+    cmds:
+      - task: manifests
+      - task: generate
+      - task: fmt
+      - task: vet
+      - |
+        set -euo pipefail
+        ASSETS="$({{.SETUP_ENVTEST}} use {{.ENVTEST_K8S_VERSION}} -p path)"
+        KUBEBUILDER_ASSETS="$ASSETS" go test $(go list ./... | grep -v /e2e) -coverprofile=coverage.out
+
+  test-e2e:
+    desc: Run e2e tests against a Kind cluster (requires kind + docker)
+    cmds:
+      - task: manifests
+      - task: generate
+      - task: fmt
+      - task: vet
+      - |
+        set -euo pipefail
+        command -v kind >/dev/null 2>&1 || { echo "kind not found in PATH" >&2; exit 1; }
+        if ! kind get clusters | grep -q "^{{.KIND_CLUSTER}}$"; then
+          kind create cluster --name {{.KIND_CLUSTER}}
+        fi
+        KIND_CLUSTER={{.KIND_CLUSTER}} go test ./test/e2e/ -v -ginkgo.v
+        kind delete cluster --name {{.KIND_CLUSTER}}
+
+  # --- Build ---
+
+  build:
+    desc: Build manager binary
+    cmds:
+      - task: manifests
+      - task: generate
+      - task: fmt
+      - task: vet
+      - go build -o bin/manager ./cmd/manager
+
+  build-ctl:
+    desc: Build keleustesctl binary
+    cmds:
+      - go build -o bin/keleustesctl ./cmd/keleustesctl
+
+  run:
+    desc: Run the controller from your host
+    cmds:
+      - task: manifests
+      - task: generate
+      - task: fmt
+      - task: vet
+      - go run ./cmd/manager
+
+  docker-build:
+    desc: Build controller container image (IMG={{.IMG}})
+    cmds:
+      - docker build -t {{.IMG}} .
+
+  docker-build-ctl:
+    desc: Build keleustesctl container image (CTL_IMG={{.CTL_IMG}})
+    cmds:
+      - docker build -f Dockerfile.keleustesctl -t {{.CTL_IMG}} .
+
+  docker-push:
+    desc: Push controller container image (IMG={{.IMG}})
+    cmds:
+      - docker push {{.IMG}}
+
+  build-installer:
+    desc: Render consolidated install.yaml under dist/
+    cmds:
+      - task: manifests
+      - task: generate
+      - mkdir -p dist
+      - (cd config/manager && {{.KUSTOMIZE}} edit set image controller={{.IMG}})
+      - '{{.KUSTOMIZE}} build config/default > dist/install.yaml'
+
+  # --- Cluster lifecycle ---
+
+  install:
+    desc: Install CRDs into the current cluster
+    cmds:
+      - task: manifests
+      - '{{.KUSTOMIZE}} build config/crd | kubectl apply -f -'
+
+  uninstall:
+    desc: Remove CRDs from the current cluster
+    cmds:
+      - task: manifests
+      - '{{.KUSTOMIZE}} build config/crd | kubectl delete --ignore-not-found=true -f -'
+
+  deploy:
+    desc: Deploy the operator to the current cluster
+    cmds:
+      - task: manifests
+      - (cd config/manager && {{.KUSTOMIZE}} edit set image controller={{.IMG}})
+      - '{{.KUSTOMIZE}} build config/default | kubectl apply -f -'
+
+  undeploy:
+    desc: Undeploy the operator from the current cluster
+    cmds:
+      - '{{.KUSTOMIZE}} build config/default | kubectl delete --ignore-not-found=true -f -'
+
+  # --- Housekeeping ---
+
+  clean:
+    desc: Remove build outputs and test caches
+    cmds:
+      - go clean ./...
+      - go clean -testcache
+      - rm -rf bin dist coverage.out
+
+  ci:
+    desc: Run standard CI workflow locally
+    cmds:
+      - task: lint
+      - task: test
+      - task: staticcheck
+      - task: vuln
+      - task: build
+      - task: build-ctl

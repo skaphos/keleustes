@@ -1,0 +1,9 @@
+apiVersion: keleustes.skaphos.dev/v1alpha1
+kind: Environment
+metadata:
+  name: prod
+spec:
+  order: 40
+  protected: true
+  changeControl:
+    required: true

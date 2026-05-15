@@ -1,0 +1,10 @@
+## Append samples of your project ##
+resources:
+- keleustes_v1alpha1_environment_prod.yaml
+- keleustes_v1alpha1_cell_guest_prod.yaml
+- keleustes_v1alpha1_deploymenttarget_prod_guest_westus2.yaml
+- keleustes_v1alpha1_source_marshaller_api.yaml
+- keleustes_v1alpha1_application_marshaller_api.yaml
+- keleustes_v1alpha1_release_marshaller_api_1_8_2.yaml
+- keleustes_v1alpha1_promotion_marshaller_api_to_prod.yaml
+- keleustes_v1alpha1_promotionpolicy_prod_standard.yaml

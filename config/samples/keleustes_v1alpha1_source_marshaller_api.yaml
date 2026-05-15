@@ -1,0 +1,10 @@
+apiVersion: keleustes.skaphos.dev/v1alpha1
+kind: Source
+metadata:
+  name: marshaller-api
+spec:
+  type: containerImage
+  image: ghcr.io/example/marshaller-api
+  semver: ">=1.8.0 <2.0.0"
+  verify:
+    cosign: true
