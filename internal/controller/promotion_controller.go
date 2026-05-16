@@ -27,10 +27,10 @@ type PromotionReconciler struct {
 	Scheme *runtime.Scheme
 }
 
-// +kubebuilder:rbac:groups=keleustes.skaphos.dev,resources=promotions,verbs=get;list;watch;create;update;patch;delete
-// +kubebuilder:rbac:groups=keleustes.skaphos.dev,resources=promotions/status,verbs=get;update;patch
-// +kubebuilder:rbac:groups=keleustes.skaphos.dev,resources=promotions/finalizers,verbs=update
-// +kubebuilder:rbac:groups=keleustes.skaphos.dev,resources=releases;applications;promotionpolicies,verbs=get;list;watch
+// +kubebuilder:rbac:groups=keleustes.skaphos.io,resources=promotions,verbs=get;list;watch;create;update;patch;delete
+// +kubebuilder:rbac:groups=keleustes.skaphos.io,resources=promotions/status,verbs=get;update;patch
+// +kubebuilder:rbac:groups=keleustes.skaphos.io,resources=promotions/finalizers,verbs=update
+// +kubebuilder:rbac:groups=keleustes.skaphos.io,resources=releases;applications;promotionpolicies,verbs=get;list;watch
 
 func (r *PromotionReconciler) Reconcile(ctx context.Context, req ctrl.Request) (ctrl.Result, error) {
 	var promo keleustesv1alpha1.Promotion

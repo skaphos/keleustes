@@ -4,7 +4,7 @@ SPDX-License-Identifier: MIT
 */
 
 // Command manager is the Keleustes controller-manager binary. It runs the
-// reconcilers that own the keleustes.skaphos.dev CRDs and coordinates the
+// reconcilers that own the keleustes.skaphos.io CRDs and coordinates the
 // source, sync, and promotion engines.
 package main
 
@@ -59,7 +59,7 @@ func main() {
 		Metrics:                metricsserver.Options{BindAddress: metricsAddr},
 		HealthProbeBindAddress: probeAddr,
 		LeaderElection:         enableLeaderElection,
-		LeaderElectionID:       "keleustes.skaphos.dev",
+		LeaderElectionID:       "keleustes.skaphos.io",
 	})
 	if err != nil {
 		setupLog.Error(err, "unable to start manager")

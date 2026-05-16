@@ -197,7 +197,7 @@ This boundary is important. Keleustes owns delivery control-plane state. It shou
 An `Application` is the central delivery abstraction. It is not equivalent to an Argo CD `Application` or a Kargo `Warehouse`. It ties ownership, deployable sources, manifest configuration, deployment topology, and status together.
 
 ```yaml
-apiVersion: keleustes.skaphos.dev/v1alpha1
+apiVersion: keleustes.skaphos.io/v1alpha1
 kind: Application
 metadata:
   name: marshaller-api
@@ -226,7 +226,7 @@ spec:
 A `Source` describes a stream of deployable inputs. Sources can represent container images, Git repositories, OCI artifacts, Helm repositories, charts, SBOMs, and provenance metadata.
 
 ```yaml
-apiVersion: keleustes.skaphos.dev/v1alpha1
+apiVersion: keleustes.skaphos.io/v1alpha1
 kind: Source
 metadata:
   name: marshaller-api
@@ -243,7 +243,7 @@ spec:
 An `Environment` defines an ordered lifecycle boundary such as dev, test, qa, or prod.
 
 ```yaml
-apiVersion: keleustes.skaphos.dev/v1alpha1
+apiVersion: keleustes.skaphos.io/v1alpha1
 kind: Environment
 metadata:
   name: prod
@@ -259,7 +259,7 @@ spec:
 A `Cell` represents a failure domain or operational grouping inside an environment.
 
 ```yaml
-apiVersion: keleustes.skaphos.dev/v1alpha1
+apiVersion: keleustes.skaphos.io/v1alpha1
 kind: Cell
 metadata:
   name: guest-prod
@@ -277,7 +277,7 @@ spec:
 A `DeploymentTarget` is a concrete place where an application can run.
 
 ```yaml
-apiVersion: keleustes.skaphos.dev/v1alpha1
+apiVersion: keleustes.skaphos.io/v1alpha1
 kind: DeploymentTarget
 metadata:
   name: prod-guest-westus2
@@ -296,7 +296,7 @@ spec:
 A `Release` is a deployable collection of pinned artifacts for an application.
 
 ```yaml
-apiVersion: keleustes.skaphos.dev/v1alpha1
+apiVersion: keleustes.skaphos.io/v1alpha1
 kind: Release
 metadata:
   name: marshaller-api-1.8.2
@@ -320,7 +320,7 @@ spec:
 A `Promotion` is a requested movement of a `Release` into one or more deployment targets.
 
 ```yaml
-apiVersion: keleustes.skaphos.dev/v1alpha1
+apiVersion: keleustes.skaphos.io/v1alpha1
 kind: Promotion
 metadata:
   name: marshaller-api-1-8-2-to-prod-wave4
@@ -374,7 +374,7 @@ Promotion phases:
 A `PromotionPolicy` declares required gates for a promotion.
 
 ```yaml
-apiVersion: keleustes.skaphos.dev/v1alpha1
+apiVersion: keleustes.skaphos.io/v1alpha1
 kind: PromotionPolicy
 metadata:
   name: prod-standard
@@ -792,7 +792,7 @@ Postgres is justified because audit trails, matrix queries, timeline views, hist
 Initial API group:
 
 ```text
-keleustes.skaphos.dev
+keleustes.skaphos.io
 ```
 
 Initial namespace:

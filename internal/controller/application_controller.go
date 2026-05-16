@@ -31,9 +31,9 @@ type ApplicationReconciler struct {
 	Scheme *runtime.Scheme
 }
 
-// +kubebuilder:rbac:groups=keleustes.skaphos.dev,resources=applications,verbs=get;list;watch;create;update;patch;delete
-// +kubebuilder:rbac:groups=keleustes.skaphos.dev,resources=applications/status,verbs=get;update;patch
-// +kubebuilder:rbac:groups=keleustes.skaphos.dev,resources=applications/finalizers,verbs=update
+// +kubebuilder:rbac:groups=keleustes.skaphos.io,resources=applications,verbs=get;list;watch;create;update;patch;delete
+// +kubebuilder:rbac:groups=keleustes.skaphos.io,resources=applications/status,verbs=get;update;patch
+// +kubebuilder:rbac:groups=keleustes.skaphos.io,resources=applications/finalizers,verbs=update
 
 func (r *ApplicationReconciler) Reconcile(ctx context.Context, req ctrl.Request) (ctrl.Result, error) {
 	log := logf.FromContext(ctx).WithValues("namespacedName", req.NamespacedName)

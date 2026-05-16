@@ -27,10 +27,10 @@ type SyncPlanReconciler struct {
 	Scheme *runtime.Scheme
 }
 
-// +kubebuilder:rbac:groups=keleustes.skaphos.dev,resources=syncplans,verbs=get;list;watch;create;update;patch;delete
-// +kubebuilder:rbac:groups=keleustes.skaphos.dev,resources=syncplans/status,verbs=get;update;patch
-// +kubebuilder:rbac:groups=keleustes.skaphos.dev,resources=syncplans/finalizers,verbs=update
-// +kubebuilder:rbac:groups=keleustes.skaphos.dev,resources=syncruns,verbs=get;list;watch;create;update;patch;delete
+// +kubebuilder:rbac:groups=keleustes.skaphos.io,resources=syncplans,verbs=get;list;watch;create;update;patch;delete
+// +kubebuilder:rbac:groups=keleustes.skaphos.io,resources=syncplans/status,verbs=get;update;patch
+// +kubebuilder:rbac:groups=keleustes.skaphos.io,resources=syncplans/finalizers,verbs=update
+// +kubebuilder:rbac:groups=keleustes.skaphos.io,resources=syncruns,verbs=get;list;watch;create;update;patch;delete
 
 func (r *SyncPlanReconciler) Reconcile(ctx context.Context, req ctrl.Request) (ctrl.Result, error) {
 	var plan keleustesv1alpha1.SyncPlan

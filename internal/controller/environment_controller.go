@@ -25,9 +25,9 @@ type EnvironmentReconciler struct {
 	Scheme *runtime.Scheme
 }
 
-// +kubebuilder:rbac:groups=keleustes.skaphos.dev,resources=environments,verbs=get;list;watch;create;update;patch;delete
-// +kubebuilder:rbac:groups=keleustes.skaphos.dev,resources=environments/status,verbs=get;update;patch
-// +kubebuilder:rbac:groups=keleustes.skaphos.dev,resources=environments/finalizers,verbs=update
+// +kubebuilder:rbac:groups=keleustes.skaphos.io,resources=environments,verbs=get;list;watch;create;update;patch;delete
+// +kubebuilder:rbac:groups=keleustes.skaphos.io,resources=environments/status,verbs=get;update;patch
+// +kubebuilder:rbac:groups=keleustes.skaphos.io,resources=environments/finalizers,verbs=update
 
 func (r *EnvironmentReconciler) Reconcile(ctx context.Context, req ctrl.Request) (ctrl.Result, error) {
 	var env keleustesv1alpha1.Environment

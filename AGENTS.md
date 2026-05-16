@@ -12,7 +12,7 @@ symlink to `AGENTS.md`.
 ## What Keleustes Is
 
 Keleustes is a Kubernetes-native GitOps delivery control plane. It owns the
-following CRDs under the `keleustes.skaphos.dev` API group:
+following CRDs under the `keleustes.skaphos.io` API group:
 
 - `Application`, `Source`, `Release`, `Deployment`
 - `Environment`, `Cell`, `DeploymentTarget`

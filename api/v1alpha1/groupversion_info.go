@@ -5,7 +5,7 @@ SPDX-License-Identifier: MIT
 
 // Package v1alpha1 contains API Schema definitions for the keleustes v1alpha1 API group.
 // +kubebuilder:object:generate=true
-// +groupName=keleustes.skaphos.dev
+// +groupName=keleustes.skaphos.io
 package v1alpha1
 
 import (
@@ -15,7 +15,7 @@ import (
 )
 
 // GroupVersion is the group/version used to register these objects.
-var GroupVersion = schema.GroupVersion{Group: "keleustes.skaphos.dev", Version: "v1alpha1"}
+var GroupVersion = schema.GroupVersion{Group: "keleustes.skaphos.io", Version: "v1alpha1"}
 
 // builder is a minimal scheme builder bound to GroupVersion. It mirrors the
 // controller-runtime scheme.Builder API but depends only on apimachinery so the

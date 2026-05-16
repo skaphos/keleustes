@@ -13,7 +13,7 @@ vars:
   IMG: '{{.IMG | default "controller:latest"}}'
   CTL_IMG: '{{.CTL_IMG | default "keleustesctl:latest"}}'
   VERSION: '{{.VERSION | default "0.0.1"}}'
-  IMAGE_TAG_BASE: '{{.IMAGE_TAG_BASE | default "skaphos.dev/keleustes"}}'
+  IMAGE_TAG_BASE: '{{.IMAGE_TAG_BASE | default "skaphos.io/keleustes"}}'
   BUNDLE_IMG: '{{.BUNDLE_IMG | default (printf "%s-bundle:v%s" .IMAGE_TAG_BASE .VERSION)}}'
   CATALOG_IMG: '{{.CATALOG_IMG | default (printf "%s-catalog:v%s" .IMAGE_TAG_BASE .VERSION)}}'
   KIND_CLUSTER: '{{.KIND_CLUSTER | default "keleustes-test-e2e"}}'

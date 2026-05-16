@@ -81,7 +81,7 @@ tools/                 # Pinned developer tooling (Task, controller-gen, …)
 ui/                    # Placeholder for the React/TypeScript UI (PROPOSAL §16)
 ```
 
-## Core CRDs (group `keleustes.skaphos.dev`)
+## Core CRDs (group `keleustes.skaphos.io`)
 
 | Kind                | Purpose                                                                  |
 | ------------------- | ------------------------------------------------------------------------ |

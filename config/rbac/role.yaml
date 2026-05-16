@@ -7,7 +7,7 @@ metadata:
   name: manager-role
 rules:
 - apiGroups:
-  - keleustes.skaphos.dev
+  - keleustes.skaphos.io
   resources:
   - applications
   - cells
@@ -32,7 +32,7 @@ rules:
   - patch
   - delete
 - apiGroups:
-  - keleustes.skaphos.dev
+  - keleustes.skaphos.io
   resources:
   - applications/status
   - cells/status
@@ -47,7 +47,7 @@ rules:
   - update
   - patch
 - apiGroups:
-  - keleustes.skaphos.dev
+  - keleustes.skaphos.io
   resources:
   - applications/finalizers
   - cells/finalizers

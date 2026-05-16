@@ -25,9 +25,9 @@ type DeploymentTargetReconciler struct {
 	Scheme *runtime.Scheme
 }
 
-// +kubebuilder:rbac:groups=keleustes.skaphos.dev,resources=deploymenttargets,verbs=get;list;watch;create;update;patch;delete
-// +kubebuilder:rbac:groups=keleustes.skaphos.dev,resources=deploymenttargets/status,verbs=get;update;patch
-// +kubebuilder:rbac:groups=keleustes.skaphos.dev,resources=deploymenttargets/finalizers,verbs=update
+// +kubebuilder:rbac:groups=keleustes.skaphos.io,resources=deploymenttargets,verbs=get;list;watch;create;update;patch;delete
+// +kubebuilder:rbac:groups=keleustes.skaphos.io,resources=deploymenttargets/status,verbs=get;update;patch
+// +kubebuilder:rbac:groups=keleustes.skaphos.io,resources=deploymenttargets/finalizers,verbs=update
 
 func (r *DeploymentTargetReconciler) Reconcile(ctx context.Context, req ctrl.Request) (ctrl.Result, error) {
 	var target keleustesv1alpha1.DeploymentTarget

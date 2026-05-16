@@ -3,7 +3,7 @@ SPDX-FileCopyrightText: 2026 Skaphos
 SPDX-License-Identifier: MIT
 */
 
-// Package controller implements reconcilers for the keleustes.skaphos.dev CRDs.
+// Package controller implements reconcilers for the keleustes.skaphos.io CRDs.
 //
 // The scaffold ships idempotent stubs that set ObservedGeneration and an
 // Accepted condition for each owned kind. Real reconciliation logic (Source

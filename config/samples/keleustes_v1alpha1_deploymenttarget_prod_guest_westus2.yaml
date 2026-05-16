@@ -1,4 +1,4 @@
-apiVersion: keleustes.skaphos.dev/v1alpha1
+apiVersion: keleustes.skaphos.io/v1alpha1
 kind: DeploymentTarget
 metadata:
   name: prod-guest-westus2
