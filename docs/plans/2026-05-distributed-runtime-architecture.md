@@ -471,7 +471,7 @@ The plan is to produce a "Partition Behavior Matrix" as input to the eventual AD
 
 ## 13. Open Questions & Future ADR Candidates
 
-> **Partially resolved.** Q15 (JetStream retention vs. archive cadence) and Q18 (subject / stream layout for JetStream) are now answered concretely by [`2026-05-jetstream-subject-and-stream-layout.md`](./2026-05-jetstream-subject-and-stream-layout.md) (SKA-324, active interim contract). Read that plan for the canonical subject grammar, the seven streams, per-stream retention, the partition function and grow strategy, and the cross-shard dependency-event subjects. The bullets below are retained for archaeology — the live answers live in the SKA-324 plan and in [docs/DECISIONS.md](../DECISIONS.md).
+> **Partially resolved.** Q14 (sharded vs. leader-elected controllers, which library, when to commit) is answered by [`2026-05-sharded-controller-pattern.md`](./2026-05-sharded-controller-pattern.md) (SKA-328, active interim contract). Q15 (JetStream retention vs. archive cadence) and Q18 (subject / stream layout for JetStream) are answered by [`2026-05-jetstream-subject-and-stream-layout.md`](./2026-05-jetstream-subject-and-stream-layout.md) (SKA-324, active interim contract). The bullets below are retained for archaeology — the live answers live in the SKA-324 / SKA-328 plans and in [docs/DECISIONS.md](../DECISIONS.md).
 
 1. Should the first agent implementation be **in-cluster sidecar** (simple) or **out-of-cluster dedicated deployment** (more flexible for air-gapped)?
 2. Rendering location strategy: always central first, then opt-in delegation, or designed as pluggable from the start?
