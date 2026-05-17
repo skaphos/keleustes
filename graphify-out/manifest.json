@@ -336,12 +336,16 @@
     "hash": "3caf1f1987c1ac60e28f9d689088f8ce"
   },
   "/home/sstratton/work/skaphos/keleustes/docs/DECISIONS.md": {
-    "mtime": 1779008026.0026646,
-    "hash": "6f5c74c2535dc7aac5af2d38fc04c7a3"
+    "mtime": 1779008682.3819003,
+    "hash": "d3fb7059ebfa66899fe47519d1c2d8c5"
   },
   "/home/sstratton/work/skaphos/keleustes/docs/NAMING.md": {
     "mtime": 1778819313.5776038,
     "hash": "169efe1fffdca9078d5be1337f4b7a51"
+  },
+  "/home/sstratton/work/skaphos/keleustes/docs/plans/2026-05-agent-transport-interface.md": {
+    "mtime": 1779008654.314474,
+    "hash": "9eab76eaebfc405a670f484e6b6edf30"
   },
   "/home/sstratton/work/skaphos/keleustes/docs/plans/2026-05-gitops-engine-spike.md": {
     "mtime": 1779002185.5666902,
@@ -372,16 +376,16 @@
     "hash": "d568090f092757a3dc8e668600827874"
   },
   "/home/sstratton/work/skaphos/keleustes/docs/plans/2026-05-distributed-runtime-architecture.md": {
-    "mtime": 1779008042.1359634,
-    "hash": "81e80356dad625e0c961b70d24e5cdf6"
+    "mtime": 1779008701.0176642,
+    "hash": "b907b5dbc9d9ac312801137de4492040"
   },
   "/home/sstratton/work/skaphos/keleustes/docs/plans/2026-05-rbac-audit-and-git-invariant.md": {
     "mtime": 1779004998.3649006,
     "hash": "76230a27452dee8fde00a187000c1522"
   },
   "/home/sstratton/work/skaphos/keleustes/docs/plans/README.md": {
-    "mtime": 1779008035.614019,
-    "hash": "9d1cd1e2c12b806c927bb1b6a37b9d3c"
+    "mtime": 1779008692.4705365,
+    "hash": "c02479a42de46e8b62bcda99a93c3ba3"
   },
   "/home/sstratton/work/skaphos/keleustes/docs/plans/2026-05-engine-boundaries-and-technology-integration.md": {
     "mtime": 1778994754.3963542,
