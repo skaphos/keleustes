@@ -336,8 +336,8 @@
     "hash": "3caf1f1987c1ac60e28f9d689088f8ce"
   },
   "/home/sstratton/work/skaphos/keleustes/docs/DECISIONS.md": {
-    "mtime": 1779004477.0508792,
-    "hash": "6f545692ff62a81c1f446ca5d85c55dc"
+    "mtime": 1779004981.9474666,
+    "hash": "8102e613ceb0bbcd94f84cad887d40de"
   },
   "/home/sstratton/work/skaphos/keleustes/docs/NAMING.md": {
     "mtime": 1778819313.5776038,
@@ -364,16 +364,20 @@
     "hash": "b518bdcb91fe34984565b7a287665ac9"
   },
   "/home/sstratton/work/skaphos/keleustes/docs/plans/2026-05-rbac-audit-and-git-invariant.md": {
-    "mtime": 1778994451.4777982,
-    "hash": "d5c8c694c4da822a314895e9cb2354b3"
+    "mtime": 1779004998.3649006,
+    "hash": "76230a27452dee8fde00a187000c1522"
   },
   "/home/sstratton/work/skaphos/keleustes/docs/plans/README.md": {
-    "mtime": 1779004584.313082,
-    "hash": "7c8fb58fd6aabb7178fef42aeadb7a64"
+    "mtime": 1779005009.4213042,
+    "hash": "82d5d10e26a7d49c93a645eea4a37a3b"
   },
   "/home/sstratton/work/skaphos/keleustes/docs/plans/2026-05-engine-boundaries-and-technology-integration.md": {
     "mtime": 1778994754.3963542,
     "hash": "b073cc3f7ccd09a859932286c36425bf"
+  },
+  "/home/sstratton/work/skaphos/keleustes/docs/plans/2026-05-rbac-crd-shapes.md": {
+    "mtime": 1779004946.2075977,
+    "hash": "f9742499f241cd805b1d0f33861240dd"
   },
   "/home/sstratton/work/skaphos/keleustes/docs/plans/2026-05-extensibility-plugin-surfaces.md": {
     "mtime": 1778985101.2451506,
