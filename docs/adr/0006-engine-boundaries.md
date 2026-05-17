@@ -5,7 +5,7 @@ SPDX-License-Identifier: MIT
 
 # ADR 0006 — Engine boundaries and `gitops-engine` reuse
 
-- **Status:** Accepted — amended 2026-05-17 with SKA-327 spike findings (see Amendments below)
+- **Status:** Accepted — amended 2026-05-17 (twice: SKA-327 spike findings, then soft-fork reversal — see Amendments below)
 - **Date:** 2026-05-17
 - **Deciders:** Platform Architecture (Skaphos)
 - **Linear:** SKA-411, SKA-327 (adoption spike)
@@ -14,6 +14,22 @@ SPDX-License-Identifier: MIT
 - **See also:** `docs/plans/2026-05-gitops-engine-spike.md` (SKA-327 spike report — empirical validation of §4)
 
 ## Amendments
+
+### 2026-05-17 (afternoon) — Soft-fork strategy abandoned
+
+The soft-fork half of the earlier amendment's §4 (below) is reversed. Keleustes now consumes a **vanilla upstream pseudo-version** of `github.com/argoproj/argo-cd/gitops-engine` (`v0.0.0-20260515214037-a39953d21f51` at the time of this amendment). The `skaphos/argo-cd` mirror, the upstream PR plan (argo-cd#27887), and the 90-day escalation trigger are all withdrawn. SKA-418 — the ticket that wired the `replace` directive at the soft-fork — is closed as superseded.
+
+**What changed the calculus.** The earlier amendment named only one v2beta call site (`pkg/health/health_hpa.go`). Implementation work surfaced a second, independent site: `pkg/utils/kube/scheme/scheme.go` blanket-registers Kubernetes API groups via `_ "k8s.io/kubernetes/pkg/apis/autoscaling/install"`, which itself registers `v2beta1` and `v2beta2` types. This path is reached through the `pkg/sync` cluster cache initialization, so any non-trivial use of the engine traverses it. The ~50 LOC cleanup PR upstream removes the *direct* import in `pkg/health` but leaves the scheme-install path intact — and the scheme-install path is the load-bearing one for the k8s.io ≤ v0.34 ceiling. Resolving it would require restructuring how the engine registers schemes, well outside the scope of a small upstream patch.
+
+**Decision.** Treat the k8s.io ≤ v0.34 / controller-runtime ≤ v0.22 ceiling as a **steady-state constraint**, not a temporary one. The earlier amendment's "catch-up review" framing for pinning cadence (§4) still applies — but the trigger for catching up shifts from "the upstream PR lands" to "upstream restructures the scheme registration" or "Keleustes' need to consume k8s.io v0.35+ becomes load-bearing enough to justify a hard fork or a Keleustes-owned health engine." Neither is on the near-term roadmap.
+
+**What is unchanged.** The containment rule (§4), license attribution (§4), the mandatory duplicated `replace` block in `go.mod` (Amendments §3 / §10), the agent build profile (§9), engine boundaries, render policy, Git-provider policy, and annotation policy all remain as written. The dependency graph cost recorded in the SKA-327 spike report (+86 modules, +11.67 MB binary) is paid against the vanilla upstream pin, not the fork — the fork did not change those numbers.
+
+**Compliance updates carried by this amendment:**
+
+- Spike report's *Decision: adoption strategy* section is annotated with a pointer to this amendment.
+- Spike report's follow-ups (2) "open the upstream PR" and (3) "set up skaphos/argo-cd-gitops-engine mirror" and (6) "track 90-day escalation deadline" are withdrawn. Follow-ups (1) ADR amendment, (4) cluster-cache warm-up measurement, (5) NOTICE / THIRD_PARTY_LICENSES tooling are unchanged.
+- `docs/licenses.md` and `NOTICE` already point at `argo-cd` upstream, not the skaphos fork — no change required.
 
 ### 2026-05-17 — SKA-327 spike findings
 
@@ -25,7 +41,7 @@ The MVP 1 spike enumerated in *Compliance and follow-ups* below was executed (`d
 
 3. **Mandatory `replace` block.** The engine's upstream go.mod uses `require k8s.io/* v0.0.0` paired with `replace` directives (standard `k8s.io/kubernetes`-consumer pattern). `replace` directives in dependencies do not propagate; every consumer must duplicate the ~30-line block in its own go.mod. This is a one-time cost but a permanent obligation. §10's dependency-pinning strategy must include this block alongside the per-module pins.
 
-4. **Soft-fork adoption strategy (overrides "vanilla upstream" implication of §4).** The dead-code `autoscaling/v2beta{1,2}` imports in `pkg/health/health_hpa.go` (~50 lines) are the proximate cause of the k8s.io ceiling. Strategy:
+4. **Soft-fork adoption strategy (overrides "vanilla upstream" implication of §4).** ⚠️ *Superseded by the 2026-05-17 (afternoon) amendment above — the soft-fork strategy below was abandoned once a second, independent v2beta call site in `pkg/utils/kube/scheme` was discovered. Retained here as historical record.* The dead-code `autoscaling/v2beta{1,2}` imports in `pkg/health/health_hpa.go` (~50 lines) are the proximate cause of the k8s.io ceiling. Strategy:
 
    - **Send an upstream PR** dropping the dead imports. High-leverage cleanup; benefits every downstream consumer.
    - **While the PR is open**, point Keleustes' go.mod at a `skaphos/argo-cd-gitops-engine` mirror carrying only the cleanup patch via `replace github.com/argoproj/argo-cd/gitops-engine => github.com/skaphos/argo-cd-gitops-engine vX`. Rebase on every upstream commit.

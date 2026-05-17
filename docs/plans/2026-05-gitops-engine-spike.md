@@ -9,7 +9,28 @@ SPDX-License-Identifier: MIT
 - **Branch:** `shawnstratton/ska-327-gitops-engine-adoption-spike` (throwaway)
 - **Reports into:** [ADR 0006](../adr/0006-engine-boundaries.md) §4 (`gitops-engine` reuse) — validates the empirical cost the ADR accepted in advance.
 - **Linear:** SKA-327
-- **Verdict:** **Adopt with a soft fork + upstream PR + 90-day check.** Confirms ADR 0006 §4 in principle; adds two concrete constraints the ADR did not anticipate.
+- **Verdict:** **Adopt vanilla upstream; accept the k8s.io ≤ v0.34 ceiling as steady state.** Confirms ADR 0006 §4 in principle. ⚠️ *Verdict revised 2026-05-17 (afternoon) — original verdict was "soft fork + upstream PR + 90-day check"; see [Update](#update-2026-05-17-afternoon--soft-fork-abandoned) below and the corresponding [ADR 0006 amendment](../adr/0006-engine-boundaries.md#2026-05-17-afternoon--soft-fork-strategy-abandoned).*
+
+## Update 2026-05-17 (afternoon) — soft fork abandoned
+
+The original verdict ("Adopt with a soft fork + upstream PR + 90-day check") was reversed within hours of landing this report.
+
+**Why.** This report named one v2beta call site (`pkg/health/health_hpa.go`) as the proximate cause of the k8s.io ≤ v0.34 ceiling and proposed an upstream PR + skaphos mirror to remove it. A second, independent site exists: `pkg/utils/kube/scheme/scheme.go` blanket-registers Kubernetes API groups via `_ "k8s.io/kubernetes/pkg/apis/autoscaling/install"`, which itself registers `v2beta1` and `v2beta2` types. The `pkg/sync` cluster cache initialization reaches this path on any non-trivial use of the engine. The ~50 LOC upstream PR removes the *direct* import in `pkg/health` but leaves the scheme-install path intact — and the scheme-install path is the load-bearing one for the ceiling. Resolving it would require restructuring how the engine registers schemes, well outside the scope of a small upstream patch.
+
+**Decision.** Treat the k8s.io ≤ v0.34 / controller-runtime ≤ v0.22 ceiling as a **steady-state constraint**. Pin to vanilla upstream pseudo-versions. The `skaphos/argo-cd` mirror and the 90-day clock are withdrawn.
+
+**Follow-ups status after the reversal:**
+
+| # | Follow-up | Status |
+|---|---|---|
+| 1 | ADR 0006 amendment | Done — `b8576bc` + the 2026-05-17 (afternoon) amendment |
+| 2 | Upstream PR to drop v2beta imports | **Withdrawn** — does not lift the ceiling on its own |
+| 3 | `skaphos/argo-cd-gitops-engine` mirror | **Withdrawn** — SKA-418 closed as superseded |
+| 4 | MVP 1 cluster-cache warm-up measurement | Still open |
+| 5 | NOTICE / THIRD_PARTY_LICENSES tooling | Done — `2bb1589` |
+| 6 | 90-day escalation calendar reminder | **Withdrawn** with the soft-fork strategy |
+
+The empirical results below (module-graph delta, binary-size impact, wrap ergonomics, cache instantiation, annotation exposure) are unchanged — they were measured against the vanilla upstream engine; the fork patch did not move the numbers.
 
 ## TL;DR
 
@@ -201,6 +222,8 @@ expectation: treat the dependency as a frozen-ish baseline, not a
 living library.
 
 ## Decision: adoption strategy
+
+> ⚠️ *This section's chosen option ("soft fork + upstream PR + 90-day check") was reversed within hours of the report landing. The current decision is "Use as-is" against vanilla upstream. See [Update 2026-05-17 (afternoon)](#update-2026-05-17-afternoon--soft-fork-abandoned) and the corresponding [ADR 0006 amendment](../adr/0006-engine-boundaries.md#2026-05-17-afternoon--soft-fork-strategy-abandoned). The original analysis below is retained for historical record.*
 
 Three options were considered before the spike:
 
