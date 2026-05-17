@@ -452,6 +452,29 @@ spec:
 
 **Diff Engine**: Computes desired-vs-live, release-vs-release, environment-vs-environment, PR mutation, rendered manifest, and policy diffs.
 
+### 9.2 Cross-cutting concerns: extension surfaces and observability
+
+Keleustes is opinionated about contracts and unopinionated about vendors. Two cross-cutting concerns appear in every engine and need a shared shape from day one.
+
+**Extension surfaces.** Notifications, signature verification, security scanning, policy gates, and audit-event forwarding are plugin surfaces, not hardcoded vendor integrations. Each is configured by a declarative CRD pointing at either a built-in implementation (e.g., cosign, trivy, opa) or an external HTTPS webhook. The five surfaces are:
+
+- `Notifier` — lifecycle events to Slack, PagerDuty, MS Teams, webhooks, SIEMs.
+- `SignatureVerifier` — image/chart signature verification (cosign built-in; notation, Sigstore policy-controller, custom via webhook).
+- `Scanner` — vulnerability findings (Trivy/Grype built-in; Snyk, Aqua, Xray, custom via webhook).
+- `PolicyGate` — promotion gates (OPA built-in; Kyverno, Gatekeeper, custom via webhook). Built-in native gates (`imageSigned`, `sbomPresent`, `vulnThreshold`, etc.) coexist under the same `gateId` lookup.
+- `AuditDestination` — audit-stream forwarding to Splunk HEC, Sumo Logic, Datadog, Elastic, syslog (all built-in); custom via webhook.
+
+Built-in implementations live in-tree so the common case needs zero plugin deployment; everything else plugs in via webhook with a shared envelope and authentication model. Plugin configuration lives in Git as CRDs — consistent with the Git-source-of-truth invariant. Full design in `docs/plans/2026-05-extensibility-plugin-surfaces.md`.
+
+**Observability.** Keleustes ships a default observability bundle so the operator is observable on every cluster that runs the Prometheus Operator. The bundle is:
+
+- Prometheus Operator manifests under `config/observability/prometheus/` (`ServiceMonitor`, `PodMonitor` for agents, `PrometheusRule` per engine with mandatory runbook annotations, `kube-state-metrics` CustomResourceState for CRD status fields).
+- Grafana dashboards as ConfigMaps labeled `grafana_dashboard: "1"` (operator overview, per-engine, agent health, plugin surfaces).
+- OpenTelemetry SDK with dual export (Prom-native scrape + OTLP push) — traces every reconcile loop and significant sub-operation. Disabled when `OTEL_EXPORTER_OTLP_ENDPOINT` is unset.
+- Label and cardinality conventions: per-application labels only on counters/gauges, never on histograms.
+- Multi-region: regional Prometheus scrapes agents locally; the hub federates aggregates only.
+- Telemetry and audit are separate pipelines; they correlate via `traceId`. Full design in `docs/plans/2026-05-observability-stack.md`.
+
 ---
 
 ## 10. Deployment model
@@ -632,21 +655,15 @@ Native checks:
 - No active incident
 - Manual hold not set
 
-Later integrations:
+External policy and verification integrations attach via the plugin surfaces defined in §9.2 and `docs/plans/2026-05-extensibility-plugin-surfaces.md`:
 
-- OPA
-- Kyverno
-- Conftest
-- SLSA
-- GUAC
-- OSV
-- Grype
-- Trivy
-- ServiceNow
-- Jira
-- Azure DevOps work items
+- `SignatureVerifier` plugins — cosign (built-in), notation, Sigstore policy-controller, custom.
+- `Scanner` plugins — Trivy / Grype (built-in), Snyk, Aqua, Xray, OSV-based custom scanners.
+- `PolicyGate` plugins — OPA (built-in), Kyverno, Gatekeeper, Conftest, SLSA / GUAC provenance verifiers, ServiceNow / Jira / Azure DevOps change-record integrations, custom.
 
-Policy output must be evidence-backed. A blocked promotion should show which gate failed, what evidence was used, when it was evaluated, and what action can unblock it.
+Built-in implementations live in-tree; everything else plugs in via webhook. Native gates and plugin-defined gates coexist under one `gateId` lookup on `PromotionPolicy.required`.
+
+Policy output must be evidence-backed. A blocked promotion should show which gate failed, what evidence was used, when it was evaluated, and what action can unblock it. Evidence is attached to the Promotion status and captured in the audit envelope regardless of outcome.
 
 ---
 
@@ -845,6 +862,8 @@ Features:
 - Show application health
 - Show deployed versions
 - Show resource tree
+- Observability bundle: Prometheus Operator `ServiceMonitor`, manager `PrometheusRule`, `kube-state-metrics` CustomResourceState, overview dashboard (see §9.2 and `docs/plans/2026-05-observability-stack.md`)
+- `Notifier` CRD scaffold and reconciler stub (no delivery yet; see §9.2 and `docs/plans/2026-05-extensibility-plugin-surfaces.md`)
 
 No Git mutation, automated sync, or promotion engine yet.
 
@@ -866,6 +885,9 @@ Features:
 - Auto-sync
 - Suspend and resume
 - Basic diff
+- OpenTelemetry SDK with dual export, reference collector, per-engine traces
+- Plugin envelope + dispatcher shared infrastructure (`pkg/plugins/`)
+- `Notifier` delivery operational for first events (Source revision observed, SyncRun failed)
 
 ### MVP 2: Releases and promotions
 
@@ -904,13 +926,14 @@ Goal: make Keleustes acceptable in regulated enterprise environments.
 
 Features:
 
-- Signed artifact policy
+- Signed artifact policy (via `SignatureVerifier` plugins, cosign built-in)
 - SBOM policy
-- Vulnerability gates
+- Vulnerability gates (via `Scanner` plugins, Trivy/Grype built-in)
 - Approval evidence
-- Audit export
+- Audit export (via `AuditDestination` plugins, Splunk/Sumo/Datadog/Elastic/syslog built-in)
 - Policy result history
-- Change-management integration
+- Change-management integration (via `PolicyGate` plugins)
+- OPA / Gatekeeper / Kyverno integration as `PolicyGate` plugin implementations
 
 ---
 
@@ -965,6 +988,8 @@ These should appear in the public README if the project proceeds:
 8. Application count should not be a pricing weapon.
 9. Kubernetes-native does not mean Kubernetes-only UX.
 10. Operators must be able to recover with Git and CLI.
+11. Extension points are declarative and webhook-shaped — Keleustes is opinionated about contracts and unopinionated about vendors.
+12. Observability is a default, not a feature — every engine emits metrics, traces, and logs with consistent conventions, and the operator ships a working observability bundle out of the box.
 
 ---
 
