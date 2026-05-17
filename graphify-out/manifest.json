@@ -336,8 +336,8 @@
     "hash": "3caf1f1987c1ac60e28f9d689088f8ce"
   },
   "/home/sstratton/work/skaphos/keleustes/docs/DECISIONS.md": {
-    "mtime": 1779007439.1607919,
-    "hash": "6692b5f382ba6f5c48f3d5f06e81e03d"
+    "mtime": 1779008026.0026646,
+    "hash": "6f5c74c2535dc7aac5af2d38fc04c7a3"
   },
   "/home/sstratton/work/skaphos/keleustes/docs/NAMING.md": {
     "mtime": 1778819313.5776038,
@@ -359,6 +359,10 @@
     "mtime": 1779003388.5269246,
     "hash": "698732acb0a09dda2e8edfa9962862a5"
   },
+  "/home/sstratton/work/skaphos/keleustes/docs/plans/2026-05-scale-benchmark-harness.md": {
+    "mtime": 1779008003.1375146,
+    "hash": "84f114e060dd850154cfcf6418bc607c"
+  },
   "/home/sstratton/work/skaphos/keleustes/docs/plans/2026-05-sharded-controller-pattern.md": {
     "mtime": 1779007409.2794187,
     "hash": "750ceb28354b23491718ea948f8f3143"
@@ -368,16 +372,16 @@
     "hash": "d568090f092757a3dc8e668600827874"
   },
   "/home/sstratton/work/skaphos/keleustes/docs/plans/2026-05-distributed-runtime-architecture.md": {
-    "mtime": 1779007454.3099198,
-    "hash": "e864e8bcbd96025306e0c43984ad9b24"
+    "mtime": 1779008042.1359634,
+    "hash": "81e80356dad625e0c961b70d24e5cdf6"
   },
   "/home/sstratton/work/skaphos/keleustes/docs/plans/2026-05-rbac-audit-and-git-invariant.md": {
     "mtime": 1779004998.3649006,
     "hash": "76230a27452dee8fde00a187000c1522"
   },
   "/home/sstratton/work/skaphos/keleustes/docs/plans/README.md": {
-    "mtime": 1779007447.9549768,
-    "hash": "f40eba269c99aa67ed2276733085c185"
+    "mtime": 1779008035.614019,
+    "hash": "9d1cd1e2c12b806c927bb1b6a37b9d3c"
   },
   "/home/sstratton/work/skaphos/keleustes/docs/plans/2026-05-engine-boundaries-and-technology-integration.md": {
     "mtime": 1778994754.3963542,
