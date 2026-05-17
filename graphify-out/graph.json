@@ -215,7 +215,7 @@
       "source_file": "cmd/keleustesctl/main.go",
       "source_location": "L1",
       "id": "cmd_keleustesctl_main_go",
-      "community": 34,
+      "community": 32,
       "norm_label": "main.go"
     },
     {
@@ -224,7 +224,7 @@
       "source_file": "cmd/keleustesctl/main.go",
       "source_location": "L18",
       "id": "keleustesctl_main_main",
-      "community": 34,
+      "community": 32,
       "norm_label": "main()"
     },
     {
@@ -233,7 +233,7 @@
       "source_file": "cmd/manager/main.go",
       "source_location": "L1",
       "id": "cmd_manager_main_go",
-      "community": 68,
+      "community": 70,
       "norm_label": "main.go"
     },
     {
@@ -242,7 +242,7 @@
       "source_file": "cmd/manager/main.go",
       "source_location": "L36",
       "id": "manager_main_init",
-      "community": 68,
+      "community": 70,
       "norm_label": "init()"
     },
     {
@@ -251,7 +251,7 @@
       "source_file": "cmd/manager/main.go",
       "source_location": "L41",
       "id": "manager_main_main",
-      "community": 68,
+      "community": 70,
       "norm_label": "main()"
     },
     {
@@ -260,7 +260,7 @@
       "source_file": "api/v1alpha1/cell_types.go",
       "source_location": "L1",
       "id": "api_v1alpha1_cell_types_go",
-      "community": 24,
+      "community": 25,
       "norm_label": "cell_types.go"
     },
     {
@@ -269,7 +269,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L333",
       "id": "v1alpha1_cellspec",
-      "community": 24,
+      "community": 25,
       "norm_label": "cellspec"
     },
     {
@@ -278,7 +278,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L353",
       "id": "v1alpha1_cellstatus",
-      "community": 24,
+      "community": 25,
       "norm_label": "cellstatus"
     },
     {
@@ -287,7 +287,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L274",
       "id": "v1alpha1_cell",
-      "community": 24,
+      "community": 25,
       "norm_label": "cell"
     },
     {
@@ -296,7 +296,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L301",
       "id": "v1alpha1_celllist",
-      "community": 24,
+      "community": 25,
       "norm_label": "celllist"
     },
     {
@@ -305,7 +305,7 @@
       "source_file": "api/v1alpha1/cell_types.go",
       "source_location": "L76",
       "id": "v1alpha1_cell_types_init",
-      "community": 24,
+      "community": 25,
       "norm_label": "init()"
     },
     {
@@ -314,7 +314,7 @@
       "source_file": "api/v1alpha1/deploymenttarget_types.go",
       "source_location": "L1",
       "id": "api_v1alpha1_deploymenttarget_types_go",
-      "community": 18,
+      "community": 19,
       "norm_label": "deploymenttarget_types.go"
     },
     {
@@ -323,7 +323,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L499",
       "id": "v1alpha1_deploymenttargetcluster",
-      "community": 18,
+      "community": 19,
       "norm_label": "deploymenttargetcluster"
     },
     {
@@ -332,7 +332,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L551",
       "id": "v1alpha1_deploymenttargetspec",
-      "community": 18,
+      "community": 19,
       "norm_label": "deploymenttargetspec"
     },
     {
@@ -341,7 +341,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L567",
       "id": "v1alpha1_deploymenttargetstatus",
-      "community": 18,
+      "community": 19,
       "norm_label": "deploymenttargetstatus"
     },
     {
@@ -350,7 +350,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L472",
       "id": "v1alpha1_deploymenttarget",
-      "community": 18,
+      "community": 19,
       "norm_label": "deploymenttarget"
     },
     {
@@ -359,7 +359,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L519",
       "id": "v1alpha1_deploymenttargetlist",
-      "community": 18,
+      "community": 19,
       "norm_label": "deploymenttargetlist"
     },
     {
@@ -368,7 +368,7 @@
       "source_file": "api/v1alpha1/deploymenttarget_types.go",
       "source_location": "L98",
       "id": "v1alpha1_deploymenttarget_types_init",
-      "community": 18,
+      "community": 19,
       "norm_label": "init()"
     },
     {
@@ -377,7 +377,7 @@
       "source_file": "api/v1alpha1/syncplan_types.go",
       "source_location": "L1",
       "id": "api_v1alpha1_syncplan_types_go",
-      "community": 23,
+      "community": 26,
       "norm_label": "syncplan_types.go"
     },
     {
@@ -386,7 +386,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L1551",
       "id": "v1alpha1_syncplanspec",
-      "community": 23,
+      "community": 26,
       "norm_label": "syncplanspec"
     },
     {
@@ -395,7 +395,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L1571",
       "id": "v1alpha1_syncplanstatus",
-      "community": 23,
+      "community": 26,
       "norm_label": "syncplanstatus"
     },
     {
@@ -404,7 +404,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L1492",
       "id": "v1alpha1_syncplan",
-      "community": 23,
+      "community": 26,
       "norm_label": "syncplan"
     },
     {
@@ -413,7 +413,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L1519",
       "id": "v1alpha1_syncplanlist",
-      "community": 23,
+      "community": 26,
       "norm_label": "syncplanlist"
     },
     {
@@ -422,7 +422,7 @@
       "source_file": "api/v1alpha1/syncplan_types.go",
       "source_location": "L78",
       "id": "v1alpha1_syncplan_types_init",
-      "community": 23,
+      "community": 26,
       "norm_label": "init()"
     },
     {
@@ -431,7 +431,7 @@
       "source_file": "api/v1alpha1/healthcheck_types.go",
       "source_location": "L1",
       "id": "api_v1alpha1_healthcheck_types_go",
-      "community": 19,
+      "community": 21,
       "norm_label": "healthcheck_types.go"
     },
     {
@@ -440,7 +440,7 @@
       "source_file": "api/v1alpha1/healthcheck_types.go",
       "source_location": "L14",
       "id": "v1alpha1_healthstate",
-      "community": 19,
+      "community": 21,
       "norm_label": "healthstate"
     },
     {
@@ -449,7 +449,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L872",
       "id": "v1alpha1_healthcheckspec",
-      "community": 19,
+      "community": 21,
       "norm_label": "healthcheckspec"
     },
     {
@@ -458,7 +458,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L892",
       "id": "v1alpha1_healthcheckstatus",
-      "community": 19,
+      "community": 21,
       "norm_label": "healthcheckstatus"
     },
     {
@@ -467,7 +467,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L813",
       "id": "v1alpha1_healthcheck",
-      "community": 19,
+      "community": 21,
       "norm_label": "healthcheck"
     },
     {
@@ -476,7 +476,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L840",
       "id": "v1alpha1_healthchecklist",
-      "community": 19,
+      "community": 21,
       "norm_label": "healthchecklist"
     },
     {
@@ -485,7 +485,7 @@
       "source_file": "api/v1alpha1/healthcheck_types.go",
       "source_location": "L87",
       "id": "v1alpha1_healthcheck_types_init",
-      "community": 19,
+      "community": 21,
       "norm_label": "init()"
     },
     {
@@ -494,7 +494,7 @@
       "source_file": "api/v1alpha1/promotion_types.go",
       "source_location": "L1",
       "id": "api_v1alpha1_promotion_types_go",
-      "community": 16,
+      "community": 17,
       "norm_label": "promotion_types.go"
     },
     {
@@ -503,7 +503,7 @@
       "source_file": "api/v1alpha1/promotion_types.go",
       "source_location": "L15",
       "id": "v1alpha1_promotionmode",
-      "community": 16,
+      "community": 17,
       "norm_label": "promotionmode"
     },
     {
@@ -512,7 +512,7 @@
       "source_file": "api/v1alpha1/promotion_types.go",
       "source_location": "L26",
       "id": "v1alpha1_promotionphase",
-      "community": 16,
+      "community": 17,
       "norm_label": "promotionphase"
     },
     {
@@ -521,7 +521,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L986",
       "id": "v1alpha1_promotionfrom",
-      "community": 16,
+      "community": 17,
       "norm_label": "promotionfrom"
     },
     {
@@ -530,7 +530,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L1184",
       "id": "v1alpha1_promotionto",
-      "community": 16,
+      "community": 17,
       "norm_label": "promotionto"
     },
     {
@@ -539,7 +539,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L971",
       "id": "v1alpha1_promotionchange",
-      "community": 16,
+      "community": 17,
       "norm_label": "promotionchange"
     },
     {
@@ -548,7 +548,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L1134",
       "id": "v1alpha1_promotionspec",
-      "community": 16,
+      "community": 17,
       "norm_label": "promotionspec"
     },
     {
@@ -557,7 +557,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L1157",
       "id": "v1alpha1_promotionstatus",
-      "community": 16,
+      "community": 17,
       "norm_label": "promotionstatus"
     },
     {
@@ -566,7 +566,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L944",
       "id": "v1alpha1_promotion",
-      "community": 28,
+      "community": 52,
       "norm_label": "promotion"
     },
     {
@@ -575,7 +575,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L1001",
       "id": "v1alpha1_promotionlist",
-      "community": 17,
+      "community": 51,
       "norm_label": "promotionlist"
     },
     {
@@ -584,7 +584,7 @@
       "source_file": "api/v1alpha1/promotion_types.go",
       "source_location": "L162",
       "id": "v1alpha1_promotion_types_init",
-      "community": 16,
+      "community": 17,
       "norm_label": "init()"
     },
     {
@@ -593,7 +593,7 @@
       "source_file": "api/v1alpha1/source_types.go",
       "source_location": "L1",
       "id": "api_v1alpha1_source_types_go",
-      "community": 29,
+      "community": 28,
       "norm_label": "source_types.go"
     },
     {
@@ -602,7 +602,7 @@
       "source_file": "api/v1alpha1/source_types.go",
       "source_location": "L14",
       "id": "v1alpha1_sourcetype",
-      "community": 29,
+      "community": 28,
       "norm_label": "sourcetype"
     },
     {
@@ -611,7 +611,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L1477",
       "id": "v1alpha1_sourceverify",
-      "community": 29,
+      "community": 28,
       "norm_label": "sourceverify"
     },
     {
@@ -620,7 +620,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L1434",
       "id": "v1alpha1_sourcespec",
-      "community": 29,
+      "community": 28,
       "norm_label": "sourcespec"
     },
     {
@@ -629,7 +629,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L1415",
       "id": "v1alpha1_sourceobservedrevision",
-      "community": 28,
+      "community": 18,
       "norm_label": "sourceobservedrevision"
     },
     {
@@ -638,7 +638,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L1450",
       "id": "v1alpha1_sourcestatus",
-      "community": 29,
+      "community": 28,
       "norm_label": "sourcestatus"
     },
     {
@@ -647,7 +647,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L1356",
       "id": "v1alpha1_source",
-      "community": 17,
+      "community": 11,
       "norm_label": "source"
     },
     {
@@ -656,7 +656,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L1383",
       "id": "v1alpha1_sourcelist",
-      "community": 29,
+      "community": 28,
       "norm_label": "sourcelist"
     },
     {
@@ -665,7 +665,7 @@
       "source_file": "api/v1alpha1/source_types.go",
       "source_location": "L124",
       "id": "v1alpha1_source_types_init",
-      "community": 29,
+      "community": 28,
       "norm_label": "init()"
     },
     {
@@ -674,7 +674,7 @@
       "source_file": "api/v1alpha1/groupversion_info.go",
       "source_location": "L1",
       "id": "api_v1alpha1_groupversion_info_go",
-      "community": 69,
+      "community": 71,
       "norm_label": "groupversion_info.go"
     },
     {
@@ -683,7 +683,7 @@
       "source_file": "api/v1alpha1/groupversion_info.go",
       "source_location": "L23",
       "id": "v1alpha1_builder",
-      "community": 69,
+      "community": 71,
       "norm_label": "builder"
     },
     {
@@ -692,7 +692,7 @@
       "source_file": "api/v1alpha1/groupversion_info.go",
       "source_location": "L29",
       "id": "v1alpha1_builder_register",
-      "community": 69,
+      "community": 71,
       "norm_label": ".register()"
     },
     {
@@ -701,7 +701,7 @@
       "source_file": "api/v1alpha1/common_types.go",
       "source_location": "L1",
       "id": "api_v1alpha1_common_types_go",
-      "community": 39,
+      "community": 38,
       "norm_label": "common_types.go"
     },
     {
@@ -710,7 +710,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L914",
       "id": "v1alpha1_localobjectreference",
-      "community": 39,
+      "community": 38,
       "norm_label": "localobjectreference"
     },
     {
@@ -719,7 +719,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L1341",
       "id": "v1alpha1_secretkeyref",
-      "community": 39,
+      "community": 38,
       "norm_label": "secretkeyref"
     },
     {
@@ -728,7 +728,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L929",
       "id": "v1alpha1_ownerinfo",
-      "community": 39,
+      "community": 38,
       "norm_label": "ownerinfo"
     },
     {
@@ -737,7 +737,7 @@
       "source_file": "api/v1alpha1/promotionpolicy_types.go",
       "source_location": "L1",
       "id": "api_v1alpha1_promotionpolicy_types_go",
-      "community": 25,
+      "community": 27,
       "norm_label": "promotionpolicy_types.go"
     },
     {
@@ -746,7 +746,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L1092",
       "id": "v1alpha1_promotionpolicyspec",
-      "community": 25,
+      "community": 27,
       "norm_label": "promotionpolicyspec"
     },
     {
@@ -755,7 +755,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L1112",
       "id": "v1alpha1_promotionpolicystatus",
-      "community": 25,
+      "community": 27,
       "norm_label": "promotionpolicystatus"
     },
     {
@@ -764,7 +764,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L1033",
       "id": "v1alpha1_promotionpolicy",
-      "community": 25,
+      "community": 27,
       "norm_label": "promotionpolicy"
     },
     {
@@ -773,7 +773,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L1060",
       "id": "v1alpha1_promotionpolicylist",
-      "community": 25,
+      "community": 27,
       "norm_label": "promotionpolicylist"
     },
     {
@@ -782,7 +782,7 @@
       "source_file": "api/v1alpha1/promotionpolicy_types.go",
       "source_location": "L58",
       "id": "v1alpha1_promotionpolicy_types_init",
-      "community": 25,
+      "community": 27,
       "norm_label": "init()"
     },
     {
@@ -854,7 +854,7 @@
       "source_file": "api/v1alpha1/release_types.go",
       "source_location": "L1",
       "id": "api_v1alpha1_release_types_go",
-      "community": 30,
+      "community": 29,
       "norm_label": "release_types.go"
     },
     {
@@ -863,7 +863,7 @@
       "source_file": "api/v1alpha1/release_types.go",
       "source_location": "L14",
       "id": "v1alpha1_releaseartifacttype",
-      "community": 30,
+      "community": 29,
       "norm_label": "releaseartifacttype"
     },
     {
@@ -872,7 +872,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L1236",
       "id": "v1alpha1_releaseartifact",
-      "community": 30,
+      "community": 29,
       "norm_label": "releaseartifact"
     },
     {
@@ -881,7 +881,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L1283",
       "id": "v1alpha1_releaseprovenance",
-      "community": 30,
+      "community": 29,
       "norm_label": "releaseprovenance"
     },
     {
@@ -890,7 +890,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L1298",
       "id": "v1alpha1_releasespec",
-      "community": 30,
+      "community": 29,
       "norm_label": "releasespec"
     },
     {
@@ -899,7 +899,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L1319",
       "id": "v1alpha1_releasestatus",
-      "community": 30,
+      "community": 29,
       "norm_label": "releasestatus"
     },
     {
@@ -908,7 +908,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L1209",
       "id": "v1alpha1_release",
-      "community": 28,
+      "community": 11,
       "norm_label": "release"
     },
     {
@@ -917,7 +917,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L1251",
       "id": "v1alpha1_releaselist",
-      "community": 17,
+      "community": 11,
       "norm_label": "releaselist"
     },
     {
@@ -926,7 +926,7 @@
       "source_file": "api/v1alpha1/release_types.go",
       "source_location": "L117",
       "id": "v1alpha1_release_types_init",
-      "community": 30,
+      "community": 29,
       "norm_label": "init()"
     },
     {
@@ -935,7 +935,7 @@
       "source_file": "api/v1alpha1/freezewindow_types.go",
       "source_location": "L1",
       "id": "api_v1alpha1_freezewindow_types_go",
-      "community": 26,
+      "community": 24,
       "norm_label": "freezewindow_types.go"
     },
     {
@@ -944,7 +944,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L764",
       "id": "v1alpha1_freezewindowspec",
-      "community": 26,
+      "community": 24,
       "norm_label": "freezewindowspec"
     },
     {
@@ -953,7 +953,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L791",
       "id": "v1alpha1_freezewindowstatus",
-      "community": 26,
+      "community": 24,
       "norm_label": "freezewindowstatus"
     },
     {
@@ -962,7 +962,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L705",
       "id": "v1alpha1_freezewindow",
-      "community": 26,
+      "community": 24,
       "norm_label": "freezewindow"
     },
     {
@@ -971,7 +971,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L732",
       "id": "v1alpha1_freezewindowlist",
-      "community": 26,
+      "community": 24,
       "norm_label": "freezewindowlist"
     },
     {
@@ -980,7 +980,7 @@
       "source_file": "api/v1alpha1/freezewindow_types.go",
       "source_location": "L79",
       "id": "v1alpha1_freezewindow_types_init",
-      "community": 26,
+      "community": 24,
       "norm_label": "init()"
     },
     {
@@ -989,7 +989,7 @@
       "source_file": "api/v1alpha1/deployment_types.go",
       "source_location": "L1",
       "id": "api_v1alpha1_deployment_types_go",
-      "community": 27,
+      "community": 35,
       "norm_label": "deployment_types.go"
     },
     {
@@ -998,7 +998,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L434",
       "id": "v1alpha1_deploymentspec",
-      "community": 27,
+      "community": 35,
       "norm_label": "deploymentspec"
     },
     {
@@ -1007,7 +1007,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L450",
       "id": "v1alpha1_deploymentstatus",
-      "community": 27,
+      "community": 11,
       "norm_label": "deploymentstatus"
     },
     {
@@ -1016,7 +1016,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L375",
       "id": "v1alpha1_deployment",
-      "community": 27,
+      "community": 35,
       "norm_label": "deployment"
     },
     {
@@ -1025,7 +1025,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L402",
       "id": "v1alpha1_deploymentlist",
-      "community": 27,
+      "community": 35,
       "norm_label": "deploymentlist"
     },
     {
@@ -1034,7 +1034,7 @@
       "source_file": "api/v1alpha1/deployment_types.go",
       "source_location": "L76",
       "id": "v1alpha1_deployment_types_init",
-      "community": 27,
+      "community": 35,
       "norm_label": "init()"
     },
     {
@@ -1043,7 +1043,7 @@
       "source_file": "api/v1alpha1/syncrun_types.go",
       "source_location": "L1",
       "id": "api_v1alpha1_syncrun_types_go",
-      "community": 31,
+      "community": 18,
       "norm_label": "syncrun_types.go"
     },
     {
@@ -1052,7 +1052,7 @@
       "source_file": "api/v1alpha1/syncrun_types.go",
       "source_location": "L14",
       "id": "v1alpha1_syncrunphase",
-      "community": 31,
+      "community": 18,
       "norm_label": "syncrunphase"
     },
     {
@@ -1061,7 +1061,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L1652",
       "id": "v1alpha1_syncrunspec",
-      "community": 31,
+      "community": 18,
       "norm_label": "syncrunspec"
     },
     {
@@ -1070,7 +1070,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L1669",
       "id": "v1alpha1_syncrunstatus",
-      "community": 31,
+      "community": 18,
       "norm_label": "syncrunstatus"
     },
     {
@@ -1079,7 +1079,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L1593",
       "id": "v1alpha1_syncrun",
-      "community": 31,
+      "community": 18,
       "norm_label": "syncrun"
     },
     {
@@ -1088,7 +1088,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L1620",
       "id": "v1alpha1_syncrunlist",
-      "community": 31,
+      "community": 18,
       "norm_label": "syncrunlist"
     },
     {
@@ -1097,7 +1097,7 @@
       "source_file": "api/v1alpha1/syncrun_types.go",
       "source_location": "L93",
       "id": "v1alpha1_syncrun_types_init",
-      "community": 31,
+      "community": 18,
       "norm_label": "init()"
     },
     {
@@ -1106,7 +1106,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L1",
       "id": "api_v1alpha1_zz_generated_deepcopy_go",
-      "community": 89,
+      "community": 91,
       "norm_label": "zz_generated.deepcopy.go"
     },
     {
@@ -1115,7 +1115,7 @@
       "source_file": "api/v1alpha1/application_types.go",
       "source_location": "L120",
       "id": "v1alpha1_application",
-      "community": 14,
+      "community": 15,
       "norm_label": "application"
     },
     {
@@ -1124,7 +1124,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L18",
       "id": "v1alpha1_application_deepcopyinto",
-      "community": 14,
+      "community": 15,
       "norm_label": ".deepcopyinto()"
     },
     {
@@ -1133,7 +1133,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L27",
       "id": "v1alpha1_application_deepcopy",
-      "community": 14,
+      "community": 15,
       "norm_label": ".deepcopy()"
     },
     {
@@ -1142,7 +1142,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L37",
       "id": "v1alpha1_application_deepcopyobject",
-      "community": 14,
+      "community": 15,
       "norm_label": ".deepcopyobject()"
     },
     {
@@ -1151,7 +1151,7 @@
       "source_file": "api/v1alpha1/application_types.go",
       "source_location": "L60",
       "id": "v1alpha1_applicationdeployment",
-      "community": 14,
+      "community": 15,
       "norm_label": "applicationdeployment"
     },
     {
@@ -1160,7 +1160,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L45",
       "id": "v1alpha1_applicationdeployment_deepcopyinto",
-      "community": 14,
+      "community": 15,
       "norm_label": ".deepcopyinto()"
     },
     {
@@ -1169,7 +1169,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L51",
       "id": "v1alpha1_applicationdeployment_deepcopy",
-      "community": 14,
+      "community": 15,
       "norm_label": ".deepcopy()"
     },
     {
@@ -1178,7 +1178,7 @@
       "source_file": "api/v1alpha1/application_types.go",
       "source_location": "L131",
       "id": "v1alpha1_applicationlist",
-      "community": 14,
+      "community": 15,
       "norm_label": "applicationlist"
     },
     {
@@ -1187,7 +1187,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L61",
       "id": "v1alpha1_applicationlist_deepcopyinto",
-      "community": 14,
+      "community": 15,
       "norm_label": ".deepcopyinto()"
     },
     {
@@ -1196,7 +1196,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L75",
       "id": "v1alpha1_applicationlist_deepcopy",
-      "community": 14,
+      "community": 15,
       "norm_label": ".deepcopy()"
     },
     {
@@ -1205,7 +1205,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L85",
       "id": "v1alpha1_applicationlist_deepcopyobject",
-      "community": 14,
+      "community": 15,
       "norm_label": ".deepcopyobject()"
     },
     {
@@ -1214,7 +1214,7 @@
       "source_file": "api/v1alpha1/application_types.go",
       "source_location": "L26",
       "id": "v1alpha1_applicationmanifest",
-      "community": 14,
+      "community": 15,
       "norm_label": "applicationmanifest"
     },
     {
@@ -1223,7 +1223,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L93",
       "id": "v1alpha1_applicationmanifest_deepcopyinto",
-      "community": 14,
+      "community": 15,
       "norm_label": ".deepcopyinto()"
     },
     {
@@ -1232,7 +1232,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L98",
       "id": "v1alpha1_applicationmanifest_deepcopy",
-      "community": 14,
+      "community": 15,
       "norm_label": ".deepcopy()"
     },
     {
@@ -1241,7 +1241,7 @@
       "source_file": "api/v1alpha1/application_types.go",
       "source_location": "L81",
       "id": "v1alpha1_applicationspec",
-      "community": 17,
+      "community": 11,
       "norm_label": "applicationspec"
     },
     {
@@ -1250,7 +1250,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L108",
       "id": "v1alpha1_applicationspec_deepcopyinto",
-      "community": 17,
+      "community": 11,
       "norm_label": ".deepcopyinto()"
     },
     {
@@ -1259,7 +1259,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L121",
       "id": "v1alpha1_applicationspec_deepcopy",
-      "community": 17,
+      "community": 11,
       "norm_label": ".deepcopy()"
     },
     {
@@ -1268,7 +1268,7 @@
       "source_file": "api/v1alpha1/application_types.go",
       "source_location": "L99",
       "id": "v1alpha1_applicationstatus",
-      "community": 17,
+      "community": 11,
       "norm_label": "applicationstatus"
     },
     {
@@ -1277,7 +1277,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L131",
       "id": "v1alpha1_applicationstatus_deepcopyinto",
-      "community": 17,
+      "community": 11,
       "norm_label": ".deepcopyinto()"
     },
     {
@@ -1286,7 +1286,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L143",
       "id": "v1alpha1_applicationstatus_deepcopy",
-      "community": 17,
+      "community": 11,
       "norm_label": ".deepcopy()"
     },
     {
@@ -1295,7 +1295,7 @@
       "source_file": "api/v1alpha1/application_types.go",
       "source_location": "L73",
       "id": "v1alpha1_applicationtopology",
-      "community": 14,
+      "community": 15,
       "norm_label": "applicationtopology"
     },
     {
@@ -1304,7 +1304,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L153",
       "id": "v1alpha1_applicationtopology_deepcopyinto",
-      "community": 14,
+      "community": 15,
       "norm_label": ".deepcopyinto()"
     },
     {
@@ -1313,7 +1313,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L163",
       "id": "v1alpha1_applicationtopology_deepcopy",
-      "community": 14,
+      "community": 15,
       "norm_label": ".deepcopy()"
     },
     {
@@ -1412,7 +1412,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L274",
       "id": "v1alpha1_cell_deepcopyinto",
-      "community": 24,
+      "community": 25,
       "norm_label": ".deepcopyinto()"
     },
     {
@@ -1421,7 +1421,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L283",
       "id": "v1alpha1_cell_deepcopy",
-      "community": 24,
+      "community": 25,
       "norm_label": ".deepcopy()"
     },
     {
@@ -1430,7 +1430,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L293",
       "id": "v1alpha1_cell_deepcopyobject",
-      "community": 24,
+      "community": 25,
       "norm_label": ".deepcopyobject()"
     },
     {
@@ -1439,7 +1439,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L301",
       "id": "v1alpha1_celllist_deepcopyinto",
-      "community": 24,
+      "community": 25,
       "norm_label": ".deepcopyinto()"
     },
     {
@@ -1448,7 +1448,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L315",
       "id": "v1alpha1_celllist_deepcopy",
-      "community": 24,
+      "community": 25,
       "norm_label": ".deepcopy()"
     },
     {
@@ -1457,7 +1457,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L325",
       "id": "v1alpha1_celllist_deepcopyobject",
-      "community": 24,
+      "community": 25,
       "norm_label": ".deepcopyobject()"
     },
     {
@@ -1466,7 +1466,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L333",
       "id": "v1alpha1_cellspec_deepcopyinto",
-      "community": 24,
+      "community": 25,
       "norm_label": ".deepcopyinto()"
     },
     {
@@ -1475,7 +1475,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L343",
       "id": "v1alpha1_cellspec_deepcopy",
-      "community": 24,
+      "community": 25,
       "norm_label": ".deepcopy()"
     },
     {
@@ -1484,7 +1484,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L353",
       "id": "v1alpha1_cellstatus_deepcopyinto",
-      "community": 24,
+      "community": 25,
       "norm_label": ".deepcopyinto()"
     },
     {
@@ -1493,7 +1493,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L365",
       "id": "v1alpha1_cellstatus_deepcopy",
-      "community": 24,
+      "community": 25,
       "norm_label": ".deepcopy()"
     },
     {
@@ -1502,7 +1502,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L375",
       "id": "v1alpha1_deployment_deepcopyinto",
-      "community": 27,
+      "community": 35,
       "norm_label": ".deepcopyinto()"
     },
     {
@@ -1511,7 +1511,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L384",
       "id": "v1alpha1_deployment_deepcopy",
-      "community": 27,
+      "community": 35,
       "norm_label": ".deepcopy()"
     },
     {
@@ -1520,7 +1520,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L394",
       "id": "v1alpha1_deployment_deepcopyobject",
-      "community": 27,
+      "community": 35,
       "norm_label": ".deepcopyobject()"
     },
     {
@@ -1529,7 +1529,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L402",
       "id": "v1alpha1_deploymentlist_deepcopyinto",
-      "community": 27,
+      "community": 35,
       "norm_label": ".deepcopyinto()"
     },
     {
@@ -1538,7 +1538,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L416",
       "id": "v1alpha1_deploymentlist_deepcopy",
-      "community": 27,
+      "community": 35,
       "norm_label": ".deepcopy()"
     },
     {
@@ -1547,7 +1547,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L426",
       "id": "v1alpha1_deploymentlist_deepcopyobject",
-      "community": 27,
+      "community": 35,
       "norm_label": ".deepcopyobject()"
     },
     {
@@ -1556,7 +1556,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L434",
       "id": "v1alpha1_deploymentspec_deepcopyinto",
-      "community": 27,
+      "community": 35,
       "norm_label": ".deepcopyinto()"
     },
     {
@@ -1565,7 +1565,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L440",
       "id": "v1alpha1_deploymentspec_deepcopy",
-      "community": 27,
+      "community": 35,
       "norm_label": ".deepcopy()"
     },
     {
@@ -1574,7 +1574,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L450",
       "id": "v1alpha1_deploymentstatus_deepcopyinto",
-      "community": 27,
+      "community": 11,
       "norm_label": ".deepcopyinto()"
     },
     {
@@ -1583,7 +1583,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L462",
       "id": "v1alpha1_deploymentstatus_deepcopy",
-      "community": 27,
+      "community": 11,
       "norm_label": ".deepcopy()"
     },
     {
@@ -1592,7 +1592,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L472",
       "id": "v1alpha1_deploymenttarget_deepcopyinto",
-      "community": 18,
+      "community": 19,
       "norm_label": ".deepcopyinto()"
     },
     {
@@ -1601,7 +1601,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L481",
       "id": "v1alpha1_deploymenttarget_deepcopy",
-      "community": 18,
+      "community": 19,
       "norm_label": ".deepcopy()"
     },
     {
@@ -1610,7 +1610,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L491",
       "id": "v1alpha1_deploymenttarget_deepcopyobject",
-      "community": 18,
+      "community": 19,
       "norm_label": ".deepcopyobject()"
     },
     {
@@ -1619,7 +1619,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L499",
       "id": "v1alpha1_deploymenttargetcluster_deepcopyinto",
-      "community": 18,
+      "community": 19,
       "norm_label": ".deepcopyinto()"
     },
     {
@@ -1628,7 +1628,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L509",
       "id": "v1alpha1_deploymenttargetcluster_deepcopy",
-      "community": 18,
+      "community": 19,
       "norm_label": ".deepcopy()"
     },
     {
@@ -1637,7 +1637,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L519",
       "id": "v1alpha1_deploymenttargetlist_deepcopyinto",
-      "community": 18,
+      "community": 19,
       "norm_label": ".deepcopyinto()"
     },
     {
@@ -1646,7 +1646,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L533",
       "id": "v1alpha1_deploymenttargetlist_deepcopy",
-      "community": 18,
+      "community": 19,
       "norm_label": ".deepcopy()"
     },
     {
@@ -1655,7 +1655,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L543",
       "id": "v1alpha1_deploymenttargetlist_deepcopyobject",
-      "community": 18,
+      "community": 19,
       "norm_label": ".deepcopyobject()"
     },
     {
@@ -1664,7 +1664,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L551",
       "id": "v1alpha1_deploymenttargetspec_deepcopyinto",
-      "community": 18,
+      "community": 19,
       "norm_label": ".deepcopyinto()"
     },
     {
@@ -1673,7 +1673,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L557",
       "id": "v1alpha1_deploymenttargetspec_deepcopy",
-      "community": 18,
+      "community": 19,
       "norm_label": ".deepcopy()"
     },
     {
@@ -1682,7 +1682,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L567",
       "id": "v1alpha1_deploymenttargetstatus_deepcopyinto",
-      "community": 18,
+      "community": 19,
       "norm_label": ".deepcopyinto()"
     },
     {
@@ -1691,7 +1691,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L583",
       "id": "v1alpha1_deploymenttargetstatus_deepcopy",
-      "community": 18,
+      "community": 19,
       "norm_label": ".deepcopy()"
     },
     {
@@ -1700,7 +1700,7 @@
       "source_file": "api/v1alpha1/environment_types.go",
       "source_location": "L62",
       "id": "v1alpha1_environment",
-      "community": 32,
+      "community": 30,
       "norm_label": "environment"
     },
     {
@@ -1709,7 +1709,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L593",
       "id": "v1alpha1_environment_deepcopyinto",
-      "community": 32,
+      "community": 30,
       "norm_label": ".deepcopyinto()"
     },
     {
@@ -1718,7 +1718,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L602",
       "id": "v1alpha1_environment_deepcopy",
-      "community": 32,
+      "community": 30,
       "norm_label": ".deepcopy()"
     },
     {
@@ -1727,7 +1727,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L612",
       "id": "v1alpha1_environment_deepcopyobject",
-      "community": 32,
+      "community": 30,
       "norm_label": ".deepcopyobject()"
     },
     {
@@ -1736,7 +1736,7 @@
       "source_file": "api/v1alpha1/environment_types.go",
       "source_location": "L14",
       "id": "v1alpha1_environmentchangecontrol",
-      "community": 32,
+      "community": 30,
       "norm_label": "environmentchangecontrol"
     },
     {
@@ -1745,7 +1745,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L620",
       "id": "v1alpha1_environmentchangecontrol_deepcopyinto",
-      "community": 32,
+      "community": 30,
       "norm_label": ".deepcopyinto()"
     },
     {
@@ -1754,7 +1754,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L625",
       "id": "v1alpha1_environmentchangecontrol_deepcopy",
-      "community": 32,
+      "community": 30,
       "norm_label": ".deepcopy()"
     },
     {
@@ -1763,7 +1763,7 @@
       "source_file": "api/v1alpha1/environment_types.go",
       "source_location": "L73",
       "id": "v1alpha1_environmentlist",
-      "community": 28,
+      "community": 53,
       "norm_label": "environmentlist"
     },
     {
@@ -1772,7 +1772,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L635",
       "id": "v1alpha1_environmentlist_deepcopyinto",
-      "community": 28,
+      "community": 53,
       "norm_label": ".deepcopyinto()"
     },
     {
@@ -1781,7 +1781,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L649",
       "id": "v1alpha1_environmentlist_deepcopy",
-      "community": 28,
+      "community": 53,
       "norm_label": ".deepcopy()"
     },
     {
@@ -1790,7 +1790,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L659",
       "id": "v1alpha1_environmentlist_deepcopyobject",
-      "community": 28,
+      "community": 53,
       "norm_label": ".deepcopyobject()"
     },
     {
@@ -1799,7 +1799,7 @@
       "source_file": "api/v1alpha1/environment_types.go",
       "source_location": "L22",
       "id": "v1alpha1_environmentspec",
-      "community": 32,
+      "community": 30,
       "norm_label": "environmentspec"
     },
     {
@@ -1808,7 +1808,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L667",
       "id": "v1alpha1_environmentspec_deepcopyinto",
-      "community": 32,
+      "community": 30,
       "norm_label": ".deepcopyinto()"
     },
     {
@@ -1817,7 +1817,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L673",
       "id": "v1alpha1_environmentspec_deepcopy",
-      "community": 32,
+      "community": 30,
       "norm_label": ".deepcopy()"
     },
     {
@@ -1826,7 +1826,7 @@
       "source_file": "api/v1alpha1/environment_types.go",
       "source_location": "L40",
       "id": "v1alpha1_environmentstatus",
-      "community": 32,
+      "community": 30,
       "norm_label": "environmentstatus"
     },
     {
@@ -1835,7 +1835,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L683",
       "id": "v1alpha1_environmentstatus_deepcopyinto",
-      "community": 32,
+      "community": 30,
       "norm_label": ".deepcopyinto()"
     },
     {
@@ -1844,7 +1844,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L695",
       "id": "v1alpha1_environmentstatus_deepcopy",
-      "community": 32,
+      "community": 30,
       "norm_label": ".deepcopy()"
     },
     {
@@ -1853,7 +1853,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L705",
       "id": "v1alpha1_freezewindow_deepcopyinto",
-      "community": 26,
+      "community": 24,
       "norm_label": ".deepcopyinto()"
     },
     {
@@ -1862,7 +1862,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L714",
       "id": "v1alpha1_freezewindow_deepcopy",
-      "community": 26,
+      "community": 24,
       "norm_label": ".deepcopy()"
     },
     {
@@ -1871,7 +1871,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L724",
       "id": "v1alpha1_freezewindow_deepcopyobject",
-      "community": 26,
+      "community": 24,
       "norm_label": ".deepcopyobject()"
     },
     {
@@ -1880,7 +1880,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L732",
       "id": "v1alpha1_freezewindowlist_deepcopyinto",
-      "community": 26,
+      "community": 24,
       "norm_label": ".deepcopyinto()"
     },
     {
@@ -1889,7 +1889,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L746",
       "id": "v1alpha1_freezewindowlist_deepcopy",
-      "community": 26,
+      "community": 24,
       "norm_label": ".deepcopy()"
     },
     {
@@ -1898,7 +1898,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L756",
       "id": "v1alpha1_freezewindowlist_deepcopyobject",
-      "community": 26,
+      "community": 24,
       "norm_label": ".deepcopyobject()"
     },
     {
@@ -1907,7 +1907,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L764",
       "id": "v1alpha1_freezewindowspec_deepcopyinto",
-      "community": 26,
+      "community": 24,
       "norm_label": ".deepcopyinto()"
     },
     {
@@ -1916,7 +1916,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L781",
       "id": "v1alpha1_freezewindowspec_deepcopy",
-      "community": 26,
+      "community": 24,
       "norm_label": ".deepcopy()"
     },
     {
@@ -1925,7 +1925,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L791",
       "id": "v1alpha1_freezewindowstatus_deepcopyinto",
-      "community": 26,
+      "community": 24,
       "norm_label": ".deepcopyinto()"
     },
     {
@@ -1934,7 +1934,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L803",
       "id": "v1alpha1_freezewindowstatus_deepcopy",
-      "community": 26,
+      "community": 24,
       "norm_label": ".deepcopy()"
     },
     {
@@ -1943,7 +1943,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L813",
       "id": "v1alpha1_healthcheck_deepcopyinto",
-      "community": 19,
+      "community": 21,
       "norm_label": ".deepcopyinto()"
     },
     {
@@ -1952,7 +1952,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L822",
       "id": "v1alpha1_healthcheck_deepcopy",
-      "community": 19,
+      "community": 21,
       "norm_label": ".deepcopy()"
     },
     {
@@ -1961,7 +1961,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L832",
       "id": "v1alpha1_healthcheck_deepcopyobject",
-      "community": 19,
+      "community": 21,
       "norm_label": ".deepcopyobject()"
     },
     {
@@ -1970,7 +1970,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L840",
       "id": "v1alpha1_healthchecklist_deepcopyinto",
-      "community": 19,
+      "community": 21,
       "norm_label": ".deepcopyinto()"
     },
     {
@@ -1979,7 +1979,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L854",
       "id": "v1alpha1_healthchecklist_deepcopy",
-      "community": 19,
+      "community": 21,
       "norm_label": ".deepcopy()"
     },
     {
@@ -1988,7 +1988,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L864",
       "id": "v1alpha1_healthchecklist_deepcopyobject",
-      "community": 19,
+      "community": 21,
       "norm_label": ".deepcopyobject()"
     },
     {
@@ -1997,7 +1997,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L872",
       "id": "v1alpha1_healthcheckspec_deepcopyinto",
-      "community": 19,
+      "community": 21,
       "norm_label": ".deepcopyinto()"
     },
     {
@@ -2006,7 +2006,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L882",
       "id": "v1alpha1_healthcheckspec_deepcopy",
-      "community": 19,
+      "community": 21,
       "norm_label": ".deepcopy()"
     },
     {
@@ -2015,7 +2015,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L892",
       "id": "v1alpha1_healthcheckstatus_deepcopyinto",
-      "community": 19,
+      "community": 21,
       "norm_label": ".deepcopyinto()"
     },
     {
@@ -2024,7 +2024,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L904",
       "id": "v1alpha1_healthcheckstatus_deepcopy",
-      "community": 19,
+      "community": 21,
       "norm_label": ".deepcopy()"
     },
     {
@@ -2033,7 +2033,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L914",
       "id": "v1alpha1_localobjectreference_deepcopyinto",
-      "community": 39,
+      "community": 38,
       "norm_label": ".deepcopyinto()"
     },
     {
@@ -2042,7 +2042,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L919",
       "id": "v1alpha1_localobjectreference_deepcopy",
-      "community": 39,
+      "community": 38,
       "norm_label": ".deepcopy()"
     },
     {
@@ -2051,7 +2051,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L929",
       "id": "v1alpha1_ownerinfo_deepcopyinto",
-      "community": 39,
+      "community": 38,
       "norm_label": ".deepcopyinto()"
     },
     {
@@ -2060,7 +2060,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L934",
       "id": "v1alpha1_ownerinfo_deepcopy",
-      "community": 39,
+      "community": 38,
       "norm_label": ".deepcopy()"
     },
     {
@@ -2069,7 +2069,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L944",
       "id": "v1alpha1_promotion_deepcopyinto",
-      "community": 28,
+      "community": 52,
       "norm_label": ".deepcopyinto()"
     },
     {
@@ -2078,7 +2078,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L953",
       "id": "v1alpha1_promotion_deepcopy",
-      "community": 28,
+      "community": 52,
       "norm_label": ".deepcopy()"
     },
     {
@@ -2087,7 +2087,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L963",
       "id": "v1alpha1_promotion_deepcopyobject",
-      "community": 28,
+      "community": 52,
       "norm_label": ".deepcopyobject()"
     },
     {
@@ -2096,7 +2096,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L971",
       "id": "v1alpha1_promotionchange_deepcopyinto",
-      "community": 16,
+      "community": 17,
       "norm_label": ".deepcopyinto()"
     },
     {
@@ -2105,7 +2105,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L976",
       "id": "v1alpha1_promotionchange_deepcopy",
-      "community": 16,
+      "community": 17,
       "norm_label": ".deepcopy()"
     },
     {
@@ -2114,7 +2114,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L986",
       "id": "v1alpha1_promotionfrom_deepcopyinto",
-      "community": 16,
+      "community": 17,
       "norm_label": ".deepcopyinto()"
     },
     {
@@ -2123,7 +2123,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L991",
       "id": "v1alpha1_promotionfrom_deepcopy",
-      "community": 16,
+      "community": 17,
       "norm_label": ".deepcopy()"
     },
     {
@@ -2132,7 +2132,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L1001",
       "id": "v1alpha1_promotionlist_deepcopyinto",
-      "community": 17,
+      "community": 51,
       "norm_label": ".deepcopyinto()"
     },
     {
@@ -2141,7 +2141,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L1015",
       "id": "v1alpha1_promotionlist_deepcopy",
-      "community": 17,
+      "community": 51,
       "norm_label": ".deepcopy()"
     },
     {
@@ -2150,7 +2150,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L1025",
       "id": "v1alpha1_promotionlist_deepcopyobject",
-      "community": 17,
+      "community": 51,
       "norm_label": ".deepcopyobject()"
     },
     {
@@ -2159,7 +2159,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L1033",
       "id": "v1alpha1_promotionpolicy_deepcopyinto",
-      "community": 25,
+      "community": 27,
       "norm_label": ".deepcopyinto()"
     },
     {
@@ -2168,7 +2168,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L1042",
       "id": "v1alpha1_promotionpolicy_deepcopy",
-      "community": 25,
+      "community": 27,
       "norm_label": ".deepcopy()"
     },
     {
@@ -2177,7 +2177,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L1052",
       "id": "v1alpha1_promotionpolicy_deepcopyobject",
-      "community": 25,
+      "community": 27,
       "norm_label": ".deepcopyobject()"
     },
     {
@@ -2186,7 +2186,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L1060",
       "id": "v1alpha1_promotionpolicylist_deepcopyinto",
-      "community": 25,
+      "community": 27,
       "norm_label": ".deepcopyinto()"
     },
     {
@@ -2195,7 +2195,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L1074",
       "id": "v1alpha1_promotionpolicylist_deepcopy",
-      "community": 25,
+      "community": 27,
       "norm_label": ".deepcopy()"
     },
     {
@@ -2204,7 +2204,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L1084",
       "id": "v1alpha1_promotionpolicylist_deepcopyobject",
-      "community": 25,
+      "community": 27,
       "norm_label": ".deepcopyobject()"
     },
     {
@@ -2213,7 +2213,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L1092",
       "id": "v1alpha1_promotionpolicyspec_deepcopyinto",
-      "community": 25,
+      "community": 27,
       "norm_label": ".deepcopyinto()"
     },
     {
@@ -2222,7 +2222,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L1102",
       "id": "v1alpha1_promotionpolicyspec_deepcopy",
-      "community": 25,
+      "community": 27,
       "norm_label": ".deepcopy()"
     },
     {
@@ -2231,7 +2231,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L1112",
       "id": "v1alpha1_promotionpolicystatus_deepcopyinto",
-      "community": 25,
+      "community": 27,
       "norm_label": ".deepcopyinto()"
     },
     {
@@ -2240,7 +2240,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L1124",
       "id": "v1alpha1_promotionpolicystatus_deepcopy",
-      "community": 25,
+      "community": 27,
       "norm_label": ".deepcopy()"
     },
     {
@@ -2249,7 +2249,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L1134",
       "id": "v1alpha1_promotionspec_deepcopyinto",
-      "community": 16,
+      "community": 17,
       "norm_label": ".deepcopyinto()"
     },
     {
@@ -2258,7 +2258,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L1147",
       "id": "v1alpha1_promotionspec_deepcopy",
-      "community": 16,
+      "community": 17,
       "norm_label": ".deepcopy()"
     },
     {
@@ -2267,7 +2267,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L1157",
       "id": "v1alpha1_promotionstatus_deepcopyinto",
-      "community": 16,
+      "community": 17,
       "norm_label": ".deepcopyinto()"
     },
     {
@@ -2276,7 +2276,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L1174",
       "id": "v1alpha1_promotionstatus_deepcopy",
-      "community": 16,
+      "community": 17,
       "norm_label": ".deepcopy()"
     },
     {
@@ -2285,7 +2285,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L1184",
       "id": "v1alpha1_promotionto_deepcopyinto",
-      "community": 16,
+      "community": 17,
       "norm_label": ".deepcopyinto()"
     },
     {
@@ -2294,7 +2294,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L1199",
       "id": "v1alpha1_promotionto_deepcopy",
-      "community": 16,
+      "community": 17,
       "norm_label": ".deepcopy()"
     },
     {
@@ -2303,7 +2303,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L1209",
       "id": "v1alpha1_release_deepcopyinto",
-      "community": 28,
+      "community": 11,
       "norm_label": ".deepcopyinto()"
     },
     {
@@ -2312,7 +2312,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L1218",
       "id": "v1alpha1_release_deepcopy",
-      "community": 28,
+      "community": 11,
       "norm_label": ".deepcopy()"
     },
     {
@@ -2321,7 +2321,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L1228",
       "id": "v1alpha1_release_deepcopyobject",
-      "community": 28,
+      "community": 11,
       "norm_label": ".deepcopyobject()"
     },
     {
@@ -2330,7 +2330,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L1236",
       "id": "v1alpha1_releaseartifact_deepcopyinto",
-      "community": 30,
+      "community": 29,
       "norm_label": ".deepcopyinto()"
     },
     {
@@ -2339,7 +2339,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L1241",
       "id": "v1alpha1_releaseartifact_deepcopy",
-      "community": 30,
+      "community": 29,
       "norm_label": ".deepcopy()"
     },
     {
@@ -2348,7 +2348,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L1251",
       "id": "v1alpha1_releaselist_deepcopyinto",
-      "community": 17,
+      "community": 11,
       "norm_label": ".deepcopyinto()"
     },
     {
@@ -2357,7 +2357,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L1265",
       "id": "v1alpha1_releaselist_deepcopy",
-      "community": 17,
+      "community": 11,
       "norm_label": ".deepcopy()"
     },
     {
@@ -2366,7 +2366,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L1275",
       "id": "v1alpha1_releaselist_deepcopyobject",
-      "community": 17,
+      "community": 11,
       "norm_label": ".deepcopyobject()"
     },
     {
@@ -2375,7 +2375,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L1283",
       "id": "v1alpha1_releaseprovenance_deepcopyinto",
-      "community": 30,
+      "community": 29,
       "norm_label": ".deepcopyinto()"
     },
     {
@@ -2384,7 +2384,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L1288",
       "id": "v1alpha1_releaseprovenance_deepcopy",
-      "community": 30,
+      "community": 29,
       "norm_label": ".deepcopy()"
     },
     {
@@ -2393,7 +2393,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L1298",
       "id": "v1alpha1_releasespec_deepcopyinto",
-      "community": 30,
+      "community": 29,
       "norm_label": ".deepcopyinto()"
     },
     {
@@ -2402,7 +2402,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L1309",
       "id": "v1alpha1_releasespec_deepcopy",
-      "community": 30,
+      "community": 29,
       "norm_label": ".deepcopy()"
     },
     {
@@ -2411,7 +2411,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L1319",
       "id": "v1alpha1_releasestatus_deepcopyinto",
-      "community": 30,
+      "community": 29,
       "norm_label": ".deepcopyinto()"
     },
     {
@@ -2420,7 +2420,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L1331",
       "id": "v1alpha1_releasestatus_deepcopy",
-      "community": 30,
+      "community": 29,
       "norm_label": ".deepcopy()"
     },
     {
@@ -2429,7 +2429,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L1341",
       "id": "v1alpha1_secretkeyref_deepcopyinto",
-      "community": 39,
+      "community": 38,
       "norm_label": ".deepcopyinto()"
     },
     {
@@ -2438,7 +2438,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L1346",
       "id": "v1alpha1_secretkeyref_deepcopy",
-      "community": 39,
+      "community": 38,
       "norm_label": ".deepcopy()"
     },
     {
@@ -2447,7 +2447,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L1356",
       "id": "v1alpha1_source_deepcopyinto",
-      "community": 17,
+      "community": 11,
       "norm_label": ".deepcopyinto()"
     },
     {
@@ -2456,7 +2456,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L1365",
       "id": "v1alpha1_source_deepcopy",
-      "community": 17,
+      "community": 11,
       "norm_label": ".deepcopy()"
     },
     {
@@ -2465,7 +2465,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L1375",
       "id": "v1alpha1_source_deepcopyobject",
-      "community": 17,
+      "community": 11,
       "norm_label": ".deepcopyobject()"
     },
     {
@@ -2474,7 +2474,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L1383",
       "id": "v1alpha1_sourcelist_deepcopyinto",
-      "community": 29,
+      "community": 28,
       "norm_label": ".deepcopyinto()"
     },
     {
@@ -2483,7 +2483,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L1397",
       "id": "v1alpha1_sourcelist_deepcopy",
-      "community": 29,
+      "community": 28,
       "norm_label": ".deepcopy()"
     },
     {
@@ -2492,7 +2492,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L1407",
       "id": "v1alpha1_sourcelist_deepcopyobject",
-      "community": 29,
+      "community": 28,
       "norm_label": ".deepcopyobject()"
     },
     {
@@ -2501,7 +2501,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L1415",
       "id": "v1alpha1_sourceobservedrevision_deepcopyinto",
-      "community": 28,
+      "community": 18,
       "norm_label": ".deepcopyinto()"
     },
     {
@@ -2510,7 +2510,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L1424",
       "id": "v1alpha1_sourceobservedrevision_deepcopy",
-      "community": 28,
+      "community": 18,
       "norm_label": ".deepcopy()"
     },
     {
@@ -2519,7 +2519,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L1434",
       "id": "v1alpha1_sourcespec_deepcopyinto",
-      "community": 29,
+      "community": 28,
       "norm_label": ".deepcopyinto()"
     },
     {
@@ -2528,7 +2528,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L1440",
       "id": "v1alpha1_sourcespec_deepcopy",
-      "community": 29,
+      "community": 28,
       "norm_label": ".deepcopy()"
     },
     {
@@ -2537,7 +2537,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L1450",
       "id": "v1alpha1_sourcestatus_deepcopyinto",
-      "community": 29,
+      "community": 28,
       "norm_label": ".deepcopyinto()"
     },
     {
@@ -2546,7 +2546,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L1467",
       "id": "v1alpha1_sourcestatus_deepcopy",
-      "community": 29,
+      "community": 28,
       "norm_label": ".deepcopy()"
     },
     {
@@ -2555,7 +2555,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L1477",
       "id": "v1alpha1_sourceverify_deepcopyinto",
-      "community": 29,
+      "community": 28,
       "norm_label": ".deepcopyinto()"
     },
     {
@@ -2564,7 +2564,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L1482",
       "id": "v1alpha1_sourceverify_deepcopy",
-      "community": 29,
+      "community": 28,
       "norm_label": ".deepcopy()"
     },
     {
@@ -2573,7 +2573,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L1492",
       "id": "v1alpha1_syncplan_deepcopyinto",
-      "community": 23,
+      "community": 26,
       "norm_label": ".deepcopyinto()"
     },
     {
@@ -2582,7 +2582,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L1501",
       "id": "v1alpha1_syncplan_deepcopy",
-      "community": 23,
+      "community": 26,
       "norm_label": ".deepcopy()"
     },
     {
@@ -2591,7 +2591,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L1511",
       "id": "v1alpha1_syncplan_deepcopyobject",
-      "community": 23,
+      "community": 26,
       "norm_label": ".deepcopyobject()"
     },
     {
@@ -2600,7 +2600,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L1519",
       "id": "v1alpha1_syncplanlist_deepcopyinto",
-      "community": 23,
+      "community": 26,
       "norm_label": ".deepcopyinto()"
     },
     {
@@ -2609,7 +2609,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L1533",
       "id": "v1alpha1_syncplanlist_deepcopy",
-      "community": 23,
+      "community": 26,
       "norm_label": ".deepcopy()"
     },
     {
@@ -2618,7 +2618,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L1543",
       "id": "v1alpha1_syncplanlist_deepcopyobject",
-      "community": 23,
+      "community": 26,
       "norm_label": ".deepcopyobject()"
     },
     {
@@ -2627,7 +2627,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L1551",
       "id": "v1alpha1_syncplanspec_deepcopyinto",
-      "community": 23,
+      "community": 26,
       "norm_label": ".deepcopyinto()"
     },
     {
@@ -2636,7 +2636,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L1561",
       "id": "v1alpha1_syncplanspec_deepcopy",
-      "community": 23,
+      "community": 26,
       "norm_label": ".deepcopy()"
     },
     {
@@ -2645,7 +2645,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L1571",
       "id": "v1alpha1_syncplanstatus_deepcopyinto",
-      "community": 23,
+      "community": 26,
       "norm_label": ".deepcopyinto()"
     },
     {
@@ -2654,7 +2654,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L1583",
       "id": "v1alpha1_syncplanstatus_deepcopy",
-      "community": 23,
+      "community": 26,
       "norm_label": ".deepcopy()"
     },
     {
@@ -2663,7 +2663,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L1593",
       "id": "v1alpha1_syncrun_deepcopyinto",
-      "community": 31,
+      "community": 18,
       "norm_label": ".deepcopyinto()"
     },
     {
@@ -2672,7 +2672,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L1602",
       "id": "v1alpha1_syncrun_deepcopy",
-      "community": 31,
+      "community": 18,
       "norm_label": ".deepcopy()"
     },
     {
@@ -2681,7 +2681,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L1612",
       "id": "v1alpha1_syncrun_deepcopyobject",
-      "community": 31,
+      "community": 18,
       "norm_label": ".deepcopyobject()"
     },
     {
@@ -2690,7 +2690,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L1620",
       "id": "v1alpha1_syncrunlist_deepcopyinto",
-      "community": 31,
+      "community": 18,
       "norm_label": ".deepcopyinto()"
     },
     {
@@ -2699,7 +2699,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L1634",
       "id": "v1alpha1_syncrunlist_deepcopy",
-      "community": 31,
+      "community": 18,
       "norm_label": ".deepcopy()"
     },
     {
@@ -2708,7 +2708,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L1644",
       "id": "v1alpha1_syncrunlist_deepcopyobject",
-      "community": 31,
+      "community": 18,
       "norm_label": ".deepcopyobject()"
     },
     {
@@ -2717,7 +2717,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L1652",
       "id": "v1alpha1_syncrunspec_deepcopyinto",
-      "community": 31,
+      "community": 18,
       "norm_label": ".deepcopyinto()"
     },
     {
@@ -2726,7 +2726,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L1659",
       "id": "v1alpha1_syncrunspec_deepcopy",
-      "community": 31,
+      "community": 18,
       "norm_label": ".deepcopy()"
     },
     {
@@ -2735,7 +2735,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L1669",
       "id": "v1alpha1_syncrunstatus_deepcopyinto",
-      "community": 17,
+      "community": 11,
       "norm_label": ".deepcopyinto()"
     },
     {
@@ -2744,7 +2744,7 @@
       "source_file": "api/v1alpha1/zz_generated.deepcopy.go",
       "source_location": "L1689",
       "id": "v1alpha1_syncrunstatus_deepcopy",
-      "community": 28,
+      "community": 18,
       "norm_label": ".deepcopy()"
     },
     {
@@ -2753,7 +2753,7 @@
       "source_file": "api/v1alpha1/application_types.go",
       "source_location": "L1",
       "id": "api_v1alpha1_application_types_go",
-      "community": 14,
+      "community": 15,
       "norm_label": "application_types.go"
     },
     {
@@ -2762,7 +2762,7 @@
       "source_file": "api/v1alpha1/application_types.go",
       "source_location": "L16",
       "id": "v1alpha1_applicationmanifesttype",
-      "community": 14,
+      "community": 15,
       "norm_label": "applicationmanifesttype"
     },
     {
@@ -2771,7 +2771,7 @@
       "source_file": "api/v1alpha1/application_types.go",
       "source_location": "L52",
       "id": "v1alpha1_applicationdeploymentstrategy",
-      "community": 14,
+      "community": 15,
       "norm_label": "applicationdeploymentstrategy"
     },
     {
@@ -2780,7 +2780,7 @@
       "source_file": "api/v1alpha1/application_types.go",
       "source_location": "L137",
       "id": "v1alpha1_application_types_init",
-      "community": 14,
+      "community": 15,
       "norm_label": "init()"
     },
     {
@@ -2789,7 +2789,7 @@
       "source_file": "api/v1alpha1/environment_types.go",
       "source_location": "L1",
       "id": "api_v1alpha1_environment_types_go",
-      "community": 32,
+      "community": 30,
       "norm_label": "environment_types.go"
     },
     {
@@ -2798,7 +2798,7 @@
       "source_file": "api/v1alpha1/environment_types.go",
       "source_location": "L79",
       "id": "v1alpha1_environment_types_init",
-      "community": 32,
+      "community": 30,
       "norm_label": "init()"
     },
     {
@@ -2807,7 +2807,7 @@
       "source_file": "internal/controller/application_controller.go",
       "source_location": "L1",
       "id": "internal_controller_application_controller_go",
-      "community": 52,
+      "community": 54,
       "norm_label": "application_controller.go"
     },
     {
@@ -2816,7 +2816,7 @@
       "source_file": "internal/controller/application_controller.go",
       "source_location": "L29",
       "id": "controller_applicationreconciler",
-      "community": 52,
+      "community": 54,
       "norm_label": "applicationreconciler"
     },
     {
@@ -2825,7 +2825,7 @@
       "source_file": "internal/controller/application_controller.go",
       "source_location": "L38",
       "id": "controller_applicationreconciler_reconcile",
-      "community": 52,
+      "community": 54,
       "norm_label": ".reconcile()"
     },
     {
@@ -2834,7 +2834,7 @@
       "source_file": "internal/controller/application_controller.go",
       "source_location": "L70",
       "id": "controller_applicationreconciler_setupwithmanager",
-      "community": 52,
+      "community": 54,
       "norm_label": ".setupwithmanager()"
     },
     {
@@ -2843,7 +2843,7 @@
       "source_file": "internal/controller/deployment_controller.go",
       "source_location": "L1",
       "id": "internal_controller_deployment_controller_go",
-      "community": 53,
+      "community": 55,
       "norm_label": "deployment_controller.go"
     },
     {
@@ -2852,7 +2852,7 @@
       "source_file": "internal/controller/deployment_controller.go",
       "source_location": "L24",
       "id": "controller_deploymentreconciler",
-      "community": 53,
+      "community": 55,
       "norm_label": "deploymentreconciler"
     },
     {
@@ -2861,7 +2861,7 @@
       "source_file": "internal/controller/deployment_controller.go",
       "source_location": "L33",
       "id": "controller_deploymentreconciler_reconcile",
-      "community": 53,
+      "community": 55,
       "norm_label": ".reconcile()"
     },
     {
@@ -2870,7 +2870,7 @@
       "source_file": "internal/controller/deployment_controller.go",
       "source_location": "L59",
       "id": "controller_deploymentreconciler_setupwithmanager",
-      "community": 53,
+      "community": 55,
       "norm_label": ".setupwithmanager()"
     },
     {
@@ -2879,7 +2879,7 @@
       "source_file": "internal/controller/approval_controller.go",
       "source_location": "L1",
       "id": "internal_controller_approval_controller_go",
-      "community": 54,
+      "community": 56,
       "norm_label": "approval_controller.go"
     },
     {
@@ -2888,7 +2888,7 @@
       "source_file": "internal/controller/approval_controller.go",
       "source_location": "L25",
       "id": "controller_approvalreconciler",
-      "community": 54,
+      "community": 56,
       "norm_label": "approvalreconciler"
     },
     {
@@ -2897,7 +2897,7 @@
       "source_file": "internal/controller/approval_controller.go",
       "source_location": "L34",
       "id": "controller_approvalreconciler_reconcile",
-      "community": 54,
+      "community": 56,
       "norm_label": ".reconcile()"
     },
     {
@@ -2906,7 +2906,7 @@
       "source_file": "internal/controller/approval_controller.go",
       "source_location": "L60",
       "id": "controller_approvalreconciler_setupwithmanager",
-      "community": 54,
+      "community": 56,
       "norm_label": ".setupwithmanager()"
     },
     {
@@ -2915,7 +2915,7 @@
       "source_file": "internal/controller/source_controller.go",
       "source_location": "L1",
       "id": "internal_controller_source_controller_go",
-      "community": 55,
+      "community": 57,
       "norm_label": "source_controller.go"
     },
     {
@@ -2924,7 +2924,7 @@
       "source_file": "internal/controller/source_controller.go",
       "source_location": "L25",
       "id": "controller_sourcereconciler",
-      "community": 55,
+      "community": 57,
       "norm_label": "sourcereconciler"
     },
     {
@@ -2933,7 +2933,7 @@
       "source_file": "internal/controller/source_controller.go",
       "source_location": "L34",
       "id": "controller_sourcereconciler_reconcile",
-      "community": 55,
+      "community": 57,
       "norm_label": ".reconcile()"
     },
     {
@@ -2942,7 +2942,7 @@
       "source_file": "internal/controller/source_controller.go",
       "source_location": "L60",
       "id": "controller_sourcereconciler_setupwithmanager",
-      "community": 55,
+      "community": 57,
       "norm_label": ".setupwithmanager()"
     },
     {
@@ -2951,7 +2951,7 @@
       "source_file": "internal/controller/promotion_controller.go",
       "source_location": "L1",
       "id": "internal_controller_promotion_controller_go",
-      "community": 56,
+      "community": 58,
       "norm_label": "promotion_controller.go"
     },
     {
@@ -2960,7 +2960,7 @@
       "source_file": "internal/controller/promotion_controller.go",
       "source_location": "L25",
       "id": "controller_promotionreconciler",
-      "community": 56,
+      "community": 58,
       "norm_label": "promotionreconciler"
     },
     {
@@ -2969,7 +2969,7 @@
       "source_file": "internal/controller/promotion_controller.go",
       "source_location": "L35",
       "id": "controller_promotionreconciler_reconcile",
-      "community": 56,
+      "community": 58,
       "norm_label": ".reconcile()"
     },
     {
@@ -2978,7 +2978,7 @@
       "source_file": "internal/controller/promotion_controller.go",
       "source_location": "L64",
       "id": "controller_promotionreconciler_setupwithmanager",
-      "community": 56,
+      "community": 58,
       "norm_label": ".setupwithmanager()"
     },
     {
@@ -2987,7 +2987,7 @@
       "source_file": "internal/controller/cell_controller.go",
       "source_location": "L1",
       "id": "internal_controller_cell_controller_go",
-      "community": 57,
+      "community": 59,
       "norm_label": "cell_controller.go"
     },
     {
@@ -2996,7 +2996,7 @@
       "source_file": "internal/controller/cell_controller.go",
       "source_location": "L23",
       "id": "controller_cellreconciler",
-      "community": 57,
+      "community": 59,
       "norm_label": "cellreconciler"
     },
     {
@@ -3005,7 +3005,7 @@
       "source_file": "internal/controller/cell_controller.go",
       "source_location": "L32",
       "id": "controller_cellreconciler_reconcile",
-      "community": 57,
+      "community": 59,
       "norm_label": ".reconcile()"
     },
     {
@@ -3014,7 +3014,7 @@
       "source_file": "internal/controller/cell_controller.go",
       "source_location": "L58",
       "id": "controller_cellreconciler_setupwithmanager",
-      "community": 57,
+      "community": 59,
       "norm_label": ".setupwithmanager()"
     },
     {
@@ -3023,7 +3023,7 @@
       "source_file": "internal/controller/suite_test.go",
       "source_location": "L1",
       "id": "internal_controller_suite_test_go",
-      "community": 70,
+      "community": 72,
       "norm_label": "suite_test.go"
     },
     {
@@ -3032,7 +3032,7 @@
       "source_file": "internal/controller/suite_test.go",
       "source_location": "L39",
       "id": "controller_suite_test_testcontrollers",
-      "community": 70,
+      "community": 72,
       "norm_label": "testcontrollers()"
     },
     {
@@ -3041,7 +3041,7 @@
       "source_file": "internal/controller/suite_test.go",
       "source_location": "L82",
       "id": "controller_suite_test_firstenvtestbinarydir",
-      "community": 70,
+      "community": 72,
       "norm_label": "firstenvtestbinarydir()"
     },
     {
@@ -3050,7 +3050,7 @@
       "source_file": "internal/controller/doc.go",
       "source_location": "L1",
       "id": "internal_controller_doc_go",
-      "community": 90,
+      "community": 92,
       "norm_label": "doc.go"
     },
     {
@@ -3059,7 +3059,7 @@
       "source_file": "internal/controller/syncplan_controller.go",
       "source_location": "L1",
       "id": "internal_controller_syncplan_controller_go",
-      "community": 58,
+      "community": 60,
       "norm_label": "syncplan_controller.go"
     },
     {
@@ -3068,7 +3068,7 @@
       "source_file": "internal/controller/syncplan_controller.go",
       "source_location": "L25",
       "id": "controller_syncplanreconciler",
-      "community": 58,
+      "community": 60,
       "norm_label": "syncplanreconciler"
     },
     {
@@ -3077,7 +3077,7 @@
       "source_file": "internal/controller/syncplan_controller.go",
       "source_location": "L35",
       "id": "controller_syncplanreconciler_reconcile",
-      "community": 58,
+      "community": 60,
       "norm_label": ".reconcile()"
     },
     {
@@ -3086,7 +3086,7 @@
       "source_file": "internal/controller/syncplan_controller.go",
       "source_location": "L61",
       "id": "controller_syncplanreconciler_setupwithmanager",
-      "community": 58,
+      "community": 60,
       "norm_label": ".setupwithmanager()"
     },
     {
@@ -3095,7 +3095,7 @@
       "source_file": "internal/controller/syncrun_controller.go",
       "source_location": "L1",
       "id": "internal_controller_syncrun_controller_go",
-      "community": 59,
+      "community": 61,
       "norm_label": "syncrun_controller.go"
     },
     {
@@ -3104,7 +3104,7 @@
       "source_file": "internal/controller/syncrun_controller.go",
       "source_location": "L25",
       "id": "controller_syncrunreconciler",
-      "community": 59,
+      "community": 61,
       "norm_label": "syncrunreconciler"
     },
     {
@@ -3113,7 +3113,7 @@
       "source_file": "internal/controller/syncrun_controller.go",
       "source_location": "L34",
       "id": "controller_syncrunreconciler_reconcile",
-      "community": 59,
+      "community": 61,
       "norm_label": ".reconcile()"
     },
     {
@@ -3122,7 +3122,7 @@
       "source_file": "internal/controller/syncrun_controller.go",
       "source_location": "L60",
       "id": "controller_syncrunreconciler_setupwithmanager",
-      "community": 59,
+      "community": 61,
       "norm_label": ".setupwithmanager()"
     },
     {
@@ -3131,7 +3131,7 @@
       "source_file": "internal/controller/release_controller.go",
       "source_location": "L1",
       "id": "internal_controller_release_controller_go",
-      "community": 60,
+      "community": 62,
       "norm_label": "release_controller.go"
     },
     {
@@ -3140,7 +3140,7 @@
       "source_file": "internal/controller/release_controller.go",
       "source_location": "L24",
       "id": "controller_releasereconciler",
-      "community": 60,
+      "community": 62,
       "norm_label": "releasereconciler"
     },
     {
@@ -3149,7 +3149,7 @@
       "source_file": "internal/controller/release_controller.go",
       "source_location": "L33",
       "id": "controller_releasereconciler_reconcile",
-      "community": 60,
+      "community": 62,
       "norm_label": ".reconcile()"
     },
     {
@@ -3158,7 +3158,7 @@
       "source_file": "internal/controller/release_controller.go",
       "source_location": "L59",
       "id": "controller_releasereconciler_setupwithmanager",
-      "community": 60,
+      "community": 62,
       "norm_label": ".setupwithmanager()"
     },
     {
@@ -3167,7 +3167,7 @@
       "source_file": "internal/controller/deploymenttarget_controller.go",
       "source_location": "L1",
       "id": "internal_controller_deploymenttarget_controller_go",
-      "community": 61,
+      "community": 63,
       "norm_label": "deploymenttarget_controller.go"
     },
     {
@@ -3176,7 +3176,7 @@
       "source_file": "internal/controller/deploymenttarget_controller.go",
       "source_location": "L23",
       "id": "controller_deploymenttargetreconciler",
-      "community": 61,
+      "community": 63,
       "norm_label": "deploymenttargetreconciler"
     },
     {
@@ -3185,7 +3185,7 @@
       "source_file": "internal/controller/deploymenttarget_controller.go",
       "source_location": "L32",
       "id": "controller_deploymenttargetreconciler_reconcile",
-      "community": 61,
+      "community": 63,
       "norm_label": ".reconcile()"
     },
     {
@@ -3194,7 +3194,7 @@
       "source_file": "internal/controller/deploymenttarget_controller.go",
       "source_location": "L58",
       "id": "controller_deploymenttargetreconciler_setupwithmanager",
-      "community": 61,
+      "community": 63,
       "norm_label": ".setupwithmanager()"
     },
     {
@@ -3203,7 +3203,7 @@
       "source_file": "internal/controller/promotionpolicy_controller.go",
       "source_location": "L1",
       "id": "internal_controller_promotionpolicy_controller_go",
-      "community": 62,
+      "community": 64,
       "norm_label": "promotionpolicy_controller.go"
     },
     {
@@ -3212,7 +3212,7 @@
       "source_file": "internal/controller/promotionpolicy_controller.go",
       "source_location": "L25",
       "id": "controller_promotionpolicyreconciler",
-      "community": 62,
+      "community": 64,
       "norm_label": "promotionpolicyreconciler"
     },
     {
@@ -3221,7 +3221,7 @@
       "source_file": "internal/controller/promotionpolicy_controller.go",
       "source_location": "L34",
       "id": "controller_promotionpolicyreconciler_reconcile",
-      "community": 62,
+      "community": 64,
       "norm_label": ".reconcile()"
     },
     {
@@ -3230,7 +3230,7 @@
       "source_file": "internal/controller/promotionpolicy_controller.go",
       "source_location": "L60",
       "id": "controller_promotionpolicyreconciler_setupwithmanager",
-      "community": 62,
+      "community": 64,
       "norm_label": ".setupwithmanager()"
     },
     {
@@ -3239,7 +3239,7 @@
       "source_file": "internal/controller/controllers_test.go",
       "source_location": "L1",
       "id": "internal_controller_controllers_test_go",
-      "community": 75,
+      "community": 77,
       "norm_label": "controllers_test.go"
     },
     {
@@ -3248,7 +3248,7 @@
       "source_file": "internal/controller/controllers_test.go",
       "source_location": "L28",
       "id": "controller_scaffoldcase",
-      "community": 75,
+      "community": 77,
       "norm_label": "scaffoldcase"
     },
     {
@@ -3257,7 +3257,7 @@
       "source_file": "internal/controller/environment_controller.go",
       "source_location": "L1",
       "id": "internal_controller_environment_controller_go",
-      "community": 63,
+      "community": 65,
       "norm_label": "environment_controller.go"
     },
     {
@@ -3266,7 +3266,7 @@
       "source_file": "internal/controller/environment_controller.go",
       "source_location": "L23",
       "id": "controller_environmentreconciler",
-      "community": 63,
+      "community": 65,
       "norm_label": "environmentreconciler"
     },
     {
@@ -3275,7 +3275,7 @@
       "source_file": "internal/controller/environment_controller.go",
       "source_location": "L32",
       "id": "controller_environmentreconciler_reconcile",
-      "community": 63,
+      "community": 65,
       "norm_label": ".reconcile()"
     },
     {
@@ -3284,7 +3284,7 @@
       "source_file": "internal/controller/environment_controller.go",
       "source_location": "L58",
       "id": "controller_environmentreconciler_setupwithmanager",
-      "community": 63,
+      "community": 65,
       "norm_label": ".setupwithmanager()"
     },
     {
@@ -3293,7 +3293,7 @@
       "source_file": "internal/controller/freezewindow_controller.go",
       "source_location": "L1",
       "id": "internal_controller_freezewindow_controller_go",
-      "community": 64,
+      "community": 66,
       "norm_label": "freezewindow_controller.go"
     },
     {
@@ -3302,7 +3302,7 @@
       "source_file": "internal/controller/freezewindow_controller.go",
       "source_location": "L25",
       "id": "controller_freezewindowreconciler",
-      "community": 64,
+      "community": 66,
       "norm_label": "freezewindowreconciler"
     },
     {
@@ -3311,7 +3311,7 @@
       "source_file": "internal/controller/freezewindow_controller.go",
       "source_location": "L34",
       "id": "controller_freezewindowreconciler_reconcile",
-      "community": 64,
+      "community": 66,
       "norm_label": ".reconcile()"
     },
     {
@@ -3320,7 +3320,7 @@
       "source_file": "internal/controller/freezewindow_controller.go",
       "source_location": "L60",
       "id": "controller_freezewindowreconciler_setupwithmanager",
-      "community": 64,
+      "community": 66,
       "norm_label": ".setupwithmanager()"
     },
     {
@@ -3329,7 +3329,7 @@
       "source_file": "internal/controller/healthcheck_controller.go",
       "source_location": "L1",
       "id": "internal_controller_healthcheck_controller_go",
-      "community": 65,
+      "community": 67,
       "norm_label": "healthcheck_controller.go"
     },
     {
@@ -3338,7 +3338,7 @@
       "source_file": "internal/controller/healthcheck_controller.go",
       "source_location": "L25",
       "id": "controller_healthcheckreconciler",
-      "community": 65,
+      "community": 67,
       "norm_label": "healthcheckreconciler"
     },
     {
@@ -3347,7 +3347,7 @@
       "source_file": "internal/controller/healthcheck_controller.go",
       "source_location": "L34",
       "id": "controller_healthcheckreconciler_reconcile",
-      "community": 65,
+      "community": 67,
       "norm_label": ".reconcile()"
     },
     {
@@ -3356,7 +3356,7 @@
       "source_file": "internal/controller/healthcheck_controller.go",
       "source_location": "L60",
       "id": "controller_healthcheckreconciler_setupwithmanager",
-      "community": 65,
+      "community": 67,
       "norm_label": ".setupwithmanager()"
     },
     {
@@ -3365,7 +3365,7 @@
       "source_file": "internal/cli/root.go",
       "source_location": "L1",
       "id": "internal_cli_root_go",
-      "community": 34,
+      "community": 32,
       "norm_label": "root.go"
     },
     {
@@ -3374,7 +3374,7 @@
       "source_file": "internal/cli/root.go",
       "source_location": "L15",
       "id": "cli_root_newrootcommand",
-      "community": 34,
+      "community": 32,
       "norm_label": "newrootcommand()"
     },
     {
@@ -3383,7 +3383,7 @@
       "source_file": "internal/cli/commands.go",
       "source_location": "L1",
       "id": "internal_cli_commands_go",
-      "community": 34,
+      "community": 32,
       "norm_label": "commands.go"
     },
     {
@@ -3392,7 +3392,7 @@
       "source_file": "internal/cli/commands.go",
       "source_location": "L17",
       "id": "cli_commands_notimplemented",
-      "community": 34,
+      "community": 32,
       "norm_label": "notimplemented()"
     },
     {
@@ -3401,7 +3401,7 @@
       "source_file": "internal/cli/commands.go",
       "source_location": "L21",
       "id": "cli_commands_newappcommand",
-      "community": 34,
+      "community": 32,
       "norm_label": "newappcommand()"
     },
     {
@@ -3410,7 +3410,7 @@
       "source_file": "internal/cli/commands.go",
       "source_location": "L40",
       "id": "cli_commands_newmatrixcommand",
-      "community": 34,
+      "community": 32,
       "norm_label": "newmatrixcommand()"
     },
     {
@@ -3419,7 +3419,7 @@
       "source_file": "internal/cli/commands.go",
       "source_location": "L50",
       "id": "cli_commands_newreleasecommand",
-      "community": 34,
+      "community": 32,
       "norm_label": "newreleasecommand()"
     },
     {
@@ -3428,7 +3428,7 @@
       "source_file": "internal/cli/commands.go",
       "source_location": "L64",
       "id": "cli_commands_newpromotecommand",
-      "community": 34,
+      "community": 32,
       "norm_label": "newpromotecommand()"
     },
     {
@@ -3437,7 +3437,7 @@
       "source_file": "internal/cli/commands.go",
       "source_location": "L80",
       "id": "cli_commands_newdiffcommand",
-      "community": 34,
+      "community": 32,
       "norm_label": "newdiffcommand()"
     },
     {
@@ -3446,7 +3446,7 @@
       "source_file": "internal/cli/commands.go",
       "source_location": "L92",
       "id": "cli_commands_newblockerscommand",
-      "community": 34,
+      "community": 32,
       "norm_label": "newblockerscommand()"
     },
     {
@@ -3455,7 +3455,7 @@
       "source_file": "internal/cli/commands.go",
       "source_location": "L103",
       "id": "cli_commands_newrollbackcommand",
-      "community": 34,
+      "community": 32,
       "norm_label": "newrollbackcommand()"
     },
     {
@@ -3464,7 +3464,7 @@
       "source_file": "internal/cli/commands.go",
       "source_location": "L116",
       "id": "cli_commands_newversioncommand",
-      "community": 34,
+      "community": 32,
       "norm_label": "newversioncommand()"
     },
     {
@@ -3473,7 +3473,7 @@
       "source_file": "internal/sync/engine.go",
       "source_location": "L1",
       "id": "internal_sync_engine_go",
-      "community": 43,
+      "community": 42,
       "norm_label": "engine.go"
     },
     {
@@ -3482,7 +3482,7 @@
       "source_file": "internal/sync/engine.go",
       "source_location": "L24",
       "id": "sync_syncrunphase",
-      "community": 43,
+      "community": 42,
       "norm_label": "syncrunphase"
     },
     {
@@ -3491,7 +3491,7 @@
       "source_file": "internal/sync/engine.go",
       "source_location": "L40",
       "id": "sync_engine_phasefromoperation",
-      "community": 43,
+      "community": 42,
       "norm_label": "phasefromoperation()"
     },
     {
@@ -3500,7 +3500,7 @@
       "source_file": "internal/sync/engine_test.go",
       "source_location": "L1",
       "id": "internal_sync_engine_test_go",
-      "community": 43,
+      "community": 42,
       "norm_label": "engine_test.go"
     },
     {
@@ -3509,7 +3509,7 @@
       "source_file": "internal/sync/engine_test.go",
       "source_location": "L14",
       "id": "sync_engine_test_testphasefromoperation",
-      "community": 43,
+      "community": 42,
       "norm_label": "testphasefromoperation()"
     },
     {
@@ -3518,7 +3518,7 @@
       "source_file": "CONTRIBUTING.md",
       "source_location": "L1",
       "id": "contributing_md",
-      "community": 40,
+      "community": 39,
       "norm_label": "contributing.md"
     },
     {
@@ -3527,7 +3527,7 @@
       "source_file": "CONTRIBUTING.md",
       "source_location": "L6",
       "id": "keleustes_contributing_contributing_to_keleustes",
-      "community": 40,
+      "community": 39,
       "norm_label": "contributing to keleustes"
     },
     {
@@ -3536,7 +3536,7 @@
       "source_file": "CONTRIBUTING.md",
       "source_location": "L10",
       "id": "keleustes_contributing_development_setup",
-      "community": 40,
+      "community": 39,
       "norm_label": "development setup"
     },
     {
@@ -3545,7 +3545,7 @@
       "source_file": "CONTRIBUTING.md",
       "source_location": "L16",
       "id": "keleustes_contributing_codeblock_1",
-      "community": 40,
+      "community": 39,
       "norm_label": "code:bash (cd tools && go mod tidy)"
     },
     {
@@ -3554,7 +3554,7 @@
       "source_file": "CONTRIBUTING.md",
       "source_location": "L22",
       "id": "keleustes_contributing_codeblock_2",
-      "community": 40,
+      "community": 39,
       "norm_label": "code:bash (go -c tools tool task --list)"
     },
     {
@@ -3563,7 +3563,7 @@
       "source_file": "CONTRIBUTING.md",
       "source_location": "L32",
       "id": "keleustes_contributing_branching_and_commits",
-      "community": 40,
+      "community": 39,
       "norm_label": "branching and commits"
     },
     {
@@ -3572,7 +3572,7 @@
       "source_file": "CONTRIBUTING.md",
       "source_location": "L52",
       "id": "keleustes_contributing_coding_standards",
-      "community": 40,
+      "community": 39,
       "norm_label": "coding standards"
     },
     {
@@ -3581,7 +3581,7 @@
       "source_file": "CONTRIBUTING.md",
       "source_location": "L64",
       "id": "keleustes_contributing_testing",
-      "community": 40,
+      "community": 39,
       "norm_label": "testing"
     },
     {
@@ -3590,7 +3590,7 @@
       "source_file": "CONTRIBUTING.md",
       "source_location": "L78",
       "id": "keleustes_contributing_pull_requests",
-      "community": 40,
+      "community": 39,
       "norm_label": "pull requests"
     },
     {
@@ -3599,7 +3599,7 @@
       "source_file": "CONTRIBUTING.md",
       "source_location": "L87",
       "id": "keleustes_contributing_safety_expectations",
-      "community": 40,
+      "community": 39,
       "norm_label": "safety expectations"
     },
     {
@@ -3608,7 +3608,7 @@
       "source_file": "AGENTS.md",
       "source_location": "L1",
       "id": "agents_md",
-      "community": 38,
+      "community": 37,
       "norm_label": "agents.md"
     },
     {
@@ -3617,7 +3617,7 @@
       "source_file": "AGENTS.md",
       "source_location": "L6",
       "id": "keleustes_agents_repository_guidelines",
-      "community": 38,
+      "community": 37,
       "norm_label": "repository guidelines"
     },
     {
@@ -3626,7 +3626,7 @@
       "source_file": "AGENTS.md",
       "source_location": "L12",
       "id": "keleustes_agents_what_keleustes_is",
-      "community": 38,
+      "community": 37,
       "norm_label": "what keleustes is"
     },
     {
@@ -3635,7 +3635,7 @@
       "source_file": "AGENTS.md",
       "source_location": "L32",
       "id": "keleustes_agents_project_structure_module_organization",
-      "community": 38,
+      "community": 37,
       "norm_label": "project structure & module organization"
     },
     {
@@ -3644,7 +3644,7 @@
       "source_file": "AGENTS.md",
       "source_location": "L51",
       "id": "keleustes_agents_knowledge_graph_graphify",
-      "community": 38,
+      "community": 37,
       "norm_label": "knowledge graph (`graphify`)"
     },
     {
@@ -3653,7 +3653,7 @@
       "source_file": "AGENTS.md",
       "source_location": "L72",
       "id": "keleustes_agents_build_test_and_development_commands",
-      "community": 38,
+      "community": 37,
       "norm_label": "build, test, and development commands"
     },
     {
@@ -3662,7 +3662,7 @@
       "source_file": "AGENTS.md",
       "source_location": "L93",
       "id": "keleustes_agents_coding_standards",
-      "community": 38,
+      "community": 37,
       "norm_label": "coding standards"
     },
     {
@@ -3671,7 +3671,7 @@
       "source_file": "AGENTS.md",
       "source_location": "L106",
       "id": "keleustes_agents_engineering_guardrails",
-      "community": 38,
+      "community": 37,
       "norm_label": "engineering guardrails"
     },
     {
@@ -3680,7 +3680,7 @@
       "source_file": "AGENTS.md",
       "source_location": "L124",
       "id": "keleustes_agents_testing_guidelines",
-      "community": 38,
+      "community": 37,
       "norm_label": "testing guidelines"
     },
     {
@@ -3689,7 +3689,7 @@
       "source_file": "AGENTS.md",
       "source_location": "L135",
       "id": "keleustes_agents_commit_pull_request_guidelines",
-      "community": 38,
+      "community": 37,
       "norm_label": "commit & pull request guidelines"
     },
     {
@@ -3698,7 +3698,7 @@
       "source_file": "AGENTS.md",
       "source_location": "L150",
       "id": "keleustes_agents_when_unsure",
-      "community": 38,
+      "community": 37,
       "norm_label": "when unsure"
     },
     {
@@ -3707,7 +3707,7 @@
       "source_file": "README.md",
       "source_location": "L1",
       "id": "readme_md",
-      "community": 33,
+      "community": 31,
       "norm_label": "readme.md"
     },
     {
@@ -3716,7 +3716,7 @@
       "source_file": "README.md",
       "source_location": "L6",
       "id": "keleustes_readme_skaphos_keleustes",
-      "community": 33,
+      "community": 31,
       "norm_label": "skaphos keleustes"
     },
     {
@@ -3725,7 +3725,7 @@
       "source_file": "README.md",
       "source_location": "L24",
       "id": "keleustes_readme_what_keleustes_replaces",
-      "community": 33,
+      "community": 31,
       "norm_label": "what keleustes replaces"
     },
     {
@@ -3734,7 +3734,7 @@
       "source_file": "README.md",
       "source_location": "L32",
       "id": "keleustes_readme_what_keleustes_does_not_replace",
-      "community": 33,
+      "community": 31,
       "norm_label": "what keleustes does not replace"
     },
     {
@@ -3743,7 +3743,7 @@
       "source_file": "README.md",
       "source_location": "L43",
       "id": "keleustes_readme_design_principles",
-      "community": 33,
+      "community": 31,
       "norm_label": "design principles"
     },
     {
@@ -3752,7 +3752,7 @@
       "source_file": "README.md",
       "source_location": "L56",
       "id": "keleustes_readme_naming",
-      "community": 33,
+      "community": 31,
       "norm_label": "naming"
     },
     {
@@ -3761,7 +3761,7 @@
       "source_file": "README.md",
       "source_location": "L69",
       "id": "keleustes_readme_repository_layout",
-      "community": 33,
+      "community": 31,
       "norm_label": "repository layout"
     },
     {
@@ -3770,7 +3770,7 @@
       "source_file": "README.md",
       "source_location": "L71",
       "id": "keleustes_readme_codeblock_1",
-      "community": 33,
+      "community": 31,
       "norm_label": "code:block1 (api/v1alpha1/          # crd type definitions (application, )"
     },
     {
@@ -3779,7 +3779,7 @@
       "source_file": "README.md",
       "source_location": "L84",
       "id": "keleustes_readme_core_crds_group_keleustes_skaphos_io",
-      "community": 33,
+      "community": 31,
       "norm_label": "core crds (group `keleustes.skaphos.io`)"
     },
     {
@@ -3788,7 +3788,7 @@
       "source_file": "README.md",
       "source_location": "L103",
       "id": "keleustes_readme_mvp_roadmap",
-      "community": 33,
+      "community": 31,
       "norm_label": "mvp roadmap"
     },
     {
@@ -3797,7 +3797,7 @@
       "source_file": "README.md",
       "source_location": "L115",
       "id": "keleustes_readme_building",
-      "community": 33,
+      "community": 31,
       "norm_label": "building"
     },
     {
@@ -3806,7 +3806,7 @@
       "source_file": "README.md",
       "source_location": "L119",
       "id": "keleustes_readme_codeblock_2",
-      "community": 33,
+      "community": 31,
       "norm_label": "code:bash (cd tools && go mod tidy   # one-time)"
     },
     {
@@ -3815,7 +3815,7 @@
       "source_file": "README.md",
       "source_location": "L127",
       "id": "keleustes_readme_codeblock_3",
-      "community": 33,
+      "community": 31,
       "norm_label": "code:bash (go -c tools tool task manifests        # regenerate crds + r)"
     },
     {
@@ -3824,7 +3824,7 @@
       "source_file": "README.md",
       "source_location": "L137",
       "id": "keleustes_readme_public_positioning",
-      "community": 33,
+      "community": 31,
       "norm_label": "public positioning"
     },
     {
@@ -3833,7 +3833,7 @@
       "source_file": "README.md",
       "source_location": "L144",
       "id": "keleustes_readme_license",
-      "community": 33,
+      "community": 31,
       "norm_label": "license"
     },
     {
@@ -3842,7 +3842,7 @@
       "source_file": "THIRD_PARTY_LICENSES.md",
       "source_location": "L1",
       "id": "third_party_licenses_md",
-      "community": 76,
+      "community": 78,
       "norm_label": "third_party_licenses.md"
     },
     {
@@ -3851,7 +3851,7 @@
       "source_file": "THIRD_PARTY_LICENSES.md",
       "source_location": "L6",
       "id": "keleustes_third_party_licenses_third_party_licenses",
-      "community": 76,
+      "community": 78,
       "norm_label": "third-party licenses"
     },
     {
@@ -3860,7 +3860,7 @@
       "source_file": "ui/README.md",
       "source_location": "L1",
       "id": "ui_readme_md",
-      "community": 77,
+      "community": 79,
       "norm_label": "readme.md"
     },
     {
@@ -3869,7 +3869,7 @@
       "source_file": "ui/README.md",
       "source_location": "L6",
       "id": "ui_readme_keleustes_ui_placeholder",
-      "community": 77,
+      "community": 79,
       "norm_label": "keleustes ui (placeholder)"
     },
     {
@@ -3878,7 +3878,7 @@
       "source_file": "tools/README.md",
       "source_location": "L1",
       "id": "tools_readme_md",
-      "community": 78,
+      "community": 80,
       "norm_label": "readme.md"
     },
     {
@@ -3887,7 +3887,7 @@
       "source_file": "tools/README.md",
       "source_location": "L6",
       "id": "tools_readme_tools",
-      "community": 78,
+      "community": 80,
       "norm_label": "tools"
     },
     {
@@ -3896,7 +3896,7 @@
       "source_file": "docs/FACTS.md",
       "source_location": "L1",
       "id": "docs_facts_md",
-      "community": 37,
+      "community": 36,
       "norm_label": "facts.md"
     },
     {
@@ -3905,7 +3905,7 @@
       "source_file": "docs/FACTS.md",
       "source_location": "L6",
       "id": "docs_facts_keleustes_facts",
-      "community": 37,
+      "community": 36,
       "norm_label": "keleustes facts"
     },
     {
@@ -3914,7 +3914,7 @@
       "source_file": "docs/FACTS.md",
       "source_location": "L8",
       "id": "docs_facts_identity",
-      "community": 37,
+      "community": 36,
       "norm_label": "identity"
     },
     {
@@ -3923,7 +3923,7 @@
       "source_file": "docs/FACTS.md",
       "source_location": "L20",
       "id": "docs_facts_purpose",
-      "community": 37,
+      "community": 36,
       "norm_label": "purpose"
     },
     {
@@ -3932,7 +3932,7 @@
       "source_file": "docs/FACTS.md",
       "source_location": "L26",
       "id": "docs_facts_name_rationale",
-      "community": 37,
+      "community": 36,
       "norm_label": "name rationale"
     },
     {
@@ -3941,7 +3941,7 @@
       "source_file": "docs/FACTS.md",
       "source_location": "L32",
       "id": "docs_facts_collision_review_2026_05_14",
-      "community": 37,
+      "community": 36,
       "norm_label": "collision review (2026-05-14)"
     },
     {
@@ -3950,7 +3950,7 @@
       "source_file": "docs/FACTS.md",
       "source_location": "L42",
       "id": "docs_facts_conceptual_components",
-      "community": 37,
+      "community": 36,
       "norm_label": "conceptual components"
     },
     {
@@ -3959,7 +3959,7 @@
       "source_file": "docs/FACTS.md",
       "source_location": "L55",
       "id": "docs_facts_core_api_concepts",
-      "community": 37,
+      "community": 36,
       "norm_label": "core api concepts"
     },
     {
@@ -3968,7 +3968,7 @@
       "source_file": "docs/FACTS.md",
       "source_location": "L72",
       "id": "docs_facts_deployment_models",
-      "community": 37,
+      "community": 36,
       "norm_label": "deployment models"
     },
     {
@@ -3977,7 +3977,7 @@
       "source_file": "docs/FACTS.md",
       "source_location": "L78",
       "id": "docs_facts_initial_scope",
-      "community": 37,
+      "community": 36,
       "norm_label": "initial scope"
     },
     {
@@ -3986,7 +3986,7 @@
       "source_file": "docs/FACTS.md",
       "source_location": "L96",
       "id": "docs_facts_boundaries",
-      "community": 37,
+      "community": 36,
       "norm_label": "boundaries"
     },
     {
@@ -3995,7 +3995,7 @@
       "source_file": "docs/FACTS.md",
       "source_location": "L110",
       "id": "docs_facts_external_references",
-      "community": 37,
+      "community": 36,
       "norm_label": "external references"
     },
     {
@@ -4004,7 +4004,7 @@
       "source_file": "docs/licenses.md",
       "source_location": "L1",
       "id": "docs_licenses_md",
-      "community": 46,
+      "community": 45,
       "norm_label": "licenses.md"
     },
     {
@@ -4013,7 +4013,7 @@
       "source_file": "docs/licenses.md",
       "source_location": "L6",
       "id": "docs_licenses_license_attribution",
-      "community": 46,
+      "community": 45,
       "norm_label": "license attribution"
     },
     {
@@ -4022,7 +4022,7 @@
       "source_file": "docs/licenses.md",
       "source_location": "L27",
       "id": "docs_licenses_regenerate_after_dep_changes",
-      "community": 46,
+      "community": 45,
       "norm_label": "regenerate after dep changes"
     },
     {
@@ -4031,7 +4031,7 @@
       "source_file": "docs/licenses.md",
       "source_location": "L41",
       "id": "docs_licenses_adopting_an_apache_2_0_dep_with_its_own_notice",
-      "community": 46,
+      "community": 45,
       "norm_label": "adopting an apache-2.0 dep with its own notice"
     },
     {
@@ -4040,7 +4040,7 @@
       "source_file": "docs/licenses.md",
       "source_location": "L50",
       "id": "docs_licenses_why_generate_rather_than_scan_at_build_time",
-      "community": 46,
+      "community": 45,
       "norm_label": "why generate rather than scan at build time"
     },
     {
@@ -4049,7 +4049,7 @@
       "source_file": "docs/licenses.md",
       "source_location": "L60",
       "id": "docs_licenses_implementation",
-      "community": 46,
+      "community": 45,
       "norm_label": "implementation"
     },
     {
@@ -4058,7 +4058,7 @@
       "source_file": "docs/PROPOSAL.md",
       "source_location": "L1",
       "id": "docs_proposal_md",
-      "community": 35,
+      "community": 33,
       "norm_label": "proposal.md"
     },
     {
@@ -4067,7 +4067,7 @@
       "source_file": "docs/PROPOSAL.md",
       "source_location": "L6",
       "id": "docs_proposal_keleustes_proposal_draft",
-      "community": 35,
+      "community": 33,
       "norm_label": "keleustes proposal (draft)"
     },
     {
@@ -4076,7 +4076,7 @@
       "source_file": "docs/PROPOSAL.md",
       "source_location": "L15",
       "id": "docs_proposal_1_executive_summary",
-      "community": 82,
+      "community": 85,
       "norm_label": "1. executive summary"
     },
     {
@@ -4085,7 +4085,7 @@
       "source_file": "docs/PROPOSAL.md",
       "source_location": "L23",
       "id": "docs_proposal_codeblock_1",
-      "community": 82,
+      "community": 85,
       "norm_label": "code:text (keleustes =)"
     },
     {
@@ -4094,7 +4094,7 @@
       "source_file": "docs/PROPOSAL.md",
       "source_location": "L46",
       "id": "docs_proposal_2_naming_status",
-      "community": 83,
+      "community": 84,
       "norm_label": "2. naming status"
     },
     {
@@ -4103,7 +4103,7 @@
       "source_file": "docs/PROPOSAL.md",
       "source_location": "L56",
       "id": "docs_proposal_collision_review_outcome",
-      "community": 83,
+      "community": 84,
       "norm_label": "collision review outcome"
     },
     {
@@ -4112,7 +4112,7 @@
       "source_file": "docs/PROPOSAL.md",
       "source_location": "L70",
       "id": "docs_proposal_3_problem_statement",
-      "community": 71,
+      "community": 73,
       "norm_label": "3. problem statement"
     },
     {
@@ -4121,7 +4121,7 @@
       "source_file": "docs/PROPOSAL.md",
       "source_location": "L82",
       "id": "docs_proposal_codeblock_2",
-      "community": 71,
+      "community": 73,
       "norm_label": "code:text (argo cd = sync + ui)"
     },
     {
@@ -4130,7 +4130,7 @@
       "source_file": "docs/PROPOSAL.md",
       "source_location": "L93",
       "id": "docs_proposal_codeblock_3",
-      "community": 71,
+      "community": 73,
       "norm_label": "code:text (what applications exist?)"
     },
     {
@@ -4139,7 +4139,7 @@
       "source_file": "docs/PROPOSAL.md",
       "source_location": "L111",
       "id": "docs_proposal_4_goals",
-      "community": 35,
+      "community": 33,
       "norm_label": "4. goals"
     },
     {
@@ -4148,7 +4148,7 @@
       "source_file": "docs/PROPOSAL.md",
       "source_location": "L126",
       "id": "docs_proposal_5_non_goals",
-      "community": 35,
+      "community": 33,
       "norm_label": "5. non-goals"
     },
     {
@@ -4157,7 +4157,7 @@
       "source_file": "docs/PROPOSAL.md",
       "source_location": "L147",
       "id": "docs_proposal_6_target_users",
-      "community": 50,
+      "community": 49,
       "norm_label": "6. target users"
     },
     {
@@ -4166,7 +4166,7 @@
       "source_file": "docs/PROPOSAL.md",
       "source_location": "L149",
       "id": "docs_proposal_6_1_platform_engineer",
-      "community": 50,
+      "community": 49,
       "norm_label": "6.1 platform engineer"
     },
     {
@@ -4175,7 +4175,7 @@
       "source_file": "docs/PROPOSAL.md",
       "source_location": "L153",
       "id": "docs_proposal_6_2_application_developer",
-      "community": 50,
+      "community": 49,
       "norm_label": "6.2 application developer"
     },
     {
@@ -4184,7 +4184,7 @@
       "source_file": "docs/PROPOSAL.md",
       "source_location": "L157",
       "id": "docs_proposal_6_3_operations_engineer",
-      "community": 50,
+      "community": 49,
       "norm_label": "6.3 operations engineer"
     },
     {
@@ -4193,7 +4193,7 @@
       "source_file": "docs/PROPOSAL.md",
       "source_location": "L161",
       "id": "docs_proposal_6_4_security_and_compliance",
-      "community": 50,
+      "community": 49,
       "norm_label": "6.4 security and compliance"
     },
     {
@@ -4202,7 +4202,7 @@
       "source_file": "docs/PROPOSAL.md",
       "source_location": "L167",
       "id": "docs_proposal_7_product_boundaries",
-      "community": 35,
+      "community": 33,
       "norm_label": "7. product boundaries"
     },
     {
@@ -4211,7 +4211,7 @@
       "source_file": "docs/PROPOSAL.md",
       "source_location": "L193",
       "id": "docs_proposal_8_core_concepts",
-      "community": 21,
+      "community": 22,
       "norm_label": "8. core concepts"
     },
     {
@@ -4220,7 +4220,7 @@
       "source_file": "docs/PROPOSAL.md",
       "source_location": "L195",
       "id": "docs_proposal_8_1_application",
-      "community": 21,
+      "community": 22,
       "norm_label": "8.1 `application`"
     },
     {
@@ -4229,7 +4229,7 @@
       "source_file": "docs/PROPOSAL.md",
       "source_location": "L199",
       "id": "docs_proposal_codeblock_4",
-      "community": 21,
+      "community": 22,
       "norm_label": "code:yaml (apiversion: keleustes.skaphos.io/v1alpha1)"
     },
     {
@@ -4238,7 +4238,7 @@
       "source_file": "docs/PROPOSAL.md",
       "source_location": "L224",
       "id": "docs_proposal_8_2_source",
-      "community": 21,
+      "community": 22,
       "norm_label": "8.2 `source`"
     },
     {
@@ -4247,7 +4247,7 @@
       "source_file": "docs/PROPOSAL.md",
       "source_location": "L228",
       "id": "docs_proposal_codeblock_5",
-      "community": 21,
+      "community": 22,
       "norm_label": "code:yaml (apiversion: keleustes.skaphos.io/v1alpha1)"
     },
     {
@@ -4256,7 +4256,7 @@
       "source_file": "docs/PROPOSAL.md",
       "source_location": "L241",
       "id": "docs_proposal_8_3_environment",
-      "community": 21,
+      "community": 22,
       "norm_label": "8.3 `environment`"
     },
     {
@@ -4265,7 +4265,7 @@
       "source_file": "docs/PROPOSAL.md",
       "source_location": "L245",
       "id": "docs_proposal_codeblock_6",
-      "community": 21,
+      "community": 22,
       "norm_label": "code:yaml (apiversion: keleustes.skaphos.io/v1alpha1)"
     },
     {
@@ -4274,7 +4274,7 @@
       "source_file": "docs/PROPOSAL.md",
       "source_location": "L257",
       "id": "docs_proposal_8_4_cell",
-      "community": 21,
+      "community": 22,
       "norm_label": "8.4 `cell`"
     },
     {
@@ -4283,7 +4283,7 @@
       "source_file": "docs/PROPOSAL.md",
       "source_location": "L261",
       "id": "docs_proposal_codeblock_7",
-      "community": 21,
+      "community": 22,
       "norm_label": "code:yaml (apiversion: keleustes.skaphos.io/v1alpha1)"
     },
     {
@@ -4292,7 +4292,7 @@
       "source_file": "docs/PROPOSAL.md",
       "source_location": "L275",
       "id": "docs_proposal_8_5_deploymenttarget",
-      "community": 21,
+      "community": 22,
       "norm_label": "8.5 `deploymenttarget`"
     },
     {
@@ -4301,7 +4301,7 @@
       "source_file": "docs/PROPOSAL.md",
       "source_location": "L279",
       "id": "docs_proposal_codeblock_8",
-      "community": 21,
+      "community": 22,
       "norm_label": "code:yaml (apiversion: keleustes.skaphos.io/v1alpha1)"
     },
     {
@@ -4310,7 +4310,7 @@
       "source_file": "docs/PROPOSAL.md",
       "source_location": "L294",
       "id": "docs_proposal_8_6_release",
-      "community": 21,
+      "community": 22,
       "norm_label": "8.6 `release`"
     },
     {
@@ -4319,7 +4319,7 @@
       "source_file": "docs/PROPOSAL.md",
       "source_location": "L298",
       "id": "docs_proposal_codeblock_9",
-      "community": 21,
+      "community": 22,
       "norm_label": "code:yaml (apiversion: keleustes.skaphos.io/v1alpha1)"
     },
     {
@@ -4328,7 +4328,7 @@
       "source_file": "docs/PROPOSAL.md",
       "source_location": "L318",
       "id": "docs_proposal_8_7_promotion",
-      "community": 21,
+      "community": 22,
       "norm_label": "8.7 `promotion`"
     },
     {
@@ -4337,7 +4337,7 @@
       "source_file": "docs/PROPOSAL.md",
       "source_location": "L322",
       "id": "docs_proposal_codeblock_10",
-      "community": 21,
+      "community": 22,
       "norm_label": "code:yaml (apiversion: keleustes.skaphos.io/v1alpha1)"
     },
     {
@@ -4346,7 +4346,7 @@
       "source_file": "docs/PROPOSAL.md",
       "source_location": "L372",
       "id": "docs_proposal_8_8_promotionpolicy",
-      "community": 21,
+      "community": 22,
       "norm_label": "8.8 `promotionpolicy`"
     },
     {
@@ -4355,7 +4355,7 @@
       "source_file": "docs/PROPOSAL.md",
       "source_location": "L376",
       "id": "docs_proposal_codeblock_11",
-      "community": 21,
+      "community": 22,
       "norm_label": "code:yaml (apiversion: keleustes.skaphos.io/v1alpha1)"
     },
     {
@@ -4364,7 +4364,7 @@
       "source_file": "docs/PROPOSAL.md",
       "source_location": "L394",
       "id": "docs_proposal_9_architecture",
-      "community": 67,
+      "community": 68,
       "norm_label": "9. architecture"
     },
     {
@@ -4373,7 +4373,7 @@
       "source_file": "docs/PROPOSAL.md",
       "source_location": "L396",
       "id": "docs_proposal_codeblock_12",
-      "community": 67,
+      "community": 68,
       "norm_label": "code:text (+-------------------------------+)"
     },
     {
@@ -4382,7 +4382,7 @@
       "source_file": "docs/PROPOSAL.md",
       "source_location": "L431",
       "id": "docs_proposal_9_1_components",
-      "community": 67,
+      "community": 68,
       "norm_label": "9.1 components"
     },
     {
@@ -4391,7 +4391,7 @@
       "source_file": "docs/PROPOSAL.md",
       "source_location": "L455",
       "id": "docs_proposal_9_2_cross_cutting_concerns_extension_surfaces_and_observability",
-      "community": 67,
+      "community": 68,
       "norm_label": "9.2 cross-cutting concerns: extension surfaces and observability"
     },
     {
@@ -4400,7 +4400,7 @@
       "source_file": "docs/PROPOSAL.md",
       "source_location": "L480",
       "id": "docs_proposal_10_deployment_model",
-      "community": 48,
+      "community": 46,
       "norm_label": "10. deployment model"
     },
     {
@@ -4409,7 +4409,7 @@
       "source_file": "docs/PROPOSAL.md",
       "source_location": "L482",
       "id": "docs_proposal_10_1_management_cluster_mode",
-      "community": 48,
+      "community": 46,
       "norm_label": "10.1 management cluster mode"
     },
     {
@@ -4418,7 +4418,7 @@
       "source_file": "docs/PROPOSAL.md",
       "source_location": "L486",
       "id": "docs_proposal_codeblock_13",
-      "community": 48,
+      "community": 46,
       "norm_label": "code:text (skaphos-keleustes-system)"
     },
     {
@@ -4427,7 +4427,7 @@
       "source_file": "docs/PROPOSAL.md",
       "source_location": "L498",
       "id": "docs_proposal_10_2_cluster_local_mode",
-      "community": 48,
+      "community": 46,
       "norm_label": "10.2 cluster-local mode"
     },
     {
@@ -4436,7 +4436,7 @@
       "source_file": "docs/PROPOSAL.md",
       "source_location": "L504",
       "id": "docs_proposal_10_3_future_federation",
-      "community": 48,
+      "community": 46,
       "norm_label": "10.3 future federation"
     },
     {
@@ -4445,7 +4445,7 @@
       "source_file": "docs/PROPOSAL.md",
       "source_location": "L508",
       "id": "docs_proposal_codeblock_14",
-      "community": 48,
+      "community": 46,
       "norm_label": "code:text (keleustes hub)"
     },
     {
@@ -4454,7 +4454,7 @@
       "source_file": "docs/PROPOSAL.md",
       "source_location": "L518",
       "id": "docs_proposal_11_sync_engine_approach",
-      "community": 35,
+      "community": 33,
       "norm_label": "11. sync engine approach"
     },
     {
@@ -4463,7 +4463,7 @@
       "source_file": "docs/PROPOSAL.md",
       "source_location": "L555",
       "id": "docs_proposal_12_health_model",
-      "community": 35,
+      "community": 33,
       "norm_label": "12. health model"
     },
     {
@@ -4472,7 +4472,7 @@
       "source_file": "docs/PROPOSAL.md",
       "source_location": "L588",
       "id": "docs_proposal_13_diff_model",
-      "community": 35,
+      "community": 33,
       "norm_label": "13. diff model"
     },
     {
@@ -4481,7 +4481,7 @@
       "source_file": "docs/PROPOSAL.md",
       "source_location": "L614",
       "id": "docs_proposal_14_git_mutation_model",
-      "community": 35,
+      "community": 33,
       "norm_label": "14. git mutation model"
     },
     {
@@ -4490,7 +4490,7 @@
       "source_file": "docs/PROPOSAL.md",
       "source_location": "L643",
       "id": "docs_proposal_15_policy_model",
-      "community": 35,
+      "community": 33,
       "norm_label": "15. policy model"
     },
     {
@@ -4499,7 +4499,7 @@
       "source_file": "docs/PROPOSAL.md",
       "source_location": "L670",
       "id": "docs_proposal_16_ui_requirements",
-      "community": 84,
+      "community": 86,
       "norm_label": "16. ui requirements"
     },
     {
@@ -4508,7 +4508,7 @@
       "source_file": "docs/PROPOSAL.md",
       "source_location": "L690",
       "id": "docs_proposal_codeblock_15",
-      "community": 84,
+      "community": 86,
       "norm_label": "code:text (application        dev     test    qa      prod wus2   prod )"
     },
     {
@@ -4517,7 +4517,7 @@
       "source_file": "docs/PROPOSAL.md",
       "source_location": "L723",
       "id": "docs_proposal_17_cli_requirements",
-      "community": 79,
+      "community": 81,
       "norm_label": "17. cli requirements"
     },
     {
@@ -4526,7 +4526,7 @@
       "source_file": "docs/PROPOSAL.md",
       "source_location": "L729",
       "id": "docs_proposal_codeblock_16",
-      "community": 79,
+      "community": 81,
       "norm_label": "code:bash (keleustesctl app list)"
     },
     {
@@ -4535,7 +4535,7 @@
       "source_file": "docs/PROPOSAL.md",
       "source_location": "L766",
       "id": "docs_proposal_18_api_requirements",
-      "community": 81,
+      "community": 83,
       "norm_label": "18. api requirements"
     },
     {
@@ -4544,7 +4544,7 @@
       "source_file": "docs/PROPOSAL.md",
       "source_location": "L772",
       "id": "docs_proposal_codeblock_17",
-      "community": 81,
+      "community": 83,
       "norm_label": "code:text (get    /applications)"
     },
     {
@@ -4553,7 +4553,7 @@
       "source_file": "docs/PROPOSAL.md",
       "source_location": "L797",
       "id": "docs_proposal_19_data_model",
-      "community": 66,
+      "community": 69,
       "norm_label": "19. data model"
     },
     {
@@ -4562,7 +4562,7 @@
       "source_file": "docs/PROPOSAL.md",
       "source_location": "L801",
       "id": "docs_proposal_codeblock_18",
-      "community": 66,
+      "community": 69,
       "norm_label": "code:text (kubernetes crds = active desired/control state)"
     },
     {
@@ -4571,7 +4571,7 @@
       "source_file": "docs/PROPOSAL.md",
       "source_location": "L811",
       "id": "docs_proposal_codeblock_19",
-      "community": 66,
+      "community": 69,
       "norm_label": "code:text (keleustes.skaphos.io)"
     },
     {
@@ -4580,7 +4580,7 @@
       "source_file": "docs/PROPOSAL.md",
       "source_location": "L817",
       "id": "docs_proposal_codeblock_20",
-      "community": 66,
+      "community": 69,
       "norm_label": "code:text (skaphos-keleustes-system)"
     },
     {
@@ -4643,7 +4643,7 @@
       "source_file": "docs/PROPOSAL.md",
       "source_location": "L940",
       "id": "docs_proposal_21_build_strategy",
-      "community": 35,
+      "community": 33,
       "norm_label": "21. build strategy"
     },
     {
@@ -4652,7 +4652,7 @@
       "source_file": "docs/PROPOSAL.md",
       "source_location": "L977",
       "id": "docs_proposal_22_design_principles",
-      "community": 35,
+      "community": 33,
       "norm_label": "22. design principles"
     },
     {
@@ -4661,7 +4661,7 @@
       "source_file": "docs/PROPOSAL.md",
       "source_location": "L996",
       "id": "docs_proposal_23_public_positioning",
-      "community": 80,
+      "community": 82,
       "norm_label": "23. public positioning"
     },
     {
@@ -4670,7 +4670,7 @@
       "source_file": "docs/PROPOSAL.md",
       "source_location": "L1010",
       "id": "docs_proposal_codeblock_21",
-      "community": 80,
+      "community": 82,
       "norm_label": "code:markdown (# skaphos keleustes)"
     },
     {
@@ -4679,7 +4679,7 @@
       "source_file": "docs/PROPOSAL.md",
       "source_location": "L1047",
       "id": "docs_proposal_24_relationship_to_other_skaphos_tools",
-      "community": 35,
+      "community": 33,
       "norm_label": "24. relationship to other skaphos tools"
     },
     {
@@ -4688,7 +4688,7 @@
       "source_file": "docs/PROPOSAL.md",
       "source_location": "L1063",
       "id": "docs_proposal_25_external_references",
-      "community": 35,
+      "community": 33,
       "norm_label": "25. external references"
     },
     {
@@ -4697,7 +4697,7 @@
       "source_file": "docs/NAMING.md",
       "source_location": "L1",
       "id": "docs_naming_md",
-      "community": 51,
+      "community": 50,
       "norm_label": "naming.md"
     },
     {
@@ -4706,7 +4706,7 @@
       "source_file": "docs/NAMING.md",
       "source_location": "L6",
       "id": "docs_naming_naming",
-      "community": 51,
+      "community": 50,
       "norm_label": "naming"
     },
     {
@@ -4715,7 +4715,7 @@
       "source_file": "docs/NAMING.md",
       "source_location": "L8",
       "id": "docs_naming_identity",
-      "community": 51,
+      "community": 50,
       "norm_label": "identity"
     },
     {
@@ -4724,7 +4724,7 @@
       "source_file": "docs/NAMING.md",
       "source_location": "L19",
       "id": "docs_naming_rationale",
-      "community": 51,
+      "community": 50,
       "norm_label": "rationale"
     },
     {
@@ -4733,7 +4733,7 @@
       "source_file": "docs/NAMING.md",
       "source_location": "L30",
       "id": "docs_naming_collision_review_2026_05_14",
-      "community": 51,
+      "community": 50,
       "norm_label": "collision review (2026-05-14)"
     },
     {
@@ -5948,7 +5948,7 @@
       "source_file": "docs/plans/README.md",
       "source_location": "L1",
       "id": "docs_plans_readme_md",
-      "community": 42,
+      "community": 41,
       "norm_label": "readme.md"
     },
     {
@@ -5957,7 +5957,7 @@
       "source_file": "docs/plans/README.md",
       "source_location": "L6",
       "id": "plans_readme_planning_documents",
-      "community": 42,
+      "community": 41,
       "norm_label": "planning documents"
     },
     {
@@ -5966,7 +5966,7 @@
       "source_file": "docs/plans/README.md",
       "source_location": "L10",
       "id": "plans_readme_purpose",
-      "community": 42,
+      "community": 41,
       "norm_label": "purpose"
     },
     {
@@ -5975,7 +5975,7 @@
       "source_file": "docs/plans/README.md",
       "source_location": "L21",
       "id": "plans_readme_naming_convention",
-      "community": 42,
+      "community": 41,
       "norm_label": "naming convention"
     },
     {
@@ -5984,7 +5984,7 @@
       "source_file": "docs/plans/README.md",
       "source_location": "L27",
       "id": "plans_readme_lifecycle",
-      "community": 42,
+      "community": 41,
       "norm_label": "lifecycle"
     },
     {
@@ -5993,7 +5993,7 @@
       "source_file": "docs/plans/README.md",
       "source_location": "L34",
       "id": "plans_readme_relationship_to_other_documents",
-      "community": 42,
+      "community": 41,
       "norm_label": "relationship to other documents"
     },
     {
@@ -6002,7 +6002,7 @@
       "source_file": "docs/plans/README.md",
       "source_location": "L41",
       "id": "plans_readme_current_plans",
-      "community": 42,
+      "community": 41,
       "norm_label": "current plans"
     },
     {
@@ -6011,7 +6011,7 @@
       "source_file": "docs/plans/README.md",
       "source_location": "L49",
       "id": "plans_readme_how_to_use_these_plans",
-      "community": 42,
+      "community": 41,
       "norm_label": "how to use these plans"
     },
     {
@@ -6650,7 +6650,7 @@
       "source_file": "docs/adr/0001-plugin-extension-model.md",
       "source_location": "L1",
       "id": "docs_adr_0001_plugin_extension_model_md",
-      "community": 11,
+      "community": 12,
       "norm_label": "0001-plugin-extension-model.md"
     },
     {
@@ -6659,7 +6659,7 @@
       "source_file": "docs/adr/0001-plugin-extension-model.md",
       "source_location": "L6",
       "id": "adr_0001_plugin_extension_model_adr_0001_plugin_extension_model_webhook_first_declarative_crds",
-      "community": 11,
+      "community": 12,
       "norm_label": "adr 0001 \u2014 plugin extension model: webhook-first, declarative crds"
     },
     {
@@ -6668,7 +6668,7 @@
       "source_file": "docs/adr/0001-plugin-extension-model.md",
       "source_location": "L14",
       "id": "adr_0001_plugin_extension_model_context",
-      "community": 11,
+      "community": 12,
       "norm_label": "context"
     },
     {
@@ -6677,7 +6677,7 @@
       "source_file": "docs/adr/0001-plugin-extension-model.md",
       "source_location": "L29",
       "id": "adr_0001_plugin_extension_model_decision",
-      "community": 11,
+      "community": 12,
       "norm_label": "decision"
     },
     {
@@ -6686,7 +6686,7 @@
       "source_file": "docs/adr/0001-plugin-extension-model.md",
       "source_location": "L31",
       "id": "adr_0001_plugin_extension_model_1_five_extension_surfaces_governed_by_crds",
-      "community": 11,
+      "community": 12,
       "norm_label": "1. five extension surfaces, governed by crds"
     },
     {
@@ -6695,7 +6695,7 @@
       "source_file": "docs/adr/0001-plugin-extension-model.md",
       "source_location": "L46",
       "id": "adr_0001_plugin_extension_model_2_mechanism_webhook_only_in_v1alpha1",
-      "community": 11,
+      "community": 12,
       "norm_label": "2. mechanism: webhook-only in v1alpha1"
     },
     {
@@ -6704,7 +6704,7 @@
       "source_file": "docs/adr/0001-plugin-extension-model.md",
       "source_location": "L53",
       "id": "adr_0001_plugin_extension_model_3_built_in_implementations_live_in_tree",
-      "community": 11,
+      "community": 12,
       "norm_label": "3. built-in implementations live in-tree"
     },
     {
@@ -6713,7 +6713,7 @@
       "source_file": "docs/adr/0001-plugin-extension-model.md",
       "source_location": "L66",
       "id": "adr_0001_plugin_extension_model_4_shared_envelope_schema",
-      "community": 11,
+      "community": 12,
       "norm_label": "4. shared envelope schema"
     },
     {
@@ -6722,7 +6722,7 @@
       "source_file": "docs/adr/0001-plugin-extension-model.md",
       "source_location": "L73",
       "id": "adr_0001_plugin_extension_model_codeblock_1",
-      "community": 11,
+      "community": 12,
       "norm_label": "code:yaml (spec:)"
     },
     {
@@ -6731,7 +6731,7 @@
       "source_file": "docs/adr/0001-plugin-extension-model.md",
       "source_location": "L95",
       "id": "adr_0001_plugin_extension_model_codeblock_2",
-      "community": 11,
+      "community": 12,
       "norm_label": "code:json ({)"
     },
     {
@@ -6740,7 +6740,7 @@
       "source_file": "docs/adr/0001-plugin-extension-model.md",
       "source_location": "L108",
       "id": "adr_0001_plugin_extension_model_codeblock_3",
-      "community": 11,
+      "community": 12,
       "norm_label": "code:json ({)"
     },
     {
@@ -6749,7 +6749,7 @@
       "source_file": "docs/adr/0001-plugin-extension-model.md",
       "source_location": "L122",
       "id": "adr_0001_plugin_extension_model_5_authentication_mtls_preferred_jwt_fallback",
-      "community": 11,
+      "community": 12,
       "norm_label": "5. authentication: mtls preferred, jwt fallback"
     },
     {
@@ -6758,7 +6758,7 @@
       "source_file": "docs/adr/0001-plugin-extension-model.md",
       "source_location": "L142",
       "id": "adr_0001_plugin_extension_model_6_default_failure_semantics_per_surface",
-      "community": 11,
+      "community": 12,
       "norm_label": "6. default failure semantics, per surface"
     },
     {
@@ -6767,7 +6767,7 @@
       "source_file": "docs/adr/0001-plugin-extension-model.md",
       "source_location": "L157",
       "id": "adr_0001_plugin_extension_model_7_aggregation_when_multiple_plugins_match",
-      "community": 11,
+      "community": 12,
       "norm_label": "7. aggregation when multiple plugins match"
     },
     {
@@ -6776,7 +6776,7 @@
       "source_file": "docs/adr/0001-plugin-extension-model.md",
       "source_location": "L175",
       "id": "adr_0001_plugin_extension_model_8_plugin_lifecycle_ownership_mixed",
-      "community": 11,
+      "community": 12,
       "norm_label": "8. plugin lifecycle ownership: mixed"
     },
     {
@@ -6785,7 +6785,7 @@
       "source_file": "docs/adr/0001-plugin-extension-model.md",
       "source_location": "L187",
       "id": "adr_0001_plugin_extension_model_9_caching_jetstream_kv",
-      "community": 11,
+      "community": 12,
       "norm_label": "9. caching: jetstream kv"
     },
     {
@@ -6794,7 +6794,7 @@
       "source_file": "docs/adr/0001-plugin-extension-model.md",
       "source_location": "L200",
       "id": "adr_0001_plugin_extension_model_10_schema_versioning",
-      "community": 11,
+      "community": 12,
       "norm_label": "10. schema versioning"
     },
     {
@@ -6803,7 +6803,7 @@
       "source_file": "docs/adr/0001-plugin-extension-model.md",
       "source_location": "L212",
       "id": "adr_0001_plugin_extension_model_11_multi_tenant_scope_enforcement",
-      "community": 11,
+      "community": 12,
       "norm_label": "11. multi-tenant scope enforcement"
     },
     {
@@ -6812,7 +6812,7 @@
       "source_file": "docs/adr/0001-plugin-extension-model.md",
       "source_location": "L235",
       "id": "adr_0001_plugin_extension_model_consequences",
-      "community": 11,
+      "community": 12,
       "norm_label": "consequences"
     },
     {
@@ -6821,7 +6821,7 @@
       "source_file": "docs/adr/0001-plugin-extension-model.md",
       "source_location": "L264",
       "id": "adr_0001_plugin_extension_model_alternatives_considered",
-      "community": 11,
+      "community": 12,
       "norm_label": "alternatives considered"
     },
     {
@@ -6830,7 +6830,7 @@
       "source_file": "docs/adr/0001-plugin-extension-model.md",
       "source_location": "L283",
       "id": "adr_0001_plugin_extension_model_compliance_and_follow_ups",
-      "community": 11,
+      "community": 12,
       "norm_label": "compliance and follow-ups"
     },
     {
@@ -6839,7 +6839,7 @@
       "source_file": "docs/adr/0003-git-source-of-truth-invariant.md",
       "source_location": "L1",
       "id": "docs_adr_0003_git_source_of_truth_invariant_md",
-      "community": 36,
+      "community": 34,
       "norm_label": "0003-git-source-of-truth-invariant.md"
     },
     {
@@ -6848,7 +6848,7 @@
       "source_file": "docs/adr/0003-git-source-of-truth-invariant.md",
       "source_location": "L6",
       "id": "adr_0003_git_source_of_truth_invariant_adr_0003_git_source_of_truth_invariant",
-      "community": 36,
+      "community": 34,
       "norm_label": "adr 0003 \u2014 git-source-of-truth invariant"
     },
     {
@@ -6857,7 +6857,7 @@
       "source_file": "docs/adr/0003-git-source-of-truth-invariant.md",
       "source_location": "L14",
       "id": "adr_0003_git_source_of_truth_invariant_context",
-      "community": 36,
+      "community": 34,
       "norm_label": "context"
     },
     {
@@ -6866,7 +6866,7 @@
       "source_file": "docs/adr/0003-git-source-of-truth-invariant.md",
       "source_location": "L31",
       "id": "adr_0003_git_source_of_truth_invariant_decision",
-      "community": 36,
+      "community": 34,
       "norm_label": "decision"
     },
     {
@@ -6875,7 +6875,7 @@
       "source_file": "docs/adr/0003-git-source-of-truth-invariant.md",
       "source_location": "L33",
       "id": "adr_0003_git_source_of_truth_invariant_1_the_hard_rule",
-      "community": 36,
+      "community": 34,
       "norm_label": "1. the hard rule"
     },
     {
@@ -6884,7 +6884,7 @@
       "source_file": "docs/adr/0003-git-source-of-truth-invariant.md",
       "source_location": "L43",
       "id": "adr_0003_git_source_of_truth_invariant_2_what_the_rule_forbids",
-      "community": 36,
+      "community": 34,
       "norm_label": "2. what the rule forbids"
     },
     {
@@ -6893,7 +6893,7 @@
       "source_file": "docs/adr/0003-git-source-of-truth-invariant.md",
       "source_location": "L55",
       "id": "adr_0003_git_source_of_truth_invariant_3_what_the_rule_guarantees",
-      "community": 36,
+      "community": 34,
       "norm_label": "3. what the rule guarantees"
     },
     {
@@ -6902,7 +6902,7 @@
       "source_file": "docs/adr/0003-git-source-of-truth-invariant.md",
       "source_location": "L68",
       "id": "adr_0003_git_source_of_truth_invariant_4_break_glass_the_single_sanctioned_exception",
-      "community": 36,
+      "community": 34,
       "norm_label": "4. break-glass: the single sanctioned exception"
     },
     {
@@ -6911,7 +6911,7 @@
       "source_file": "docs/adr/0003-git-source-of-truth-invariant.md",
       "source_location": "L99",
       "id": "adr_0003_git_source_of_truth_invariant_5_enforcement_is_structural_not_policy",
-      "community": 36,
+      "community": 34,
       "norm_label": "5. enforcement is structural, not policy"
     },
     {
@@ -6920,7 +6920,7 @@
       "source_file": "docs/adr/0003-git-source-of-truth-invariant.md",
       "source_location": "L118",
       "id": "adr_0003_git_source_of_truth_invariant_6_ui_shape",
-      "community": 36,
+      "community": 34,
       "norm_label": "6. ui shape"
     },
     {
@@ -6929,7 +6929,7 @@
       "source_file": "docs/adr/0003-git-source-of-truth-invariant.md",
       "source_location": "L131",
       "id": "adr_0003_git_source_of_truth_invariant_7_render_inputs_and_the_invariant",
-      "community": 36,
+      "community": 34,
       "norm_label": "7. render inputs and the invariant"
     },
     {
@@ -6938,7 +6938,7 @@
       "source_file": "docs/adr/0003-git-source-of-truth-invariant.md",
       "source_location": "L142",
       "id": "adr_0003_git_source_of_truth_invariant_consequences",
-      "community": 36,
+      "community": 34,
       "norm_label": "consequences"
     },
     {
@@ -6947,7 +6947,7 @@
       "source_file": "docs/adr/0003-git-source-of-truth-invariant.md",
       "source_location": "L172",
       "id": "adr_0003_git_source_of_truth_invariant_alternatives_considered",
-      "community": 36,
+      "community": 34,
       "norm_label": "alternatives considered"
     },
     {
@@ -6956,7 +6956,7 @@
       "source_file": "docs/adr/0003-git-source-of-truth-invariant.md",
       "source_location": "L191",
       "id": "adr_0003_git_source_of_truth_invariant_compliance_and_follow_ups",
-      "community": 36,
+      "community": 34,
       "norm_label": "compliance and follow-ups"
     },
     {
@@ -6965,7 +6965,7 @@
       "source_file": "docs/adr/0005-distributed-runtime.md",
       "source_location": "L1",
       "id": "docs_adr_0005_distributed_runtime_md",
-      "community": 12,
+      "community": 13,
       "norm_label": "0005-distributed-runtime.md"
     },
     {
@@ -6974,7 +6974,7 @@
       "source_file": "docs/adr/0005-distributed-runtime.md",
       "source_location": "L6",
       "id": "adr_0005_distributed_runtime_adr_0005_distributed_runtime_hub_regional_agents_nats_jetstream_as_canonical_bus_no_rdbms_on_the_critical_path",
-      "community": 12,
+      "community": 13,
       "norm_label": "adr 0005 \u2014 distributed runtime: hub + regional agents, nats jetstream as canonical bus, no rdbms on the critical path"
     },
     {
@@ -6983,7 +6983,7 @@
       "source_file": "docs/adr/0005-distributed-runtime.md",
       "source_location": "L15",
       "id": "adr_0005_distributed_runtime_context",
-      "community": 12,
+      "community": 13,
       "norm_label": "context"
     },
     {
@@ -6992,7 +6992,7 @@
       "source_file": "docs/adr/0005-distributed-runtime.md",
       "source_location": "L32",
       "id": "adr_0005_distributed_runtime_decision",
-      "community": 12,
+      "community": 13,
       "norm_label": "decision"
     },
     {
@@ -7001,7 +7001,7 @@
       "source_file": "docs/adr/0005-distributed-runtime.md",
       "source_location": "L34",
       "id": "adr_0005_distributed_runtime_1_hub_regional_agent_topology",
-      "community": 12,
+      "community": 13,
       "norm_label": "1. hub + regional-agent topology"
     },
     {
@@ -7010,7 +7010,7 @@
       "source_file": "docs/adr/0005-distributed-runtime.md",
       "source_location": "L36",
       "id": "adr_0005_distributed_runtime_codeblock_1",
-      "community": 12,
+      "community": 13,
       "norm_label": "code:block1 (+----------- hub region -----------+)"
     },
     {
@@ -7019,7 +7019,7 @@
       "source_file": "docs/adr/0005-distributed-runtime.md",
       "source_location": "L73",
       "id": "adr_0005_distributed_runtime_2_nats_jetstream_is_the_canonical_event_state_bus",
-      "community": 12,
+      "community": 13,
       "norm_label": "2. nats jetstream is the canonical event/state bus"
     },
     {
@@ -7028,7 +7028,7 @@
       "source_file": "docs/adr/0005-distributed-runtime.md",
       "source_location": "L90",
       "id": "adr_0005_distributed_runtime_3_no_rdbms_on_the_critical_path",
-      "community": 12,
+      "community": 13,
       "norm_label": "3. no rdbms on the critical path"
     },
     {
@@ -7037,7 +7037,7 @@
       "source_file": "docs/adr/0005-distributed-runtime.md",
       "source_location": "L117",
       "id": "adr_0005_distributed_runtime_4_acceptable_historical_loss",
-      "community": 12,
+      "community": 13,
       "norm_label": "4. acceptable historical loss"
     },
     {
@@ -7046,7 +7046,7 @@
       "source_file": "docs/adr/0005-distributed-runtime.md",
       "source_location": "L128",
       "id": "adr_0005_distributed_runtime_5_cross_connect_transport_nats_leaf_default_interface_from_day_one",
-      "community": 12,
+      "community": 13,
       "norm_label": "5. cross-connect transport: nats leaf default, interface from day one"
     },
     {
@@ -7055,7 +7055,7 @@
       "source_file": "docs/adr/0005-distributed-runtime.md",
       "source_location": "L154",
       "id": "adr_0005_distributed_runtime_6_agent_identity_is_a_first_class_agent_cr",
-      "community": 12,
+      "community": 13,
       "norm_label": "6. agent identity is a first-class `agent` cr"
     },
     {
@@ -7064,7 +7064,7 @@
       "source_file": "docs/adr/0005-distributed-runtime.md",
       "source_location": "L173",
       "id": "adr_0005_distributed_runtime_7_tiered_exposure_via_gateway_api_v1",
-      "community": 12,
+      "community": 13,
       "norm_label": "7. tiered exposure via gateway api v1"
     },
     {
@@ -7073,7 +7073,7 @@
       "source_file": "docs/adr/0005-distributed-runtime.md",
       "source_location": "L204",
       "id": "adr_0005_distributed_runtime_8_oidc_authz_service",
-      "community": 12,
+      "community": 13,
       "norm_label": "8. oidc / authz service"
     },
     {
@@ -7082,7 +7082,7 @@
       "source_file": "docs/adr/0005-distributed-runtime.md",
       "source_location": "L212",
       "id": "adr_0005_distributed_runtime_9_webhook_receiver_deployment_shape",
-      "community": 12,
+      "community": 13,
       "norm_label": "9. webhook receiver deployment shape"
     },
     {
@@ -7091,7 +7091,7 @@
       "source_file": "docs/adr/0005-distributed-runtime.md",
       "source_location": "L224",
       "id": "adr_0005_distributed_runtime_10_horizontal_scaling_and_sharding",
-      "community": 12,
+      "community": 13,
       "norm_label": "10. horizontal scaling and sharding"
     },
     {
@@ -7100,7 +7100,7 @@
       "source_file": "docs/adr/0005-distributed-runtime.md",
       "source_location": "L257",
       "id": "adr_0005_distributed_runtime_11_render_and_git_mutation_distribution",
-      "community": 12,
+      "community": 13,
       "norm_label": "11. render and git mutation distribution"
     },
     {
@@ -7109,7 +7109,7 @@
       "source_file": "docs/adr/0005-distributed-runtime.md",
       "source_location": "L269",
       "id": "adr_0005_distributed_runtime_12_local_autonomy_for_emergency_operations",
-      "community": 12,
+      "community": 13,
       "norm_label": "12. local autonomy for emergency operations"
     },
     {
@@ -7118,7 +7118,7 @@
       "source_file": "docs/adr/0005-distributed-runtime.md",
       "source_location": "L285",
       "id": "adr_0005_distributed_runtime_13_duckdb_freshness_model",
-      "community": 12,
+      "community": 13,
       "norm_label": "13. duckdb freshness model"
     },
     {
@@ -7127,7 +7127,7 @@
       "source_file": "docs/adr/0005-distributed-runtime.md",
       "source_location": "L297",
       "id": "adr_0005_distributed_runtime_14_reference_sql_consumer",
-      "community": 12,
+      "community": 13,
       "norm_label": "14. reference sql consumer"
     },
     {
@@ -7136,7 +7136,7 @@
       "source_file": "docs/adr/0005-distributed-runtime.md",
       "source_location": "L306",
       "id": "adr_0005_distributed_runtime_consequences",
-      "community": 12,
+      "community": 13,
       "norm_label": "consequences"
     },
     {
@@ -7145,7 +7145,7 @@
       "source_file": "docs/adr/0005-distributed-runtime.md",
       "source_location": "L341",
       "id": "adr_0005_distributed_runtime_alternatives_considered",
-      "community": 12,
+      "community": 13,
       "norm_label": "alternatives considered"
     },
     {
@@ -7154,7 +7154,7 @@
       "source_file": "docs/adr/0005-distributed-runtime.md",
       "source_location": "L368",
       "id": "adr_0005_distributed_runtime_compliance_and_follow_ups",
-      "community": 12,
+      "community": 13,
       "norm_label": "compliance and follow-ups"
     },
     {
@@ -7163,7 +7163,7 @@
       "source_file": "docs/adr/0002-default-observability-stack.md",
       "source_location": "L1",
       "id": "docs_adr_0002_default_observability_stack_md",
-      "community": 15,
+      "community": 16,
       "norm_label": "0002-default-observability-stack.md"
     },
     {
@@ -7172,7 +7172,7 @@
       "source_file": "docs/adr/0002-default-observability-stack.md",
       "source_location": "L6",
       "id": "adr_0002_default_observability_stack_adr_0002_default_observability_stack_prometheus_operator_opentelemetry_dual_export",
-      "community": 15,
+      "community": 16,
       "norm_label": "adr 0002 \u2014 default observability stack: prometheus operator + opentelemetry, dual-export"
     },
     {
@@ -7181,7 +7181,7 @@
       "source_file": "docs/adr/0002-default-observability-stack.md",
       "source_location": "L14",
       "id": "adr_0002_default_observability_stack_context",
-      "community": 15,
+      "community": 16,
       "norm_label": "context"
     },
     {
@@ -7190,7 +7190,7 @@
       "source_file": "docs/adr/0002-default-observability-stack.md",
       "source_location": "L32",
       "id": "adr_0002_default_observability_stack_decision",
-      "community": 15,
+      "community": 16,
       "norm_label": "decision"
     },
     {
@@ -7199,7 +7199,7 @@
       "source_file": "docs/adr/0002-default-observability-stack.md",
       "source_location": "L34",
       "id": "adr_0002_default_observability_stack_1_dual_export_is_the_default",
-      "community": 15,
+      "community": 16,
       "norm_label": "1. dual export is the default"
     },
     {
@@ -7208,7 +7208,7 @@
       "source_file": "docs/adr/0002-default-observability-stack.md",
       "source_location": "L47",
       "id": "adr_0002_default_observability_stack_2_prometheus_operator_is_the_supported_wiring_path",
-      "community": 15,
+      "community": 16,
       "norm_label": "2. prometheus operator is the supported wiring path"
     },
     {
@@ -7217,7 +7217,7 @@
       "source_file": "docs/adr/0002-default-observability-stack.md",
       "source_location": "L66",
       "id": "adr_0002_default_observability_stack_3_opentelemetry_sdk_with_conventional_wiring",
-      "community": 15,
+      "community": 16,
       "norm_label": "3. opentelemetry sdk with conventional wiring"
     },
     {
@@ -7226,7 +7226,7 @@
       "source_file": "docs/adr/0002-default-observability-stack.md",
       "source_location": "L88",
       "id": "adr_0002_default_observability_stack_4_logging_structured_stdout_by_default_otel_logs_opt_in",
-      "community": 15,
+      "community": 16,
       "norm_label": "4. logging: structured stdout by default, otel logs opt-in"
     },
     {
@@ -7235,7 +7235,7 @@
       "source_file": "docs/adr/0002-default-observability-stack.md",
       "source_location": "L105",
       "id": "adr_0002_default_observability_stack_5_label_and_cardinality_conventions",
-      "community": 15,
+      "community": 16,
       "norm_label": "5. label and cardinality conventions"
     },
     {
@@ -7244,7 +7244,7 @@
       "source_file": "docs/adr/0002-default-observability-stack.md",
       "source_location": "L125",
       "id": "adr_0002_default_observability_stack_6_alerts_runbook_url_mandatory_enforced_in_ci",
-      "community": 15,
+      "community": 16,
       "norm_label": "6. alerts: runbook url mandatory, enforced in ci"
     },
     {
@@ -7253,7 +7253,7 @@
       "source_file": "docs/adr/0002-default-observability-stack.md",
       "source_location": "L145",
       "id": "adr_0002_default_observability_stack_7_severity_and_scope_taxonomy",
-      "community": 15,
+      "community": 16,
       "norm_label": "7. severity and scope taxonomy"
     },
     {
@@ -7262,7 +7262,7 @@
       "source_file": "docs/adr/0002-default-observability-stack.md",
       "source_location": "L158",
       "id": "adr_0002_default_observability_stack_8_suggested_slos_recording_rules_ship_enabled_alerts_opt_in",
-      "community": 15,
+      "community": 16,
       "norm_label": "8. suggested slos (recording rules ship enabled, alerts opt-in)"
     },
     {
@@ -7271,7 +7271,7 @@
       "source_file": "docs/adr/0002-default-observability-stack.md",
       "source_location": "L173",
       "id": "adr_0002_default_observability_stack_9_dashboards",
-      "community": 15,
+      "community": 16,
       "norm_label": "9. dashboards"
     },
     {
@@ -7280,7 +7280,7 @@
       "source_file": "docs/adr/0002-default-observability-stack.md",
       "source_location": "L184",
       "id": "adr_0002_default_observability_stack_10_multi_region_regional_scrape_federate_aggregates",
-      "community": 15,
+      "community": 16,
       "norm_label": "10. multi-region: regional scrape, federate aggregates"
     },
     {
@@ -7289,7 +7289,7 @@
       "source_file": "docs/adr/0002-default-observability-stack.md",
       "source_location": "L204",
       "id": "adr_0002_default_observability_stack_11_kubernetes_events_narrow_by_default",
-      "community": 15,
+      "community": 16,
       "norm_label": "11. kubernetes events: narrow by default"
     },
     {
@@ -7298,7 +7298,7 @@
       "source_file": "docs/adr/0002-default-observability-stack.md",
       "source_location": "L219",
       "id": "adr_0002_default_observability_stack_12_audit_telemetry",
-      "community": 15,
+      "community": 16,
       "norm_label": "12. audit = telemetry"
     },
     {
@@ -7307,7 +7307,7 @@
       "source_file": "docs/adr/0002-default-observability-stack.md",
       "source_location": "L234",
       "id": "adr_0002_default_observability_stack_13_bundle_layout_and_gating",
-      "community": 15,
+      "community": 16,
       "norm_label": "13. bundle layout and gating"
     },
     {
@@ -7316,7 +7316,7 @@
       "source_file": "docs/adr/0002-default-observability-stack.md",
       "source_location": "L236",
       "id": "adr_0002_default_observability_stack_codeblock_1",
-      "community": 15,
+      "community": 16,
       "norm_label": "code:block1 (config/observability/)"
     },
     {
@@ -7325,7 +7325,7 @@
       "source_file": "docs/adr/0002-default-observability-stack.md",
       "source_location": "L255",
       "id": "adr_0002_default_observability_stack_consequences",
-      "community": 15,
+      "community": 16,
       "norm_label": "consequences"
     },
     {
@@ -7334,7 +7334,7 @@
       "source_file": "docs/adr/0002-default-observability-stack.md",
       "source_location": "L292",
       "id": "adr_0002_default_observability_stack_alternatives_considered",
-      "community": 15,
+      "community": 16,
       "norm_label": "alternatives considered"
     },
     {
@@ -7343,7 +7343,7 @@
       "source_file": "docs/adr/0002-default-observability-stack.md",
       "source_location": "L320",
       "id": "adr_0002_default_observability_stack_compliance_and_follow_ups",
-      "community": 15,
+      "community": 16,
       "norm_label": "compliance and follow-ups"
     },
     {
@@ -7559,7 +7559,7 @@
       "source_file": "docs/adr/README.md",
       "source_location": "L1",
       "id": "docs_adr_readme_md",
-      "community": 85,
+      "community": 87,
       "norm_label": "readme.md"
     },
     {
@@ -7568,7 +7568,7 @@
       "source_file": "docs/adr/README.md",
       "source_location": "L6",
       "id": "adr_readme_architecture_decision_records",
-      "community": 85,
+      "community": 87,
       "norm_label": "architecture decision records"
     },
     {
@@ -7577,7 +7577,7 @@
       "source_file": "docs/adr/0004-crd-based-rbac.md",
       "source_location": "L1",
       "id": "docs_adr_0004_crd_based_rbac_md",
-      "community": 13,
+      "community": 14,
       "norm_label": "0004-crd-based-rbac.md"
     },
     {
@@ -7586,7 +7586,7 @@
       "source_file": "docs/adr/0004-crd-based-rbac.md",
       "source_location": "L6",
       "id": "adr_0004_crd_based_rbac_adr_0004_crd_based_rbac_model",
-      "community": 13,
+      "community": 14,
       "norm_label": "adr 0004 \u2014 crd-based rbac model"
     },
     {
@@ -7595,7 +7595,7 @@
       "source_file": "docs/adr/0004-crd-based-rbac.md",
       "source_location": "L15",
       "id": "adr_0004_crd_based_rbac_context",
-      "community": 13,
+      "community": 14,
       "norm_label": "context"
     },
     {
@@ -7604,7 +7604,7 @@
       "source_file": "docs/adr/0004-crd-based-rbac.md",
       "source_location": "L35",
       "id": "adr_0004_crd_based_rbac_decision",
-      "community": 13,
+      "community": 14,
       "norm_label": "decision"
     },
     {
@@ -7613,7 +7613,7 @@
       "source_file": "docs/adr/0004-crd-based-rbac.md",
       "source_location": "L37",
       "id": "adr_0004_crd_based_rbac_1_five_rbac_crds_in_keleustes_skaphos_io_v1alpha1",
-      "community": 13,
+      "community": 14,
       "norm_label": "1. five rbac crds in `keleustes.skaphos.io/v1alpha1`"
     },
     {
@@ -7622,7 +7622,7 @@
       "source_file": "docs/adr/0004-crd-based-rbac.md",
       "source_location": "L39",
       "id": "adr_0004_crd_based_rbac_codeblock_1",
-      "community": 13,
+      "community": 14,
       "norm_label": "code:block1 (keleustes.skaphos.io/v1alpha1)"
     },
     {
@@ -7631,7 +7631,7 @@
       "source_file": "docs/adr/0004-crd-based-rbac.md",
       "source_location": "L58",
       "id": "adr_0004_crd_based_rbac_2_project_is_the_delegation_boundary",
-      "community": 13,
+      "community": 14,
       "norm_label": "2. `project` is the delegation boundary"
     },
     {
@@ -7640,7 +7640,7 @@
       "source_file": "docs/adr/0004-crd-based-rbac.md",
       "source_location": "L77",
       "id": "adr_0004_crd_based_rbac_3_layered_with_native_kubernetes_rbac_not_replaced",
-      "community": 13,
+      "community": 14,
       "norm_label": "3. layered with native kubernetes rbac, not replaced"
     },
     {
@@ -7649,7 +7649,7 @@
       "source_file": "docs/adr/0004-crd-based-rbac.md",
       "source_location": "L91",
       "id": "adr_0004_crd_based_rbac_4_action_verbs",
-      "community": 13,
+      "community": 14,
       "norm_label": "4. action verbs"
     },
     {
@@ -7658,7 +7658,7 @@
       "source_file": "docs/adr/0004-crd-based-rbac.md",
       "source_location": "L117",
       "id": "adr_0004_crd_based_rbac_5_identity_sources_via_identityprovider_crd",
-      "community": 13,
+      "community": 14,
       "norm_label": "5. identity sources via `identityprovider` crd"
     },
     {
@@ -7667,7 +7667,7 @@
       "source_file": "docs/adr/0004-crd-based-rbac.md",
       "source_location": "L138",
       "id": "adr_0004_crd_based_rbac_6_oidc_group_claim_normalization",
-      "community": 13,
+      "community": 14,
       "norm_label": "6. oidc group-claim normalization"
     },
     {
@@ -7676,7 +7676,7 @@
       "source_file": "docs/adr/0004-crd-based-rbac.md",
       "source_location": "L145",
       "id": "adr_0004_crd_based_rbac_codeblock_2",
-      "community": 13,
+      "community": 14,
       "norm_label": "code:yaml (spec:)"
     },
     {
@@ -7685,7 +7685,7 @@
       "source_file": "docs/adr/0004-crd-based-rbac.md",
       "source_location": "L159",
       "id": "adr_0004_crd_based_rbac_7_project_kubernetes_namespace_mapping",
-      "community": 13,
+      "community": 14,
       "norm_label": "7. project \u2194 kubernetes-namespace mapping"
     },
     {
@@ -7694,7 +7694,7 @@
       "source_file": "docs/adr/0004-crd-based-rbac.md",
       "source_location": "L175",
       "id": "adr_0004_crd_based_rbac_8_separation_of_duties_via_approvalpolicy",
-      "community": 13,
+      "community": 14,
       "norm_label": "8. separation of duties via `approvalpolicy`"
     },
     {
@@ -7703,7 +7703,7 @@
       "source_file": "docs/adr/0004-crd-based-rbac.md",
       "source_location": "L190",
       "id": "adr_0004_crd_based_rbac_9_time_bound_rolebindings_and_break_glass",
-      "community": 13,
+      "community": 14,
       "norm_label": "9. time-bound rolebindings and break-glass"
     },
     {
@@ -7712,7 +7712,7 @@
       "source_file": "docs/adr/0004-crd-based-rbac.md",
       "source_location": "L214",
       "id": "adr_0004_crd_based_rbac_10_default_deny",
-      "community": 13,
+      "community": 14,
       "norm_label": "10. default-deny"
     },
     {
@@ -7721,7 +7721,7 @@
       "source_file": "docs/adr/0004-crd-based-rbac.md",
       "source_location": "L223",
       "id": "adr_0004_crd_based_rbac_11_policy_evaluator_custom_over_crds_not_casbin",
-      "community": 13,
+      "community": 14,
       "norm_label": "11. policy evaluator: custom-over-crds, not casbin"
     },
     {
@@ -7730,7 +7730,7 @@
       "source_file": "docs/adr/0004-crd-based-rbac.md",
       "source_location": "L245",
       "id": "adr_0004_crd_based_rbac_12_ui_deep_linking_with_stable_identifiers",
-      "community": 13,
+      "community": 14,
       "norm_label": "12. ui deep-linking with stable identifiers"
     },
     {
@@ -7739,7 +7739,7 @@
       "source_file": "docs/adr/0004-crd-based-rbac.md",
       "source_location": "L255",
       "id": "adr_0004_crd_based_rbac_13_multi_tenant_alignment_with_adr_0001",
-      "community": 13,
+      "community": 14,
       "norm_label": "13. multi-tenant alignment with adr 0001"
     },
     {
@@ -7748,7 +7748,7 @@
       "source_file": "docs/adr/0004-crd-based-rbac.md",
       "source_location": "L270",
       "id": "adr_0004_crd_based_rbac_consequences",
-      "community": 13,
+      "community": 14,
       "norm_label": "consequences"
     },
     {
@@ -7757,7 +7757,7 @@
       "source_file": "docs/adr/0004-crd-based-rbac.md",
       "source_location": "L297",
       "id": "adr_0004_crd_based_rbac_alternatives_considered",
-      "community": 13,
+      "community": 14,
       "norm_label": "alternatives considered"
     },
     {
@@ -7766,7 +7766,7 @@
       "source_file": "docs/adr/0004-crd-based-rbac.md",
       "source_location": "L319",
       "id": "adr_0004_crd_based_rbac_compliance_and_follow_ups",
-      "community": 13,
+      "community": 14,
       "norm_label": "compliance and follow-ups"
     },
     {
@@ -7792,7 +7792,7 @@
       "file_type": "code",
       "source_file": "engine.go",
       "source_location": "L1",
-      "community": 43,
+      "community": 42,
       "norm_label": "engine.go",
       "id": "engine_go"
     },
@@ -7801,7 +7801,7 @@
       "file_type": "code",
       "source_file": "engine_test.go",
       "source_location": "L1",
-      "community": 43,
+      "community": 42,
       "norm_label": "engine_test.go",
       "id": "engine_test_go"
     },
@@ -7810,7 +7810,7 @@
       "file_type": "document",
       "source_file": "adr/0001-plugin-extension-model.md",
       "source_location": "L1",
-      "community": 11,
+      "community": 12,
       "norm_label": "0001-plugin-extension-model.md",
       "id": "adr_0001_plugin_extension_model_md"
     },
@@ -7923,7 +7923,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 91,
+      "community": 93,
       "norm_label": "claude.md alias",
       "id": "claude_agents_alias"
     },
@@ -7936,7 +7936,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 86,
+      "community": 88,
       "norm_label": "dco sign off",
       "id": "contributing_dco"
     },
@@ -7949,7 +7949,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 86,
+      "community": 88,
       "norm_label": "conventional commits",
       "id": "contributing_conventional_commits"
     },
@@ -7962,7 +7962,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 92,
+      "community": 94,
       "norm_label": "reuse metadata",
       "id": "contributing_reuse_metadata"
     },
@@ -8443,7 +8443,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 72,
+      "community": 74,
       "norm_label": "keleustesctl command entrypoint",
       "id": "keleustesctl_command"
     },
@@ -8456,7 +8456,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 72,
+      "community": 74,
       "norm_label": "internal cli root command",
       "id": "internal_cli_root_command"
     },
@@ -8469,7 +8469,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 72,
+      "community": 74,
       "norm_label": "proposal section 17 cli surface",
       "id": "proposal_section_17_cli_surface"
     },
@@ -9184,7 +9184,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 49,
+      "community": 48,
       "norm_label": "leader-election-rolebinding",
       "id": "leader_election_role_binding_leader_election_rolebinding"
     },
@@ -9197,7 +9197,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 49,
+      "community": 48,
       "norm_label": "leader-election-role",
       "id": "leader_election_role_binding_leader_election_role"
     },
@@ -9210,7 +9210,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 49,
+      "community": 48,
       "norm_label": "manager-role",
       "id": "role_manager_role"
     },
@@ -9223,7 +9223,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 49,
+      "community": 48,
       "norm_label": "keleustes crd permissions",
       "id": "role_keleustes_crd_permissions"
     },
@@ -9236,7 +9236,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 49,
+      "community": 48,
       "norm_label": "manager-rolebinding",
       "id": "role_binding_manager_rolebinding"
     },
@@ -9249,7 +9249,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 49,
+      "community": 48,
       "norm_label": "controller-manager serviceaccount",
       "id": "rbac_controller_manager_serviceaccount"
     },
@@ -9262,7 +9262,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 22,
+      "community": 23,
       "norm_label": "marshaller-api application",
       "id": "keleustes_v1alpha1_application_marshaller_api_marshaller_api_application"
     },
@@ -9275,7 +9275,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 22,
+      "community": 23,
       "norm_label": "marshaller-api kustomize manifest deployment",
       "id": "keleustes_v1alpha1_application_marshaller_api_kustomize_manifest"
     },
@@ -9288,7 +9288,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 22,
+      "community": 23,
       "norm_label": "guest-prod cell",
       "id": "keleustes_v1alpha1_cell_guest_prod_guest_prod_cell"
     },
@@ -9301,7 +9301,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 22,
+      "community": 23,
       "norm_label": "prod-guest-westus2 deploymenttarget",
       "id": "keleustes_v1alpha1_deploymenttarget_prod_guest_westus2_prod_guest_westus2_target"
     },
@@ -9314,7 +9314,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 22,
+      "community": 23,
       "norm_label": "aks-prod-guest-westus2-001 cluster",
       "id": "keleustes_v1alpha1_deploymenttarget_prod_guest_westus2_aks_cluster"
     },
@@ -9327,7 +9327,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 22,
+      "community": 23,
       "norm_label": "prod environment",
       "id": "keleustes_v1alpha1_environment_prod_prod_environment"
     },
@@ -9340,7 +9340,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 22,
+      "community": 23,
       "norm_label": "marshaller-api 1.8.2 to prod wave4 promotion",
       "id": "keleustes_v1alpha1_promotion_marshaller_api_to_prod_marshaller_api_prod_promotion"
     },
@@ -9353,7 +9353,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 22,
+      "community": 23,
       "norm_label": "servicenow crq123456 change",
       "id": "keleustes_v1alpha1_promotion_marshaller_api_to_prod_servicenow_change"
     },
@@ -9366,7 +9366,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 22,
+      "community": 23,
       "norm_label": "prod-standard promotionpolicy",
       "id": "keleustes_v1alpha1_promotionpolicy_prod_standard_prod_standard_policy"
     },
@@ -9379,7 +9379,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 22,
+      "community": 23,
       "norm_label": "prod-standard required gates",
       "id": "keleustes_v1alpha1_promotionpolicy_prod_standard_required_gates"
     },
@@ -9392,7 +9392,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 22,
+      "community": 23,
       "norm_label": "marshaller-api 1.8.2 release",
       "id": "keleustes_v1alpha1_release_marshaller_api_1_8_2_marshaller_api_release"
     },
@@ -9405,7 +9405,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 22,
+      "community": 23,
       "norm_label": "marshaller-api 1.8.2 image artifact",
       "id": "keleustes_v1alpha1_release_marshaller_api_1_8_2_image_artifact"
     },
@@ -9418,7 +9418,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 22,
+      "community": 23,
       "norm_label": "marshaller-api chart 0.12.4 artifact",
       "id": "keleustes_v1alpha1_release_marshaller_api_1_8_2_chart_artifact"
     },
@@ -9431,7 +9431,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 22,
+      "community": 23,
       "norm_label": "marshaller-api release provenance",
       "id": "keleustes_v1alpha1_release_marshaller_api_1_8_2_provenance"
     },
@@ -9444,7 +9444,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 22,
+      "community": 23,
       "norm_label": "marshaller-api source",
       "id": "keleustes_v1alpha1_source_marshaller_api_marshaller_api_source"
     },
@@ -9457,7 +9457,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 22,
+      "community": 23,
       "norm_label": "marshaller-api cosign verification",
       "id": "keleustes_v1alpha1_source_marshaller_api_cosign_verification"
     },
@@ -9470,7 +9470,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 22,
+      "community": 23,
       "norm_label": "keleustes sample resource set",
       "id": "kustomization_samples_sample_set"
     },
@@ -9483,7 +9483,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 44,
+      "community": 43,
       "norm_label": "keleustes identity",
       "id": "FACTS_keleustes_identity"
     },
@@ -9496,7 +9496,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 44,
+      "community": 43,
       "norm_label": "gitops delivery control plane purpose",
       "id": "FACTS_gitops_delivery_control_plane"
     },
@@ -9509,7 +9509,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 44,
+      "community": 43,
       "norm_label": "keleustes conceptual components",
       "id": "FACTS_conceptual_components"
     },
@@ -9522,7 +9522,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 44,
+      "community": 43,
       "norm_label": "keleustes core api concepts",
       "id": "FACTS_core_api_concepts"
     },
@@ -9535,7 +9535,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 44,
+      "community": 43,
       "norm_label": "keleustes deployment models",
       "id": "FACTS_deployment_models"
     },
@@ -9548,7 +9548,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 87,
+      "community": 89,
       "norm_label": "keleustes initial mvp scope",
       "id": "FACTS_mvp_scope"
     },
@@ -9561,7 +9561,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 88,
+      "community": 90,
       "norm_label": "argo cd kargo flux references",
       "id": "FACTS_external_references"
     },
@@ -9574,7 +9574,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 44,
+      "community": 43,
       "norm_label": "keleustes name",
       "id": "NAMING_keleustes_name"
     },
@@ -9587,7 +9587,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 44,
+      "community": 43,
       "norm_label": "keleustes collision review",
       "id": "NAMING_collision_review"
     },
@@ -9782,7 +9782,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 93,
+      "community": 95,
       "norm_label": "keleustes worker",
       "id": "PROPOSAL_keleustes_worker"
     },
@@ -9847,7 +9847,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 73,
+      "community": 75,
       "norm_label": "policy engine",
       "id": "PROPOSAL_policy_engine"
     },
@@ -9886,7 +9886,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 73,
+      "community": 75,
       "norm_label": "extension surfaces",
       "id": "PROPOSAL_extension_surfaces"
     },
@@ -9899,7 +9899,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 41,
+      "community": 40,
       "norm_label": "default observability bundle",
       "id": "PROPOSAL_observability_bundle"
     },
@@ -9951,7 +9951,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 73,
+      "community": 75,
       "norm_label": "policy model",
       "id": "PROPOSAL_policy_model"
     },
@@ -10003,7 +10003,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 87,
+      "community": 89,
       "norm_label": "mvp roadmap",
       "id": "PROPOSAL_mvp_roadmap"
     },
@@ -10029,7 +10029,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 88,
+      "community": 90,
       "norm_label": "external gitops references",
       "id": "PROPOSAL_external_references"
     },
@@ -10042,7 +10042,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 94,
+      "community": 96,
       "norm_label": "relationship to skaphos tools",
       "id": "PROPOSAL_skaphos_tool_relationships"
     },
@@ -10289,7 +10289,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 41,
+      "community": 40,
       "norm_label": "observability stack plan",
       "id": "2026_05_observability_stack_observability_stack"
     },
@@ -10302,7 +10302,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 41,
+      "community": 40,
       "norm_label": "servicemonitor bundle",
       "id": "2026_05_observability_stack_service_monitor"
     },
@@ -10315,7 +10315,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 41,
+      "community": 40,
       "norm_label": "agent podmonitor bundle",
       "id": "2026_05_observability_stack_pod_monitor"
     },
@@ -10328,7 +10328,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 41,
+      "community": 40,
       "norm_label": "prometheusrule alerts",
       "id": "2026_05_observability_stack_prometheus_rule"
     },
@@ -10341,7 +10341,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 41,
+      "community": 40,
       "norm_label": "kube-state-metrics crd state metrics",
       "id": "2026_05_observability_stack_crd_state_metrics"
     },
@@ -10354,7 +10354,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 41,
+      "community": 40,
       "norm_label": "opentelemetry dual export",
       "id": "2026_05_observability_stack_opentelemetry_dual_export"
     },
@@ -10367,7 +10367,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 41,
+      "community": 40,
       "norm_label": "grafana dashboard configmaps",
       "id": "2026_05_observability_stack_grafana_dashboards"
     },
@@ -10380,7 +10380,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 41,
+      "community": 40,
       "norm_label": "runbook-backed alerts",
       "id": "2026_05_observability_stack_runbook_alerts"
     },
@@ -10432,7 +10432,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 45,
+      "community": 44,
       "norm_label": "crd-based rbac model",
       "id": "2026_05_rbac_audit_and_git_invariant_crd_rbac_model"
     },
@@ -10445,7 +10445,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 45,
+      "community": 44,
       "norm_label": "identityprovider crd",
       "id": "2026_05_rbac_audit_and_git_invariant_identityprovider_crd"
     },
@@ -10458,7 +10458,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 45,
+      "community": 44,
       "norm_label": "role crd",
       "id": "2026_05_rbac_audit_and_git_invariant_role_crd"
     },
@@ -10471,7 +10471,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 45,
+      "community": 44,
       "norm_label": "rolebinding crd",
       "id": "2026_05_rbac_audit_and_git_invariant_rolebinding_crd"
     },
@@ -10484,7 +10484,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 45,
+      "community": 44,
       "norm_label": "project crd",
       "id": "2026_05_rbac_audit_and_git_invariant_project_crd"
     },
@@ -10497,7 +10497,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 45,
+      "community": 44,
       "norm_label": "approvalpolicy crd",
       "id": "2026_05_rbac_audit_and_git_invariant_approvalpolicy_crd"
     },
@@ -10536,7 +10536,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 45,
+      "community": 44,
       "norm_label": "default-deny rbac",
       "id": "2026_05_rbac_audit_and_git_invariant_default_deny"
     },
@@ -10549,7 +10549,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 95,
+      "community": 97,
       "norm_label": "spdx license header template",
       "id": "boilerplate_spdx_license_header"
     },
@@ -11056,7 +11056,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 74,
+      "community": 76,
       "norm_label": "pinned developer tooling module",
       "id": "tools_pinned_developer_tooling"
     },
@@ -11069,7 +11069,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 74,
+      "community": 76,
       "norm_label": "task tool invocation workflow",
       "id": "tools_task_invocation"
     },
@@ -11082,7 +11082,7 @@
       "captured_at": null,
       "author": null,
       "contributor": null,
-      "community": 74,
+      "community": 76,
       "norm_label": "go mod download bootstrap",
       "id": "tools_go_mod_download_bootstrap"
     },
@@ -17420,9 +17420,9 @@
       "source_file": "docs/plans/2026-05-gitops-engine-spike.md",
       "source_location": "L6",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "docs_plans_2026_05_gitops_engine_spike_md",
-      "target": "plans_2026_05_gitops_engine_spike_spike_report_gitops_engine_adoption_ska_327",
-      "confidence_score": 1.0
+      "target": "plans_2026_05_gitops_engine_spike_spike_report_gitops_engine_adoption_ska_327"
     },
     {
       "relation": "contains",
@@ -20240,9 +20240,9 @@
       "source_file": "docs/adr/0006-engine-boundaries.md",
       "source_location": "L6",
       "weight": 1.0,
+      "confidence_score": 1.0,
       "source": "docs_adr_0006_engine_boundaries_md",
-      "target": "adr_0006_engine_boundaries_adr_0006_engine_boundaries_and_gitops_engine_reuse",
-      "confidence_score": 1.0
+      "target": "adr_0006_engine_boundaries_adr_0006_engine_boundaries_and_gitops_engine_reuse"
     },
     {
       "relation": "contains",
@@ -24210,5 +24210,5 @@
       "source_file": "internal/controller/controllers_test.go"
     }
   ],
-  "built_at_commit": "c5944c52e54515d070386f8233821f8fadfef3e6"
+  "built_at_commit": "3d3ef17e110155bf6f0268952b65833c2436190e"
 }
