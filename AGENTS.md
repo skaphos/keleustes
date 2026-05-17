@@ -105,14 +105,45 @@ pinned.
 
 ## Engineering Guardrails
 
+### Hard invariants
+
+These are non-negotiable architectural commitments. Code that violates them
+fails review on principle; ADR-grade evidence is required to relax any of
+them. The current set:
+
+1. **Application deploys mutate Git, not cluster state** ([ADR 0003](./docs/adr/0003-git-source-of-truth-invariant.md)).
+   Every Keleustes feature that changes desired state does so by producing a
+   Git commit or by changing a CRD that is itself in Git. The Argo CD
+   "parameter override," "sync with overridden parameters," and "edit live
+   manifest" patterns are explicitly forbidden. Break-glass
+   ([RBAC plan §3](./docs/plans/2026-05-rbac-audit-and-git-invariant.md))
+   is the one sanctioned exception and is itself audited
+   ([SKA-322 §13.7](./docs/plans/2026-05-audit-event-schema.md)).
+2. **No RDBMS on the critical path** ([ADR 0005 §3](./docs/adr/0005-distributed-runtime.md)).
+   Active state lives in CRDs (etcd); event/audit history lives in NATS
+   JetStream; hot indexes live in NATS KV; large content-addressed artifacts
+   live in object storage; derived analytics live in DuckDB-on-parquet. A
+   Postgres/MySQL/SQL Server dependency in the operator's runtime path is
+   disqualified. A reference SQL consumer is allowed under `contrib/` for
+   customer BI integrations; it is *not* a runtime dependency.
+3. **Reconcilers are idempotent and bounded.** No unbounded work in a
+   `Reconcile` loop; reconciling the same input twice produces the same
+   output. Brief double-coverage during sharded failover
+   ([SKA-328 §8.2](./docs/plans/2026-05-sharded-controller-pattern.md)) and
+   replay after JetStream reconnect
+   ([SKA-321 §11](./docs/plans/2026-05-agent-transport-interface.md)) rely on
+   this guarantee.
+
+Every sync decision must be explainable from Git commit, render output, apply
+result, inventory, and health state — the audit envelope
+([SKA-322 §3](./docs/plans/2026-05-audit-event-schema.md)) carries the
+required fields.
+
+### Soft guidance
+
 - Keep cognitive load low: small functions, clear names, early returns, simple
   control flow over clever abstractions.
 - Comment intent (invariants, edge cases, non-obvious tradeoffs), not mechanics.
-- Reconcilers must be **idempotent and bounded**. No unbounded work in a
-  `Reconcile` loop.
-- **Application deploys mutate Git, not cluster state**, unless explicitly
-  running a break-glass workflow. Every sync decision must be explainable from
-  Git commit, render output, apply result, inventory, and health state.
 - Do not introduce cluster-wide RBAC beyond what the operator needs. New
   permissions must show up under `config/rbac/` via `+kubebuilder:rbac`
   markers.
@@ -120,6 +151,29 @@ pinned.
   operational failure (PROPOSAL §17).
 - Match existing patterns (kubebuilder layout, ginkgo specs, task wiring)
   instead of inventing new ones.
+
+## Architecture Documents
+
+Three layers, three roles. **When they disagree, the ADR wins.**
+
+- [`docs/PROPOSAL.md`](./docs/PROPOSAL.md) — the vision layer. High-level
+  intent, MVP roadmap, product framing. Carries inline `> Refined by ADR`
+  markers where decisions have moved.
+- [`docs/plans/`](./docs/plans/) — working architectural plans. Plans are
+  **mutable** and may be superseded; they exist to surface assumptions and
+  trade-offs before lock-in. Lifecycle: Draft → In Review → (Promoted to ADR
+  | Partially Promoted | Superseded). The plans/README has status tags per
+  document.
+- [`docs/adr/`](./docs/adr/) — Architecture Decision Records. **Immutable**
+  once accepted; corrections that change the decision land as a new ADR
+  superseding the old one. The ADR README (
+  [`docs/adr/README.md`](./docs/adr/README.md)) carries the supersession-
+  marker process.
+
+The **[Architecture Decisions Living Index](./docs/DECISIONS.md)** is the
+single source of truth for *what we have actually decided*. Cite it first;
+fall through to ADRs and active interim contracts; PROPOSAL.md is the
+fallback for unevolved sections only.
 
 ## Testing Guidelines
 
@@ -151,5 +205,7 @@ pinned.
 
 - Choose the safer behavior.
 - Avoid expanding scope beyond the requested change.
-- Cite PROPOSAL.md when designing a feature — the proposal is the canonical
-  source of intent until ADRs supersede individual sections.
+- Check [`docs/DECISIONS.md`](./docs/DECISIONS.md) first when designing a
+  feature — it lists every accepted ADR plus active interim contracts and
+  tells you which PROPOSAL sections each one has refined. PROPOSAL.md is the
+  fallback for unevolved sections only.
