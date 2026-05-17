@@ -441,4 +441,6 @@ Each MVP also carries an explicit **scale target** (see runtime plan §11.5) tha
 
 When sections of this plan stabilize (especially the package layout and the Render boundary), they should be promoted into one or more ADRs.
 
+> **Promoted:** [ADR 0006 — Engine boundaries and `gitops-engine` reuse](../adr/0006-engine-boundaries.md) resolves §7 questions 1–8 and 14–15. §7 questions 9–13 are resolved in [ADR 0005](../adr/0005-distributed-runtime.md).
+
 This document will be updated as technology choices are made and as the distributed runtime model matures.
