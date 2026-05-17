@@ -332,8 +332,12 @@
     "hash": "9c94420c20eab52d3f32b604be10d99f"
   },
   "/home/sstratton/work/skaphos/keleustes/docs/PROPOSAL.md": {
-    "mtime": 1778982434.531825,
-    "hash": "9f6057f358d5f0507b0da8390888c7a0"
+    "mtime": 1779004552.18455,
+    "hash": "3caf1f1987c1ac60e28f9d689088f8ce"
+  },
+  "/home/sstratton/work/skaphos/keleustes/docs/DECISIONS.md": {
+    "mtime": 1779004477.0508792,
+    "hash": "6f545692ff62a81c1f446ca5d85c55dc"
   },
   "/home/sstratton/work/skaphos/keleustes/docs/NAMING.md": {
     "mtime": 1778819313.5776038,
@@ -364,8 +368,8 @@
     "hash": "d5c8c694c4da822a314895e9cb2354b3"
   },
   "/home/sstratton/work/skaphos/keleustes/docs/plans/README.md": {
-    "mtime": 1778981972.6485896,
-    "hash": "dcf27060ed8c489636309c4058bbd429"
+    "mtime": 1779004584.313082,
+    "hash": "7c8fb58fd6aabb7178fef42aeadb7a64"
   },
   "/home/sstratton/work/skaphos/keleustes/docs/plans/2026-05-engine-boundaries-and-technology-integration.md": {
     "mtime": 1778994754.3963542,
@@ -396,8 +400,8 @@
     "hash": "9f6a0cc3fd05008d2878a089ed243bf3"
   },
   "/home/sstratton/work/skaphos/keleustes/docs/adr/README.md": {
-    "mtime": 1778819315.1910055,
-    "hash": "105afbd2ec91a5ec2ee6cfcd5c3e73ec"
+    "mtime": 1779004493.8887198,
+    "hash": "b5eaa6dd848cb8ef8f2f977d5470f54d"
   },
   "/home/sstratton/work/skaphos/keleustes/docs/adr/0004-crd-based-rbac.md": {
     "mtime": 1778994443.958543,
