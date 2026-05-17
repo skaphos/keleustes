@@ -61,6 +61,7 @@ Plans are allowed (and expected) to evolve or be superseded. When a planning doc
 
 - 🟢 [2026-05-render-contract-and-inventory-model.md](./2026-05-render-contract-and-inventory-model.md) — **SKA-320.** `RenderRequest` / `RenderResult` Go shapes, `Inventory` model with stable `ResourceKey` ownership, pruning rules (set-difference, hand-off, CRD-and-instance ordering), content-addressed render cache, `gitops-engine` handoff at `internal/sync/`. Promotes to ADR 0007 when §10 open questions resolve.
 - 🟢 [2026-05-audit-event-schema.md](./2026-05-audit-event-schema.md) — **SKA-322.** Audit envelope (`schemaVersion`, `eventId`, actor normalization, `payload.@type` discriminated union), versioning policy, redaction rules, event-type registry across 9 categories. Promotes to ADR 0008 (likely) when §15 open questions resolve and SKA-332/SKA-347 implement the first emitter and consumer.
+- 🟢 [2026-05-rbac-crd-shapes.md](./2026-05-rbac-crd-shapes.md) — **SKA-323.** Concrete CRD schemas for the five RBAC types from ADR 0004 (`IdentityProvider`, `Role`, `RoleBinding`, `Project`, `ApprovalPolicy`): Go shapes with kubebuilder markers, shared `Scope` / `Subject` / `VerbRef` primitives, validation webhook outline (per-CRD admission rules), status condition taxonomy, sample CRs. Promotes to ADR 0009 (likely) when §14 open questions resolve and SKA-330 / SKA-345 land the first reconcilers.
 
 ### Spike reports (historical)
 

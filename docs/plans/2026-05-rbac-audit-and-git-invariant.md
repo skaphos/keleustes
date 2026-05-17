@@ -106,6 +106,8 @@ A deployment can have multiple `IdentityProvider` resources — common pattern i
 
 ### 5.2 New CRDs (proposed)
 
+> **Refined by [`2026-05-rbac-crd-shapes.md`](./2026-05-rbac-crd-shapes.md) (SKA-323, active interim contract).** The bullet-list sketch below is now concrete kubebuilder-marker schemas with shared primitives (`Scope`, `Subject`, `VerbRef`), validation webhook outlines, and status condition taxonomies. Cite the SKA-323 plan when implementing reconcilers (SKA-330 / SKA-345).
+
 ```
 keleustes.skaphos.io/v1alpha1
 ├── IdentityProvider     # OIDC config; group claim mapping
