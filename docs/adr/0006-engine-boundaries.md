@@ -5,12 +5,33 @@ SPDX-License-Identifier: MIT
 
 # ADR 0006 — Engine boundaries and `gitops-engine` reuse
 
-- **Status:** Accepted
+- **Status:** Accepted — amended 2026-05-17 with SKA-327 spike findings (see Amendments below)
 - **Date:** 2026-05-17
 - **Deciders:** Platform Architecture (Skaphos)
-- **Linear:** SKA-411
+- **Linear:** SKA-411, SKA-327 (adoption spike)
 - **Related:** ADR 0001 (Plugin extension model), ADR 0003 (Git invariant), ADR 0005 (Distributed runtime)
 - **Supersedes:** `docs/plans/2026-05-engine-boundaries-and-technology-integration.md` §7 questions 1–8 and 14–15 (plan questions 9–13 are resolved in ADR 0005)
+- **See also:** `docs/plans/2026-05-gitops-engine-spike.md` (SKA-327 spike report — empirical validation of §4)
+
+## Amendments
+
+### 2026-05-17 — SKA-327 spike findings
+
+The MVP 1 spike enumerated in *Compliance and follow-ups* below was executed (`docs/plans/2026-05-gitops-engine-spike.md`). The spike confirmed §4 in principle but produced four constraints the original decision did not anticipate. These constraints **refine** §4 — they do not overturn it.
+
+1. **Canonical import path changed.** `github.com/argoproj/gitops-engine` was archived on 2025-09-24 and migrated into `github.com/argoproj/argo-cd` as a sub-module. The new path is **`github.com/argoproj/argo-cd/gitops-engine`** (its own go.mod under the argo-cd monorepo). All references in §4 below should be read against this new path; the old path resolves to an archived repository with no future commits. License attribution moves with the path: NOTICE / LICENSE references now point at the argo-cd repository.
+
+2. **k8s.io ≤ v0.34 ceiling.** Upstream pins `k8s.io/* v0.34.0` and `pkg/health/health_hpa.go` directly imports `k8s.io/api/autoscaling/v2beta1` and `v2beta2` — packages removed from `k8s.io/api` at v0.35. Adopting the engine therefore forces Keleustes to pin `k8s.io ≤ v0.34` and cascade-downgrade `controller-runtime ≤ v0.22`. The "MVP-boundary pinning" cadence in §4 is **catch-up review, not stay-current review** until upstream moves.
+
+3. **Mandatory `replace` block.** The engine's upstream go.mod uses `require k8s.io/* v0.0.0` paired with `replace` directives (standard `k8s.io/kubernetes`-consumer pattern). `replace` directives in dependencies do not propagate; every consumer must duplicate the ~30-line block in its own go.mod. This is a one-time cost but a permanent obligation. §10's dependency-pinning strategy must include this block alongside the per-module pins.
+
+4. **Soft-fork adoption strategy (overrides "vanilla upstream" implication of §4).** The dead-code `autoscaling/v2beta{1,2}` imports in `pkg/health/health_hpa.go` (~50 lines) are the proximate cause of the k8s.io ceiling. Strategy:
+
+   - **Send an upstream PR** dropping the dead imports. High-leverage cleanup; benefits every downstream consumer.
+   - **While the PR is open**, point Keleustes' go.mod at a `skaphos/argo-cd-gitops-engine` mirror carrying only the cleanup patch via `replace github.com/argoproj/argo-cd/gitops-engine => github.com/skaphos/argo-cd-gitops-engine vX`. Rebase on every upstream commit.
+   - **90-day escalation trigger.** If the upstream PR has not been acted on within 90 days of opening, revisit. At that point the maintenance-posture signal (no SemVer tag since v0.7.3 in Aug 2022; issues now route through argo-cd's tracker; dead-code references survive for years) becomes load-bearing; a hard fork or a Keleustes-owned health engine becomes more defensible.
+
+The containment rule in §4 (gitops-engine imports only inside `internal/{sync,diff,health,kube}/`) remains intact and continues to limit blast radius under either the soft-fork or any later escalation. **No changes to package layout, engine boundaries, render policy, Git-provider policy, annotation policy, or dependency model are required.**
 
 ## Context
 
@@ -112,9 +133,11 @@ internal/
 
 ### 4. `gitops-engine` reuse — yes, with a containment rule
 
-Keleustes reuses [`gitops-engine`](https://github.com/argoproj/gitops-engine)
-(Apache-2.0) for the parts the GitOps ecosystem has already battle-
-tested:
+Keleustes reuses `gitops-engine` (Apache-2.0) — now distributed as the
+[`gitops-engine` sub-module of argo-cd](https://github.com/argoproj/argo-cd/tree/master/gitops-engine),
+canonical import path `github.com/argoproj/argo-cd/gitops-engine` (see
+Amendments above for the path-change history) — for the parts the
+GitOps ecosystem has already battle-tested:
 
 | `gitops-engine` package          | Used by                  | What it gives us                                                                 |
 |----------------------------------|---------------------------|-----------------------------------------------------------------------------------|
@@ -133,9 +156,13 @@ pin, or replacement.
 
 **Pinning and upgrade cadence** (plan §7 question 6): pin tightly in
 `go.mod`; gate upgrades behind targeted regression coverage; revisit at
-each MVP boundary, not opportunistically. License attribution is
-preserved in `NOTICE` and headers per Apache-2.0 + MIT compatibility
-(plan §2.5 risk 5).
+each MVP boundary, not opportunistically. Per the 2026-05-17 amendment,
+this cadence is **catch-up review**, not stay-current review, until
+upstream moves past k8s.io v0.34 and the dead-code dependencies in
+`pkg/health` are resolved. License attribution is preserved in `NOTICE`
+and headers per Apache-2.0 + MIT compatibility (plan §2.5 risk 5);
+attribution now references the argo-cd repository, not the archived
+gitops-engine repository.
 
 **Containment-rule bypass policy** (plan §7 question 8): if a caller
 needs raw `gitops-engine` output rather than the normalized form,
@@ -277,6 +304,13 @@ for all build-time tooling versions. Library dependencies pinned via
 merge. `gitops-engine` upgrades follow the §4 cadence (MVP-boundary
 review).
 
+Per the 2026-05-17 amendment, Keleustes' go.mod must carry a
+**duplicated `replace` block** for every `k8s.io/*` staging module,
+mirroring upstream gitops-engine. This is the standard
+`k8s.io/kubernetes`-consumer pattern; the block is maintained as one
+unit alongside the engine pin. The Renovate configuration must keep the
+block aligned with the engine pseudo-version on every bump.
+
 ### 11. Helm chart repository authentication in a distributed world
 
 Plan §7 question 4: chart repo credentials live on the `Source` CR
@@ -369,11 +403,15 @@ mirror.
 - The `pkg/plugins/` shared envelope + dispatcher (ADR 0001) lands when
   the first engine that consumes plugins (Source / Promotion / Audit)
   arrives.
-- An MVP 1 spike vendors `gitops-engine` into a throwaway branch,
-  measures binary size + module graph delta for `manager` and a
-  hypothetical `agent`, validates per-`DeploymentTarget` cache instantiation
-  with bounded resource use, and reports into the MVP 1 implementation
-  tickets.
+- The MVP 1 spike that vendored `gitops-engine` into a throwaway
+  branch — measuring binary size, module graph delta for `manager` and
+  a hypothetical `agent`, per-`DeploymentTarget` cache instantiation,
+  wrap ergonomics, and annotation exposure — **landed on 2026-05-17 as
+  `docs/plans/2026-05-gitops-engine-spike.md` (SKA-327).** Headline
+  empirical results: +86 modules total (+52%), +22 k8s.io modules
+  (+169%), +11.67 MB / +36% manager binary delta (amd64). The spike
+  confirmed the adoption and produced the four refinements captured in
+  the Amendments section above.
 - Argo CD annotation translation lives in `internal/sync/translate.go`
   and is covered by table-driven tests.
 - This ADR will be revisited if `gitops-engine` upstream becomes
