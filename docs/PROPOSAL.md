@@ -10,6 +10,27 @@ Owner: `Skaphos`
 Last updated: `2026-05-14`
 Name status: `Settled; collision-reviewed 2026-05-14 (former working name: Pilot)`
 
+> **Reading this in 2026 or later?** PROPOSAL.md is the *vision layer*.
+> Specific binding decisions evolve in ADRs under [`docs/adr/`](./adr/) and
+> active interim contracts under [`docs/plans/`](./plans/). The
+> **[Architecture Decisions Living Index](./DECISIONS.md)** is the single
+> source of truth for what we have actually decided; this document carries
+> inline `> See ADR 00XX` markers next to passages an ADR has moved.
+>
+> Sections of this proposal that have been materially updated by accepted
+> ADRs:
+>
+> | PROPOSAL section            | Updated by                                                                                     |
+> |-----------------------------|------------------------------------------------------------------------------------------------|
+> | §9 Architecture             | [ADR 0006](./adr/0006-engine-boundaries.md) — 7 engines + Render shared package, not 3        |
+> | §9.2 Cross-cutting          | [ADR 0001](./adr/0001-plugin-extension-model.md), [ADR 0002](./adr/0002-default-observability-stack.md) |
+> | §10 Deployment model        | [ADR 0005](./adr/0005-distributed-runtime.md) — hub + agents first-class; no RDBMS            |
+> | §11 Sync engine             | [ADR 0006](./adr/0006-engine-boundaries.md) — `gitops-engine` reuse; [SKA-320 active interim contract](./plans/2026-05-render-contract-and-inventory-model.md) — Render boundary |
+> | §14 Git mutation, §22       | [ADR 0003](./adr/0003-git-source-of-truth-invariant.md) — Git invariant + break-glass         |
+> | §15 Policy, §18 API auth    | [ADR 0004](./adr/0004-crd-based-rbac.md) — CRD-based RBAC                                     |
+> | §19 Data model              | [ADR 0005](./adr/0005-distributed-runtime.md) — **no Postgres**; JetStream + object storage + DuckDB. Audit envelope: [SKA-322 active interim contract](./plans/2026-05-audit-event-schema.md). |
+> | §21 Build strategy storage  | [ADR 0005](./adr/0005-distributed-runtime.md) — NATS canonical, no Postgres                   |
+
 ---
 
 ## 1. Executive summary
@@ -393,6 +414,12 @@ spec:
 
 ## 9. Architecture
 
+> **Refined by [ADR 0006](./adr/0006-engine-boundaries.md).** The diagram
+> below shows three engines; the accepted engine taxonomy is **seven engines
+> plus a shared Render package**: Source, Sync, Promotion, Git Mutation,
+> Policy, Health, Diff, and Render (cross-cutting). The Render boundary
+> contract is the [SKA-320 active interim contract](./plans/2026-05-render-contract-and-inventory-model.md).
+
 ```text
                          +-------------------------------+
                          |           Keleustes           |
@@ -481,6 +508,15 @@ Built-in implementations live in-tree so the common case needs zero plugin deplo
 
 ### 10.1 Management cluster mode
 
+> **Superseded by [ADR 0005](./adr/0005-distributed-runtime.md).** The
+> diagram below lists `postgres` and `redis/nats optional later`; ADR 0005
+> removes Postgres from the critical path entirely and makes NATS JetStream
+> canonical from MVP 1. Updated topology: `keleustes-api`,
+> `keleustes-controller` (sharded MVP 2+), `keleustes-ui`,
+> `keleustes-worker`, `nats-jetstream` (R≥3 in prod), object-storage
+> bucket for content-addressed render cache and audit archive, optional
+> DuckDB consumer for analytics.
+
 One central Keleustes instance manages many clusters.
 
 ```text
@@ -489,8 +525,8 @@ skaphos-keleustes-system
 |- keleustes-controller
 |- keleustes-ui
 |- keleustes-worker
-|- postgres or external DB
-`- redis/nats optional later
+|- postgres or external DB                  # superseded — see ADR 0005
+`- redis/nats optional later                # superseded — NATS canonical per ADR 0005
 ```
 
 This mode is best for enterprise and platform teams.
@@ -502,6 +538,11 @@ Keleustes runs in a single cluster and reconciles local state only.
 This mode is best for smaller teams, OSS adoption, and demos. It should not require a management cluster.
 
 ### 10.3 Future federation
+
+> **Updated by [ADR 0005](./adr/0005-distributed-runtime.md).** The
+> hub-and-agents topology below is no longer "long term" — it is the
+> first-class distributed runtime as of MVP 2. NATS leaf nodes are the
+> default cross-connect transport.
 
 Long term, Keleustes can support hub/agent federation:
 
@@ -516,6 +557,13 @@ Keleustes Hub
 ---
 
 ## 11. Sync engine approach
+
+> **Refined by [ADR 0006](./adr/0006-engine-boundaries.md).** Keleustes
+> reuses `gitops-engine` (Apache-2.0) for `pkg/sync`, `pkg/cache`,
+> `pkg/diff`, `pkg/health`, `pkg/utils/kube` rather than building these
+> from scratch — the containment rule restricts engine imports to four
+> packages. The inventory model, pruning rules, and render-boundary
+> handoff specifics are the [SKA-320 active interim contract](./plans/2026-05-render-contract-and-inventory-model.md).
 
 Replacing Argo CD means owning sync quality. This is the hardest part of the product and should be staged carefully.
 
@@ -796,11 +844,23 @@ The API should expose product concepts, not raw Kubernetes internals as the only
 
 ## 19. Data model
 
+> **Superseded by [ADR 0005](./adr/0005-distributed-runtime.md).** The
+> Postgres justification below is reversed. Keleustes' steady-state
+> storage model is: CRDs (etcd) for active state, the user's Git for
+> authoritative history, **NATS JetStream** for events and audit (30-day
+> hot, rolling archive to object storage), **NATS KV** for hot indexes,
+> **object storage** for content-addressed artifacts (rendered manifests,
+> audit archive segments), and **DuckDB-on-parquet** for derived
+> analytics. The audit envelope and per-verb payload registry are the
+> [SKA-322 active interim contract](./plans/2026-05-audit-event-schema.md).
+> A reference SQL consumer ships in `contrib/` for customers who want
+> Postgres-style queries; it is *not* a Keleustes runtime dependency.
+
 Use Kubernetes CRDs for active control-plane state and Postgres for queryable history.
 
 ```text
 Kubernetes CRDs = active desired/control state
-Postgres        = queryable history, audit, UI cache, promotion timeline
+Postgres        = queryable history, audit, UI cache, promotion timeline   # superseded — see ADR 0005
 Object storage  = optional rendered manifests, large diffs, evidence bundles
 ```
 
@@ -958,10 +1018,16 @@ Frontend:
 
 Storage:
 
-- Postgres for durable product state
+> **Superseded by [ADR 0005](./adr/0005-distributed-runtime.md).**
+> Updated bullets: NATS JetStream (R≥3 in prod) for events and audit;
+> object storage for content-addressed artifacts and audit archive;
+> NATS KV for hot indexes; Kubernetes API (etcd) for active state.
+> **No Postgres dependency.** Redis dropped.
+
+- Postgres for durable product state          # superseded — see ADR 0005
 - Kubernetes API for active reconciliation state
-- Redis optional later
-- NATS optional later
+- Redis optional later                        # dropped — see ADR 0005
+- NATS optional later                         # superseded — canonical per ADR 0005
 
 Packaging:
 

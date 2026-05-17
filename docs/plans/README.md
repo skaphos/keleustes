@@ -40,11 +40,37 @@ Plans are allowed (and expected) to evolve or be superseded. When a planning doc
 
 ## Current Plans
 
-- [2026-05-distributed-runtime-architecture.md](./2026-05-distributed-runtime-architecture.md) — Hub + regional agent/runner model for multi-region DR, load distribution, and resilience. Covers cross-connect transport (NATS leaf default, pluggable), tiered exposure (Gateway API), horizontal scaling at 2K+ repo cardinality, and a no-RDBMS-on-the-critical-path storage model (JetStream + object storage + DuckDB).
-- [2026-05-engine-boundaries-and-technology-integration.md](./2026-05-engine-boundaries-and-technology-integration.md) — Internal Go package structure, engine ownership boundaries, technology integration map (including `gitops-engine` reuse, Kustomize/Helm/Helmfile/raw rendering, Gateway API, NATS JetStream + object storage + DuckDB derived layer), and cross-Application dependency ordering for the addon/CRD bootstrap case.
-- [2026-05-rbac-audit-and-git-invariant.md](./2026-05-rbac-audit-and-git-invariant.md) — CRD-based RBAC (`IdentityProvider`, `Role`, `RoleBinding`, `Project`, `ApprovalPolicy`) that scales past Argo CD's policy-file model; first-class user-action audit on the JetStream stream; and the hard rule that **no Keleustes feature may create or mutate desired state outside Git** — explicitly forbidding the Argo CD parameter-override and edit-live-resource patterns. Break-glass is the one sanctioned, audited, time-bounded exception.
-- [2026-05-extensibility-plugin-surfaces.md](./2026-05-extensibility-plugin-surfaces.md) — Plugin surfaces for the five extension points (`Notifier`, `SignatureVerifier`, `Scanner`, `PolicyGate`, `AuditDestination`), the declarative-CRD-pointing-at-an-HTTPS-endpoint mechanism, shared envelope schema, authentication model, default failure semantics per surface, and what is and is not pluggable. Refines SKA-354 / 370 / 381 / 388 to be implementations of an interface rather than hardcoded vendors.
-- [2026-05-observability-stack.md](./2026-05-observability-stack.md) — Default observability bundle: Prometheus Operator manifests (`ServiceMonitor`, `PodMonitor`, `PrometheusRule`), `kube-state-metrics` CustomResourceState for CRD status, Grafana dashboards as ConfigMaps, OpenTelemetry SDK with dual-export, label and cardinality conventions, alert taxonomy (every alert must have a runbook), default SLOs, and regional-agent federation. Gives SKA-336 concrete shape.
+> **Status tags** below indicate whether a plan is still authoritative
+> as-written, or whether an ADR (or active interim contract) has moved
+> on top of it. The **[Architecture Decisions Living Index](../DECISIONS.md)**
+> is the consolidated view.
+
+| Status | Meaning |
+|---|---|
+| 🟢 **Active interim contract** | Stabilized enough to be cited by code/tickets; not yet promoted to an ADR. Authoritative until then. |
+| 🟡 **Partially promoted** | Most decisions already live in an ADR; remaining sections are working material. |
+| 🟠 **Spike report** | Time-boxed investigation. Conclusions live in the ADR(s) they fed. Retained for historical context. |
+| ⚪ **Working material** | Still draft; do not cite as authoritative. |
+
+### Architecture / runtime
+
+- 🟡 [2026-05-distributed-runtime-architecture.md](./2026-05-distributed-runtime-architecture.md) — Hub + regional agent/runner model; NATS leaf transport; no-RDBMS storage. **§13 open questions promoted into [ADR 0005](../adr/0005-distributed-runtime.md).** What remains: JetStream subject/stream layout (SKA-324), agent transport interface (SKA-321), scale benchmark harness (SKA-326).
+- 🟡 [2026-05-engine-boundaries-and-technology-integration.md](./2026-05-engine-boundaries-and-technology-integration.md) — Internal Go package structure, engine ownership boundaries, `gitops-engine` reuse, render technology stack. **§7 questions 1–8 and 14–15 promoted into [ADR 0006](../adr/0006-engine-boundaries.md); questions 9–13 into [ADR 0005](../adr/0005-distributed-runtime.md).** Section §8 action 6 ("Render Contract & Inventory Model deep-dive") is now the SKA-320 interim contract below.
+
+### Active interim contracts (cite-as-authoritative)
+
+- 🟢 [2026-05-render-contract-and-inventory-model.md](./2026-05-render-contract-and-inventory-model.md) — **SKA-320.** `RenderRequest` / `RenderResult` Go shapes, `Inventory` model with stable `ResourceKey` ownership, pruning rules (set-difference, hand-off, CRD-and-instance ordering), content-addressed render cache, `gitops-engine` handoff at `internal/sync/`. Promotes to ADR 0007 when §10 open questions resolve.
+- 🟢 [2026-05-audit-event-schema.md](./2026-05-audit-event-schema.md) — **SKA-322.** Audit envelope (`schemaVersion`, `eventId`, actor normalization, `payload.@type` discriminated union), versioning policy, redaction rules, event-type registry across 9 categories. Promotes to ADR 0008 (likely) when §15 open questions resolve and SKA-332/SKA-347 implement the first emitter and consumer.
+
+### Spike reports (historical)
+
+- 🟠 [2026-05-gitops-engine-spike.md](./2026-05-gitops-engine-spike.md) — **SKA-327.** Empirical adoption cost. Original verdict ("soft fork + upstream PR + 90-day check") was reversed within hours on 2026-05-17 when `pkg/utils/kube/scheme` was discovered to hold the k8s.io ≤ v0.34 ceiling independently of `pkg/health`. Conclusions promoted into [ADR 0006](../adr/0006-engine-boundaries.md)'s 2026-05-17 amendments.
+
+### Cross-cutting
+
+- 🟡 [2026-05-rbac-audit-and-git-invariant.md](./2026-05-rbac-audit-and-git-invariant.md) — Git invariant promoted into [ADR 0003](../adr/0003-git-source-of-truth-invariant.md); RBAC promoted into [ADR 0004](../adr/0004-crd-based-rbac.md); audit envelope formalized in the SKA-322 active interim contract above.
+- 🟡 [2026-05-extensibility-plugin-surfaces.md](./2026-05-extensibility-plugin-surfaces.md) — **§10 open questions promoted into [ADR 0001](../adr/0001-plugin-extension-model.md).** Per-surface envelope and dispatcher specifics remain working material.
+- 🟡 [2026-05-observability-stack.md](./2026-05-observability-stack.md) — **§12 open questions promoted into [ADR 0002](../adr/0002-default-observability-stack.md).** Per-engine dashboard set and alert taxonomy remain working material.
 
 ## How to Use These Plans
 
