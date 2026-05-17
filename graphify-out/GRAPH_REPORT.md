@@ -1,16 +1,16 @@
 # Graph Report - keleustes  (2026-05-17)
 
 ## Corpus Check
-- 65 files · ~72,225 words
+- 65 files · ~73,032 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 1098 nodes · 1270 edges · 96 communities (62 shown, 34 thin omitted)
+- 1100 nodes · 1272 edges · 96 communities (62 shown, 34 thin omitted)
 - Extraction: 96% EXTRACTED · 4% INFERRED · 0% AMBIGUOUS · INFERRED: 49 edges (avg confidence: 0.8)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `4ba2ccde`
+- Built from commit: `c5944c52`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -185,12 +185,12 @@ Cohesion: 0.06
 Nodes (33): 10. Phased Rollout, 11. Open Decisions & Future ADRs, 12. References, 1. The Three Things This Plan Is About, 2. What Argo CD Got Right, and Where It Hurts at Scale, 3. The Git-Source-of-Truth Invariant (Hard Rule), 4.1 Identity sources, 4.2 Group claims (+25 more)
 
 ### Community 9 - "Community 9"
-Cohesion: 0.09
-Nodes (19): code:block1 (modules total    k8s.io modules), code:go (AnnotationSyncWave            = "argocd.argoproj.io/sync-wav), code:go (autoscalingv2beta1 "k8s.io/api/autoscaling/v2beta1"), Concrete follow-ups, Decision: adoption strategy, F1. Repository archived; canonical import path changed, F2. k8s.io ≤ v0.34 ceiling (load-bearing), F3. Mandatory `replace` block (+11 more)
+Cohesion: 0.08
+Nodes (20): code:block1 (modules total    k8s.io modules), code:go (AnnotationSyncWave            = "argocd.argoproj.io/sync-wav), code:go (autoscalingv2beta1 "k8s.io/api/autoscaling/v2beta1"), Concrete follow-ups, Decision: adoption strategy, F1. Repository archived; canonical import path changed, F2. k8s.io ≤ v0.34 ceiling (load-bearing), F3. Mandatory `replace` block (+12 more)
 
 ### Community 10 - "Community 10"
-Cohesion: 0.09
-Nodes (21): 10. Dependency pinning strategy, 11. Helm chart repository authentication in a distributed world, 1. Seven engines plus a shared `Render` package, 2026-05-17 — SKA-327 spike findings, 2. Package layout, 3. Engine ownership and dependency rules, 4. `gitops-engine` reuse — yes, with a containment rule, 5. Render technology stack — library-only (+13 more)
+Cohesion: 0.08
+Nodes (22): 10. Dependency pinning strategy, 11. Helm chart repository authentication in a distributed world, 1. Seven engines plus a shared `Render` package, 2026-05-17 (afternoon) — Soft-fork strategy abandoned, 2026-05-17 — SKA-327 spike findings, 2. Package layout, 3. Engine ownership and dependency rules, 4. `gitops-engine` reuse — yes, with a containment rule (+14 more)
 
 ### Community 11 - "Community 11"
 Cohesion: 0.09
@@ -206,19 +206,19 @@ Nodes (21): 10. Default-deny, 11. Policy evaluator: custom-over-CRDs, not Casbin
 
 ### Community 14 - "Community 14"
 Cohesion: 0.1
-Nodes (20): 10. Multi-region: regional scrape, federate aggregates, 11. Kubernetes Events: narrow by default, 12. Audit ≠ telemetry, 13. Bundle layout and gating, 1. Dual export is the default, 2. Prometheus Operator is the supported wiring path, 3. OpenTelemetry SDK with conventional wiring, 4. Logging: structured stdout by default, OTel logs opt-in (+12 more)
+Nodes (7): Application, ApplicationDeployment, ApplicationDeploymentStrategy, ApplicationList, ApplicationManifest, ApplicationManifestType, ApplicationTopology
 
 ### Community 15 - "Community 15"
-Cohesion: 0.13
-Nodes (5): Application, ApplicationSpec, Promotion, PromotionList, ReleaseList
+Cohesion: 0.1
+Nodes (20): 10. Multi-region: regional scrape, federate aggregates, 11. Kubernetes Events: narrow by default, 12. Audit ≠ telemetry, 13. Bundle layout and gating, 1. Dual export is the default, 2. Prometheus Operator is the supported wiring path, 3. OpenTelemetry SDK with conventional wiring, 4. Logging: structured stdout by default, OTel logs opt-in (+12 more)
 
 ### Community 16 - "Community 16"
-Cohesion: 0.1
-Nodes (6): Source, SourceList, SourceSpec, SourceStatus, SourceType, SourceVerify
-
-### Community 17 - "Community 17"
 Cohesion: 0.11
 Nodes (7): PromotionChange, PromotionFrom, PromotionMode, PromotionPhase, PromotionSpec, PromotionStatus, PromotionTo
+
+### Community 17 - "Community 17"
+Cohesion: 0.13
+Nodes (5): ApplicationSpec, ApplicationStatus, PromotionList, ReleaseList, Source
 
 ### Community 18 - "Community 18"
 Cohesion: 0.11
@@ -226,11 +226,11 @@ Nodes (5): DeploymentTarget, DeploymentTargetCluster, DeploymentTargetList, Depl
 
 ### Community 19 - "Community 19"
 Cohesion: 0.12
-Nodes (5): Approval, ApprovalDecision, ApprovalList, ApprovalSpec, ApprovalStatus
+Nodes (5): HealthCheck, HealthCheckList, HealthCheckSpec, HealthCheckStatus, HealthState
 
 ### Community 20 - "Community 20"
 Cohesion: 0.12
-Nodes (5): HealthCheck, HealthCheckList, HealthCheckSpec, HealthCheckStatus, HealthState
+Nodes (5): Approval, ApprovalDecision, ApprovalList, ApprovalSpec, ApprovalStatus
 
 ### Community 21 - "Community 21"
 Cohesion: 0.12
@@ -242,11 +242,11 @@ Nodes (17): marshaller-api Kustomize Manifest Deployment, marshaller-api Applica
 
 ### Community 23 - "Community 23"
 Cohesion: 0.12
-Nodes (4): Cell, CellList, CellSpec, CellStatus
+Nodes (4): SyncPlan, SyncPlanList, SyncPlanSpec, SyncPlanStatus
 
 ### Community 24 - "Community 24"
 Cohesion: 0.12
-Nodes (4): FreezeWindow, FreezeWindowList, FreezeWindowSpec, FreezeWindowStatus
+Nodes (4): Cell, CellList, CellSpec, CellStatus
 
 ### Community 25 - "Community 25"
 Cohesion: 0.12
@@ -254,19 +254,19 @@ Nodes (4): PromotionPolicy, PromotionPolicyList, PromotionPolicySpec, PromotionP
 
 ### Community 26 - "Community 26"
 Cohesion: 0.12
-Nodes (4): Deployment, DeploymentList, DeploymentSpec, DeploymentStatus
+Nodes (4): FreezeWindow, FreezeWindowList, FreezeWindowSpec, FreezeWindowStatus
 
 ### Community 27 - "Community 27"
 Cohesion: 0.12
-Nodes (4): ApplicationList, Environment, Release, SourceObservedRevision
+Nodes (4): Deployment, DeploymentList, DeploymentSpec, DeploymentStatus
 
 ### Community 28 - "Community 28"
 Cohesion: 0.12
-Nodes (4): SyncPlan, SyncPlanList, SyncPlanSpec, SyncPlanStatus
+Nodes (4): EnvironmentList, Promotion, Release, SourceObservedRevision
 
 ### Community 29 - "Community 29"
 Cohesion: 0.12
-Nodes (6): ApplicationDeployment, ApplicationDeploymentStrategy, ApplicationManifest, ApplicationManifestType, ApplicationStatus, ApplicationTopology
+Nodes (5): SourceList, SourceSpec, SourceStatus, SourceType, SourceVerify
 
 ### Community 30 - "Community 30"
 Cohesion: 0.13
@@ -278,7 +278,7 @@ Nodes (5): SyncRun, SyncRunList, SyncRunPhase, SyncRunSpec, SyncRunStatus
 
 ### Community 32 - "Community 32"
 Cohesion: 0.13
-Nodes (4): EnvironmentChangeControl, EnvironmentList, EnvironmentSpec, EnvironmentStatus
+Nodes (4): Environment, EnvironmentChangeControl, EnvironmentSpec, EnvironmentStatus
 
 ### Community 33 - "Community 33"
 Cohesion: 0.13
@@ -338,11 +338,11 @@ Nodes (5): Adopting an Apache-2.0 dep with its own NOTICE, Implementation, Licen
 
 ### Community 47 - "Community 47"
 Cohesion: 0.33
-Nodes (6): 10.1 Management cluster mode, 10.2 Cluster-local mode, 10.3 Future federation, 10. Deployment model, code:text (skaphos-keleustes-system), code:text (Keleustes Hub)
+Nodes (6): 20. MVP roadmap, MVP 0: Read-only replacement UI, MVP 1: Keleustes-managed sync, MVP 2: Releases and promotions, MVP 3: Enterprise topology, MVP 4: Policy and audit
 
 ### Community 48 - "Community 48"
 Cohesion: 0.33
-Nodes (6): 20. MVP roadmap, MVP 0: Read-only replacement UI, MVP 1: Keleustes-managed sync, MVP 2: Releases and promotions, MVP 3: Enterprise topology, MVP 4: Policy and audit
+Nodes (6): 10.1 Management cluster mode, 10.2 Cluster-local mode, 10.3 Future federation, 10. Deployment model, code:text (skaphos-keleustes-system), code:text (Keleustes Hub)
 
 ### Community 49 - "Community 49"
 Cohesion: 0.33
@@ -358,11 +358,11 @@ Nodes (4): Collision review (2026-05-14), Identity, Naming, Rationale
 
 ### Community 66 - "Community 66"
 Cohesion: 0.5
-Nodes (4): 9.1 Components, 9.2 Cross-cutting concerns: extension surfaces and observability, 9. Architecture, code:text (+-------------------------------+)
+Nodes (4): 19. Data model, code:text (Kubernetes CRDs = active desired/control state), code:text (keleustes.skaphos.io), code:text (skaphos-keleustes-system)
 
 ### Community 67 - "Community 67"
 Cohesion: 0.5
-Nodes (4): 19. Data model, code:text (Kubernetes CRDs = active desired/control state), code:text (keleustes.skaphos.io), code:text (skaphos-keleustes-system)
+Nodes (4): 9.1 Components, 9.2 Cross-cutting concerns: extension surfaces and observability, 9. Architecture, code:text (+-------------------------------+)
 
 ### Community 71 - "Community 71"
 Cohesion: 0.67
@@ -381,21 +381,21 @@ Cohesion: 0.67
 Nodes (3): Go Mod Download Bootstrap, Pinned Developer Tooling Module, Task Tool Invocation Workflow
 
 ## Knowledge Gaps
-- **447 isolated node(s):** `HealthState`, `PromotionMode`, `PromotionPhase`, `SourceType`, `ApprovalDecision` (+442 more)
+- **449 isolated node(s):** `HealthState`, `PromotionMode`, `PromotionPhase`, `SourceType`, `ApprovalDecision` (+444 more)
   These have ≤1 connection - possible missing edges or undocumented components.
 - **34 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `Keleustes Proposal (Draft)` connect `Community 35` to `Community 66`, `Community 67`, `Community 71`, `Community 47`, `Community 80`, `Community 81`, `Community 82`, `Community 50`, `Community 83`, `Community 21`, `Community 84`, `Community 48`, `Community 79`?**
+- **Why does `Keleustes Proposal (Draft)` connect `Community 35` to `Community 66`, `Community 67`, `Community 71`, `Community 79`, `Community 48`, `Community 81`, `Community 82`, `Community 83`, `Community 50`, `Community 21`, `Community 84`, `Community 47`, `Community 80`?**
   _High betweenness centrality (0.006) - this node is a cross-community bridge._
 - **Why does `8. Core concepts` connect `Community 21` to `Community 35`?**
-  _High betweenness centrality (0.004) - this node is a cross-community bridge._
-- **Why does `SyncRunStatus` connect `Community 31` to `Community 27`, `Community 15`?**
+  _High betweenness centrality (0.003) - this node is a cross-community bridge._
+- **Why does `SyncRunStatus` connect `Community 31` to `Community 17`, `Community 28`?**
   _High betweenness centrality (0.003) - this node is a cross-community bridge._
 - **What connects `HealthState`, `PromotionMode`, `PromotionPhase` to the rest of the system?**
-  _447 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _449 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `Community 0` be split into smaller, more focused modules?**
   _Cohesion score 0.06 - nodes in this community are weakly interconnected._
 - **Should `Community 1` be split into smaller, more focused modules?**
