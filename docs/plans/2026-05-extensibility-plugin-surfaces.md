@@ -397,6 +397,6 @@ Those tickets should be updated to call out the interface, not just the vendor.
 ## 13. Next Steps
 
 1. Create the four new tickets covering the plan items above (see Linear).
-2. Open ADR-NNNN: *Plugin extension model (webhook-first, declarative CRDs)*.
+2. ~~Open ADR-NNNN: *Plugin extension model (webhook-first, declarative CRDs)*.~~ — landed as [ADR 0001](../adr/0001-plugin-extension-model.md); §10 open questions are resolved there.
 3. Refine SKA-354 / 370 / 381 / 388 descriptions to reference this plan.
 4. Once the engine packaging (engine-boundaries plan §3) lands, add a `pkg/plugins/` shared package with the envelope types, dispatcher, and webhook client.
