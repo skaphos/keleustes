@@ -160,12 +160,12 @@
     "hash": "3f0c540526f5d60e45f20a16245f37bb"
   },
   "/home/sstratton/work/skaphos/keleustes/AGENTS.md": {
-    "mtime": 1778880632.3681223,
-    "hash": "3848dd3f829a4d224c62d645e8245c3d"
+    "mtime": 1778984253.5380092,
+    "hash": "fbb38f7a72e45105bed8b37af1b04907"
   },
   "/home/sstratton/work/skaphos/keleustes/CLAUDE.md": {
-    "mtime": 1778880632.3681223,
-    "hash": "3848dd3f829a4d224c62d645e8245c3d"
+    "mtime": 1778984253.5380092,
+    "hash": "fbb38f7a72e45105bed8b37af1b04907"
   },
   "/home/sstratton/work/skaphos/keleustes/README.md": {
     "mtime": 1778880632.3681223,
@@ -344,8 +344,12 @@
     "hash": "b1133c5f3b4acc2ac22521cd960d58f1"
   },
   "/home/sstratton/work/skaphos/keleustes/docs/plans/2026-05-extensibility-plugin-surfaces.md": {
-    "mtime": 1778981828.7325032,
-    "hash": "97446ce283439ce72e529d4ef3b25f36"
+    "mtime": 1778985101.2451506,
+    "hash": "897456a6c21ec91de8e1922569754337"
+  },
+  "/home/sstratton/work/skaphos/keleustes/docs/adr/0001-plugin-extension-model.md": {
+    "mtime": 1778985079.2363508,
+    "hash": "dee0c6cf70cecdc63951e5b22147a566"
   },
   "/home/sstratton/work/skaphos/keleustes/docs/adr/README.md": {
     "mtime": 1778819315.1910055,

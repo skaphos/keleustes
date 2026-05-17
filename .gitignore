@@ -64,3 +64,4 @@ ui/.next/
 graphify-out/cache/
 graphify-out/cost.json
 graphify-out/.rebuild.lock
+graphify-out/.graphify_root
