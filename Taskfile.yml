@@ -76,6 +76,24 @@ tasks:
     cmds:
       - '{{.GOVULNCHECK_RUNNER}} ./...'
 
+  # --- License attribution ---
+
+  licenses:
+    desc: Regenerate THIRD_PARTY_LICENSES.md from the current Go module graph
+    cmds:
+      - bash hack/licenses/generate.sh
+
+  licenses:check:
+    desc: Fail if THIRD_PARTY_LICENSES.md is stale relative to current deps
+    cmds:
+      - task: licenses
+      - |
+        if ! git diff --quiet -- THIRD_PARTY_LICENSES.md; then
+          echo "THIRD_PARTY_LICENSES.md is out of date — run 'go -C tools tool task licenses' and commit the result." >&2
+          git diff -- THIRD_PARTY_LICENSES.md >&2
+          exit 1
+        fi
+
   # --- Tests ---
 
   test:
@@ -197,5 +215,6 @@ tasks:
       - task: test
       - task: staticcheck
       - task: vuln
+      - task: licenses:check
       - task: build
       - task: build-ctl
