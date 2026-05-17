@@ -10,7 +10,7 @@
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `7a032f7a`
+- Built from commit: `8e29703b`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -191,7 +191,7 @@ Nodes (33): 10. Phased Rollout, 11. Open Decisions & Future ADRs, 12. References
 
 ### Community 10 - "Community 10"
 Cohesion: 0.11
-Nodes (6): ApplicationList, ApplicationSpec, Environment, EnvironmentList, PromotionList, Release
+Nodes (6): Application, ApplicationList, ApplicationSpec, Environment, Promotion, ReleaseList
 
 ### Community 11 - "Community 11"
 Cohesion: 0.08
@@ -231,11 +231,11 @@ Nodes (5): DeploymentTarget, DeploymentTargetCluster, DeploymentTargetList, Depl
 
 ### Community 20 - "Community 20"
 Cohesion: 0.12
-Nodes (5): HealthCheck, HealthCheckList, HealthCheckSpec, HealthCheckStatus, HealthState
+Nodes (5): Approval, ApprovalDecision, ApprovalList, ApprovalSpec, ApprovalStatus
 
 ### Community 21 - "Community 21"
 Cohesion: 0.12
-Nodes (5): Approval, ApprovalDecision, ApprovalList, ApprovalSpec, ApprovalStatus
+Nodes (5): HealthCheck, HealthCheckList, HealthCheckSpec, HealthCheckStatus, HealthState
 
 ### Community 22 - "Community 22"
 Cohesion: 0.12
@@ -247,11 +247,11 @@ Nodes (17): marshaller-api Kustomize Manifest Deployment, marshaller-api Applica
 
 ### Community 24 - "Community 24"
 Cohesion: 0.12
-Nodes (4): Cell, CellList, CellSpec, CellStatus
+Nodes (4): FreezeWindow, FreezeWindowList, FreezeWindowSpec, FreezeWindowStatus
 
 ### Community 25 - "Community 25"
 Cohesion: 0.12
-Nodes (4): PromotionPolicy, PromotionPolicyList, PromotionPolicySpec, PromotionPolicyStatus
+Nodes (4): SyncPlan, SyncPlanList, SyncPlanSpec, SyncPlanStatus
 
 ### Community 26 - "Community 26"
 Cohesion: 0.12
@@ -259,15 +259,15 @@ Nodes (4): Deployment, DeploymentList, DeploymentSpec, DeploymentStatus
 
 ### Community 27 - "Community 27"
 Cohesion: 0.12
-Nodes (4): SyncPlan, SyncPlanList, SyncPlanSpec, SyncPlanStatus
+Nodes (4): EnvironmentList, PromotionList, Release, SourceObservedRevision
 
 ### Community 28 - "Community 28"
 Cohesion: 0.12
-Nodes (4): FreezeWindow, FreezeWindowList, FreezeWindowSpec, FreezeWindowStatus
+Nodes (4): PromotionPolicy, PromotionPolicyList, PromotionPolicySpec, PromotionPolicyStatus
 
 ### Community 29 - "Community 29"
 Cohesion: 0.12
-Nodes (4): Application, Promotion, ReleaseList, SourceObservedRevision
+Nodes (4): Cell, CellList, CellSpec, CellStatus
 
 ### Community 30 - "Community 30"
 Cohesion: 0.12
@@ -363,11 +363,11 @@ Nodes (4): Collision review (2026-05-14), Identity, Naming, Rationale
 
 ### Community 67 - "Community 67"
 Cohesion: 0.5
-Nodes (4): 19. Data model, code:text (Kubernetes CRDs = active desired/control state), code:text (keleustes.skaphos.io), code:text (skaphos-keleustes-system)
+Nodes (4): 9.1 Components, 9.2 Cross-cutting concerns: extension surfaces and observability, 9. Architecture, code:text (+-------------------------------+)
 
 ### Community 68 - "Community 68"
 Cohesion: 0.5
-Nodes (4): 9.1 Components, 9.2 Cross-cutting concerns: extension surfaces and observability, 9. Architecture, code:text (+-------------------------------+)
+Nodes (4): 19. Data model, code:text (Kubernetes CRDs = active desired/control state), code:text (keleustes.skaphos.io), code:text (skaphos-keleustes-system)
 
 ### Community 72 - "Community 72"
 Cohesion: 0.67
@@ -393,11 +393,11 @@ Nodes (3): Go Mod Download Bootstrap, Pinned Developer Tooling Module, Task Tool
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
-- **Why does `Keleustes Proposal (Draft)` connect `Community 35` to `Community 67`, `Community 68`, `Community 72`, `Community 80`, `Community 48`, `Community 82`, `Community 51`, `Community 83`, `Community 85`, `Community 22`, `Community 84`, `Community 49`, `Community 81`?**
+- **Why does `Keleustes Proposal (Draft)` connect `Community 35` to `Community 67`, `Community 68`, `Community 72`, `Community 80`, `Community 48`, `Community 82`, `Community 51`, `Community 84`, `Community 85`, `Community 22`, `Community 81`, `Community 49`, `Community 83`?**
   _High betweenness centrality (0.006) - this node is a cross-community bridge._
 - **Why does `8. Core concepts` connect `Community 22` to `Community 35`?**
   _High betweenness centrality (0.003) - this node is a cross-community bridge._
-- **Why does `SyncRunStatus` connect `Community 31` to `Community 10`, `Community 29`?**
+- **Why does `SyncRunStatus` connect `Community 31` to `Community 10`, `Community 27`?**
   _High betweenness centrality (0.003) - this node is a cross-community bridge._
 - **What connects `HealthState`, `PromotionMode`, `PromotionPhase` to the rest of the system?**
   _475 weakly-connected nodes found - possible documentation gaps or missing edges._
