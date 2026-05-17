@@ -510,9 +510,8 @@ These will become focused ADRs once the overall direction is accepted.
 
 **Next steps after review of this plan**
 
-- Agree on high-level direction (hub + agents as the target model).
+- ~~Agree on high-level direction (hub + agents as the target model).~~ — landed as [ADR 0005](../adr/0005-distributed-runtime.md); §13 questions 1–9, 11–19 are resolved there. Question 10 (`gitops-engine` adoption) belongs to ADR 0006.
 - Produce a follow-on tactical plan for the MVP 1 agent read-path proof-of-concept.
 - Begin defining the SyncRun execution interface.
-- Decide which pieces of this plan are stable enough to promote into the first runtime architecture ADR.
 
 This document will be updated as discussion progresses. Significant decisions will be captured in `docs/adr/`.
