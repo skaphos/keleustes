@@ -44,7 +44,7 @@ func (r *EnvironmentReconciler) Reconcile(ctx context.Context, req ctrl.Request)
 		Type:               conditionAccepted,
 		Status:             metav1.ConditionTrue,
 		ObservedGeneration: env.Generation,
-		Reason:             reasonSpecAccepted,
+		Reason:             reasonScaffoldReconciler,
 		Message:            "Environment specification accepted.",
 	})
 

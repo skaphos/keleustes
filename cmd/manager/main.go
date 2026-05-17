@@ -73,6 +73,20 @@ func main() {
 		setupLog.Error(err, "unable to set up controller", "controller", "Application")
 		os.Exit(1)
 	}
+	if err := (&controller.SourceReconciler{
+		Client: mgr.GetClient(),
+		Scheme: mgr.GetScheme(),
+	}).SetupWithManager(mgr); err != nil {
+		setupLog.Error(err, "unable to set up controller", "controller", "Source")
+		os.Exit(1)
+	}
+	if err := (&controller.ReleaseReconciler{
+		Client: mgr.GetClient(),
+		Scheme: mgr.GetScheme(),
+	}).SetupWithManager(mgr); err != nil {
+		setupLog.Error(err, "unable to set up controller", "controller", "Release")
+		os.Exit(1)
+	}
 	if err := (&controller.EnvironmentReconciler{
 		Client: mgr.GetClient(),
 		Scheme: mgr.GetScheme(),
@@ -94,6 +108,13 @@ func main() {
 		setupLog.Error(err, "unable to set up controller", "controller", "DeploymentTarget")
 		os.Exit(1)
 	}
+	if err := (&controller.DeploymentReconciler{
+		Client: mgr.GetClient(),
+		Scheme: mgr.GetScheme(),
+	}).SetupWithManager(mgr); err != nil {
+		setupLog.Error(err, "unable to set up controller", "controller", "Deployment")
+		os.Exit(1)
+	}
 	if err := (&controller.PromotionReconciler{
 		Client: mgr.GetClient(),
 		Scheme: mgr.GetScheme(),
@@ -101,11 +122,46 @@ func main() {
 		setupLog.Error(err, "unable to set up controller", "controller", "Promotion")
 		os.Exit(1)
 	}
+	if err := (&controller.PromotionPolicyReconciler{
+		Client: mgr.GetClient(),
+		Scheme: mgr.GetScheme(),
+	}).SetupWithManager(mgr); err != nil {
+		setupLog.Error(err, "unable to set up controller", "controller", "PromotionPolicy")
+		os.Exit(1)
+	}
+	if err := (&controller.ApprovalReconciler{
+		Client: mgr.GetClient(),
+		Scheme: mgr.GetScheme(),
+	}).SetupWithManager(mgr); err != nil {
+		setupLog.Error(err, "unable to set up controller", "controller", "Approval")
+		os.Exit(1)
+	}
+	if err := (&controller.FreezeWindowReconciler{
+		Client: mgr.GetClient(),
+		Scheme: mgr.GetScheme(),
+	}).SetupWithManager(mgr); err != nil {
+		setupLog.Error(err, "unable to set up controller", "controller", "FreezeWindow")
+		os.Exit(1)
+	}
 	if err := (&controller.SyncPlanReconciler{
 		Client: mgr.GetClient(),
 		Scheme: mgr.GetScheme(),
 	}).SetupWithManager(mgr); err != nil {
 		setupLog.Error(err, "unable to set up controller", "controller", "SyncPlan")
+		os.Exit(1)
+	}
+	if err := (&controller.SyncRunReconciler{
+		Client: mgr.GetClient(),
+		Scheme: mgr.GetScheme(),
+	}).SetupWithManager(mgr); err != nil {
+		setupLog.Error(err, "unable to set up controller", "controller", "SyncRun")
+		os.Exit(1)
+	}
+	if err := (&controller.HealthCheckReconciler{
+		Client: mgr.GetClient(),
+		Scheme: mgr.GetScheme(),
+	}).SetupWithManager(mgr); err != nil {
+		setupLog.Error(err, "unable to set up controller", "controller", "HealthCheck")
 		os.Exit(1)
 	}
 	// +kubebuilder:scaffold:builder

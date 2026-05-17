@@ -44,7 +44,7 @@ func (r *DeploymentTargetReconciler) Reconcile(ctx context.Context, req ctrl.Req
 		Type:               conditionAccepted,
 		Status:             metav1.ConditionTrue,
 		ObservedGeneration: target.Generation,
-		Reason:             reasonSpecAccepted,
+		Reason:             reasonScaffoldReconciler,
 		Message:            "DeploymentTarget specification accepted; cluster connectivity is not yet probed.",
 	})
 

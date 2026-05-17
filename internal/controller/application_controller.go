@@ -21,8 +21,8 @@ import (
 )
 
 const (
-	conditionAccepted = "Accepted"
-	reasonSpecAccepted = "SpecAccepted"
+	conditionAccepted        = "Accepted"
+	reasonScaffoldReconciler = "ScaffoldReconciler"
 )
 
 // ApplicationReconciler reconciles an Application object.
@@ -52,7 +52,7 @@ func (r *ApplicationReconciler) Reconcile(ctx context.Context, req ctrl.Request)
 		Type:               conditionAccepted,
 		Status:             metav1.ConditionTrue,
 		ObservedGeneration: app.Generation,
-		Reason:             reasonSpecAccepted,
+		Reason:             reasonScaffoldReconciler,
 		Message:            "Application specification accepted; reconciliation engines pending.",
 	})
 

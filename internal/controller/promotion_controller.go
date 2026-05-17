@@ -50,7 +50,7 @@ func (r *PromotionReconciler) Reconcile(ctx context.Context, req ctrl.Request) (
 		Type:               conditionAccepted,
 		Status:             metav1.ConditionTrue,
 		ObservedGeneration: promo.Generation,
-		Reason:             reasonSpecAccepted,
+		Reason:             reasonScaffoldReconciler,
 		Message:            "Promotion accepted; Promotion Engine arrives with MVP 2.",
 	})
 

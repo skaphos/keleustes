@@ -117,8 +117,9 @@ func newVersionCommand() *cobra.Command {
 	return &cobra.Command{
 		Use:   "version",
 		Short: "Print keleustesctl version",
-		Run: func(cmd *cobra.Command, _ []string) {
-			fmt.Fprintln(cmd.OutOrStdout(), "keleustesctl 0.0.0 (scaffold)")
+		RunE: func(cmd *cobra.Command, _ []string) error {
+			_, err := fmt.Fprintln(cmd.OutOrStdout(), "keleustesctl 0.0.0 (scaffold)")
+			return err
 		},
 	}
 }

@@ -47,7 +47,7 @@ func (r *SyncPlanReconciler) Reconcile(ctx context.Context, req ctrl.Request) (c
 		Type:               conditionAccepted,
 		Status:             metav1.ConditionTrue,
 		ObservedGeneration: plan.Generation,
-		Reason:             reasonSpecAccepted,
+		Reason:             reasonScaffoldReconciler,
 		Message:            "SyncPlan accepted; Sync Engine arrives with MVP 1.",
 	})
 

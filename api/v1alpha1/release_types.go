@@ -14,9 +14,9 @@ import (
 type ReleaseArtifactType string
 
 const (
-	ReleaseArtifactImage    ReleaseArtifactType = "image"
-	ReleaseArtifactChart    ReleaseArtifactType = "chart"
-	ReleaseArtifactOCIBlob  ReleaseArtifactType = "ociArtifact"
+	ReleaseArtifactImage   ReleaseArtifactType = "image"
+	ReleaseArtifactChart   ReleaseArtifactType = "chart"
+	ReleaseArtifactOCIBlob ReleaseArtifactType = "ociArtifact"
 )
 
 // ReleaseArtifact is a single pinned artifact making up a Release.
