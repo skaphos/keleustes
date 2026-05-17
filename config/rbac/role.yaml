@@ -15,6 +15,7 @@ rules:
   - environments
   - freezewindows
   - healthchecks
+  - notifiers
   - promotionpolicies
   - promotions
   - releases
@@ -40,6 +41,7 @@ rules:
   - environments/finalizers
   - freezewindows/finalizers
   - healthchecks/finalizers
+  - notifiers/finalizers
   - promotionpolicies/finalizers
   - promotions/finalizers
   - releases/finalizers
@@ -59,6 +61,7 @@ rules:
   - environments/status
   - freezewindows/status
   - healthchecks/status
+  - notifiers/status
   - promotionpolicies/status
   - promotions/status
   - releases/status

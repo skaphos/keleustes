@@ -300,6 +300,29 @@ var scaffoldCases = []scaffoldCase{
 			return x.Status.ObservedGeneration, x.Status.Conditions
 		},
 	},
+	{
+		kind: "Notifier",
+		makeSpec: func(name, ns string) client.Object {
+			return &keleustesv1alpha1.Notifier{
+				ObjectMeta: metav1.ObjectMeta{Name: name, Namespace: ns},
+				Spec: keleustesv1alpha1.NotifierSpec{
+					Endpoint: keleustesv1alpha1.NotifierEndpoint{
+						Webhook: &keleustesv1alpha1.NotifierWebhookEndpoint{
+							URL: "https://hooks.example.com/keleustes",
+						},
+					},
+				},
+			}
+		},
+		fresh: func() client.Object { return &keleustesv1alpha1.Notifier{} },
+		reconciler: func() reconcile.Reconciler {
+			return &NotifierReconciler{Client: k8sClient, Scheme: k8sClient.Scheme()}
+		},
+		extract: func(o client.Object) (int64, []metav1.Condition) {
+			x := o.(*keleustesv1alpha1.Notifier)
+			return x.Status.ObservedGeneration, x.Status.Conditions
+		},
+	},
 }
 
 var _ = Describe("Scaffold reconcilers", func() {
@@ -333,4 +356,44 @@ var _ = Describe("Scaffold reconcilers", func() {
 			Expect(cond.ObservedGeneration).To(Equal(fetched.GetGeneration()))
 		})
 	}
+})
+
+var _ = Describe("Notifier endpoint XOR validation", func() {
+	It("rejects a Notifier with both builtin and webhook set", func() {
+		obj := &keleustesv1alpha1.Notifier{
+			ObjectMeta: metav1.ObjectMeta{Name: "notifier-xor-both", Namespace: "default"},
+			Spec: keleustesv1alpha1.NotifierSpec{
+				Endpoint: keleustesv1alpha1.NotifierEndpoint{
+					Builtin: "slack",
+					Webhook: &keleustesv1alpha1.NotifierWebhookEndpoint{
+						URL: "https://hooks.example.com/x",
+					},
+				},
+			},
+		}
+		err := k8sClient.Create(ctx, obj)
+		Expect(err).To(HaveOccurred(), "create should be rejected by the endpoint XOR rule")
+		Expect(err.Error()).To(ContainSubstring("exactly one of endpoint.builtin or endpoint.webhook"))
+	})
+
+	It("rejects a Notifier with neither builtin nor webhook set", func() {
+		obj := &keleustesv1alpha1.Notifier{
+			ObjectMeta: metav1.ObjectMeta{Name: "notifier-xor-neither", Namespace: "default"},
+			Spec:       keleustesv1alpha1.NotifierSpec{Endpoint: keleustesv1alpha1.NotifierEndpoint{}},
+		}
+		err := k8sClient.Create(ctx, obj)
+		Expect(err).To(HaveOccurred(), "create should be rejected by the endpoint XOR rule")
+		Expect(err.Error()).To(ContainSubstring("exactly one of endpoint.builtin or endpoint.webhook"))
+	})
+
+	It("accepts a Notifier with only builtin set", func() {
+		obj := &keleustesv1alpha1.Notifier{
+			ObjectMeta: metav1.ObjectMeta{Name: "notifier-xor-builtin", Namespace: "default"},
+			Spec: keleustesv1alpha1.NotifierSpec{
+				Endpoint: keleustesv1alpha1.NotifierEndpoint{Builtin: "stdout"},
+			},
+		}
+		Expect(k8sClient.Create(ctx, obj)).To(Succeed())
+		DeferCleanup(func() { _ = k8sClient.Delete(ctx, obj) })
+	})
 })
