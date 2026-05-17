@@ -151,13 +151,21 @@
     "mtime": 1778981367.9213712,
     "hash": "72828ad1b3a18e240d7a021c152ad76c"
   },
+  "/home/sstratton/work/skaphos/keleustes/internal/sync/engine.go": {
+    "mtime": 1779000198.3943548,
+    "hash": "2dbf1fa029a6ade3facb79d4782722ae"
+  },
+  "/home/sstratton/work/skaphos/keleustes/internal/sync/engine_test.go": {
+    "mtime": 1779000198.3943548,
+    "hash": "d4995179da1e0c472b81262e6baa9ade"
+  },
   "/home/sstratton/work/skaphos/keleustes/CONTRIBUTING.md": {
     "mtime": 1778819299.274448,
     "hash": "92fa50b670817c09bc156b8d78013cd2"
   },
   "/home/sstratton/work/skaphos/keleustes/Taskfile.yml": {
-    "mtime": 1778880630.3610091,
-    "hash": "3f0c540526f5d60e45f20a16245f37bb"
+    "mtime": 1779000198.3943548,
+    "hash": "3fcdab38d2412fe45aae637e35d12ab4"
   },
   "/home/sstratton/work/skaphos/keleustes/AGENTS.md": {
     "mtime": 1778984253.5380092,
@@ -170,6 +178,10 @@
   "/home/sstratton/work/skaphos/keleustes/README.md": {
     "mtime": 1778880632.3681223,
     "hash": "f6a871a5e0c1929e24b130531bf3c7a4"
+  },
+  "/home/sstratton/work/skaphos/keleustes/THIRD_PARTY_LICENSES.md": {
+    "mtime": 1779000198.3943548,
+    "hash": "2eea9cd59b35cd84745354e2ee456c35"
   },
   "/home/sstratton/work/skaphos/keleustes/ui/README.md": {
     "mtime": 1778819319.2592828,
@@ -315,6 +327,10 @@
     "mtime": 1778819472.6925185,
     "hash": "e5233dd3c9ded53b1bdbe8062b0e4419"
   },
+  "/home/sstratton/work/skaphos/keleustes/docs/licenses.md": {
+    "mtime": 1779000198.3943548,
+    "hash": "9c94420c20eab52d3f32b604be10d99f"
+  },
   "/home/sstratton/work/skaphos/keleustes/docs/PROPOSAL.md": {
     "mtime": 1778982434.531825,
     "hash": "9f6057f358d5f0507b0da8390888c7a0"
@@ -323,25 +339,29 @@
     "mtime": 1778819313.5776038,
     "hash": "169efe1fffdca9078d5be1337f4b7a51"
   },
+  "/home/sstratton/work/skaphos/keleustes/docs/plans/2026-05-gitops-engine-spike.md": {
+    "mtime": 1779000198.3943548,
+    "hash": "3e4bfd73a2e2e7d88d4ba18de4d5581a"
+  },
   "/home/sstratton/work/skaphos/keleustes/docs/plans/2026-05-observability-stack.md": {
-    "mtime": 1778981956.031916,
-    "hash": "7a7159c5bb8903e10f5f4725e0977dc8"
+    "mtime": 1778994056.2449193,
+    "hash": "750e2f693b0c8f5bc82fc819de6122e7"
   },
   "/home/sstratton/work/skaphos/keleustes/docs/plans/2026-05-distributed-runtime-architecture.md": {
-    "mtime": 1778906031.4127898,
-    "hash": "789547b812851c5381ad2fe88cb7e0ed"
+    "mtime": 1778994612.5552058,
+    "hash": "b518bdcb91fe34984565b7a287665ac9"
   },
   "/home/sstratton/work/skaphos/keleustes/docs/plans/2026-05-rbac-audit-and-git-invariant.md": {
-    "mtime": 1778906200.7927926,
-    "hash": "daf5c63a8cdd3304262d7ce11a73c101"
+    "mtime": 1778994451.4777982,
+    "hash": "d5c8c694c4da822a314895e9cb2354b3"
   },
   "/home/sstratton/work/skaphos/keleustes/docs/plans/README.md": {
     "mtime": 1778981972.6485896,
     "hash": "dcf27060ed8c489636309c4058bbd429"
   },
   "/home/sstratton/work/skaphos/keleustes/docs/plans/2026-05-engine-boundaries-and-technology-integration.md": {
-    "mtime": 1778906293.1217487,
-    "hash": "b1133c5f3b4acc2ac22521cd960d58f1"
+    "mtime": 1778994754.3963542,
+    "hash": "b073cc3f7ccd09a859932286c36425bf"
   },
   "/home/sstratton/work/skaphos/keleustes/docs/plans/2026-05-extensibility-plugin-surfaces.md": {
     "mtime": 1778985101.2451506,
@@ -351,8 +371,28 @@
     "mtime": 1778985079.2363508,
     "hash": "dee0c6cf70cecdc63951e5b22147a566"
   },
+  "/home/sstratton/work/skaphos/keleustes/docs/adr/0003-git-source-of-truth-invariant.md": {
+    "mtime": 1778994314.5723314,
+    "hash": "627042f92795ba2efc3bb4bd0e87758b"
+  },
+  "/home/sstratton/work/skaphos/keleustes/docs/adr/0005-distributed-runtime.md": {
+    "mtime": 1778994600.9979014,
+    "hash": "035814622d357b0fbe15326524749153"
+  },
+  "/home/sstratton/work/skaphos/keleustes/docs/adr/0002-default-observability-stack.md": {
+    "mtime": 1778994023.878371,
+    "hash": "ecef3491d4f74caff3a64c3f7761200a"
+  },
+  "/home/sstratton/work/skaphos/keleustes/docs/adr/0006-engine-boundaries.md": {
+    "mtime": 1779000198.3943548,
+    "hash": "494466dfbb7c280efdfaf0cab3bdbd8d"
+  },
   "/home/sstratton/work/skaphos/keleustes/docs/adr/README.md": {
     "mtime": 1778819315.1910055,
     "hash": "105afbd2ec91a5ec2ee6cfcd5c3e73ec"
+  },
+  "/home/sstratton/work/skaphos/keleustes/docs/adr/0004-crd-based-rbac.md": {
+    "mtime": 1778994443.958543,
+    "hash": "6270bf06f24c46dad4ce928c1c1cf6a5"
   }
 }
