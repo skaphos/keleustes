@@ -336,8 +336,8 @@
     "hash": "3caf1f1987c1ac60e28f9d689088f8ce"
   },
   "/home/sstratton/work/skaphos/keleustes/docs/DECISIONS.md": {
-    "mtime": 1779004981.9474666,
-    "hash": "8102e613ceb0bbcd94f84cad887d40de"
+    "mtime": 1779006613.189662,
+    "hash": "22ec20fdedbb2a36318c9dc68d90eb8c"
   },
   "/home/sstratton/work/skaphos/keleustes/docs/NAMING.md": {
     "mtime": 1778819313.5776038,
@@ -352,24 +352,28 @@
     "hash": "750e2f693b0c8f5bc82fc819de6122e7"
   },
   "/home/sstratton/work/skaphos/keleustes/docs/plans/2026-05-audit-event-schema.md": {
-    "mtime": 1779003950.2931607,
-    "hash": "82b2175502d4de48100c80561654fcab"
+    "mtime": 1779006642.6296484,
+    "hash": "51614c14b2442b1aa0af89b556c9d24a"
   },
   "/home/sstratton/work/skaphos/keleustes/docs/plans/2026-05-render-contract-and-inventory-model.md": {
     "mtime": 1779003388.5269246,
     "hash": "698732acb0a09dda2e8edfa9962862a5"
   },
+  "/home/sstratton/work/skaphos/keleustes/docs/plans/2026-05-jetstream-subject-and-stream-layout.md": {
+    "mtime": 1779006572.6520967,
+    "hash": "d568090f092757a3dc8e668600827874"
+  },
   "/home/sstratton/work/skaphos/keleustes/docs/plans/2026-05-distributed-runtime-architecture.md": {
-    "mtime": 1778994612.5552058,
-    "hash": "b518bdcb91fe34984565b7a287665ac9"
+    "mtime": 1779006628.8478732,
+    "hash": "30478dd1632dcc33b510df439aba8216"
   },
   "/home/sstratton/work/skaphos/keleustes/docs/plans/2026-05-rbac-audit-and-git-invariant.md": {
     "mtime": 1779004998.3649006,
     "hash": "76230a27452dee8fde00a187000c1522"
   },
   "/home/sstratton/work/skaphos/keleustes/docs/plans/README.md": {
-    "mtime": 1779005009.4213042,
-    "hash": "82d5d10e26a7d49c93a645eea4a37a3b"
+    "mtime": 1779006619.0557952,
+    "hash": "f9ca2e91b8889a1089793d3c8a9a50f7"
   },
   "/home/sstratton/work/skaphos/keleustes/docs/plans/2026-05-engine-boundaries-and-technology-integration.md": {
     "mtime": 1778994754.3963542,
