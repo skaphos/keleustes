@@ -661,6 +661,8 @@ Argo CD users will notice immediately if diff quality is poor. Diff correctness 
 
 ## 14. Git mutation model
 
+> **Refined by [ADR 0003](./adr/0003-git-source-of-truth-invariant.md).** The "never mutate cluster state directly for ordinary application deploys" line below is now a **hard invariant**, not guidance. Break-glass is the only sanctioned exception and is itself audited per [SKA-322 §13.7](./plans/2026-05-audit-event-schema.md). [`AGENTS.md`](../AGENTS.md) carries the elevated wording.
+
 Supported mutations:
 
 - Kustomize image update
@@ -689,6 +691,8 @@ Rules:
 ---
 
 ## 15. Policy model
+
+> **Refined by [ADR 0001](./adr/0001-plugin-extension-model.md) (plugin extension model) and [ADR 0004](./adr/0004-crd-based-rbac.md) (CRD-based RBAC).** The native gates below remain accurate. The external integrations attach as `SignatureVerifier` / `Scanner` / `PolicyGate` plugins per the [extensibility plan](./plans/2026-05-extensibility-plugin-surfaces.md). Approval enforcement (separation of duties, N-of-M, distinct actors) lives on the `ApprovalPolicy` CRD ([SKA-323 §7](./plans/2026-05-rbac-crd-shapes.md)).
 
 Native checks:
 
@@ -1041,6 +1045,8 @@ Packaging:
 ---
 
 ## 22. Design principles
+
+> **Item 1 promoted to a hard invariant by [ADR 0003](./adr/0003-git-source-of-truth-invariant.md).** The principle list below is otherwise unchanged; see [`AGENTS.md`](../AGENTS.md) for the elevated wording carried into the contributor briefing.
 
 These should appear in the public README if the project proceeds:
 
