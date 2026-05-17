@@ -1,0 +1,234 @@
+# SPDX-FileCopyrightText: 2026 Skaphos
+# SPDX-License-Identifier: MIT
+#
+# Keleustes CI workflow. Mirrors the local `task ci` job set so contributors
+# can reproduce every check on their workstation; the Taskfile is the source
+# of truth for tool versions and invocation. CI here is a thin wrapper.
+#
+# Security note: every shell step that consumes a workflow context value
+# passes it via env: rather than direct ${{ ... }} interpolation. The only
+# context values we touch are github.base_ref (a defended branch name) and
+# needs.<job>.result (an enum string from GitHub's job result codes); both
+# are safe but we use the env-var pattern uniformly anyway.
+
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions: {}
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+jobs:
+  dco:
+    name: DCO
+    if: github.event_name == 'pull_request'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    permissions:
+      contents: read
+    steps:
+      - name: Checkout (full history)
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Verify Signed-off-by on PR commits
+        env:
+          BASE_REF: ${{ github.base_ref }}
+        run: |
+          set -Eeuo pipefail
+          git fetch --no-tags --prune origin "${BASE_REF}:${BASE_REF}"
+          missing=0
+          while IFS= read -r commit; do
+            [ -z "$commit" ] && continue
+            if ! git log -1 --pretty=%B "$commit" | grep -qiE '^Signed-off-by: '; then
+              echo "Missing Signed-off-by trailer: $commit"
+              missing=1
+            fi
+          done < <(git rev-list --no-merges "origin/${BASE_REF}..HEAD")
+          [ "$missing" -eq 0 ] || { echo "DCO check failed. Rebase/amend with: git commit --signoff"; exit 1; }
+
+  reuse:
+    name: REUSE lint
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install pipx
+        run: sudo apt-get update && sudo apt-get install -y pipx
+      - name: REUSE lint
+        run: pipx run reuse lint
+
+  lint:
+    name: Lint + generation drift
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Go
+        uses: actions/setup-go@v6
+        with:
+          go-version-file: go.mod
+          cache: true
+          cache-dependency-path: |
+            go.sum
+            tools/go.sum
+      - name: Run linter (regenerates manifests + deepcopy + golangci-lint)
+        run: go -C tools tool task -d .. lint
+      - name: Check controller-gen output for drift
+        run: |
+          set -Eeuo pipefail
+          if ! git diff --quiet -- config/crd/bases/ config/rbac/ api/v1alpha1/zz_generated.deepcopy.go; then
+            echo "::error::controller-gen output drifted. Run 'go -C tools tool task lint' locally and commit the result."
+            git --no-pager diff -- config/crd/bases/ config/rbac/ api/v1alpha1/zz_generated.deepcopy.go
+            exit 1
+          fi
+
+  staticcheck:
+    name: Staticcheck
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Go
+        uses: actions/setup-go@v6
+        with:
+          go-version-file: go.mod
+          cache: true
+          cache-dependency-path: |
+            go.sum
+            tools/go.sum
+      - name: Staticcheck
+        run: go -C tools tool task -d .. staticcheck
+
+  test:
+    name: Test (envtest)
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Go
+        uses: actions/setup-go@v6
+        with:
+          go-version-file: go.mod
+          cache: true
+          cache-dependency-path: |
+            go.sum
+            tools/go.sum
+      - name: Test
+        run: go -C tools tool task -d .. test
+      - name: Upload coverage (main only)
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage
+          path: coverage.out
+          if-no-files-found: error
+          retention-days: 14
+
+  vuln:
+    name: govulncheck (advisory)
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    # Pre-existing baseline issue: k8s.io/api v0.34 ceiling per ADR 0006.
+    # Advisory only until the gitops-engine ceiling can be raised.
+    continue-on-error: true
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Go
+        uses: actions/setup-go@v6
+        with:
+          go-version-file: go.mod
+          cache: true
+          cache-dependency-path: |
+            go.sum
+            tools/go.sum
+      - name: Vulnerability scan
+        run: go -C tools tool task -d .. vuln
+
+  licenses:
+    name: Licenses freshness
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Go
+        uses: actions/setup-go@v6
+        with:
+          go-version-file: go.mod
+          cache: true
+          cache-dependency-path: |
+            go.sum
+            tools/go.sum
+      - name: THIRD_PARTY_LICENSES freshness check
+        run: go -C tools tool task -d .. licenses:check
+
+  build:
+    name: Build
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Go
+        uses: actions/setup-go@v6
+        with:
+          go-version-file: go.mod
+          cache: true
+          cache-dependency-path: |
+            go.sum
+            tools/go.sum
+      - name: Build manager
+        run: go -C tools tool task -d .. build
+      - name: Build keleustesctl
+        run: go -C tools tool task -d .. build-ctl
+
+  summary:
+    name: CI summary
+    needs: [reuse, lint, staticcheck, test, vuln, licenses, build]
+    if: always() && github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    permissions: {}
+    steps:
+      - name: Publish summary
+        env:
+          REUSE_RESULT: ${{ needs.reuse.result }}
+          LINT_RESULT: ${{ needs.lint.result }}
+          STATICCHECK_RESULT: ${{ needs.staticcheck.result }}
+          TEST_RESULT: ${{ needs.test.result }}
+          VULN_RESULT: ${{ needs.vuln.result }}
+          LICENSES_RESULT: ${{ needs.licenses.result }}
+          BUILD_RESULT: ${{ needs.build.result }}
+        run: |
+          {
+            echo "## CI Summary"
+            echo
+            echo "| Job | Result |"
+            echo "| --- | --- |"
+            echo "| reuse | ${REUSE_RESULT} |"
+            echo "| lint | ${LINT_RESULT} |"
+            echo "| staticcheck | ${STATICCHECK_RESULT} |"
+            echo "| test | ${TEST_RESULT} |"
+            echo "| vuln (advisory) | ${VULN_RESULT} |"
+            echo "| licenses | ${LICENSES_RESULT} |"
+            echo "| build | ${BUILD_RESULT} |"
+          } >> "$GITHUB_STEP_SUMMARY"
