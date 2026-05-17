@@ -416,6 +416,6 @@ Kustomization gates each subdirectory so customers can disable any of `prometheu
 ## 15. Next Steps
 
 1. File the two new tickets covering "Prom-Operator manifests + dashboards bundle" (MVP 0) and "OTel SDK + reference collector" (MVP 1).
-2. Open ADR-NNNN: *Default observability stack (Prometheus Operator + OpenTelemetry, dual-export)*.
+2. ~~Open ADR-NNNN: *Default observability stack (Prometheus Operator + OpenTelemetry, dual-export)*.~~ — landed as [ADR 0002](../adr/0002-default-observability-stack.md); §12 open questions are resolved there.
 3. Update SKA-336 to reference this plan and adjust scope.
 4. Establish the metric-label-cardinality lint rule before the first engine lands real logic.
