@@ -84,11 +84,18 @@ jobs:
             tools/go.sum
       - name: Run linter (regenerates manifests + deepcopy + golangci-lint)
         run: go -C tools tool task -d .. lint
+      - name: Normalize generated imports
+        # `task lint` runs controller-gen but not goimports; fresh deepcopy
+        # output uses unnamed `meta/v1` imports, which goimports renames to
+        # the package-default `v1` alias. Run fmt before the drift check so
+        # the diff reflects "what a contributor running `task fmt` after
+        # generation would see," not raw controller-gen output.
+        run: go -C tools tool task -d .. fmt
       - name: Check controller-gen output for drift
         run: |
           set -Eeuo pipefail
           if ! git diff --quiet -- config/crd/bases/ config/rbac/ api/v1alpha1/zz_generated.deepcopy.go; then
-            echo "::error::controller-gen output drifted. Run 'go -C tools tool task lint' locally and commit the result."
+            echo "::error::controller-gen output drifted. Run 'go -C tools tool task lint && go -C tools tool task fmt' locally and commit the result."
             git --no-pager diff -- config/crd/bases/ config/rbac/ api/v1alpha1/zz_generated.deepcopy.go
             exit 1
           fi
