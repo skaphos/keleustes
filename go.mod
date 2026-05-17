@@ -3,7 +3,7 @@ module github.com/skaphos/keleustes
 go 1.26.3
 
 require (
-	github.com/argoproj/argo-cd/gitops-engine v0.0.0-20260517061151-04a7370402cb
+	github.com/argoproj/argo-cd/gitops-engine v0.0.0-20260515214037-a39953d21f51
 	github.com/onsi/ginkgo/v2 v2.28.3
 	github.com/onsi/gomega v1.40.0
 	github.com/spf13/cobra v1.10.2
@@ -12,16 +12,11 @@ require (
 	sigs.k8s.io/controller-runtime v0.22.0
 )
 
-// SKA-418: route gitops-engine through the skaphos fork's skaphos-patches
-// branch, which carries the v2beta cleanup from
-// https://github.com/argoproj/argo-cd/pull/27887. Drop this `replace` once
-// upstream PR #27887 merges and a release pseudo-version is available.
-replace github.com/argoproj/argo-cd/gitops-engine => github.com/skaphos/argo-cd/gitops-engine v0.0.0-20260517061151-04a7370402cb
-
 // Required to consume github.com/argoproj/argo-cd/gitops-engine, whose
 // go.mod uses `require k8s.io/* v0.0.0` paired with replace directives.
 // Replace directives don't propagate from dependencies — we must duplicate
-// them here. See ADR 0006 Amendments §3 (mandatory replace block).
+// them here. See ADR 0006 Amendments §3 (mandatory replace block) and the
+// 2026-05-17 amendment that pins this ceiling at v0.34 as steady state.
 replace (
 	k8s.io/api => k8s.io/api v0.34.0
 	k8s.io/apiextensions-apiserver => k8s.io/apiextensions-apiserver v0.34.0
