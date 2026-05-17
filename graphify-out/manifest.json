@@ -4,8 +4,8 @@
     "hash": "6b22329764d4bacb17bf50c00b076a06"
   },
   "/home/sstratton/work/skaphos/keleustes/cmd/manager/main.go": {
-    "mtime": 1778981125.2687953,
-    "hash": "e3aca1fa9f731ad16e43265d88d2bdc6"
+    "mtime": 1779057225.2756517,
+    "hash": "0dfa84d188c134f4bcdf83dc4e1d4bcf"
   },
   "/home/sstratton/work/skaphos/keleustes/api/v1alpha1/cell_types.go": {
     "mtime": 1778818911.6453013,
@@ -64,7 +64,7 @@
     "hash": "f09f7ea276ecaae402919b39b8de1fb4"
   },
   "/home/sstratton/work/skaphos/keleustes/api/v1alpha1/zz_generated.deepcopy.go": {
-    "mtime": 1778981404.7427003,
+    "mtime": 1779057749.8944495,
     "hash": "637d8442ea2e2d0e9b7b7988e77b1e4d"
   },
   "/home/sstratton/work/skaphos/keleustes/api/v1alpha1/application_types.go": {
@@ -74,6 +74,30 @@
   "/home/sstratton/work/skaphos/keleustes/api/v1alpha1/environment_types.go": {
     "mtime": 1778818900.5319517,
     "hash": "0eacb281fcb6c86cb36ab88d93c7e61c"
+  },
+  "/home/sstratton/work/skaphos/keleustes/internal/observability/log_test.go": {
+    "mtime": 1779057225.2800517,
+    "hash": "2e3c76297b686f7e862f36a2f1eb5120"
+  },
+  "/home/sstratton/work/skaphos/keleustes/internal/observability/metrics_test.go": {
+    "mtime": 1779057225.2800517,
+    "hash": "16570d70d75b0d9722bb37e31698ef78"
+  },
+  "/home/sstratton/work/skaphos/keleustes/internal/observability/doc.go": {
+    "mtime": 1779057225.2800517,
+    "hash": "04b5d6c6a813981674ab9668694b40d3"
+  },
+  "/home/sstratton/work/skaphos/keleustes/internal/observability/labels.go": {
+    "mtime": 1779057225.2800517,
+    "hash": "a179fe7dd8ed9e4de51f430b87a1c776"
+  },
+  "/home/sstratton/work/skaphos/keleustes/internal/observability/metrics.go": {
+    "mtime": 1779057225.2800517,
+    "hash": "a744099f849acc4f3177129056e85a67"
+  },
+  "/home/sstratton/work/skaphos/keleustes/internal/observability/log.go": {
+    "mtime": 1779057225.2800517,
+    "hash": "32d27e92ca9cd2d60583e8a7f64e229a"
   },
   "/home/sstratton/work/skaphos/keleustes/internal/controller/application_controller.go": {
     "mtime": 1778980929.6446898,
@@ -143,6 +167,70 @@
     "mtime": 1778981087.596415,
     "hash": "da1ce043181f20afa33c40d3e03cdb59"
   },
+  "/home/sstratton/work/skaphos/keleustes/internal/audit/types.go": {
+    "mtime": 1779057338.1399705,
+    "hash": "362b32354b8fc1bd9acf136740ef7bf3"
+  },
+  "/home/sstratton/work/skaphos/keleustes/internal/audit/doc.go": {
+    "mtime": 1779057330.8491707,
+    "hash": "b7857e15e3957ac22fade8e5097bd731"
+  },
+  "/home/sstratton/work/skaphos/keleustes/internal/audit/emitter.go": {
+    "mtime": 1779057514.9939513,
+    "hash": "35fec8834366dd46b2fbdadda62671ad"
+  },
+  "/home/sstratton/work/skaphos/keleustes/internal/audit/envelope_test.go": {
+    "mtime": 1779057543.2454107,
+    "hash": "57902bcf1be1996658e5c6b4ad82cc05"
+  },
+  "/home/sstratton/work/skaphos/keleustes/internal/audit/ulid_test.go": {
+    "mtime": 1779057580.450294,
+    "hash": "03b2d9861bcb9d1ffd24ea973176aae3"
+  },
+  "/home/sstratton/work/skaphos/keleustes/internal/audit/ulid.go": {
+    "mtime": 1779057419.4315696,
+    "hash": "51b4a343136db8a44f86c9986cc11c0a"
+  },
+  "/home/sstratton/work/skaphos/keleustes/internal/audit/envelope.go": {
+    "mtime": 1779057472.8294797,
+    "hash": "3fcd12f3eeeac2e3c788277d61cc8e0f"
+  },
+  "/home/sstratton/work/skaphos/keleustes/internal/audit/payload.go": {
+    "mtime": 1779057381.4551764,
+    "hash": "1e98bb10cdd031da3565da5e65f62b4d"
+  },
+  "/home/sstratton/work/skaphos/keleustes/internal/audit/emitter_test.go": {
+    "mtime": 1779057559.2583902,
+    "hash": "dca316099fae5efa94891a23d0059c9e"
+  },
+  "/home/sstratton/work/skaphos/keleustes/internal/audit/payloads/registry.go": {
+    "mtime": 1779057490.5024323,
+    "hash": "b859196cc55fd424f24d86c7e8c1d7db"
+  },
+  "/home/sstratton/work/skaphos/keleustes/internal/audit/payloads/crd_write.go": {
+    "mtime": 1779057483.9447262,
+    "hash": "a431d760d1e2c75b3fb247110acddabf"
+  },
+  "/home/sstratton/work/skaphos/keleustes/internal/audit/redaction/redact.go": {
+    "mtime": 1779057614.584671,
+    "hash": "83914de91e1bc81aa33ff70b3f06e6d5"
+  },
+  "/home/sstratton/work/skaphos/keleustes/internal/audit/redaction/redact_test.go": {
+    "mtime": 1779057573.5422943,
+    "hash": "a24d3860588d0ec6e025bf74c7238d9c"
+  },
+  "/home/sstratton/work/skaphos/keleustes/internal/audit/webhook/doc.go": {
+    "mtime": 1779057637.1308692,
+    "hash": "edd1aee280d05af8b185b5a3e43afe03"
+  },
+  "/home/sstratton/work/skaphos/keleustes/internal/audit/webhook/handler.go": {
+    "mtime": 1779057675.1498168,
+    "hash": "59f2e508c5e05d214d8ec9fcd1787b8a"
+  },
+  "/home/sstratton/work/skaphos/keleustes/internal/audit/webhook/handler_test.go": {
+    "mtime": 1779057716.332032,
+    "hash": "31a6623b635fbb839eef28fcfcec8b2d"
+  },
   "/home/sstratton/work/skaphos/keleustes/internal/cli/root.go": {
     "mtime": 1778819076.925812,
     "hash": "cd416356506c9830f1d05a180aa89149"
@@ -196,59 +284,59 @@
     "hash": "b70bcf7ec12ed72fe0d5544d9eab6bb1"
   },
   "/home/sstratton/work/skaphos/keleustes/config/crd/bases/keleustes.skaphos.io_syncruns.yaml": {
-    "mtime": 1778981402.5339003,
+    "mtime": 1779057747.5951614,
     "hash": "45c3872bfb06d0d464663d487bf76f05"
   },
   "/home/sstratton/work/skaphos/keleustes/config/crd/bases/keleustes.skaphos.io_promotionpolicies.yaml": {
-    "mtime": 1778981402.5295002,
+    "mtime": 1779057747.5951614,
     "hash": "c7f5bdbadb170d8ea00238211b64eafe"
   },
   "/home/sstratton/work/skaphos/keleustes/config/crd/bases/keleustes.skaphos.io_environments.yaml": {
-    "mtime": 1778981402.5295002,
+    "mtime": 1779057747.5863686,
     "hash": "af23b38ea546080c67e1518b1aafec5e"
   },
   "/home/sstratton/work/skaphos/keleustes/config/crd/bases/keleustes.skaphos.io_promotions.yaml": {
-    "mtime": 1778981402.5295002,
+    "mtime": 1779057747.5951614,
     "hash": "45a773d426055a9570d07716fa26b824"
   },
   "/home/sstratton/work/skaphos/keleustes/config/crd/bases/keleustes.skaphos.io_deploymenttargets.yaml": {
-    "mtime": 1778981402.5295002,
+    "mtime": 1779057747.5863686,
     "hash": "5417e3f1ab74e7ae10e62ff14732da3a"
   },
   "/home/sstratton/work/skaphos/keleustes/config/crd/bases/keleustes.skaphos.io_deployments.yaml": {
-    "mtime": 1778981402.5295002,
+    "mtime": 1779057747.5863686,
     "hash": "32219390a6311026ec04bd19868c4288"
   },
   "/home/sstratton/work/skaphos/keleustes/config/crd/bases/keleustes.skaphos.io_cells.yaml": {
-    "mtime": 1778981402.5295002,
+    "mtime": 1779057747.5863686,
     "hash": "f6c11b35b1620027061d4d37507c4a20"
   },
   "/home/sstratton/work/skaphos/keleustes/config/crd/bases/keleustes.skaphos.io_healthchecks.yaml": {
-    "mtime": 1778981402.5295002,
+    "mtime": 1779057747.590765,
     "hash": "4832adb571f0099f4e0eed969c0fff55"
   },
   "/home/sstratton/work/skaphos/keleustes/config/crd/bases/keleustes.skaphos.io_releases.yaml": {
-    "mtime": 1778981402.5339003,
+    "mtime": 1779057747.5951614,
     "hash": "69a488e124777f5e80f522231ef8dc51"
   },
   "/home/sstratton/work/skaphos/keleustes/config/crd/bases/keleustes.skaphos.io_freezewindows.yaml": {
-    "mtime": 1778981402.5295002,
+    "mtime": 1779057747.590765,
     "hash": "3e816c6ccc8c3dc147224fd2ed7c7182"
   },
   "/home/sstratton/work/skaphos/keleustes/config/crd/bases/keleustes.skaphos.io_syncplans.yaml": {
-    "mtime": 1778981402.5339003,
+    "mtime": 1779057747.5951614,
     "hash": "738afabbd9b0ff76776c98638d636731"
   },
   "/home/sstratton/work/skaphos/keleustes/config/crd/bases/keleustes.skaphos.io_applications.yaml": {
-    "mtime": 1778981402.5251002,
+    "mtime": 1779057747.5863686,
     "hash": "400f8e806c481d6e1083323f8873d854"
   },
   "/home/sstratton/work/skaphos/keleustes/config/crd/bases/keleustes.skaphos.io_sources.yaml": {
-    "mtime": 1778981402.5339003,
+    "mtime": 1779057747.5951614,
     "hash": "e620769106539e8091eaf6d86fef2fce"
   },
   "/home/sstratton/work/skaphos/keleustes/config/crd/bases/keleustes.skaphos.io_approvals.yaml": {
-    "mtime": 1778981402.5295002,
+    "mtime": 1779057747.5863686,
     "hash": "33333f7de9477c26c1fc39287cf8fb20"
   },
   "/home/sstratton/work/skaphos/keleustes/config/default/kustomization.yaml": {
@@ -300,7 +388,7 @@
     "hash": "8e01e78c51d687d384be2e479d9675de"
   },
   "/home/sstratton/work/skaphos/keleustes/config/rbac/role.yaml": {
-    "mtime": 1778981402.4987001,
+    "mtime": 1779057747.5511978,
     "hash": "d15464f4d7810b9869f226171198e149"
   },
   "/home/sstratton/work/skaphos/keleustes/config/rbac/leader_election_role.yaml": {
