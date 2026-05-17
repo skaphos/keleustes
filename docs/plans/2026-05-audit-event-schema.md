@@ -543,6 +543,8 @@ in §12 of the runtime plan and is out of scope here.
 
 ## 10. Persistence — What the Schema Demands
 
+> **Satisfied by [`2026-05-jetstream-subject-and-stream-layout.md`](./2026-05-jetstream-subject-and-stream-layout.md) (SKA-324, active interim contract).** Every demand listed below has a concrete answer in that plan: §5 spells out the `keleustes-audit` stream (30 d hot, R≥3, file storage, `discard: old`); §6 spells out the `audit-index` NATS KV bucket keyed by `<subject.ulid>/<eventId>` with a 7 d TTL; §7 spells out the object-storage archive layout (`<bucket>/audit/segments/<YYYY-MM>/<segment-id>.json`); §4.4 resolves §15 Q1 below (partition value = `subject.ulid`-derived shard for events with subjects, literal `"cluster"` for system events).
+
 This plan does **not** specify the JetStream subject hierarchy or
 stream partitioning shape — that is SKA-324's job. What this plan
 demands of SKA-324:
