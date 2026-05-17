@@ -31,7 +31,8 @@ Last updated: 2026-05-17.
 | [0003](./adr/0003-git-source-of-truth-invariant.md) | Git source-of-truth invariant                                 | Accepted   | `2026-05-rbac-audit-and-git-invariant.md` §3, §6, §9, §11. Refines PROPOSAL §11 (Sync rules), §14 (Git mutation), §22 (design principles). |
 | [0004](./adr/0004-crd-based-rbac.md) | CRD-based RBAC model                                                       | Accepted   | `2026-05-rbac-audit-and-git-invariant.md` §4–§5, §11 questions 1–5. Refines PROPOSAL §15 (policy gates) and §18 (API auth).            |
 | [0005](./adr/0005-distributed-runtime.md) | Distributed runtime (hub + agents, NATS JetStream, no RDBMS)          | Accepted   | `2026-05-distributed-runtime-architecture.md` §13 (open questions). **Supersedes PROPOSAL §10 (deployment), §19 (data model — no Postgres), §21 (storage bullets — no Postgres/Redis).** |
-| [0006](./adr/0006-engine-boundaries.md) | Engine boundaries and `gitops-engine` reuse                              | Accepted — amended twice on 2026-05-17 (SKA-327 spike findings; soft-fork strategy abandoned) | `2026-05-engine-boundaries-and-technology-integration.md` §7 questions 1–8 and 14–15. **Refines PROPOSAL §9 (architecture — 7 engines + Render, not 3), §11 (sync engine — `gitops-engine` reuse), §13 (diff model), §12 (health model).** |
+| [0006](./adr/0006-engine-boundaries.md) | Engine boundaries and `gitops-engine` reuse                              | Accepted — amended twice on 2026-05-17 (SKA-327 spike findings; soft-fork strategy abandoned). Afternoon amendment's *Decision* paragraph **partially superseded by ADR 0007** (k8s.io ceiling no longer steady-state). | `2026-05-engine-boundaries-and-technology-integration.md` §7 questions 1–8 and 14–15. **Refines PROPOSAL §9 (architecture — 7 engines + Render, not 3), §11 (sync engine — `gitops-engine` reuse), §13 (diff model), §12 (health model).** |
+| [0007](./adr/0007-hard-fork-gitops-engine.md) | Hard-fork `gitops-engine` into `skaphos/gitops-engine`                  | Accepted   | ADR 0006 "Soft-fork strategy abandoned" amendment's *Decision* paragraph (frozen v0.34 ceiling). ADR 0006 §4's "vanilla upstream" import-path implication. Refines `docs/plans/2026-05-gitops-engine-spike.md` (extraction strategy + backport workflow now in-tree). |
 
 ## Active interim contracts
 
@@ -59,7 +60,7 @@ durable conclusions live in the ADRs they fed into.
 
 | Plan                                                                          | Linear  | Verdict                                                                  |
 |-------------------------------------------------------------------------------|---------|---------------------------------------------------------------------------|
-| [`2026-05-gitops-engine-spike.md`](./plans/2026-05-gitops-engine-spike.md)   | SKA-327 | Adopt vanilla upstream `gitops-engine`; accept k8s.io ≤ v0.34 as steady-state ceiling. **Originally** recommended a soft fork; reversed within hours after the `pkg/utils/kube/scheme` blanket-install was discovered to hold the ceiling independently. Conclusions promoted into ADR 0006's amendments. |
+| [`2026-05-gitops-engine-spike.md`](./plans/2026-05-gitops-engine-spike.md)   | SKA-327 | Adopt `gitops-engine`. The spike landed on "vanilla upstream + accept k8s.io ≤ v0.34 ceiling" (ADR 0006 amendments). **Superseded by [ADR 0007](./adr/0007-hard-fork-gitops-engine.md)** the same evening — Skaphos hard-forks the engine into `github.com/skaphos/gitops-engine` so the ceiling lift becomes a Skaphos-internal task (SKA-430 extraction, SKA-421 rescoped). |
 
 ## Plans that have not yet stabilized
 

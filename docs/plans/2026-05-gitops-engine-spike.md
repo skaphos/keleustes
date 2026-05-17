@@ -223,7 +223,7 @@ living library.
 
 ## Decision: adoption strategy
 
-> ⚠️ *This section's chosen option ("soft fork + upstream PR + 90-day check") was reversed within hours of the report landing. The current decision is "Use as-is" against vanilla upstream. See [Update 2026-05-17 (afternoon)](#update-2026-05-17-afternoon--soft-fork-abandoned) and the corresponding [ADR 0006 amendment](../adr/0006-engine-boundaries.md#2026-05-17-afternoon--soft-fork-strategy-abandoned). The original analysis below is retained for historical record.*
+> ⚠️ *This section's chosen option ("soft fork + upstream PR + 90-day check") was reversed within hours of the report landing. The "Use as-is against vanilla upstream" decision that briefly replaced it has itself been **superseded by [ADR 0007](../adr/0007-hard-fork-gitops-engine.md)** (hard-fork to `github.com/skaphos/gitops-engine`, extraction under SKA-430). See also [Update 2026-05-17 (afternoon)](#update-2026-05-17-afternoon--soft-fork-abandoned) and the [ADR 0006 amendment](../adr/0006-engine-boundaries.md#2026-05-17-afternoon--soft-fork-strategy-abandoned). The original analysis below is retained for historical record.*
 
 Three options were considered before the spike:
 
