@@ -48,6 +48,27 @@ proposal at `docs/PROPOSAL.md`.
 - `docs/` — architecture notes and ADRs (`docs/adr/`).
 - `ui/` — placeholder for the React/TypeScript UI described in PROPOSAL §16.
 
+## Knowledge Graph (`graphify`)
+
+This repository is mapped by [`graphify`](https://github.com/skaphos/graphify).
+The committed output lives under `graphify-out/` (`GRAPH_REPORT.md`,
+`graph.json`, `graph.html`, `manifest.json`). Working state — `cache/` and
+`cost.json` — is gitignored. If `graphify-out/` is stale relative to recent
+code changes, refresh it with `graphify update .` (AST-only; no API cost).
+
+- **Before** reading source files, running `grep`/`glob` searches, or answering
+  any cross-cutting codebase question, read `graphify-out/GRAPH_REPORT.md`.
+  The graph is the primary map of the codebase; raw file reads are the
+  fallback.
+- If `graphify-out/wiki/index.md` exists, navigate it instead of reading
+  individual files.
+- For "how does X relate to Y" / "where is X used" / "what depends on X"
+  questions, prefer `graphify query "<question>"`, `graphify path "<A>" "<B>"`,
+  or `graphify explain "<concept>"` over `grep` — these traverse the graph's
+  EXTRACTED and INFERRED edges instead of scanning files.
+- After modifying code, run `graphify update .` to keep the graph current
+  (AST-only refresh; no API cost).
+
 ## Build, Test, and Development Commands
 
 All workflows are wrapped in tasks; never invoke `controller-gen` /
