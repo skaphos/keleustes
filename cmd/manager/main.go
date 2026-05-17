@@ -26,6 +26,7 @@ import (
 
 	keleustesv1alpha1 "github.com/skaphos/keleustes/api/v1alpha1"
 	"github.com/skaphos/keleustes/internal/controller"
+	"github.com/skaphos/keleustes/internal/observability"
 )
 
 var (
@@ -53,6 +54,8 @@ func main() {
 	flag.Parse()
 
 	ctrl.SetLogger(zap.New(zap.UseFlagOptions(&opts)))
+
+	observability.Register()
 
 	mgr, err := ctrl.NewManager(ctrl.GetConfigOrDie(), ctrl.Options{
 		Scheme:                 scheme,
