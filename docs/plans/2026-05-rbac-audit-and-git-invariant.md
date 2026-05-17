@@ -323,7 +323,7 @@ This is the rendering side of the Git invariant: if rendering depends on somethi
 **Next steps after review of this plan**
 
 - ~~Confirm the Git-source-of-truth invariant as a non-negotiable design constraint (suitable for an early ADR).~~ — landed as [ADR 0003](../adr/0003-git-source-of-truth-invariant.md); §11 questions 6 and 7 are resolved there.
-- Decide on the policy evaluator question (§11.1) — Casbin vs. custom.
+- ~~Decide on the policy evaluator question (§11.1) — Casbin vs. custom.~~ — landed as [ADR 0004](../adr/0004-crd-based-rbac.md); §11 questions 1–5 are resolved there.
 - Sketch `IdentityProvider`, `Role`, `RoleBinding`, `Project`, `ApprovalPolicy` CRD shapes for MVP 1 scaffolding.
 - Define the audit event Protobuf / JSON schema and version it (it will be load-bearing for years).
 - Begin a tactical plan for the MVP 1 audit pipeline (CRD write → JetStream publish → NATS KV index → UI tab).
