@@ -22,6 +22,8 @@ func NewRootCommand() *cobra.Command {
 		SilenceUsage: true,
 	}
 
+	root.AddCommand(newGetCommand())
+	root.AddCommand(newDescribeCommand())
 	root.AddCommand(newAppCommand())
 	root.AddCommand(newMatrixCommand())
 	root.AddCommand(newReleaseCommand())
