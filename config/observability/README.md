@@ -41,12 +41,20 @@ both.
    via kustomize patch if your Prometheus instance selects on a different
    label.
 
-2. **`kube-state-metrics`** (only if you want the CRD-state metrics) —
-   install via the [`kube-state-metrics` Helm chart](https://github.com/prometheus-community/helm-charts/tree/main/charts/kube-state-metrics).
-   Feed the `keleustes-customresource-state` ConfigMap's `config.yaml` to the
-   `--custom-resource-state-config-file` flag, e.g. via the chart's
-   `customResourceState.config` value. Without this step the `keleustes_*`
-   metrics in the dashboard show no data; the dashboard still renders.
+2. **`kube-state-metrics`** — required, not optional. Install via the
+   [`kube-state-metrics` Helm chart](https://github.com/prometheus-community/helm-charts/tree/main/charts/kube-state-metrics).
+   Two things in this bundle depend on it:
+   - The `KeleustesManagerHighRestartRate` alert reads
+     `kube_pod_container_status_restarts_total`, which is emitted by
+     kube-state-metrics. Without it, the alert is permanently inert.
+   - The CRD-state metrics (`keleustes_application_*`,
+     `keleustes_syncrun_*`, `keleustes_promotion_*`,
+     `keleustes_notifier_*`) come from the
+     `keleustes-customresource-state` ConfigMap, fed to kube-state-metrics
+     via the `--custom-resource-state-config-file` flag (the Helm chart's
+     `customResourceState.config` value takes the inline body).
+   Without kube-state-metrics, the dashboard renders empty CRD-status
+   panels and one alert never evaluates with data.
 
 3. **Grafana** with either the dashboard-discovery sidecar
    (`kiwigrid/k8s-sidecar`, default in `kube-prometheus-stack`) or
@@ -61,7 +69,13 @@ kubectl apply -k config/observability/
 ```
 
 Apply the underlying Keleustes install (or at least `config/default/`) first
-so the `controller-manager-metrics` Service exists.
+so the `keleustes-controller-manager-metrics` Service exists (the
+`controller-manager-metrics` Service defined in `config/manager/service.yaml`
+is renamed by `config/default/`'s `namePrefix: keleustes-`). The `job=`
+label on scraped metrics is `controller-manager-metrics` regardless of the
+kustomize prefix — that value comes from the Service's
+`keleustes.skaphos.io/scrape-job` label and is what every PrometheusRule /
+dashboard query selects on.
 
 ## Override examples
 

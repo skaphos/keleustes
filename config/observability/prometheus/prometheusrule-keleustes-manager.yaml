@@ -5,6 +5,11 @@
 # §7: every alert carries a `runbook` annotation pointing at the published
 # docs site. Runbook URLs are stable promises — they will not 404 once the
 # docs site is live.
+#
+# Queries select on `job="controller-manager-metrics"`, which is the value
+# of the manager Service's `keleustes.skaphos.io/scrape-job` label projected
+# via the ServiceMonitor's `jobLabel:` setting. The job label is stable
+# across kustomize renames.
 
 apiVersion: monitoring.coreos.com/v1
 kind: PrometheusRule
@@ -22,24 +27,30 @@ spec:
     - name: keleustes.manager.recording
       interval: 30s
       rules:
-        # Per-controller reconcile success rate over 5 minutes.
-        - record: keleustes:reconcile_success_rate_5m
+        # Per-controller reconcile rate. Used as the denominator for the
+        # error-rate alert below; broken out as a recording rule so the
+        # alert expression stays scannable.
+        - record: keleustes:reconcile_rate_5m
           expr: |
-            (
-              sum by (controller) (
-                rate(controller_runtime_reconcile_total{job="controller-manager-metrics"}[5m])
-              )
-              -
-              sum by (controller) (
-                rate(controller_runtime_reconcile_errors_total{job="controller-manager-metrics"}[5m])
-              )
+            sum by (controller) (
+              rate(controller_runtime_reconcile_total{job="controller-manager-metrics"}[5m])
             )
-            /
-            clamp_min(
-              sum by (controller) (
+
+        # Per-controller reconcile error rate. `or` with a zero vector
+        # coalesces missing error series to 0 — a freshly started
+        # controller emits the totals counter long before it emits the
+        # errors counter, and we don't want recording-rule output to
+        # disappear during that window.
+        - record: keleustes:reconcile_error_rate_5m
+          expr: |
+            sum by (controller) (
+              rate(controller_runtime_reconcile_errors_total{job="controller-manager-metrics"}[5m])
+            )
+            or
+            (
+              0 * sum by (controller) (
                 rate(controller_runtime_reconcile_total{job="controller-manager-metrics"}[5m])
-              ),
-              1
+              )
             )
 
     # ---- Alerts ------------------------------------------------------------
@@ -48,7 +59,7 @@ spec:
         - alert: KeleustesManagerDown
           expr: |
             absent_over_time(up{job="controller-manager-metrics"}[5m]) == 1
-            OR
+            or
             max_over_time(up{job="controller-manager-metrics"}[5m]) == 0
           for: 5m
           labels:
@@ -80,7 +91,8 @@ spec:
               Frequent restarts usually indicate either a panic in the
               reconciler hot path, OOM, or an upstream API problem
               (kube-apiserver unreachable). Check `kubectl logs --previous`
-              on the affected pod.
+              on the affected pod. Requires kube-state-metrics — without it
+              this expression has no data.
             runbook: "https://docs.keleustes.skaphos.io/runbooks/manager-restart-rate"
 
         - alert: KeleustesManagerLeaderElectionFlapping
@@ -103,10 +115,19 @@ spec:
             runbook: "https://docs.keleustes.skaphos.io/runbooks/leader-election-flapping"
 
         - alert: KeleustesManagerHighReconcileErrorRate
+          # Gate on non-zero reconcile traffic — otherwise an idle
+          # controller's 0/0 looks like 100% errors. The `> 0.01` denominator
+          # check requires at least one reconcile per 1.5 minutes (approx)
+          # before the alert can fire, which matches "the controller is
+          # doing work but it's failing."
           expr: |
             (
-              1 - keleustes:reconcile_success_rate_5m
+              keleustes:reconcile_error_rate_5m
+              /
+              keleustes:reconcile_rate_5m
             ) > 0.10
+            and
+            keleustes:reconcile_rate_5m > 0.01
           for: 15m
           labels:
             severity: warning
@@ -122,10 +143,12 @@ spec:
             runbook: "https://docs.keleustes.skaphos.io/runbooks/reconcile-error-rate"
 
         - alert: KeleustesManagerHighWorkqueueDepth
+          # Instantaneous depth gated on `for: 10m` — Prometheus' own `for`
+          # window handles the "sustained, not spiky" semantic; layering
+          # `max_over_time` on top would amplify single-scrape spikes into
+          # full-window alerts.
           expr: |
-            max_over_time(
-              workqueue_depth{job="controller-manager-metrics"}[10m]
-            ) > 100
+            workqueue_depth{job="controller-manager-metrics"} > 100
           for: 10m
           labels:
             severity: warning

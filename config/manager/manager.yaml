@@ -29,6 +29,10 @@ spec:
       labels:
         control-plane: controller-manager
         app.kubernetes.io/name: keleustes
+        # Projected into the `engine` metric label by the ServiceMonitor
+        # relabel rule (see config/observability/prometheus/). Matches the
+        # closed label vocabulary in internal/observability/labels.go.
+        keleustes.skaphos.io/engine: manager
     spec:
       securityContext:
         runAsNonRoot: true
