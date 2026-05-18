@@ -70,15 +70,17 @@ worth a comment.
 
 - **DCO required.** Every commit must carry a `Signed-off-by:` trailer.
   Authors use `git commit --signoff`.
+<!-- REUSE-IgnoreStart -->
 - **REUSE 3.3 compliant.** Hand-written Go / YAML / Markdown source
-  files carry inline SPDX headers (`SPDX-FileCopyrightText: 2026 Skaphos`
-  + `SPDX-License-Identifier: MIT`). Dotfiles, JSON configs, and other
-  formats that can't carry comments (e.g. `.gitignore`, `.tool-versions`,
-  `staticcheck.conf`, `.repokeeper-repo.yaml`) are covered by the
-  blanket `**` annotation in `REUSE.toml` and need no inline header.
-  Generated files inherit headers via tooling. **Let `pipx run reuse
-  lint` be the arbiter** — only flag a missing header when `reuse lint`
-  would also flag it.
+  files carry inline SPDX headers (the standard two-line
+  `SPDX-FileCopyrightText: 2026 Skaphos` + `SPDX-License-Identifier: MIT`
+  pair). Dotfiles, JSON configs, and other formats that can't carry
+  comments (e.g. `.gitignore`, `.tool-versions`, `staticcheck.conf`,
+  `.repokeeper-repo.yaml`) are covered by the blanket `**` annotation
+  in `REUSE.toml` and need no inline header. Generated files inherit
+  headers via tooling. **Let `pipx run reuse lint` be the arbiter** —
+  only flag a missing header when `reuse lint` would also flag it.
+<!-- REUSE-IgnoreEnd -->
 - **Conventional Commits.** Commit subjects use `feat:`, `fix:`, `docs:`,
   `chore:`, `ci:`, `refactor:`, `test:`, `perf:`. `release-please` infers
   next version from these on `main`.
