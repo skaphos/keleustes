@@ -33,7 +33,7 @@ func parseOutputFormat(s string) (outputFormat, error) {
 	case outputTable, outputWide, outputJSON, outputYAML:
 		return outputFormat(s), nil
 	default:
-		return outputTable, fmt.Errorf("unsupported -o format %q; valid: table (default), yaml, json", s)
+		return outputTable, fmt.Errorf("unsupported -o format %q; valid: table (default), wide, yaml, json", s)
 	}
 }
 
