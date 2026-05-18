@@ -5,7 +5,7 @@ SPDX-License-Identifier: MIT
 
 # ADR 0007 — Hard-fork `gitops-engine` into `skaphos/gitops-engine`
 
-- **Status:** Accepted
+- **Status:** Accepted — amended 2026-05-18 (friendly-fork posture clarification — see Amendments below)
 - **Date:** 2026-05-17
 - **Deciders:** Platform Architecture (Skaphos)
 - **Linear:** SKA-430 (extraction execution), SKA-421 (k8s.io ceiling lift, rescoped against the fork)
@@ -13,6 +13,28 @@ SPDX-License-Identifier: MIT
 - **Supersedes:**
   - ADR 0006 "2026-05-17 (afternoon) — Soft-fork strategy abandoned" amendment's *Decision* paragraph that froze the k8s.io ≤ v0.34 ceiling as a steady-state constraint. That framing assumed staying on vanilla upstream; this ADR moves to a Skaphos-owned fork instead.
   - ADR 0006 §4's implicit assumption that the canonical import path is `github.com/argoproj/argo-cd/gitops-engine`. Under this ADR the canonical path becomes `github.com/skaphos/gitops-engine`.
+
+## Amendments
+
+### 2026-05-18 — Friendly-fork posture clarification
+
+The original §3 ("Backport workflow") framed the fork as one-directional: backports come down from argoproj; Skaphos changes do not ship back up. Operator override during the SKA-430 extraction reversed that framing — `skaphos/gitops-engine` is a **friendly fork** that actively maintains the intent to upstream Skaphos-originated work.
+
+**What changed in the shipped fork:**
+
+- `README.md` and `NOTICE` call the repo a *friendly fork* rather than a divergent one.
+- The fork ships an [`UPSTREAMING.md`](https://github.com/skaphos/gitops-engine/blob/main/UPSTREAMING.md) tracking outbound PRs in three stages — Pending → Submitted → Merged. The first row, currently in *Pending outbound*, is commit `eb643e2 chore(gitops-engine): drop dead autoscaling/v2beta1 and v2beta2 references`, the cleanup carried forward from the SKA-327 spike.
+- The `UPSTREAMING.md` author checklist requires every Skaphos commit be shaped for verbatim (or near-verbatim) upstream PR submission: atomic, upstream-style subject lines, no Skaphos-only jargon, no Linear-only references. Commits that genuinely can't be upstreamed (Skaphos-specific abstractions in shared paths) get a tracking row explaining why.
+
+**What is unchanged:** §1 (extraction sequence — already executed under SKA-430), §2 (Apache-2.0 license + NOTICE attribution stanza), §4 (containment rule), §5 (ceiling-lift mechanism — SKA-421 still lands on the fork first for unblocking). The fork's *existence* is still justified by the maintenance-velocity worry from §3 and the SKA-327 spike. The amendment changes the **intent** behind the fork, not the **mechanism**.
+
+**Why the change.** The hard-fork framing in the original §3 was a tactical response to maintenance-velocity worry, not a position on the Argo ecosystem. The friendly-fork posture preserves the unblock-now benefit while keeping the door open to feeding improvements back upstream when they're ready. It also reduces the risk that the fork drifts into a permanent silo of Skaphos-only changes: the discipline of "shape every commit so it could be upstreamed verbatim" is a forcing function for keeping the divergence small.
+
+**Compliance updates carried by this amendment:**
+
+- §3's first sentence below ("The fork does **not** ship patches back to argoproj") is **superseded** by this amendment. The §3 sentence that already permits upstreaming "as a normal GitHub PR through argoproj's contribution flow" is now the canonical operating mode, expanded by the `UPSTREAMING.md` tracking discipline.
+- The "no upstream feedback loop" item in the original *Consequences → Negative* list is downgraded: the feedback loop now exists (via `UPSTREAMING.md`), and the residual risk is that Skaphos forgets to *use* it. The author checklist is the mitigation.
+- `docs/DECISIONS.md` is updated to flag this amendment alongside the ADR 0007 row.
 
 ## Context
 
@@ -47,6 +69,8 @@ The fork tracks `argoproj/argo-cd` as `upstream-monorepo` and pulls in changes v
 Cadence: every argo-cd minor release **or** quarterly, whichever fires first. Critical CVEs that land upstream trigger out-of-band syncs scoped to the specific affected commits.
 
 The fork does **not** ship patches back to argoproj. If a Skaphos change is genuinely upstreamable — e.g., the scheme-registration refactor — it goes upstream as a normal GitHub PR through argoproj's contribution flow, not through the format-patch series. The series exists to record Skaphos divergence, not to bridge contribution back upstream.
+
+> **Superseded by the [2026-05-18 amendment](#2026-05-18--friendly-fork-posture-clarification) above.** The fork is now a *friendly fork* that actively maintains the intent to upstream. Skaphos changes are shaped so they can be PR'd to argoproj verbatim, and the [`UPSTREAMING.md`](https://github.com/skaphos/gitops-engine/blob/main/UPSTREAMING.md) on the fork repo tracks every outbound candidate. The "format-patch series records divergence" framing stands — `UPSTREAMING.md` is the new bridge.
 
 ### 4. Containment rule and engine boundaries (unchanged)
 
