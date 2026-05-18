@@ -81,7 +81,7 @@ Same Keleustes GitHub App, but Keleustes uses **installation tokens** instead of
      ```
      Co-authored-by: Alice Example <alice@example.com>
      ```
-     where the email is Alice's OIDC subject. GitHub recognizes `Co-authored-by:` and attributes contribution accordingly on her profile.
+     where the email is Alice's provider-resolved GitHub account email, not her OIDC subject. GitHub recognizes `Co-authored-by:` for profile attribution only when that email is verified on her GitHub account; if Keleustes cannot resolve/store a verified GitHub email, it must still record Alice in audit and PR metadata but must not claim GitHub profile attribution from the trailer.
    - PR body header:
      ```
      **Triggered by:** alice@example.com (via Keleustes Promotion `payments/checkout-api-to-prod`)
