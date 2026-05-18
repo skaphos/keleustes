@@ -74,6 +74,7 @@ the "active interim contract" tier.
 - [`2026-05-observability-stack.md`](./plans/2026-05-observability-stack.md) — *§12 open questions promoted into ADR 0002. Per-engine dashboard set and alert taxonomy still working.*
 - [`2026-05-rbac-audit-and-git-invariant.md`](./plans/2026-05-rbac-audit-and-git-invariant.md) — *Git invariant promoted into ADR 0003; RBAC into ADR 0004; audit envelope formalized in the active interim contract above (SKA-322).*
 - [`2026-05-operator-crd-integration.md`](./plans/2026-05-operator-crd-integration.md) — *SKA-431. `HealthAssessor` + `DiffNormalizer` CRD surfaces for customer-extensible health/diff rules, Skaphos-curated registry, CRD-owner-shipped, precedence + audit. Draft as of 2026-05-18; promotes to an active interim contract once §12 open questions resolve and the first MVP 1 reconciler scaffolds land.*
+- [`2026-05-value-change-promotion.md`](./plans/2026-05-value-change-promotion.md) — *SKA-432. Extends `Promotion.spec.changes[]` to carry structured value diffs; `Application.spec.values.schema[]` is the path-allowlist + Git-resolution contract; Git Mutation Engine produces one PR per Promotion. Mixed-mode (release + changes) composes both intent types. Draft as of 2026-05-18; promotes once MVP 2 ships the first reconciler + Git Mutation Engine handoff (SKA-352, SKA-353).*
 
 ## Process: keeping this index honest
 
