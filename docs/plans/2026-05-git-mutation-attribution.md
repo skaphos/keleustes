@@ -138,12 +138,19 @@ spec:
       # The App's GitHub-side App ID (numeric). Public — not a secret.
       appId: 123456
       # Reference to a Secret carrying the App's private key (PEM).
-      # Keleustes uses the key to mint installation tokens (for
-      # bot-with-trailer mode) and to verify webhook deliveries from
-      # GitHub if/when webhook receivers (SKA-357) come online.
+      # Keleustes uses the key to mint JWTs and installation tokens
+      # for GitHub App authentication (for example in
+      # bot-with-trailer mode).
       privateKeySecretRef:
         name: keleustes-github-app
         key: key.pem
+      # Reference to a Secret carrying the App's webhook secret.
+      # GitHub webhook deliveries are verified with this shared
+      # secret via HMAC signature validation when webhook receivers
+      # (SKA-357) come online.
+      webhookSecretRef:
+        name: keleustes-github-app
+        key: webhook_secret
       # Public client ID used in user OAuth flows. Public.
       clientId: Iv1.0123456789abcdef
       # Client secret for the user OAuth flow (only needed when
