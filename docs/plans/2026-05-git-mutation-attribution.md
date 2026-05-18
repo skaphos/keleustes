@@ -456,7 +456,7 @@ Additive per §5.1 of audit-event-schema; no `schemaVersion` bump.
 | --- | --- |
 | **MVP 2** | The Mutation Engine ships with `bot-with-trailer` and `user-to-server` modes for **GitHub.com only** (GHES + other providers follow). IdentityProvider gains the `gitMutationAttribution` field. Token store backend defaults to `secret-per-user` (NATS KV migration ships when SKA-365 lands). Web-UI OAuth callback wired; CLI uses device flow. Audit-envelope wiring for the wire-identity / delegated-from split lands. Per-Project + per-Application overrides functional. |
 | **MVP 3** | GitHub Enterprise Server support (per-customer App publishing). GitLab provider (OAuth + Project access tokens). Azure DevOps provider (Service Principal default + PAT fallback). Token store migration to NATS KV (SKA-365). Bot-with-trailer's `Co-authored-by:` cap. Rate-limit observability dashboard. |
-| **MVP 4** | Bitbucket provider. Scheduled service-account credential rotation. UI for per-user active-sessions (revoke an alice's token from the operator console). SIEM-export of `git-pr-opened` events with the new payload fields. |
+| **MVP 4** | Bitbucket provider. Scheduled service-account credential rotation. UI for per-user active sessions (revoke a user's token from the operator console). SIEM-export of `git-pr-opened` events with the new payload fields. |
 
 ## 13. Concrete Follow-ups
 
