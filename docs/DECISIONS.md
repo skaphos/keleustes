@@ -73,6 +73,7 @@ the "active interim contract" tier.
 - [`2026-05-extensibility-plugin-surfaces.md`](./plans/2026-05-extensibility-plugin-surfaces.md) — *§10 open questions promoted into ADR 0001. Per-surface envelope and dispatcher specifics are still working material.*
 - [`2026-05-observability-stack.md`](./plans/2026-05-observability-stack.md) — *§12 open questions promoted into ADR 0002. Per-engine dashboard set and alert taxonomy still working.*
 - [`2026-05-rbac-audit-and-git-invariant.md`](./plans/2026-05-rbac-audit-and-git-invariant.md) — *Git invariant promoted into ADR 0003; RBAC into ADR 0004; audit envelope formalized in the active interim contract above (SKA-322).*
+- [`2026-05-operator-crd-integration.md`](./plans/2026-05-operator-crd-integration.md) — *SKA-431. `HealthAssessor` + `DiffNormalizer` CRD surfaces for customer-extensible health/diff rules, Skaphos-curated registry, CRD-owner-shipped, precedence + audit. Draft as of 2026-05-18; promotes to an active interim contract once §12 open questions resolve and the first MVP 1 reconciler scaffolds land.*
 
 ## Process: keeping this index honest
 
