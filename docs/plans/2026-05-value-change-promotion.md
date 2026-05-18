@@ -136,7 +136,7 @@ status:
 | `path` | string | yes | The logical path (matches an entry in `Application.spec.values.schema[]` — see §5). Not a JSON Pointer; not a raw file path. Path resolution to a `(file, JSON Pointer)` location happens in the Promotion Engine. |
 | `from` | scalar / object | **yes** | The current value as observed in the **Git desired-state** at the resolved location (read via the Source Engine), *not* live cluster state. Validated at admission time; mismatch rejects (prevents stale-edit races). |
 | `to` | scalar / object | yes | The new value. Validated against the schema's `constraints`. |
-| `reason` | string | yes for human-actors, no for `system`/`ci` | Free text, audit-bearing. The API server populates from `Promotion.spec.intent` for human actors that omit it. |
+| `reason` | string | yes for human-actors, no for `system`/`ci` | Free text, audit-bearing. For human actors that omit it, the API server populates it from the create request's audit-envelope `intent` (request metadata), not from a `Promotion.spec.intent` field. |
 
 `from` is mandatory and validated to prevent the classic "two people edit replicas at the same time, second one clobbers the first" race. **The comparison target is the Git desired state**, not the cluster live state — value-change Promotion is a pre-apply mutation flow, and the customer's intent is "change the source of truth at the Git location I'm referring to." If the Git-side value has moved between when the user composed the change and when the Promotion is admitted, the Promotion transitions to `Failed` with `Reason: StaleFromValue`. The user re-issues with the now-current `from`. This is `kubectl apply --field-manager` semantics applied to the Git tree, not the cluster.
 
