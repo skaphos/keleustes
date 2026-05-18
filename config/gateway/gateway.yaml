@@ -1,0 +1,42 @@
+# SPDX-FileCopyrightText: 2026 Skaphos
+# SPDX-License-Identifier: MIT
+#
+# Internal-tier Gateway (per docs/plans/2026-05-distributed-runtime-architecture.md
+# §7.5 — internal users + API). MVP 0 only ships this single tier; the public-
+# webhooks tier (SKA-357, MVP 2) and the agent-transport tier (SKA-363, MVP 2)
+# arrive with their own Gateways alongside the engines that need them.
+#
+# Customer overrides:
+#   - `spec.gatewayClassName` — set to your controller's class (e.g., `eg` for
+#     Envoy Gateway, `gke-l7-rilb` for GKE, `cilium` for Cilium Gateway).
+#   - `listeners[0].tls.certificateRefs[0]` — point at a Secret carrying the
+#     TLS cert for your hostname. cert-manager via `Certificate` + `IssuerRef`
+#     is the recommended issuance path; the Secret name below is the cert-
+#     manager default.
+#   - `listeners[0].hostname` — your DNS name. Defaults to a placeholder so
+#     `kubectl apply` against an empty cluster succeeds without further edits.
+
+apiVersion: gateway.networking.k8s.io/v1
+kind: Gateway
+metadata:
+  name: keleustes-internal
+  namespace: skaphos-keleustes-system
+  labels:
+    app.kubernetes.io/part-of: keleustes
+    app.kubernetes.io/managed-by: kustomize
+    keleustes.skaphos.io/gateway-tier: internal
+spec:
+  gatewayClassName: REPLACE_ME
+  listeners:
+    - name: https
+      protocol: HTTPS
+      port: 443
+      hostname: keleustes.example.com
+      tls:
+        mode: Terminate
+        certificateRefs:
+          - kind: Secret
+            name: keleustes-internal-tls
+      allowedRoutes:
+        namespaces:
+          from: Same

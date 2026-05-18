@@ -1,0 +1,17 @@
+# SPDX-FileCopyrightText: 2026 Skaphos
+# SPDX-License-Identifier: MIT
+#
+# Opt-in overlay. Not included in config/default because Gateway API CRDs are
+# customer-installed (and customer-versioned). Apply with:
+#
+#   kubectl apply -k config/gateway/
+#
+# Override `spec.gatewayClassName` and TLS Secret refs via a downstream
+# overlay; see README.md.
+
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+  - gateway.yaml
+  - httproute-api.yaml
