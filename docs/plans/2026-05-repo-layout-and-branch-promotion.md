@@ -99,6 +99,7 @@ spec:
   type: git
   git:
     url: https://github.com/customer/checkout-api.git
+    refType: branch
     ref: prod                        # branch name
   verify: { ... }                    # SignatureVerifier per ADR 0001 plugin model
 ```
