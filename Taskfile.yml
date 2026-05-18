@@ -59,6 +59,11 @@ tasks:
     cmds:
       - task: manifests
       - task: generate
+      # fmt before lint so goimports normalizes controller-gen's output
+      # (unnamed `meta/v1` import → aliased `v1`). Keeps the drift check
+      # in .github/workflows/ci.yml accurate when contributors run
+      # `task lint` locally.
+      - task: fmt
       - '{{.GOLANGCI_RUNNER}} run ./...'
 
   lint-fix:
