@@ -1,0 +1,20 @@
+# SPDX-FileCopyrightText: 2026 Skaphos
+# SPDX-License-Identifier: MIT
+#
+# Prometheus Operator + kube-state-metrics observability slice. Opt-in
+# subdirectory; included by the parent config/observability/kustomization.yaml
+# (which is itself opt-in — Prometheus Operator CRDs are customer-installed).
+#
+# Apply directly with:
+#   kubectl apply -k config/observability/prometheus/
+#
+# Or skip this subdirectory by editing the parent kustomization.yaml's
+# resources: list.
+
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+  - servicemonitor-manager.yaml
+  - prometheusrule-keleustes-manager.yaml
+  - customresource-state.yaml

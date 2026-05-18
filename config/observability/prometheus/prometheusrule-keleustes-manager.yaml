@@ -1,0 +1,140 @@
+# SPDX-FileCopyrightText: 2026 Skaphos
+# SPDX-License-Identifier: MIT
+#
+# Manager-level alerts. Per docs/plans/2026-05-observability-stack.md §4.3 +
+# §7: every alert carries a `runbook` annotation pointing at the published
+# docs site. Runbook URLs are stable promises — they will not 404 once the
+# docs site is live.
+
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: keleustes-manager
+  namespace: skaphos-keleustes-system
+  labels:
+    app.kubernetes.io/part-of: keleustes
+    app.kubernetes.io/component: manager
+    app.kubernetes.io/managed-by: kustomize
+    release: prometheus
+spec:
+  groups:
+    # ---- Recording rules ---------------------------------------------------
+    - name: keleustes.manager.recording
+      interval: 30s
+      rules:
+        # Per-controller reconcile success rate over 5 minutes.
+        - record: keleustes:reconcile_success_rate_5m
+          expr: |
+            (
+              sum by (controller) (
+                rate(controller_runtime_reconcile_total{job="controller-manager-metrics"}[5m])
+              )
+              -
+              sum by (controller) (
+                rate(controller_runtime_reconcile_errors_total{job="controller-manager-metrics"}[5m])
+              )
+            )
+            /
+            clamp_min(
+              sum by (controller) (
+                rate(controller_runtime_reconcile_total{job="controller-manager-metrics"}[5m])
+              ),
+              1
+            )
+
+    # ---- Alerts ------------------------------------------------------------
+    - name: keleustes.manager.alerts
+      rules:
+        - alert: KeleustesManagerDown
+          expr: |
+            absent_over_time(up{job="controller-manager-metrics"}[5m]) == 1
+            OR
+            max_over_time(up{job="controller-manager-metrics"}[5m]) == 0
+          for: 5m
+          labels:
+            severity: critical
+            component: manager
+          annotations:
+            summary: "Keleustes controller-manager is not reachable."
+            description: |
+              Prometheus could not scrape the controller-manager Service in
+              the skaphos-keleustes-system namespace for at least 5 minutes.
+              Without the manager, no Keleustes CRDs are reconciled.
+            runbook: "https://docs.keleustes.skaphos.io/runbooks/manager-down"
+
+        - alert: KeleustesManagerHighRestartRate
+          expr: |
+            increase(
+              kube_pod_container_status_restarts_total{
+                namespace="skaphos-keleustes-system",
+                container="manager"
+              }[1h]
+            ) > 3
+          for: 10m
+          labels:
+            severity: warning
+            component: manager
+          annotations:
+            summary: "Keleustes manager pod restarted >3 times in the last hour."
+            description: |
+              Frequent restarts usually indicate either a panic in the
+              reconciler hot path, OOM, or an upstream API problem
+              (kube-apiserver unreachable). Check `kubectl logs --previous`
+              on the affected pod.
+            runbook: "https://docs.keleustes.skaphos.io/runbooks/manager-restart-rate"
+
+        - alert: KeleustesManagerLeaderElectionFlapping
+          expr: |
+            changes(
+              leader_election_master_status{job="controller-manager-metrics"}[1h]
+            ) > 5
+          for: 15m
+          labels:
+            severity: warning
+            component: manager
+          annotations:
+            summary: "Keleustes leader election changed leaders >5 times in the last hour."
+            description: |
+              Flapping leader election typically means the active leader is
+              losing its lease — either etcd pressure, network partition
+              between the manager and the kube-apiserver, or a manager pod
+              under CPU/memory throttle. Check both pod resources and the
+              apiserver's recent latency.
+            runbook: "https://docs.keleustes.skaphos.io/runbooks/leader-election-flapping"
+
+        - alert: KeleustesManagerHighReconcileErrorRate
+          expr: |
+            (
+              1 - keleustes:reconcile_success_rate_5m
+            ) > 0.10
+          for: 15m
+          labels:
+            severity: warning
+            component: manager
+          annotations:
+            summary: "Controller {{ $labels.controller }} reconcile error rate is above 10% over 15 minutes."
+            description: |
+              Sustained reconcile errors typically indicate a permission
+              problem, an API change the manager doesn't expect, or a bug
+              introduced by the most recent release. Check the manager's
+              structured logs for the failing controller's last error
+              messages.
+            runbook: "https://docs.keleustes.skaphos.io/runbooks/reconcile-error-rate"
+
+        - alert: KeleustesManagerHighWorkqueueDepth
+          expr: |
+            max_over_time(
+              workqueue_depth{job="controller-manager-metrics"}[10m]
+            ) > 100
+          for: 10m
+          labels:
+            severity: warning
+            component: manager
+          annotations:
+            summary: "Controller {{ $labels.name }} workqueue depth sustained above 100."
+            description: |
+              A persistently deep workqueue means reconciles are falling
+              behind reality. Either the manager is throttled (CPU limit
+              hit), the reconciler is slow (often: a downstream API call),
+              or the input rate has genuinely spiked.
+            runbook: "https://docs.keleustes.skaphos.io/runbooks/workqueue-depth"

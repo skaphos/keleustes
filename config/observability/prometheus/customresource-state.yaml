@@ -1,0 +1,160 @@
+# SPDX-FileCopyrightText: 2026 Skaphos
+# SPDX-License-Identifier: MIT
+#
+# kube-state-metrics CustomResourceStateMetrics config that exposes the
+# status fields of the MVP 0 Keleustes CRDs to Prometheus. Per the
+# observability-stack plan §4.4 — CRD status carries the real "is the system
+# healthy" answer; lifting it to metrics is what makes the overview
+# dashboard possible.
+#
+# Customers feed this ConfigMap to their kube-state-metrics deployment via
+# the `--custom-resource-state-config-file` flag. The Helm chart at
+# https://github.com/prometheus-community/helm-charts/tree/main/charts/kube-state-metrics
+# supports a `customResourceState.config` value that takes the inline body.
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: keleustes-customresource-state
+  namespace: skaphos-keleustes-system
+  labels:
+    app.kubernetes.io/part-of: keleustes
+    app.kubernetes.io/managed-by: kustomize
+data:
+  config.yaml: |
+    kind: CustomResourceStateMetrics
+    spec:
+      resources:
+        # ---- Application ------------------------------------------------------
+        - groupVersionKind:
+            group: keleustes.skaphos.io
+            version: v1alpha1
+            kind: Application
+          labelsFromPath:
+            namespace: [metadata, namespace]
+            name: [metadata, name]
+          metrics:
+            - name: keleustes_application_observed_generation
+              help: "Latest observedGeneration on the Application's status."
+              each:
+                type: Gauge
+                gauge:
+                  path: [status, observedGeneration]
+            - name: keleustes_application_condition
+              help: "Status of each Application Condition (1=True, 0=False, -1=Unknown)."
+              each:
+                type: Gauge
+                gauge:
+                  path: [status, conditions]
+                  labelsFromPath:
+                    type: [type]
+                    reason: [reason]
+                  valueFrom: [status]
+                  # Custom mapper: True→1, False→0, anything else (Unknown)→-1.
+                  # kube-state-metrics handles enum values through the
+                  # gauge's `valueFrom` path; the operator's conditions
+                  # follow the standard Kubernetes True/False/Unknown
+                  # alphabet, so the mapper relies on
+                  # kube-state-metrics' built-in string-to-numeric
+                  # conversion (see kube-state-metrics docs).
+
+        # ---- SyncRun ---------------------------------------------------------
+        - groupVersionKind:
+            group: keleustes.skaphos.io
+            version: v1alpha1
+            kind: SyncRun
+          labelsFromPath:
+            namespace: [metadata, namespace]
+            name: [metadata, name]
+          metrics:
+            - name: keleustes_syncrun_phase
+              help: "SyncRun phase as a StateSet."
+              each:
+                type: StateSet
+                stateSet:
+                  labelName: phase
+                  path: [status, phase]
+                  list:
+                    - Pending
+                    - Rendering
+                    - Applying
+                    - Verifying
+                    - Succeeded
+                    - Failed
+            - name: keleustes_syncrun_started_at
+              help: "Unix timestamp when the SyncRun entered a non-Pending phase."
+              each:
+                type: Gauge
+                gauge:
+                  path: [status, startedAt]
+            - name: keleustes_syncrun_observed_generation
+              help: "Latest observedGeneration on the SyncRun's status."
+              each:
+                type: Gauge
+                gauge:
+                  path: [status, observedGeneration]
+
+        # ---- Promotion -------------------------------------------------------
+        - groupVersionKind:
+            group: keleustes.skaphos.io
+            version: v1alpha1
+            kind: Promotion
+          labelsFromPath:
+            namespace: [metadata, namespace]
+            name: [metadata, name]
+            application: [spec, application]
+            release: [spec, release]
+            target_environment: [spec, to, environment]
+          metrics:
+            - name: keleustes_promotion_phase
+              help: "Promotion phase as a StateSet."
+              each:
+                type: StateSet
+                stateSet:
+                  labelName: phase
+                  path: [status, phase]
+                  list:
+                    - Proposed
+                    - Evaluating
+                    - Blocked
+                    - Approved
+                    - MutatingGit
+                    - WaitingForMerge
+                    - WaitingForSync
+                    - Verifying
+                    - Succeeded
+                    - Failed
+                    - RolledBack
+                    - Canceled
+            - name: keleustes_promotion_blockers_count
+              help: "Number of human-readable blocker strings on the Promotion."
+              each:
+                type: Gauge
+                gauge:
+                  path: [status, blockers]
+                  # kube-state-metrics: when valueFrom is unset and path
+                  # resolves to a slice, the gauge value is the slice
+                  # length.
+            - name: keleustes_promotion_observed_generation
+              help: "Latest observedGeneration on the Promotion's status."
+              each:
+                type: Gauge
+                gauge:
+                  path: [status, observedGeneration]
+
+        # ---- Notifier --------------------------------------------------------
+        - groupVersionKind:
+            group: keleustes.skaphos.io
+            version: v1alpha1
+            kind: Notifier
+          labelsFromPath:
+            namespace: [metadata, namespace]
+            name: [metadata, name]
+            endpoint_kind: [spec, endpoint]
+          metrics:
+            - name: keleustes_notifier_observed_generation
+              help: "Latest observedGeneration on the Notifier's status."
+              each:
+                type: Gauge
+                gauge:
+                  path: [status, observedGeneration]

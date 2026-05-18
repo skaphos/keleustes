@@ -42,7 +42,16 @@ spec:
           - --health-probe-bind-address=:8081
         image: controller:latest
         name: manager
-        ports: []
+        ports:
+          # Declared so Services can target the manager by port name; the
+          # manager listens on these regardless of whether they appear here
+          # (cmd/manager/main.go default flags).
+          - name: metrics
+            containerPort: 8080
+            protocol: TCP
+          - name: healthz
+            containerPort: 8081
+            protocol: TCP
         securityContext:
           allowPrivilegeEscalation: false
           capabilities:
