@@ -20,7 +20,7 @@ Two kinds of entries appear below:
   an ADR. Treat them as authoritative until they promote or are
   rewritten.
 
-Last updated: 2026-05-17.
+Last updated: 2026-05-18.
 
 ## Accepted ADRs
 
