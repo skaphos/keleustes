@@ -549,7 +549,6 @@ apiVersion: keleustes.skaphos.io/v1alpha1
 kind: Addon
 metadata:
   name: cert-manager
-  namespace: platform-system
 spec:
   # Library half: source of the addon's canonical content.
   library:
