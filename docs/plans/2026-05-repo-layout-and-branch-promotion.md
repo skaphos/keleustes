@@ -409,9 +409,9 @@ metadata:
     keleustes.skaphos.io/depends-on-addon: cert-manager,prometheus-operator
 ```
 
-The Addon reconciler watches Applications via a *namespaced* label selector that matches the annotation key, NOT a watch of every Application in the cluster. The Application controller emits an event (or writes to a small `addon-consumer-index` NATS KV bucket — SKA-365) that the Addon reconciler subscribes to.
+The Addon reconciler watches Applications through a *namespaced* informer and filters or field-indexes them in controller logic based on the `keleustes.skaphos.io/depends-on-addon` annotation, NOT via a Kubernetes label selector and NOT via a cluster-wide "scan every Application" pass. The Application controller emits an event (or writes to a small `addon-consumer-index` NATS KV bucket — SKA-365) that the Addon reconciler subscribes to.
 
-This avoids the O(N) watch cost an "Addon enumerates all Applications" naive design would incur at 10K-Application scale.
+This avoids the O(N) cluster-wide enumeration cost an "Addon enumerates all Applications" naive design would incur at 10K-Application scale while keeping the mechanism consistent with the annotation projection.
 
 ```yaml
 status:
