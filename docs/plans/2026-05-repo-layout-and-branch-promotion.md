@@ -519,7 +519,7 @@ The Promotion CR doesn't know about layouts; the Promotion Engine resolves them 
 | --- | --- | --- |
 | `branch-per-env-merge` | **Two PRs in sequence** (staging first, then prod once staging merges) | All-or-nothing across the sequence; prod PR not opened until staging merges |
 | `flat-with-env-dirs` | **One PR** touching both env directories | All-or-nothing at the PR level |
-| `library+integration` (Addon) | Depends on integration layout (typically branch-per-env-merge); same as Golden Path 1 | Same as integration layout |
+| Addon (`library+integration`; integration repo uses `branch-per-env-merge` / `flat-with-env-dirs` / `custom`) | Depends on `Addon.spec.integration.layout.pattern` (typically `branch-per-env-merge`); same as the chosen integration layout | Same as integration layout |
 | `custom` | Customer-defined | Customer-defined |
 
 This is documented in the operator-facing UI/CLI — when a Promotion is queued against `[staging, prod]` on a branch-per-env Application, the UI shows "Promotion will open 2 PRs in sequence." Operators making the mental shift between Argo-CD-style (one PR) and Keleustes branch-per-env need this visible.
