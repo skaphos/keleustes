@@ -40,19 +40,24 @@ worth a comment.
    after JetStream reconnect rely on this guarantee.
    - Source: `CLAUDE.md` § Hard invariants.
 
-4. **No `Ingress` anywhere.** Use Gateway API v1
-   (`gateway.networking.k8s.io/v1`) only. The hard rule applies to every
-   file under `config/`. No `networking.k8s.io/v1 Ingress`, no
-   `extensions/v1beta1 Ingress`, not even as a compatibility shim.
+4. **No `Ingress` API resources.** Flag any manifest under `config/` that
+   ships `kind: Ingress` or imports `networking.k8s.io/v1.Ingress` /
+   `extensions/v1beta1.Ingress` types. Use Gateway API v1
+   (`gateway.networking.k8s.io/v1`) instead. Documentation references
+   that *explain* the ban (e.g. `config/gateway/README.md`) are fine —
+   don't flag them.
    - Source: [`docs/plans/2026-05-distributed-runtime-architecture.md`](../docs/plans/2026-05-distributed-runtime-architecture.md) §7.5;
      `config/gateway/README.md`.
 
-5. **`gitops-engine` containment.** Imports of
-   `github.com/skaphos/gitops-engine/...` may appear **only** in files
-   under `internal/sync/`, `internal/diff/`, `internal/health/`, or
-   `internal/kube/`. Any other package importing the engine is a
-   containment violation.
-   - Source: [ADR 0006](../docs/adr/0006-engine-boundaries.md) §4.
+5. **`gitops-engine` containment.** Imports of `gitops-engine` may
+   appear **only** in files under `internal/sync/`, `internal/diff/`,
+   `internal/health/`, or `internal/kube/`. This applies to both module
+   paths — `github.com/argoproj/argo-cd/gitops-engine/...` (current,
+   pending the SKA-430 go.mod swap) and `github.com/skaphos/gitops-engine/...`
+   (post-swap). Any other package importing the engine via either path
+   is a containment violation.
+   - Source: [ADR 0006](../docs/adr/0006-engine-boundaries.md) §4;
+     [ADR 0007](../docs/adr/0007-hard-fork-gitops-engine.md) §4.
 
 6. **Audit envelope shape is frozen.** The `Envelope` struct in
    `internal/audit/envelope.go` must match `docs/plans/2026-05-audit-event-schema.md`
@@ -65,11 +70,15 @@ worth a comment.
 
 - **DCO required.** Every commit must carry a `Signed-off-by:` trailer.
   Authors use `git commit --signoff`.
-- **REUSE 3.3 compliant.** Every non-generated file carries SPDX headers
-  (`SPDX-FileCopyrightText: 2026 Skaphos` + `SPDX-License-Identifier: MIT`).
-  Generated files (`zz_generated*.go`, `config/crd/bases/`,
-  `config/rbac/role.yaml`) inherit headers via tooling. Don't flag missing
-  headers on those; do flag missing headers on hand-written files.
+- **REUSE 3.3 compliant.** Hand-written Go / YAML / Markdown source
+  files carry inline SPDX headers (`SPDX-FileCopyrightText: 2026 Skaphos`
+  + `SPDX-License-Identifier: MIT`). Dotfiles, JSON configs, and other
+  formats that can't carry comments (e.g. `.gitignore`, `.tool-versions`,
+  `staticcheck.conf`, `.repokeeper-repo.yaml`) are covered by the
+  blanket `**` annotation in `REUSE.toml` and need no inline header.
+  Generated files inherit headers via tooling. **Let `pipx run reuse
+  lint` be the arbiter** — only flag a missing header when `reuse lint`
+  would also flag it.
 - **Conventional Commits.** Commit subjects use `feat:`, `fix:`, `docs:`,
   `chore:`, `ci:`, `refactor:`, `test:`, `perf:`. `release-please` infers
   next version from these on `main`.
@@ -81,8 +90,9 @@ worth a comment.
   `go run <module>@<version>` in `Taskfile.yml` must stay pinned to
   explicit versions, never `@latest`. The same applies to
   `tools/go.mod`'s tool directives.
-- **`@latest` is banned in CI workflows.** `.github/workflows/*.yml` may
-  not run `go run X@latest` — all tool fetches are pinned. Exception:
+- **`@latest` is banned in CI workflows and in `Taskfile.yml`.**
+  `.github/workflows/*.yml` and `Taskfile.yml` may not run
+  `go run X@latest` — all tool fetches are pinned. Exception:
   `actions/*` first-party Actions may pin to a floating major tag
   (`@v6`); third-party Actions must be SHA-pinned with a version comment.
 
@@ -102,8 +112,14 @@ diff that crosses these boundaries:
   narrow interfaces.
 - `internal/render/` is the shared rendering package every engine
   depends on. It does not depend on engines.
-- New top-level packages under `internal/` (not in the list above)
-  need an ADR or plan justification.
+- Additional blessed packages from
+  [ADR 0006 §2](../docs/adr/0006-engine-boundaries.md): `internal/api/`
+  (future REST/gRPC server + authz middleware), `internal/cli/`
+  (keleustesctl tree — thin), `internal/agent/` (agent protocol +
+  transport), `internal/webhooks/` (provider webhook receivers),
+  `internal/util/` (small, genuinely shared utilities). New top-level
+  packages under `internal/` outside this set need an ADR or plan
+  justification.
 
 ## Audit, observability, RBAC conventions
 
@@ -116,9 +132,16 @@ diff that crosses these boundaries:
   the label constants in `internal/observability/labels.go`. Don't
   invent new label keys — extending the vocabulary requires updating
   the plan and the constants file.
-- **Per-Application labels are bounded.** Counters and gauges may carry
-  the `application` label; histograms must not. Flag histogram metrics
-  with unbounded labels.
+- **Application + target labels are unbounded — gauge/counter only,
+  never histogram.** The `application` and `target` label values are
+  unbounded by the customer's application count. They are permitted on
+  counters and gauges where the application/target dimension is
+  essential, but never on histograms (would explode bucket cardinality).
+  Bounded labels (`engine`, `environment`, `region`, `result`, `phase`)
+  may appear anywhere. Flag histogram metrics that carry `application`
+  or `target` labels.
+  - Source: [`docs/plans/2026-05-observability-stack.md`](../docs/plans/2026-05-observability-stack.md) §3.1;
+    `internal/observability/labels.go`.
 - **Audit redaction is centralized.** Code that snapshots a Kubernetes
   resource into audit must call `audit/redaction.Apply` before
   serializing — don't hand-redact, don't skip.
@@ -127,8 +150,9 @@ diff that crosses these boundaries:
 
 ## Gateway API + config conventions
 
-- **Gateway API v1 only.** No `Ingress`. No `v1beta1` Gateway API
-  resources except in vendored upstream charts (none exist here yet).
+- **Gateway API v1 only.** Flag any `kind: Ingress` resource. Flag any
+  `v1beta1` Gateway API resources except in vendored upstream charts
+  (none exist here yet).
 - **Customer-provided `GatewayClass`.** Sample Gateways use
   `gatewayClassName: REPLACE_ME` — flag any PR that hardcodes a
   controller-specific class without a corresponding overlay-patch
