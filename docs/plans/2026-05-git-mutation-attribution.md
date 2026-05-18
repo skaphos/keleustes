@@ -277,7 +277,7 @@ Three revocation events to handle, in increasing severity:
 
 1. **Token expired and refresh fails.** Most commonly: refresh token TTL exceeded. The Mutation Engine logs an audit event (`git-mutation-failed` with reason `RefreshRevoked`), surfaces a `Reason: ReauthorizationRequired` condition on the Promotion CR, and waits for Alice to re-trigger from the CLI/UI (which kicks off a fresh OAuth flow).
 
-2. **User unauthorized the App.** Alice goes to her GitHub user settings → Applications → Keleustes → Revoke. Subsequent Mutation Engine calls return 401; we treat as case 1.
+2. **User revoked the App authorization.** Alice goes to her GitHub user settings → Applications → Keleustes → Revoke. Subsequent Mutation Engine calls return 401; we treat as case 1.
 
 3. **User account suspended / departed.** Customer's GitHub admin suspends Alice's account, or SAML-SSO mapping is revoked. Same surface — 401 from GitHub. The Engine emits an audit event with `Reason: UserSuspended` and the operator's IT team takes it from there.
 
