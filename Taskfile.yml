@@ -55,7 +55,7 @@ tasks:
       - go vet ./...
 
   lint:
-    desc: Run golangci-lint
+    desc: Run golangci-lint + PrometheusRule runbook check
     cmds:
       - task: manifests
       - task: generate
@@ -65,11 +65,17 @@ tasks:
       # `task lint` locally.
       - task: fmt
       - '{{.GOLANGCI_RUNNER}} run ./...'
+      - task: lint:prometheusrules
 
   lint-fix:
     desc: Run golangci-lint with --fix
     cmds:
       - '{{.GOLANGCI_RUNNER}} run --fix ./...'
+
+  lint:prometheusrules:
+    desc: Fail if any PrometheusRule alert is missing a runbook annotation
+    cmds:
+      - bash hack/lint/prometheusrules.sh
 
   staticcheck:
     desc: Run staticcheck

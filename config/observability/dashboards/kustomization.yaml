@@ -1,0 +1,30 @@
+# SPDX-FileCopyrightText: 2026 Skaphos
+# SPDX-License-Identifier: MIT
+#
+# Grafana dashboards as ConfigMaps. The `grafana_dashboard: "1"` label is
+# the convention `grafana-operator` and the Grafana sidecar (kiwigrid/
+# k8s-sidecar) recognize for auto-discovery. Customers without sidecar-
+# style auto-loading apply the dashboard JSON files directly via the
+# Grafana API or Helm values.
+#
+# generatorOptions disables the kustomize content-hash suffix so the
+# ConfigMap name is stable across redeploys (the sidecar relies on the
+# label, not the name, but stable names make `kubectl edit` workflows
+# survivable).
+
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+generatorOptions:
+  disableNameSuffixHash: true
+  labels:
+    app.kubernetes.io/part-of: keleustes
+    app.kubernetes.io/component: dashboards
+    app.kubernetes.io/managed-by: kustomize
+    grafana_dashboard: "1"
+
+configMapGenerator:
+  - name: keleustes-dashboard-overview
+    namespace: skaphos-keleustes-system
+    files:
+      - overview.json

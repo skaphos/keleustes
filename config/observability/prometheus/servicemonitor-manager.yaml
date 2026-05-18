@@ -1,0 +1,62 @@
+# SPDX-FileCopyrightText: 2026 Skaphos
+# SPDX-License-Identifier: MIT
+#
+# Scrape the controller-manager's /metrics endpoint via the Service shipped
+# in config/manager/service.yaml. Per docs/plans/2026-05-observability-stack.md
+# §4.1.
+#
+# The `jobLabel: keleustes.skaphos.io/scrape-job` reference tells Prometheus
+# Operator to derive the scrape job label from the matching Service's
+# `keleustes.skaphos.io/scrape-job` label — that value is what shows up as
+# `job=` on every emitted time series, and is what every PrometheusRule
+# query / dashboard panel selects on.
+#
+# The `release: prometheus` label is the convention Prometheus Operator
+# uses to discover ServiceMonitors; customers override via kustomize patch
+# if their Prometheus instance selects on a different label.
+
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: keleustes-manager
+  namespace: skaphos-keleustes-system
+  labels:
+    app.kubernetes.io/part-of: keleustes
+    app.kubernetes.io/component: manager
+    app.kubernetes.io/managed-by: kustomize
+    release: prometheus
+spec:
+  jobLabel: keleustes.skaphos.io/scrape-job
+  namespaceSelector:
+    matchNames: [skaphos-keleustes-system]
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: keleustes
+      app.kubernetes.io/component: manager
+  endpoints:
+    - port: metrics
+      interval: 30s
+      scrapeTimeout: 10s
+      honorLabels: false
+      relabelings:
+        - sourceLabels: [__meta_kubernetes_pod_node_name]
+          targetLabel: node
+        - sourceLabels: [__meta_kubernetes_pod_name]
+          targetLabel: pod
+        - sourceLabels: [__meta_kubernetes_namespace]
+          targetLabel: namespace
+        # Project the manager pod's `keleustes.skaphos.io/engine` label
+        # into the canonical `engine` metric label. Documented in
+        # internal/observability/labels.go and observability-stack
+        # plan §4.1.
+        - sourceLabels: [__meta_kubernetes_pod_label_keleustes_skaphos_io_engine]
+          targetLabel: engine
+      metricRelabelings:
+        # Drop noisy Go-runtime and process collector metrics that
+        # operators rarely look at and that dominate cardinality / scrape
+        # payload. Controller-runtime, workqueue, and Keleustes-specific
+        # metrics pass through untouched. Re-enable selectively via
+        # kustomize patch if you actually need them.
+        - sourceLabels: [__name__]
+          regex: 'go_.*|process_.*|promhttp_.*'
+          action: drop

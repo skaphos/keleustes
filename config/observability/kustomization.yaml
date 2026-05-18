@@ -1,0 +1,19 @@
+# SPDX-FileCopyrightText: 2026 Skaphos
+# SPDX-License-Identifier: MIT
+#
+# Opt-in observability bundle. NOT included in config/default since
+# Prometheus Operator + kube-state-metrics CRDs are customer-installed and
+# customer-versioned. Apply with:
+#
+#   kubectl apply -k config/observability/
+#
+# Or skip either subdirectory by removing it from the resources: list
+# below. Per docs/plans/2026-05-observability-stack.md §11, each
+# subdirectory can be disabled independently.
+
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+  - prometheus/
+  - dashboards/

@@ -1,0 +1,182 @@
+# SPDX-FileCopyrightText: 2026 Skaphos
+# SPDX-License-Identifier: MIT
+#
+# kube-state-metrics CustomResourceStateMetrics config that exposes the
+# status fields of the MVP 0 Keleustes CRDs to Prometheus. Per the
+# observability-stack plan §4.4 — CRD status carries the real "is the
+# system healthy" answer; lifting it to metrics is what makes the overview
+# dashboard possible.
+#
+# Customers feed this ConfigMap's `config.yaml` to their kube-state-metrics
+# deployment via the `--custom-resource-state-config-file` flag (or the
+# Helm chart's `customResourceState.config` value).
+#
+# `metricNamePrefix: ""` is mandatory. Without it kube-state-metrics
+# applies its default `kube_customresource_` prefix and emitted series end
+# up named like `kube_customresource_keleustes_syncrun_phase`, which would
+# break every query in the dashboard and PrometheusRule. The empty prefix
+# is the documented way to ship pre-namespaced metric names.
+#
+# Metric labels are restricted to the closed vocabulary from
+# internal/observability/labels.go (`namespace`, `name`, `kind`,
+# `application`, `environment`, ...). Adding new label keys here requires
+# updating the labels package and the observability-stack plan §3.1.
+
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: keleustes-customresource-state
+  namespace: skaphos-keleustes-system
+  labels:
+    app.kubernetes.io/part-of: keleustes
+    app.kubernetes.io/managed-by: kustomize
+data:
+  config.yaml: |
+    kind: CustomResourceStateMetrics
+    spec:
+      metricNamePrefix: ""
+      resources:
+        # ---- Application ------------------------------------------------------
+        - groupVersionKind:
+            group: keleustes.skaphos.io
+            version: v1alpha1
+            kind: Application
+          labelsFromPath:
+            namespace: [metadata, namespace]
+            name: [metadata, name]
+          metrics:
+            - name: keleustes_application_observed_generation
+              help: "Latest observedGeneration on the Application's status."
+              each:
+                type: Gauge
+                gauge:
+                  path: [status, observedGeneration]
+            # Condition StateSet: emits one series per (type, status) with
+            # value 1 for the active status. Operators read "is the
+            # Accepted=True condition present" by selecting on
+            # `type="Accepted", status="True"`.
+            - name: keleustes_application_condition_status
+              help: "Per-condition status of the Application as a StateSet."
+              each:
+                type: StateSet
+                stateSet:
+                  labelName: status
+                  path: [status, conditions]
+                  list: [True, False, Unknown]
+                  valueFrom: [status]
+                  labelsFromPath:
+                    type: [type]
+                    reason: [reason]
+
+        # ---- SyncRun ---------------------------------------------------------
+        - groupVersionKind:
+            group: keleustes.skaphos.io
+            version: v1alpha1
+            kind: SyncRun
+          labelsFromPath:
+            namespace: [metadata, namespace]
+            name: [metadata, name]
+          metrics:
+            - name: keleustes_syncrun_phase
+              help: "SyncRun phase as a StateSet."
+              each:
+                type: StateSet
+                stateSet:
+                  labelName: phase
+                  path: [status, phase]
+                  list:
+                    - Pending
+                    - Rendering
+                    - Applying
+                    - Verifying
+                    - Succeeded
+                    - Failed
+            - name: keleustes_syncrun_observed_generation
+              help: "Latest observedGeneration on the SyncRun's status."
+              each:
+                type: Gauge
+                gauge:
+                  path: [status, observedGeneration]
+            # status.startedAt (metav1.Time / RFC3339 string) doesn't auto-
+            # convert to Unix seconds in kube-state-metrics
+            # CustomResourceStateMetrics. The stalled-SyncRun signal lives
+            # in the dashboard via phase-duration computations driven by
+            # `keleustes_syncrun_phase` transitions; a startedAt gauge
+            # lands when the SyncRun status type adds a Unix-epoch field
+            # (deferred follow-up).
+
+        # ---- Promotion -------------------------------------------------------
+        # The `application` and `environment` labels are part of the closed
+        # vocabulary; `target_environment` and `release` are not, so they
+        # don't appear here. The PromotionPolicy / release reference is
+        # available via Promotion CR introspection in the UI; lifting it
+        # to a metric label would require expanding the vocabulary, which
+        # belongs in a separate observability-stack plan amendment.
+        - groupVersionKind:
+            group: keleustes.skaphos.io
+            version: v1alpha1
+            kind: Promotion
+          labelsFromPath:
+            namespace: [metadata, namespace]
+            name: [metadata, name]
+            application: [spec, application]
+            environment: [spec, to, environment]
+          metrics:
+            - name: keleustes_promotion_phase
+              help: "Promotion phase as a StateSet."
+              each:
+                type: StateSet
+                stateSet:
+                  labelName: phase
+                  path: [status, phase]
+                  list:
+                    - Proposed
+                    - Evaluating
+                    - Blocked
+                    - Approved
+                    - MutatingGit
+                    - WaitingForMerge
+                    - WaitingForSync
+                    - Verifying
+                    - Succeeded
+                    - Failed
+                    - RolledBack
+                    - Canceled
+            - name: keleustes_promotion_observed_generation
+              help: "Latest observedGeneration on the Promotion's status."
+              each:
+                type: Gauge
+                gauge:
+                  path: [status, observedGeneration]
+            # `status.blockers` is a []string; kube-state-metrics
+            # CustomResourceStateMetrics doesn't have a built-in
+            # "slice length" Gauge type. The "blocked promotion count"
+            # signal is available via `keleustes_promotion_phase{phase="Blocked"}`
+            # which is exactly equivalent for the dashboard's purposes.
+
+        # ---- Notifier --------------------------------------------------------
+        # `spec.endpoint.{builtin,webhook}` is a discriminated union per the
+        # Notifier CRD; emit a StateSet for the two variants rather than a
+        # raw labelsFromPath that would index by an object.
+        - groupVersionKind:
+            group: keleustes.skaphos.io
+            version: v1alpha1
+            kind: Notifier
+          labelsFromPath:
+            namespace: [metadata, namespace]
+            name: [metadata, name]
+          metrics:
+            - name: keleustes_notifier_observed_generation
+              help: "Latest observedGeneration on the Notifier's status."
+              each:
+                type: Gauge
+                gauge:
+                  path: [status, observedGeneration]
+            - name: keleustes_notifier_endpoint_kind
+              help: "Notifier endpoint variant (builtin vs. webhook) as a StateSet."
+              each:
+                type: StateSet
+                stateSet:
+                  labelName: kind
+                  path: [spec, endpoint]
+                  list: [builtin, webhook]
