@@ -64,7 +64,9 @@ jobs:
       - name: Install pipx
         run: sudo apt-get update && sudo apt-get install -y pipx
       - name: REUSE lint
-        run: pipx run reuse lint
+        # Pin to a known-good REUSE version so a new upstream release
+        # cannot break CI behind our backs. Bump deliberately.
+        run: pipx run --spec 'reuse==6.2.0' reuse lint
 
   lint:
     name: Lint + generation drift
