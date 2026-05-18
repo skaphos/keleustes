@@ -389,7 +389,15 @@ spec:
   upgradeGates: []                  # explicit empty — no gates
 ```
 
-The empty-list opt-out is deliberate: a default-empty list would let customers accidentally ship Addons without gates. Empty list requires explicit action and documents the choice.
+The empty-list opt-out is deliberate: a default-empty list would let customers accidentally ship Addons without gates. To make this work, the CRD must preserve the distinction between **field omitted** and **field explicitly set to an empty list**: `spec.upgradeGates` is optional and must not use a CRD schema default. In the generated API type, this should be represented in a way that keeps `nil` distinct from `[]` (for example, an optional pointer-to-slice field rather than a plain slice).
+
+Semantics are therefore:
+
+- `upgradeGates` omitted → apply the Skaphos default gate set.
+- `upgradeGates: []` → explicit opt-out; apply no gates.
+- `upgradeGates: [...]` → use exactly the listed gates.
+
+This schema requirement is normative for the implementation ticket; if the API machinery cannot preserve omitted versus empty, the "default-on with explicit empty opt-out" contract in this section is not satisfied.
 
 ### 5.6 Per-K8s-version compatibility
 
