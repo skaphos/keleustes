@@ -656,7 +656,7 @@ spec:
 
 When the Application reconciler reconciles, it writes the annotation `keleustes.skaphos.io/depends-on-addon: cert-manager,prometheus-operator` to the Application's metadata. The Addon reconciler watches that annotation. This is the scalable enumeration mechanism from §5.7.
 
-Validation: each `addonRefs[].name` must resolve to an existing Addon CR. Validation webhook rejects creates/updates with dangling refs.
+Validation: admission validates only the local shape of `addonRefs[]` (for example, required `name` and duplicate detection). Existence checks are **not** enforced by an admission webhook, because that would add a runtime cross-CRD dependency and make GitOps apply order observable. Instead, the Application reconciler resolves each `addonRefs[].name` against existing Addon CRs and sets a typed `status.conditions` entry (`Accepted=False`, reason `AddonRefNotFound`) when any reference is dangling or temporarily unresolved. Once the referenced Addon exists, reconciliation clears the condition and proceeds without requiring the original create/update to be retried.
 
 ### 11.5 keleustesctl coverage
 
