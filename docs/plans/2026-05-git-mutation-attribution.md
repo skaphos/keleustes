@@ -86,7 +86,7 @@ Same Keleustes GitHub App, but Keleustes uses **installation tokens** instead of
      ```
      **Triggered by:** alice@example.com (via Keleustes Promotion `payments/checkout-api-to-prod`)
      ```
-   - PR label: `keleustes-triggered-by:alice` (sanitized, ≤63 chars, for filtering in the GitHub UI).
+   - PR label: `keleustes-triggered-by:alice` (sanitized, ≤50 chars to fit GitHub label-name limits, for filtering in the GitHub UI).
    - `metadata.annotations.keleustes.skaphos.io/git-actor` on the resulting Promotion CR for cross-system correlation.
 5. Audit envelope's `git-pr-opened` event records the GitHub-side actor as `keleustes[bot]` and the `actor.delegatedFrom` as Alice — exactly the §6.5 pattern.
 
