@@ -1,0 +1,621 @@
+# SPDX-FileCopyrightText: 2026 Skaphos
+# SPDX-License-Identifier: MIT
+#
+# Keleustes REST API — contract (PROPOSAL §18).
+#
+# This is the single source of truth shared by:
+#   - the UI typed client (openapi-typescript → ui/src/api/schema.d.ts)
+#   - the UI mock backend (MSW handlers + fixtures, contract-typed)
+#   - the future Go API server (internal/api), which implements this spec
+#
+# Draft v1, scaffold-stage. Endpoints reflect PROPOSAL §18; shapes will firm up
+# as the API server (read paths from CRDs / NATS KV / JetStream / parquet) lands.
+openapi: 3.1.0
+info:
+  title: Keleustes API
+  version: 0.1.0-draft
+  description: >
+    REST API for the Keleustes GitOps control plane, consumed equally by the UI
+    and keleustesctl. Read surface plus exactly three write actions (approve,
+    promote-opens-PR, break-glass) per ADR 0003.
+  license:
+    name: MIT
+servers:
+  - url: /api/v1
+    description: Internal API tier (Gateway API listener, MVP 0)
+
+security:
+  - oidc: []
+
+tags:
+  - name: applications
+  - name: promotions
+  - name: releases
+  - name: targets
+  - name: environments
+  - name: diff
+  - name: audit
+
+paths:
+  /applications:
+    get:
+      tags: [applications]
+      summary: List applications (fleet summary)
+      parameters:
+        - $ref: '#/components/parameters/project'
+        - $ref: '#/components/parameters/env'
+        - $ref: '#/components/parameters/region'
+        - $ref: '#/components/parameters/q'
+      responses:
+        '200':
+          description: Applications with rollup status.
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [items, asOf]
+                properties:
+                  asOf:
+                    type: string
+                    format: date-time
+                    description: Snapshot freshness (matrix is eventually consistent).
+                  items:
+                    type: array
+                    items: { $ref: '#/components/schemas/Application' }
+  /applications/{name}:
+    get:
+      tags: [applications]
+      summary: Get one application
+      parameters: [ { $ref: '#/components/parameters/name' } ]
+      responses:
+        '200':
+          description: Application detail.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Application' }
+        '404': { $ref: '#/components/responses/NotFound' }
+  /applications/{name}/matrix:
+    get:
+      tags: [applications]
+      summary: Application deployment matrix (env × region cells)
+      parameters: [ { $ref: '#/components/parameters/name' } ]
+      responses:
+        '200':
+          description: Matrix rows of cells. Served from the precomputed snapshot.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Matrix' }
+  /applications/{name}/releases:
+    get:
+      tags: [applications, releases]
+      summary: Releases for an application
+      parameters: [ { $ref: '#/components/parameters/name' } ]
+      responses:
+        '200':
+          description: Releases.
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: '#/components/schemas/Release' }
+  /applications/{name}/promotions:
+    get:
+      tags: [applications, promotions]
+      summary: Promotions for an application
+      parameters: [ { $ref: '#/components/parameters/name' } ]
+      responses:
+        '200':
+          description: Promotions.
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: '#/components/schemas/Promotion' }
+
+  /promotions:
+    get:
+      tags: [promotions]
+      summary: List promotions
+      parameters:
+        - name: state
+          in: query
+          schema: { type: string, enum: [active, blocked, mine, history] }
+      responses:
+        '200':
+          description: Promotions.
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: '#/components/schemas/Promotion' }
+    post:
+      tags: [promotions]
+      summary: Request a promotion (opens a Git PR on approval — ADR 0003)
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema: { $ref: '#/components/schemas/PromotionRequest' }
+      responses:
+        '202':
+          description: Promotion requested.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Promotion' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+  /promotions/{id}:
+    get:
+      tags: [promotions]
+      summary: Get a promotion (by ULID)
+      parameters: [ { $ref: '#/components/parameters/id' } ]
+      responses:
+        '200':
+          description: Promotion detail with gates + approvals.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Promotion' }
+        '404': { $ref: '#/components/responses/NotFound' }
+  /promotions/{id}/approve:
+    post:
+      tags: [promotions]
+      summary: Approve or reject a promotion (state transition — ADR 0003)
+      parameters: [ { $ref: '#/components/parameters/id' } ]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [decision]
+              properties:
+                decision: { type: string, enum: [approve, reject] }
+                comment: { type: string }
+      responses:
+        '200':
+          description: Decision recorded; returns updated promotion.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Promotion' }
+        '403': { $ref: '#/components/responses/Forbidden' }
+  /promotions/{id}/cancel:
+    post:
+      tags: [promotions]
+      summary: Cancel a promotion
+      parameters: [ { $ref: '#/components/parameters/id' } ]
+      responses:
+        '200':
+          description: Cancelled.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Promotion' }
+  /promotions/{id}/retry:
+    post:
+      tags: [promotions]
+      summary: Retry a failed promotion
+      parameters: [ { $ref: '#/components/parameters/id' } ]
+      responses:
+        '200':
+          description: Retried.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Promotion' }
+
+  /releases:
+    get:
+      tags: [releases]
+      summary: Release inventory
+      parameters:
+        - $ref: '#/components/parameters/project'
+      responses:
+        '200':
+          description: Releases.
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: '#/components/schemas/Release' }
+
+  /targets:
+    get:
+      tags: [targets]
+      summary: List deployment targets
+      responses:
+        '200':
+          description: Targets.
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: '#/components/schemas/DeploymentTarget' }
+  /targets/{name}/health:
+    get:
+      tags: [targets]
+      summary: Target health
+      parameters: [ { $ref: '#/components/parameters/name' } ]
+      responses:
+        '200':
+          description: Health checks for the target.
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: '#/components/schemas/HealthCheck' }
+  /targets/{name}/drift:
+    get:
+      tags: [targets]
+      summary: Target drift (Git vs live)
+      parameters: [ { $ref: '#/components/parameters/name' } ]
+      responses:
+        '200':
+          description: Drift summary.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Diff' }
+
+  /environments:
+    get:
+      tags: [environments]
+      summary: Environment topology (env → cell → target)
+      responses:
+        '200':
+          description: Environments.
+          content:
+            application/json:
+              schema:
+                type: array
+                items: { $ref: '#/components/schemas/Environment' }
+
+  /diff:
+    get:
+      tags: [diff]
+      summary: Diff between two refs
+      parameters:
+        - name: mode
+          in: query
+          required: true
+          schema: { type: string, enum: [git-live, release-release, env-env, rendered, policy] }
+        - name: left
+          in: query
+          schema: { type: string }
+        - name: right
+          in: query
+          schema: { type: string }
+      responses:
+        '200':
+          description: Diff result.
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Diff' }
+
+  /audit:
+    get:
+      tags: [audit]
+      summary: Audit / activity event search (append-only event log)
+      parameters:
+        - name: resource
+          in: query
+          schema: { type: string }
+        - name: actor
+          in: query
+          schema: { type: string }
+        - name: verb
+          in: query
+          schema: { type: string }
+        - name: from
+          in: query
+          schema: { type: string, format: date-time }
+        - name: to
+          in: query
+          schema: { type: string, format: date-time }
+        - $ref: '#/components/parameters/limit'
+      responses:
+        '200':
+          description: Audit events, newest first.
+          content:
+            application/json:
+              schema:
+                type: object
+                required: [items]
+                properties:
+                  items:
+                    type: array
+                    items: { $ref: '#/components/schemas/AuditEvent' }
+                  nextCursor: { type: string }
+
+components:
+  securitySchemes:
+    oidc:
+      type: openIdConnect
+      openIdConnectUrl: /.well-known/openid-configuration
+
+  parameters:
+    name:
+      name: name
+      in: path
+      required: true
+      schema: { type: string }
+    id:
+      name: id
+      in: path
+      required: true
+      description: ULID (stable across renames).
+      schema: { type: string }
+    project:
+      name: project
+      in: query
+      schema: { type: string }
+    env:
+      name: env
+      in: query
+      schema: { type: string }
+    region:
+      name: region
+      in: query
+      schema: { type: string }
+    q:
+      name: q
+      in: query
+      description: Free-text search.
+      schema: { type: string }
+    limit:
+      name: limit
+      in: query
+      schema: { type: integer, default: 100, maximum: 1000 }
+
+  responses:
+    NotFound:
+      description: Resource not found.
+      content:
+        application/json:
+          schema: { $ref: '#/components/schemas/Error' }
+    Forbidden:
+      description: Caller lacks the required verb on the resource (ADR 0004).
+      content:
+        application/json:
+          schema: { $ref: '#/components/schemas/Error' }
+
+  schemas:
+    Status:
+      type: string
+      description: Canonical status vocabulary (see ui-design-spec §3.1).
+      enum: [Healthy, Progressing, Degraded, Drifted, Blocked, Frozen, Missing, Failed]
+
+    SyncPhase:
+      type: string
+      enum: [Pending, Running, Succeeded, Failed, Error]
+
+    Error:
+      type: object
+      required: [code, message]
+      properties:
+        code: { type: string, enum: [not_found, forbidden, unauthenticated, conflict, degraded, invalid] }
+        message: { type: string }
+
+    SourceRef:
+      type: object
+      properties:
+        repo: { type: string }
+        path: { type: string }
+        ref: { type: string }
+        commit: { type: string, description: Last-resolved commit SHA. }
+
+    Application:
+      type: object
+      required: [ulid, name, status]
+      properties:
+        ulid: { type: string }
+        name: { type: string }
+        project: { type: string }
+        owner: { type: string }
+        status: { $ref: '#/components/schemas/Status' }
+        source: { $ref: '#/components/schemas/SourceRef' }
+        addonRefs:
+          type: array
+          items: { type: string }
+
+    MatrixCell:
+      type: object
+      required: [status]
+      properties:
+        env: { type: string }
+        region: { type: string }
+        targetRef: { type: string }
+        version: { type: string }
+        status: { $ref: '#/components/schemas/Status' }
+        drift: { type: boolean }
+        lastSync: { type: string, format: date-time }
+
+    MatrixRow:
+      type: object
+      required: [application, cells]
+      properties:
+        application: { type: string }
+        cells:
+          type: array
+          items: { $ref: '#/components/schemas/MatrixCell' }
+
+    Matrix:
+      type: object
+      required: [asOf, columns, rows]
+      properties:
+        asOf:
+          type: string
+          format: date-time
+          description: Snapshot freshness; matrix is eventually consistent (ADR 0005).
+        columns:
+          type: array
+          description: Ordered env×region column headers.
+          items:
+            type: object
+            properties:
+              env: { type: string }
+              region: { type: string }
+              lagging: { type: boolean }
+        rows:
+          type: array
+          items: { $ref: '#/components/schemas/MatrixRow' }
+
+    Release:
+      type: object
+      required: [version, app]
+      properties:
+        ulid: { type: string }
+        version: { type: string }
+        app: { type: string }
+        source: { $ref: '#/components/schemas/SourceRef' }
+        created: { type: string, format: date-time }
+        provenance:
+          type: object
+          properties:
+            signed: { type: boolean }
+            sbom: { type: boolean }
+            attestation: { type: boolean }
+        deployedOn:
+          type: array
+          items: { type: string }
+
+    DeploymentTarget:
+      type: object
+      required: [name, status]
+      properties:
+        name: { type: string }
+        env: { type: string }
+        region: { type: string }
+        cell: { type: string }
+        cluster: { type: string }
+        version: { type: string }
+        status: { $ref: '#/components/schemas/Status' }
+        drift: { type: boolean }
+        frozen: { type: boolean }
+        lastSync: { type: string, format: date-time }
+
+    Environment:
+      type: object
+      required: [name]
+      properties:
+        name: { type: string }
+        regions:
+          type: array
+          items: { type: string }
+        cells:
+          type: array
+          items:
+            type: object
+            properties:
+              name: { type: string }
+              region: { type: string }
+              status: { $ref: '#/components/schemas/Status' }
+              targets:
+                type: array
+                items: { $ref: '#/components/schemas/DeploymentTarget' }
+        freeze:
+          $ref: '#/components/schemas/FreezeWindow'
+
+    FreezeWindow:
+      type: object
+      properties:
+        active: { type: boolean }
+        scope: { type: string }
+        start: { type: string, format: date-time }
+        end: { type: string, format: date-time }
+        reason: { type: string }
+
+    Gate:
+      type: object
+      required: [name, passed]
+      properties:
+        name: { type: string, description: 'e.g. image-signed, vuln-scan, approvals' }
+        passed: { type: boolean }
+        detail: { type: string }
+
+    Approval:
+      type: object
+      properties:
+        approver: { type: string }
+        decision: { type: string, enum: [pending, approve, reject] }
+        comment: { type: string }
+        at: { type: string, format: date-time }
+
+    Promotion:
+      type: object
+      required: [ulid, application, from, to, status]
+      properties:
+        ulid: { type: string }
+        application: { type: string }
+        from: { type: string, description: Source environment. }
+        to: { type: string, description: Target environment. }
+        mode: { type: string }
+        release: { type: string }
+        status: { $ref: '#/components/schemas/Status' }
+        requestedBy: { type: string }
+        requestedAt: { type: string, format: date-time }
+        prUrl: { type: string, description: Git PR opened on approval (ADR 0003). }
+        gates:
+          type: array
+          items: { $ref: '#/components/schemas/Gate' }
+        approvals:
+          type: array
+          items: { $ref: '#/components/schemas/Approval' }
+        sync: { $ref: '#/components/schemas/SyncPhase' }
+
+    PromotionRequest:
+      type: object
+      required: [application, from, to]
+      properties:
+        application: { type: string }
+        from: { type: string }
+        to: { type: string }
+        release: { type: string }
+
+    HealthCheck:
+      type: object
+      required: [resource, status]
+      properties:
+        resource: { type: string }
+        status: { $ref: '#/components/schemas/Status' }
+        message: { type: string }
+        lastProbe: { type: string, format: date-time }
+
+    DiffEntry:
+      type: object
+      required: [object, change]
+      properties:
+        object: { type: string, description: 'e.g. Deployment/api' }
+        change: { type: string, enum: [added, changed, removed, unchanged] }
+        drift: { type: boolean }
+        patch: { type: string, description: Unified diff hunk. }
+
+    Diff:
+      type: object
+      required: [mode, entries]
+      properties:
+        mode: { type: string }
+        left: { type: string }
+        right: { type: string }
+        summary:
+          type: object
+          properties:
+            added: { type: integer }
+            changed: { type: integer }
+            removed: { type: integer }
+        entries:
+          type: array
+          items: { $ref: '#/components/schemas/DiffEntry' }
+
+    AuditEvent:
+      type: object
+      required: [ulid, actor, verb, target, at]
+      properties:
+        ulid: { type: string }
+        actor: { type: string }
+        verb: { type: string, description: 'e.g. approve, promote, sync, break-glass' }
+        target: { type: string }
+        at: { type: string, format: date-time }
+        result:
+          type: object
+          properties:
+            before: {}
+            after: {}
+        evidence:
+          type: array
+          items: { type: string }
