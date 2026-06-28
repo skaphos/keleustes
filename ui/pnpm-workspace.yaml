@@ -1,0 +1,10 @@
+# SPDX-FileCopyrightText: 2026 Skaphos
+# SPDX-License-Identifier: MIT
+#
+# pnpm build-script allowlist (pnpm >= 11 reads it here, not from the
+# package.json "pnpm" field). We trust these postinstall builds:
+#   - esbuild: links the platform bundler binary (required by Vite)
+#   - msw:     postinstall helper for the Service Worker tooling
+allowBuilds:
+  esbuild: true
+  msw: true

@@ -1,0 +1,14 @@
+# SPDX-FileCopyrightText: 2026 Skaphos
+# SPDX-License-Identifier: MIT
+node_modules/
+dist/
+coverage/
+playwright-report/
+test-results/
+.vite/
+*.local
+*.tsbuildinfo
+# MSW generates this on `pnpm dlx msw init public/`; it is a build artifact.
+public/mockServiceWorker.js
+# Typed API client — generated from openapi/ by `pnpm gen:api` (ui:gen task).
+src/api/schema.d.ts
