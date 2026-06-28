@@ -152,8 +152,11 @@ jobs:
     name: govulncheck (advisory)
     runs-on: ubuntu-24.04
     timeout-minutes: 10
-    # Pre-existing baseline issue: k8s.io/api v0.34 ceiling per ADR 0006.
-    # Advisory only until the gitops-engine ceiling can be raised.
+    # The v0.34 ceiling that originally forced this advisory was lifted in
+    # SKA-421 (skaphos/gitops-engine fork, ADR 0007). It stays advisory because
+    # the fork still vendors k8s.io/kubernetes as a library, which carries
+    # advisories with no fixed version (GO-2025-3547, GO-2025-3521). Flipping to
+    # blocking needs an allowlist scoped to those two — tracked separately.
     continue-on-error: true
     permissions:
       contents: read

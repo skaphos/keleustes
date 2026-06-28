@@ -8,7 +8,7 @@ package sync
 import (
 	"testing"
 
-	syncCommon "github.com/argoproj/argo-cd/gitops-engine/pkg/sync/common"
+	syncCommon "github.com/skaphos/gitops-engine/pkg/sync/common"
 )
 
 func TestPhaseFromOperation(t *testing.T) {
