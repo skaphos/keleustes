@@ -10,6 +10,10 @@
 # context values we touch are github.base_ref (a defended branch name) and
 # needs.<job>.result (an enum string from GitHub's job result codes); both
 # are safe but we use the env-var pattern uniformly anyway.
+#
+# Action pinning: every action — first-party (actions/*) and third-party — is
+# pinned to a full commit SHA with a "# vX.Y.Z" comment for supply-chain
+# integrity. Bump deliberately; Dependabot keeps the SHA + comment current.
 
 name: CI
 
@@ -34,7 +38,7 @@ jobs:
       contents: read
     steps:
       - name: Checkout (full history)
-        uses: actions/checkout@v6
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
         with:
           fetch-depth: 0
       - name: Verify Signed-off-by on PR commits
@@ -60,7 +64,7 @@ jobs:
     permissions:
       contents: read
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
       - name: Install pipx
         run: sudo apt-get update && sudo apt-get install -y pipx
       - name: REUSE lint
@@ -75,9 +79,9 @@ jobs:
     permissions:
       contents: read
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
       - name: Set up Go
-        uses: actions/setup-go@v6
+        uses: actions/setup-go@924ae3a1cded613372ab5595356fb5720e22ba16 # v6.5.0
         with:
           go-version-file: go.mod
           cache: true
@@ -109,9 +113,9 @@ jobs:
     permissions:
       contents: read
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
       - name: Set up Go
-        uses: actions/setup-go@v6
+        uses: actions/setup-go@924ae3a1cded613372ab5595356fb5720e22ba16 # v6.5.0
         with:
           go-version-file: go.mod
           cache: true
@@ -128,9 +132,9 @@ jobs:
     permissions:
       contents: read
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
       - name: Set up Go
-        uses: actions/setup-go@v6
+        uses: actions/setup-go@924ae3a1cded613372ab5595356fb5720e22ba16 # v6.5.0
         with:
           go-version-file: go.mod
           cache: true
@@ -141,7 +145,7 @@ jobs:
         run: go -C tools tool task -d .. test
       - name: Upload coverage (main only)
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-        uses: actions/upload-artifact@v7
+        uses: actions/upload-artifact@043fb46d1a93c77aae656e7c1c64a875d1fc6a0a # v7.0.1
         with:
           name: coverage
           path: coverage.out
@@ -149,21 +153,20 @@ jobs:
           retention-days: 14
 
   vuln:
-    name: govulncheck (advisory)
+    name: govulncheck
     runs-on: ubuntu-24.04
     timeout-minutes: 10
-    # The v0.34 ceiling that originally forced this advisory was lifted in
-    # SKA-421 (skaphos/gitops-engine fork, ADR 0007). It stays advisory because
-    # the fork still vendors k8s.io/kubernetes as a library, which carries
-    # advisories with no fixed version (GO-2025-3547, GO-2025-3521). Flipping to
-    # blocking needs an allowlist scoped to those two — tracked separately.
-    continue-on-error: true
+    # Blocking. `task vuln` runs govulncheck through hack/vuln/check.sh, which
+    # fails on any affecting vulnerability that is NOT in hack/vuln/allow.txt.
+    # The allowlist currently waives the two unfixable, unreachable
+    # k8s.io/kubernetes advisories (GO-2025-3547, GO-2025-3521) the fork links
+    # via scheme registration — each documented there with rationale.
     permissions:
       contents: read
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
       - name: Set up Go
-        uses: actions/setup-go@v6
+        uses: actions/setup-go@924ae3a1cded613372ab5595356fb5720e22ba16 # v6.5.0
         with:
           go-version-file: go.mod
           cache: true
@@ -180,9 +183,9 @@ jobs:
     permissions:
       contents: read
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
       - name: Set up Go
-        uses: actions/setup-go@v6
+        uses: actions/setup-go@924ae3a1cded613372ab5595356fb5720e22ba16 # v6.5.0
         with:
           go-version-file: go.mod
           cache: true
@@ -199,9 +202,9 @@ jobs:
     permissions:
       contents: read
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
       - name: Set up Go
-        uses: actions/setup-go@v6
+        uses: actions/setup-go@924ae3a1cded613372ab5595356fb5720e22ba16 # v6.5.0
         with:
           go-version-file: go.mod
           cache: true
@@ -223,15 +226,13 @@ jobs:
       run:
         working-directory: ui
     steps:
-      - uses: actions/checkout@v6
+      - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0
       - name: Set up pnpm
-        # Third-party action pinned to a commit SHA (first-party actions/* use
-        # major tags per repo convention). Bump deliberately.
-        uses: pnpm/action-setup@b906affcce14559ad1aafd4ab0e942779e9f58b1 # v4.4.0
+        uses: pnpm/action-setup@0ebf47130e4866e96fce0953f49152a61190b271 # v6.0.9
         with:
           version: 11
       - name: Set up Node
-        uses: actions/setup-node@v6
+        uses: actions/setup-node@48b55a011bda9f5d6aeb4c2d9c7362e8dae4041e # v6.4.0
         with:
           node-version: 24
           cache: pnpm
@@ -281,7 +282,7 @@ jobs:
             echo "| lint | ${LINT_RESULT} |"
             echo "| staticcheck | ${STATICCHECK_RESULT} |"
             echo "| test | ${TEST_RESULT} |"
-            echo "| vuln (advisory) | ${VULN_RESULT} |"
+            echo "| vuln | ${VULN_RESULT} |"
             echo "| licenses | ${LICENSES_RESULT} |"
             echo "| build | ${BUILD_RESULT} |"
             echo "| ui | ${UI_RESULT} |"
