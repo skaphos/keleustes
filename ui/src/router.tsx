@@ -14,7 +14,9 @@ import { Audit } from '@/routes/Audit'
 import { Admin } from '@/routes/Admin'
 import { NotFound } from '@/routes/NotFound'
 
-// Routes — ui-design-spec §4. ULIDs in detail paths (stable across renames).
+// Routes — ui-design-spec §4. Applications/targets are addressed by name (the
+// API identifier, PROPOSAL §18); promotions/audit deep-link by ULID, which is
+// stable across renames.
 export const router = createBrowserRouter([
   {
     path: '/',
@@ -22,8 +24,8 @@ export const router = createBrowserRouter([
     children: [
       { index: true, element: <Overview /> },
       { path: 'applications', element: <Applications /> },
-      { path: 'applications/:appUlid', element: <ApplicationDetail /> },
-      { path: 'applications/:appUlid/diff', element: <DiffView /> },
+      { path: 'applications/:appName', element: <ApplicationDetail /> },
+      { path: 'applications/:appName/diff', element: <DiffView /> },
       { path: 'promotions', element: <Promotions /> },
       { path: 'promotions/:promotionUlid', element: <PromotionDetail /> },
       { path: 'releases', element: <Releases /> },

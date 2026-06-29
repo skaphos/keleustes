@@ -69,8 +69,13 @@ These come from accepted ADRs. When in doubt, the ADR wins over any visual idea.
    roles client-side; it asks the server what the user may do and renders
    actions accordingly (disabled/hidden when not permitted), but never *enforces*
    on its own.
-5. **Deep links use ULIDs, not names** (audit/event model). Resources can be
-   renamed; ULIDs are stable. URLs like `/promotions/{ulid}` survive renames.
+5. **Deep links prefer ULIDs where a resource has one** (audit/event model).
+   Resources can be renamed; ULIDs are stable, so `/promotions/{ulid}` and audit
+   deep-links survive renames. Applications and targets are addressed by **name**
+   today — that is the API identifier in the REST contract (PROPOSAL §18,
+   `/applications/{name}`). Giving them stable ULID deep-links is a forward
+   enhancement that depends on the API gaining ULID lookup; until then the
+   router params for those resources are names, not ULIDs.
 6. **The matrix is eventually consistent.** At fleet scale (10k+ Applications)
    the app×env×region matrix is served from a **pre-computed snapshot**
    (DuckDB-on-parquet materialized from the event log), *not* live aggregation.
@@ -145,14 +150,14 @@ Top **context bar** (global): Project scope selector · Environment filter ·
 Region filter · global search (⌘K) · identity menu (user, IdP, sign-out) ·
 theme toggle.
 
-**Routing (deep-linkable; ULIDs where noted):**
+**Routing (deep-linkable; ULIDs for promotions/audit, names for apps/targets):**
 
 | Route | Screen |
 |---|---|
 | `/` | Overview |
 | `/applications` | Application matrix |
-| `/applications/:appUlid` | Application detail |
-| `/applications/:appUlid/diff` | Diff view (Git vs live / release vs release) |
+| `/applications/:appName` | Application detail |
+| `/applications/:appName/diff` | Diff view (Git vs live / release vs release) |
 | `/promotions` | Promotions list + approvals queue |
 | `/promotions/:promotionUlid` | Promotion timeline detail |
 | `/releases` | Release inventory |
@@ -242,7 +247,7 @@ Wireframes are ASCII sketches — structure, not final visuals.
 - **Actions:** none destructive from the grid; drill-in only. (Bulk actions are
   explicitly out of MVP scope.)
 
-### 6.3 Application detail (`/applications/:appUlid`)
+### 6.3 Application detail (`/applications/:appName`)
 
 - **Purpose:** everything about one app: where it's deployed, at what version,
   health, drift, promotion history, the Git commit behind desired state,
@@ -293,7 +298,7 @@ Wireframes are ASCII sketches — structure, not final visuals.
   comment); **Cancel**; **Retry** (on failure). Each shows the evidence it acts
   on and records an audit event. Approve may require step-up per policy.
 
-### 6.5 Diff view (`/applications/:appUlid/diff`)
+### 6.5 Diff view (`/applications/:appName/diff`)
 
 - **Purpose:** explain *why* things differ. Git-vs-live drift, release-vs-release,
   env-vs-env, rendered-manifest, and policy diffs.

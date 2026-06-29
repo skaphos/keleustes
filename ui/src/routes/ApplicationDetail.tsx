@@ -5,15 +5,15 @@ import { PageHeader, ScreenStub } from '@/components/PageHeader'
 import { Button } from '@/components/ui/button'
 
 export function ApplicationDetail() {
-  const { appUlid } = useParams()
+  const { appName } = useParams()
   return (
     <div>
       <PageHeader
-        title={`Application: ${appUlid}`}
+        title={`Application: ${appName}`}
         description="Targets · health · drift · promotion history · resources · diff · audit."
         actions={
           <>
-            <Link to={`/applications/${appUlid}/diff`}>
+            <Link to={`/applications/${appName}/diff`}>
               <Button variant="outline" size="sm">
                 View diff
               </Button>

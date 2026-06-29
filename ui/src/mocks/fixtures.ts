@@ -6,10 +6,19 @@
 // these become contract fixtures to test it against.
 import type { Status } from '@/lib/status'
 
-const cell = (env: string, region: string, version: string, status: Status, drift = false) => ({
+// targetRef is per (app, env, region) so fixtures stay realistic once it drives
+// navigation/popovers.
+const cell = (
+  app: string,
+  env: string,
+  region: string,
+  version: string,
+  status: Status,
+  drift = false,
+) => ({
   env,
   region,
-  targetRef: `${env}-${region}/${'api'}`,
+  targetRef: `${env}-${region}/${app}`,
   version,
   status,
   drift,
@@ -28,28 +37,28 @@ export const matrix = {
     {
       application: 'api',
       cells: [
-        cell('dev', 'us', '1.4.2', 'Healthy'),
-        cell('staging', 'us', '1.4.2', 'Healthy'),
-        cell('prod', 'us', '1.4.1', 'Progressing'),
-        cell('prod', 'eu', '1.3.9', 'Degraded', true),
+        cell('api', 'dev', 'us', '1.4.2', 'Healthy'),
+        cell('api', 'staging', 'us', '1.4.2', 'Healthy'),
+        cell('api', 'prod', 'us', '1.4.1', 'Progressing'),
+        cell('api', 'prod', 'eu', '1.3.9', 'Degraded', true),
       ],
     },
     {
       application: 'web',
       cells: [
-        cell('dev', 'us', '2.0.0', 'Healthy'),
-        cell('staging', 'us', '2.0.0', 'Healthy'),
-        cell('prod', 'us', '1.9.4', 'Healthy'),
-        cell('prod', 'eu', '1.9.4', 'Healthy'),
+        cell('web', 'dev', 'us', '2.0.0', 'Healthy'),
+        cell('web', 'staging', 'us', '2.0.0', 'Healthy'),
+        cell('web', 'prod', 'us', '1.9.4', 'Healthy'),
+        cell('web', 'prod', 'eu', '1.9.4', 'Healthy'),
       ],
     },
     {
       application: 'worker',
       cells: [
-        cell('dev', 'us', '0.7.1', 'Healthy'),
-        cell('staging', 'us', '0.0.0', 'Missing'),
-        cell('prod', 'us', '0.0.0', 'Missing'),
-        cell('prod', 'eu', '0.0.0', 'Missing'),
+        cell('worker', 'dev', 'us', '0.7.1', 'Healthy'),
+        cell('worker', 'staging', 'us', '0.0.0', 'Missing'),
+        cell('worker', 'prod', 'us', '0.0.0', 'Missing'),
+        cell('worker', 'prod', 'eu', '0.0.0', 'Missing'),
       ],
     },
   ],
