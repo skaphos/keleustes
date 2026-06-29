@@ -15,8 +15,6 @@ require (
 	sigs.k8s.io/yaml v1.6.0
 )
 
-require github.com/robfig/cron/v3 v3.0.1 // indirect
-
 // Required to consume the gitops-engine, whose go.mod uses
 // `require k8s.io/* v0.0.0` paired with replace directives. Replace
 // directives don't propagate from dependencies — we must duplicate them
@@ -24,10 +22,10 @@ require github.com/robfig/cron/v3 v3.0.1 // indirect
 //
 // Keleustes imports the skaphos hard fork (github.com/skaphos/gitops-engine)
 // directly rather than the upstream argoproj path (ADR 0007, SKA-430). The
-// fork modernized scheme registration to drop the removed autoscaling/v2beta
-// {1,2} and scheduling/v1alpha1 install packages, lifting the former v0.34
-// ceiling (SKA-421). The staging pins below track k8s.io v0.36.1 to match the
-// fork's go.mod exactly.
+// fork modernized scheme registration to drop the removed autoscaling/v2beta1,
+// autoscaling/v2beta2, and scheduling/v1alpha1 install packages, lifting the
+// former v0.34 ceiling (SKA-421). The staging pins below track k8s.io v0.36.1
+// to match the fork's go.mod exactly.
 replace (
 	k8s.io/api => k8s.io/api v0.36.1
 	k8s.io/apiextensions-apiserver => k8s.io/apiextensions-apiserver v0.36.1
@@ -109,6 +107,7 @@ require (
 	github.com/prometheus/client_model v0.6.2 // indirect
 	github.com/prometheus/common v0.67.5 // indirect
 	github.com/prometheus/procfs v0.19.2 // indirect
+	github.com/robfig/cron/v3 v3.0.1 // indirect
 	github.com/russross/blackfriday/v2 v2.1.0 // indirect
 	github.com/skaphos/gitops-engine v0.36.1-skaphos.0
 	github.com/spf13/pflag v1.0.10 // indirect
