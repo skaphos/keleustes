@@ -17,6 +17,7 @@ import (
 	"github.com/getkin/kin-openapi/openapi3filter"
 	"github.com/getkin/kin-openapi/routers/legacy"
 
+	"github.com/skaphos/keleustes/internal/api/auth"
 	"github.com/skaphos/keleustes/internal/api/openapi"
 	"github.com/skaphos/keleustes/internal/api/readmodel/fixtures"
 	"github.com/skaphos/keleustes/internal/api/server"
@@ -316,6 +317,24 @@ func TestGetApplicationUnknownReturns404(t *testing.T) {
 	e := decodeJSON[openapi.Problem](t, rec.Body.Bytes())
 	if e.Type != "https://keleustes.skaphos.io/errors/not_found" {
 		t.Errorf("type = %q, want .../not_found", e.Type)
+	}
+}
+
+// TestUnauthorizedCarriesRequestID pins the middleware order: an auth rejection
+// (401) is still stamped with X-Request-Id and returns problem+json, because
+// requestID and logging wrap auth rather than sitting inside it.
+func TestUnauthorizedCarriesRequestID(t *testing.T) {
+	h := server.New(fixtures.New(), server.Options{Auth: auth.Config{Required: true}}).Handler()
+	rec := serve(t, h, http.MethodGet, baseURL+"/applications", nil)
+
+	if rec.Code != http.StatusUnauthorized {
+		t.Fatalf("status = %d, want 401 (body: %s)", rec.Code, rec.Body.String())
+	}
+	if rec.Header().Get("X-Request-Id") == "" {
+		t.Error("401 is missing X-Request-Id; auth must run inside the requestID middleware")
+	}
+	if ct := rec.Header().Get("Content-Type"); ct != "application/problem+json" {
+		t.Errorf("content-type = %q, want application/problem+json", ct)
 	}
 }
 

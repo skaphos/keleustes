@@ -126,23 +126,17 @@ func runReleaseList(cmd *cobra.Command, args []string) error {
 	if err != nil {
 		return err
 	}
-	// GET /releases is the fleet-wide list (GET /applications/{name}/releases
-	// is the app-scoped surface); filter to the requested application here.
-	resp, err := client.GetReleasesWithResponse(cmd.Context(), &openapi.GetReleasesParams{})
+	// Use the app-scoped GET /applications/{name}/releases rather than fetching
+	// the fleet-wide GET /releases and filtering client-side.
+	app := args[0]
+	resp, err := client.GetApplicationsNameReleasesWithResponse(cmd.Context(), app)
 	if err != nil {
 		return err
 	}
 	if resp.JSON200 == nil {
 		return apiError("list releases", resp.StatusCode(), resp.Body)
 	}
-	app := args[0]
-	var matched []openapi.Release
-	for _, r := range *resp.JSON200 {
-		if r.App == app {
-			matched = append(matched, r)
-		}
-	}
-	return renderReleases(cmd.OutOrStdout(), matched)
+	return renderReleases(cmd.OutOrStdout(), *resp.JSON200)
 }
 
 func newPromoteCommand() *cobra.Command {
@@ -230,11 +224,12 @@ func runBlockers(cmd *cobra.Command, args []string) error {
 	if err != nil {
 		return err
 	}
-	// There is no dedicated blockers endpoint yet; GET /promotions?state=blocked
-	// is the closest contract surface. Narrow to the requested application
-	// (and destination env when --to is given) on the client side.
-	state := openapi.GetPromotionsParamsStateBlocked
-	resp, err := client.GetPromotionsWithResponse(cmd.Context(), &openapi.GetPromotionsParams{State: &state})
+	// There is no dedicated blockers endpoint yet; the app-scoped promotions
+	// list is the closest contract surface — fetch this application's promotions
+	// and keep the blocked ones (narrowed to --to when given) client-side, rather
+	// than pulling every blocked promotion fleet-wide.
+	app := args[0]
+	resp, err := client.GetApplicationsNamePromotionsWithResponse(cmd.Context(), app)
 	if err != nil {
 		return err
 	}
@@ -242,10 +237,9 @@ func runBlockers(cmd *cobra.Command, args []string) error {
 		return apiError("blockers", resp.StatusCode(), resp.Body)
 	}
 	to, _ := cmd.Flags().GetString("to")
-	app := args[0]
 	var matched []openapi.Promotion
 	for _, p := range *resp.JSON200 {
-		if p.Application != app {
+		if p.Status != openapi.StatusBlocked {
 			continue
 		}
 		if to != "" && p.To != to {

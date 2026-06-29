@@ -152,8 +152,8 @@
     "hash": "5673d36b1f962c894efecde3bd552122"
   },
   "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/api-server-scaffold/cmd/apiserver/main.go": {
-    "mtime": 1782714979.4709184,
-    "hash": "084493bfb6ae83759c58f40352a4506a"
+    "mtime": 1782742776.828151,
+    "hash": "ea5e737bfd4cfb65e79327c98a1079d2"
   },
   "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/api-server-scaffold/cmd/keleustesctl/main.go": {
     "mtime": 1782711407.8532944,
@@ -332,7 +332,7 @@
     "hash": "da1ce043181f20afa33c40d3e03cdb59"
   },
   "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/api-server-scaffold/internal/api/auth/auth_test.go": {
-    "mtime": 1782719685.4932244,
+    "mtime": 1782742234.9405732,
     "hash": "1b64dc2302d9ca59696f1d8b1b78d48d"
   },
   "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/api-server-scaffold/internal/api/auth/doc.go": {
@@ -340,19 +340,19 @@
     "hash": "253c5fc2eb8adf383da2747d35d714d2"
   },
   "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/api-server-scaffold/internal/api/auth/auth.go": {
-    "mtime": 1782719678.9630396,
+    "mtime": 1782742234.9405732,
     "hash": "4f9e4057a02322c41d7385de4ff47fd9"
   },
   "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/api-server-scaffold/internal/api/server/server_test.go": {
-    "mtime": 1782719701.516844,
-    "hash": "e9277f81efbab859eca6a8ea361d17e0"
+    "mtime": 1782743137.2199292,
+    "hash": "24ff66ac1cd71a7d4437b3bad18e6b78"
   },
   "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/api-server-scaffold/internal/api/server/authz.go": {
-    "mtime": 1782719628.1767147,
+    "mtime": 1782742234.9405732,
     "hash": "39cb13c3ba81255973b4ed884d173972"
   },
   "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/api-server-scaffold/internal/api/server/middleware.go": {
-    "mtime": 1782719746.3622675,
+    "mtime": 1782742234.9405732,
     "hash": "7170833592cbba51a35a2cfbe9421059"
   },
   "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/api-server-scaffold/internal/api/server/doc.go": {
@@ -360,8 +360,8 @@
     "hash": "bd8da0d4e175027a63b9816eff3149e1"
   },
   "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/api-server-scaffold/internal/api/server/server.go": {
-    "mtime": 1782719655.1724517,
-    "hash": "a9fe7d7ff6e28ba21fe156d2fe621a07"
+    "mtime": 1782742729.8839333,
+    "hash": "9d823fb467a89a7910b6a9cd46562544"
   },
   "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/api-server-scaffold/internal/api/server/handlers_read.go": {
     "mtime": 1782717465.7155344,
@@ -372,7 +372,7 @@
     "hash": "8e0f3009e6cc92d7d889dc6c127b282d"
   },
   "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/api-server-scaffold/internal/api/server/errors.go": {
-    "mtime": 1782719611.8884165,
+    "mtime": 1782742234.9405732,
     "hash": "043d1441e3e92fb5c8a4ce0c294c3f10"
   },
   "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/api-server-scaffold/internal/api/readmodel/port.go": {
@@ -412,7 +412,7 @@
     "hash": "a825cfc88e348edb15236ee739603cf0"
   },
   "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/api-server-scaffold/internal/api/openapi/keleustes.gen.go": {
-    "mtime": 1782719904.3607934,
+    "mtime": 1782742234.9405732,
     "hash": "bc7b3788fc0f30fd30ffd1df3fef2b4c"
   },
   "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/api-server-scaffold/internal/audit/types.go": {
@@ -491,6 +491,10 @@
     "mtime": 1782713126.7800422,
     "hash": "c49f7f5ee08e3ec50f0f7679fc91efda"
   },
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/api-server-scaffold/internal/cli/commands_api_test.go": {
+    "mtime": 1782743078.7979677,
+    "hash": "0ecbcedbaeb4bb918629b57ffe7021b8"
+  },
   "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/api-server-scaffold/internal/cli/kinds.go": {
     "mtime": 1782711407.8796818,
     "hash": "4a8437d4713459a118c4be44dad83be8"
@@ -504,8 +508,8 @@
     "hash": "db56ac583d4b9e6a6785f07efd6d3685"
   },
   "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/api-server-scaffold/internal/cli/commands.go": {
-    "mtime": 1782719735.3139305,
-    "hash": "dbe54de690975a0d96f90024cd93aa38"
+    "mtime": 1782742840.2533529,
+    "hash": "8b9cfcde4ab7dfec6d1ef43688d42f93"
   },
   "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/api-server-scaffold/internal/cli/describe.go": {
     "mtime": 1782711407.8796818,
@@ -515,9 +519,13 @@
     "mtime": 1782711407.8796818,
     "hash": "b12981b6cfe7190b66310d66c64d0288"
   },
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/api-server-scaffold/internal/cli/apiclient_test.go": {
+    "mtime": 1782743031.6318302,
+    "hash": "bd291dad738bccfd5a44886b08038fcb"
+  },
   "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/api-server-scaffold/internal/cli/apiclient.go": {
-    "mtime": 1782713121.5658188,
-    "hash": "baf5af4dcaf6f294665c90aeb371cdd8"
+    "mtime": 1782742806.7383137,
+    "hash": "caa8a351f683374ded17d1a4f2dbb086"
   },
   "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/api-server-scaffold/internal/sync/engine.go": {
     "mtime": 1782711407.882095,
@@ -764,11 +772,11 @@
     "hash": "9c94420c20eab52d3f32b604be10d99f"
   },
   "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/api-server-scaffold/docs/PROPOSAL.md": {
-    "mtime": 1782719048.7151103,
+    "mtime": 1782742234.935932,
     "hash": "1db16ae8261378765785f4039e8e8b59"
   },
   "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/api-server-scaffold/docs/DECISIONS.md": {
-    "mtime": 1782719042.1669145,
+    "mtime": 1782742234.935932,
     "hash": "cae6fecdc9c69e7882e05c145e16f179"
   },
   "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/api-server-scaffold/docs/NAMING.md": {
@@ -848,7 +856,7 @@
     "hash": "897456a6c21ec91de8e1922569754337"
   },
   "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/api-server-scaffold/docs/adr/0009-rest-api-status-code-contract.md": {
-    "mtime": 1782719294.2108138,
+    "mtime": 1782742234.935932,
     "hash": "f8c53eec1a2351e22d6c2a55bc938428"
   },
   "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/api-server-scaffold/docs/adr/0001-plugin-extension-model.md": {
@@ -888,7 +896,7 @@
     "hash": "6270bf06f24c46dad4ce928c1c1cf6a5"
   },
   "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/api-server-scaffold/docs/design/api-server.md": {
-    "mtime": 1782719351.3890324,
+    "mtime": 1782742234.935932,
     "hash": "5df80cbf4859965d2d1c5b5e3157ccbe"
   },
   "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/api-server-scaffold/docs/design/ui-design-spec.md": {
@@ -904,7 +912,7 @@
     "hash": "7b24205f5f379d4c72cc7af029cf891d"
   },
   "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/api-server-scaffold/openapi/keleustes.v1.yaml": {
-    "mtime": 1782719811.8698401,
+    "mtime": 1782742234.9405732,
     "hash": "fc7002aee0428e364a731badbeae3549"
   }
 }

@@ -8,7 +8,9 @@ package cli
 import (
 	"context"
 	"net/http"
+	"net/url"
 	"os"
+	"strings"
 
 	"github.com/spf13/cobra"
 
@@ -22,16 +24,32 @@ const defaultAPIBaseURL = "http://localhost:8443/api/v1"
 
 // apiBaseURL resolves the API server base URL with kubectl-style precedence:
 // the --api-url flag first, then $KELEUSTES_API, then the localhost default.
+// The resolved value is normalized so a bare host stays routable.
 func apiBaseURL(cmd *cobra.Command) string {
 	// The flag is registered persistently on root; on a subcommand it is
 	// reachable through the merged flag set. A lookup miss falls through.
+	raw := defaultAPIBaseURL
 	if v, err := cmd.Flags().GetString("api-url"); err == nil && v != "" {
-		return v
+		raw = v
+	} else if v := os.Getenv("KELEUSTES_API"); v != "" {
+		raw = v
 	}
-	if v := os.Getenv("KELEUSTES_API"); v != "" {
-		return v
+	return normalizeBaseURL(raw)
+}
+
+// normalizeBaseURL makes a bare host URL usable. The server mounts the contract
+// at /api/v1, so "http://host:8443" (no path) would otherwise request
+// "/applications" and 404. When the URL carries no path, default it to /api/v1;
+// an already path-qualified URL is left untouched.
+func normalizeBaseURL(raw string) string {
+	u, err := url.Parse(raw)
+	if err != nil || u.Host == "" {
+		return raw // leave malformed input for the client to surface
 	}
-	return defaultAPIBaseURL
+	if strings.Trim(u.Path, "/") == "" {
+		u.Path = "/api/v1"
+	}
+	return u.String()
 }
 
 // newAPIClient builds a typed openapi client pointed at apiBaseURL. The

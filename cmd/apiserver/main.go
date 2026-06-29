@@ -15,6 +15,7 @@ import (
 	"errors"
 	"flag"
 	"fmt"
+	"net"
 	"net/http"
 	"os"
 	"time"
@@ -118,14 +119,21 @@ func main() {
 	_ = probeSrv.Shutdown(shutdownCtx)
 }
 
-// serve runs srv.ListenAndServe and treats any non-shutdown error as fatal so a
-// failed bind takes the process down instead of silently degrading. announce,
-// when non-empty, is logged once the listener is about to accept.
+// serve binds the listener and then runs srv.Serve, treating any non-shutdown
+// error as fatal so a failed bind takes the process down instead of silently
+// degrading. Binding before announce means the "listening" log can never claim
+// a port that is actually in use; announce, when non-empty, is logged only once
+// the socket is bound and about to accept.
 func serve(srv *http.Server, name, announce string) {
+	ln, err := net.Listen("tcp", srv.Addr)
+	if err != nil {
+		setupLog.Error(err, "server failed to bind", "server", name, "address", srv.Addr)
+		os.Exit(1)
+	}
 	if announce != "" {
 		setupLog.Info(announce)
 	}
-	if err := srv.ListenAndServe(); err != nil && !errors.Is(err, http.ErrServerClosed) {
+	if err := srv.Serve(ln); err != nil && !errors.Is(err, http.ErrServerClosed) {
 		setupLog.Error(err, "server failed", "server", name)
 		os.Exit(1)
 	}

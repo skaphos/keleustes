@@ -57,7 +57,7 @@ func New(rm readmodel.ReadModel, opts Options) *Server {
 
 // Handler returns the fully wired http.Handler: the contract routes under
 // /api/v1, the spec and liveness/readiness probes, all behind the outer
-// middleware chain (auth -> requestID -> logging -> recover).
+// middleware chain (requestID -> logging -> recover -> auth).
 func (s *Server) Handler() http.Handler {
 	// authzMiddleware is the in-process authorization checkpoint (ADR 0004 §11);
 	// it runs for every operation before the handler. AllowAll keeps it open.
@@ -77,12 +77,14 @@ func (s *Server) Handler() http.Handler {
 	mux.HandleFunc("GET /healthz", handleOK)
 	mux.HandleFunc("GET /readyz", handleOK)
 
-	// Build inside-out so requests flow auth -> requestID -> logging -> recover.
+	// Build inside-out so requests flow requestID -> logging -> recover -> auth.
+	// requestID and logging wrap auth so an auth rejection (401) still carries
+	// X-Request-Id and lands in the access log; recover guards auth and the mux.
 	var h http.Handler = mux
+	h = auth.Middleware(s.authCfg)(h)
 	h = recoverMiddleware(s.log)(h)
 	h = loggingMiddleware(s.log)(h)
 	h = requestIDMiddleware(h)
-	h = auth.Middleware(s.authCfg)(h)
 	return h
 }
 
