@@ -2,68 +2,104 @@
  * SPDX-FileCopyrightText: 2026 Skaphos
  * SPDX-License-Identifier: MIT
  */
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
+
+/* Class-based dark mode (replaces v3 `darkMode: 'class'`). */
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  --background: 0 0% 100%;
+  --foreground: 222 47% 11%;
+  --card: 0 0% 100%;
+  --card-foreground: 222 47% 11%;
+  --primary: 222 89% 55%;
+  --primary-foreground: 210 40% 98%;
+  --muted: 210 40% 96%;
+  --muted-foreground: 215 16% 47%;
+  --accent: 210 40% 96%;
+  --accent-foreground: 222 47% 11%;
+  --border: 214 32% 91%;
+  --input: 214 32% 91%;
+  --ring: 222 89% 55%;
+  --radius: 0.5rem;
+
+  /* Canonical status vocabulary (ui-design-spec §3.1) — AA in light. */
+  --status-healthy: 142 71% 38%;
+  --status-progressing: 217 91% 55%;
+  --status-degraded: 0 72% 48%;
+  --status-drifted: 38 92% 45%;
+  --status-blocked: 271 70% 52%;
+  --status-frozen: 215 20% 50%;
+  --status-missing: 220 9% 60%;
+  --status-failed: 0 72% 42%;
+}
+
+.dark {
+  --background: 222 47% 8%;
+  --foreground: 210 40% 96%;
+  --card: 222 44% 11%;
+  --card-foreground: 210 40% 96%;
+  --primary: 217 91% 60%;
+  --primary-foreground: 222 47% 11%;
+  --muted: 217 33% 17%;
+  --muted-foreground: 215 20% 65%;
+  --accent: 217 33% 20%;
+  --accent-foreground: 210 40% 96%;
+  --border: 217 33% 20%;
+  --input: 217 33% 20%;
+  --ring: 224 76% 60%;
+
+  /* Status vocabulary — AA in dark. */
+  --status-healthy: 142 69% 50%;
+  --status-progressing: 213 94% 68%;
+  --status-degraded: 0 84% 63%;
+  --status-drifted: 38 96% 58%;
+  --status-blocked: 271 81% 70%;
+  --status-frozen: 215 16% 60%;
+  --status-missing: 220 9% 55%;
+  --status-failed: 0 84% 60%;
+}
+
+/*
+ * Map the CSS variables above to Tailwind theme tokens. `inline` makes the
+ * generated utilities reference the variables directly (so a single token picks
+ * up the light/dark value in scope) rather than freezing a value at build time.
+ */
+@theme inline {
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+
+  --color-status-healthy: hsl(var(--status-healthy));
+  --color-status-progressing: hsl(var(--status-progressing));
+  --color-status-degraded: hsl(var(--status-degraded));
+  --color-status-drifted: hsl(var(--status-drifted));
+  --color-status-blocked: hsl(var(--status-blocked));
+  --color-status-frozen: hsl(var(--status-frozen));
+  --color-status-missing: hsl(var(--status-missing));
+  --color-status-failed: hsl(var(--status-failed));
+
+  --radius-lg: var(--radius);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 4px);
+
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, monospace;
+}
 
 @layer base {
-  :root {
-    --background: 0 0% 100%;
-    --foreground: 222 47% 11%;
-    --card: 0 0% 100%;
-    --card-foreground: 222 47% 11%;
-    --primary: 222 89% 55%;
-    --primary-foreground: 210 40% 98%;
-    --muted: 210 40% 96%;
-    --muted-foreground: 215 16% 47%;
-    --accent: 210 40% 96%;
-    --accent-foreground: 222 47% 11%;
-    --border: 214 32% 91%;
-    --input: 214 32% 91%;
-    --ring: 222 89% 55%;
-    --radius: 0.5rem;
-
-    /* Canonical status vocabulary (ui-design-spec §3.1) — AA in light. */
-    --status-healthy: 142 71% 38%;
-    --status-progressing: 217 91% 55%;
-    --status-degraded: 0 72% 48%;
-    --status-drifted: 38 92% 45%;
-    --status-blocked: 271 70% 52%;
-    --status-frozen: 215 20% 50%;
-    --status-missing: 220 9% 60%;
-    --status-failed: 0 72% 42%;
-  }
-
-  .dark {
-    --background: 222 47% 8%;
-    --foreground: 210 40% 96%;
-    --card: 222 44% 11%;
-    --card-foreground: 210 40% 96%;
-    --primary: 217 91% 60%;
-    --primary-foreground: 222 47% 11%;
-    --muted: 217 33% 17%;
-    --muted-foreground: 215 20% 65%;
-    --accent: 217 33% 20%;
-    --accent-foreground: 210 40% 96%;
-    --border: 217 33% 20%;
-    --input: 217 33% 20%;
-    --ring: 224 76% 60%;
-
-    /* Status vocabulary — AA in dark. */
-    --status-healthy: 142 69% 50%;
-    --status-progressing: 213 94% 68%;
-    --status-degraded: 0 84% 63%;
-    --status-drifted: 38 96% 58%;
-    --status-blocked: 271 81% 70%;
-    --status-frozen: 215 16% 60%;
-    --status-missing: 220 9% 55%;
-    --status-failed: 0 84% 60%;
-  }
-
   * {
     @apply border-border;
   }
-
   body {
     @apply bg-background text-foreground antialiased;
     font-feature-settings: 'tnum' 1;

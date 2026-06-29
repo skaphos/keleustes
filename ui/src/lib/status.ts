@@ -17,7 +17,7 @@ export type Status =
 
 export interface StatusMeta {
   label: string
-  /** Tailwind text color token (see tailwind.config.ts `status.*`). */
+  /** Tailwind text color token (see the `@theme` block in src/index.css). */
   color: string
   /** Single-glyph affordance for dense tables/matrix cells. */
   glyph: string
