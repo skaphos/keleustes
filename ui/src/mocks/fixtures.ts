@@ -36,6 +36,7 @@ export const matrix = {
   rows: [
     {
       application: 'api',
+      ulid: '01J0AAA0000000000000000API',
       cells: [
         cell('api', 'dev', 'us', '1.4.2', 'Healthy'),
         cell('api', 'staging', 'us', '1.4.2', 'Healthy'),
@@ -45,6 +46,7 @@ export const matrix = {
     },
     {
       application: 'web',
+      ulid: '01J0AAA0000000000000000WEB',
       cells: [
         cell('web', 'dev', 'us', '2.0.0', 'Healthy'),
         cell('web', 'staging', 'us', '2.0.0', 'Healthy'),
@@ -54,6 +56,7 @@ export const matrix = {
     },
     {
       application: 'worker',
+      ulid: '01J0AAA000000000000000WRK',
       cells: [
         cell('worker', 'dev', 'us', '0.7.1', 'Healthy'),
         cell('worker', 'staging', 'us', '0.0.0', 'Missing'),
@@ -170,6 +173,7 @@ export const environments = [
         targets: [
           {
             name: 'prod-us/api',
+            ulid: '01J0TGT0000000000000PRODUS',
             env: 'prod',
             region: 'us',
             cell: 'prod-us-1',
@@ -189,6 +193,7 @@ export const environments = [
         targets: [
           {
             name: 'prod-eu/api',
+            ulid: '01J0TGT0000000000000PRODEU',
             env: 'prod',
             region: 'eu',
             cell: 'prod-eu-1',

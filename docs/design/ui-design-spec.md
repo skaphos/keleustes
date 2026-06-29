@@ -69,13 +69,20 @@ These come from accepted ADRs. When in doubt, the ADR wins over any visual idea.
    roles client-side; it asks the server what the user may do and renders
    actions accordingly (disabled/hidden when not permitted), but never *enforces*
    on its own.
-5. **Deep links prefer ULIDs where a resource has one** (audit/event model).
-   Resources can be renamed; ULIDs are stable, so `/promotions/{ulid}` and audit
-   deep-links survive renames. Applications and targets are addressed by **name**
-   today — that is the API identifier in the REST contract (PROPOSAL §18,
-   `/applications/{name}`). Giving them stable ULID deep-links is a forward
-   enhancement that depends on the API gaining ULID lookup; until then the
-   router params for those resources are names, not ULIDs.
+5. **Identity model: natural key for addressing, durable ULID underneath**
+   (surrogate-key pattern). All human- and machine-facing interaction —
+   UI routes, `keleustesctl`, the REST contract (PROPOSAL §18,
+   `/applications/{name}`), and `kubectl` — addresses resources by their
+   **natural key (name)**. Names are ergonomic, shareable, and match the
+   Kubernetes object handle. *Separately*, every primary resource carries a
+   **durable ULID** minted at creation, immutable, and carried in Git so it is
+   reconstructable. The ULID is the background identity: it keys the audit/event
+   log, cross-CRD references, and history, so those survive a rename
+   (in Kubernetes a rename is delete-old + create-new — the name changes and the
+   object's `uid` changes, but the Git-carried ULID does not). Practical split:
+   deep-links into **live** resources use the name (it exists under that name
+   now); deep-links into **immutable history** (promotions, audit events) use the
+   ULID. The UI never asks a human to type or read a ULID.
 6. **The matrix is eventually consistent.** At fleet scale (10k+ Applications)
    the app×env×region matrix is served from a **pre-computed snapshot**
    (DuckDB-on-parquet materialized from the event log), *not* live aggregation.

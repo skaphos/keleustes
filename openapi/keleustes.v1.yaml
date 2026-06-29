@@ -429,7 +429,8 @@ components:
       type: object
       required: [application, cells]
       properties:
-        application: { type: string }
+        application: { type: string, description: Natural key (name) — used for display and addressing. }
+        ulid: { type: string, description: Durable identity for history-linking; survives rename. Not used for addressing. }
         cells:
           type: array
           items: { $ref: '#/components/schemas/MatrixCell' }
@@ -478,7 +479,8 @@ components:
       type: object
       required: [name, status]
       properties:
-        name: { type: string }
+        name: { type: string, description: Natural key (name) — used for addressing. }
+        ulid: { type: string, description: Durable identity; survives rename. Not used for addressing. }
         env: { type: string }
         region: { type: string }
         cell: { type: string }
