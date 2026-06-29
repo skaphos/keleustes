@@ -51,12 +51,12 @@ Apache-2.0 §4(d). See `docs/licenses.md` for the full contract.
 | `go.uber.org/zap` | MIT | [link](https://github.com/uber-go/zap/blob/v1.27.1/LICENSE) |
 | `go.yaml.in/yaml/v2` | Apache-2.0 | [link](https://github.com/yaml/go-yaml/blob/v2.4.3/LICENSE) |
 | `go.yaml.in/yaml/v3` | MIT | [link](https://github.com/yaml/go-yaml/blob/v3.0.4/LICENSE) |
-| `golang.org/x/net` | BSD-3-Clause | [link](https://cs.opensource.google/go/x/net/+/v0.53.0:LICENSE) |
+| `golang.org/x/net` | BSD-3-Clause | [link](https://cs.opensource.google/go/x/net/+/v0.56.0:LICENSE) |
 | `golang.org/x/oauth2` | BSD-3-Clause | [link](https://cs.opensource.google/go/x/oauth2/+/v0.34.0:LICENSE) |
-| `golang.org/x/sync/errgroup` | BSD-3-Clause | [link](https://cs.opensource.google/go/x/sync/+/v0.20.0:LICENSE) |
-| `golang.org/x/sys/unix` | BSD-3-Clause | [link](https://cs.opensource.google/go/x/sys/+/v0.43.0:LICENSE) |
-| `golang.org/x/term` | BSD-3-Clause | [link](https://cs.opensource.google/go/x/term/+/v0.42.0:LICENSE) |
-| `golang.org/x/text` | BSD-3-Clause | [link](https://cs.opensource.google/go/x/text/+/v0.36.0:LICENSE) |
+| `golang.org/x/sync/errgroup` | BSD-3-Clause | [link](https://cs.opensource.google/go/x/sync/+/v0.21.0:LICENSE) |
+| `golang.org/x/sys/unix` | BSD-3-Clause | [link](https://cs.opensource.google/go/x/sys/+/v0.46.0:LICENSE) |
+| `golang.org/x/term` | BSD-3-Clause | [link](https://cs.opensource.google/go/x/term/+/v0.44.0:LICENSE) |
+| `golang.org/x/text` | BSD-3-Clause | [link](https://cs.opensource.google/go/x/text/+/v0.38.0:LICENSE) |
 | `golang.org/x/time/rate` | BSD-3-Clause | [link](https://cs.opensource.google/go/x/time/+/v0.14.0:LICENSE) |
 | `gomodules.xyz/jsonpatch/v2` | Apache-2.0 | [link](https://github.com/gomodules/jsonpatch/blob/v2.4.0/v2/LICENSE) |
 | `google.golang.org/protobuf` | BSD-3-Clause | [link](https://github.com/protocolbuffers/protobuf-go/blob/f2248ac996af/LICENSE) |
