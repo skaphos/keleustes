@@ -9,6 +9,7 @@ vars:
   GOIMPORTS_RUNNER: go run golang.org/x/tools/cmd/goimports@v0.42.0
   STATICCHECK_RUNNER: go run honnef.co/go/tools/cmd/staticcheck@v0.7.0
   GOVULNCHECK_RUNNER: go run golang.org/x/vuln/cmd/govulncheck@v1.1.4
+  PNPM: pnpm
   ENVTEST_K8S_VERSION: "1.33"
   IMG: '{{.IMG | default "controller:latest"}}'
   CTL_IMG: '{{.CTL_IMG | default "keleustesctl:latest"}}'
@@ -209,6 +210,76 @@ tasks:
     desc: Undeploy the operator from the current cluster
     cmds:
       - '{{.KUSTOMIZE}} build config/default | kubectl delete --ignore-not-found=true -f -'
+
+  # --- UI ---
+  # The web UI lives in ui/ (Vite + React + TS). Tasks shell out to pnpm; the
+  # typed API client is generated from openapi/keleustes.v1.yaml, so anything
+  # that type-checks depends on ui:gen. See ui/README.md.
+
+  ui:install:
+    desc: Install UI dependencies (pnpm)
+    dir: ui
+    cmds:
+      - '{{.PNPM}} install'
+
+  ui:gen:
+    desc: Regenerate the typed API client from openapi/keleustes.v1.yaml
+    dir: ui
+    cmds:
+      - '{{.PNPM}} gen:api'
+
+  ui:dev:
+    desc: Run the UI dev server (Vite + MSW fixtures) for usability testing
+    dir: ui
+    cmds:
+      - '{{.PNPM}} dev'
+
+  ui:typecheck:
+    desc: Type-check the UI
+    dir: ui
+    deps: [ui:gen]
+    cmds:
+      - '{{.PNPM}} typecheck'
+
+  ui:lint:
+    desc: Lint + type-check the UI
+    dir: ui
+    deps: [ui:gen]
+    cmds:
+      - '{{.PNPM}} lint'
+      - '{{.PNPM}} typecheck'
+
+  ui:test:
+    desc: Run UI unit + component tests (Vitest + MSW)
+    dir: ui
+    deps: [ui:gen]
+    cmds:
+      - '{{.PNPM}} test'
+
+  ui:build:
+    desc: Production build of the UI
+    dir: ui
+    deps: [ui:gen]
+    cmds:
+      - '{{.PNPM}} build'
+
+  ui:e2e:
+    desc: Run UI end-to-end tests (Playwright; boots the dev server)
+    dir: ui
+    deps: [ui:gen]
+    cmds:
+      - '{{.PNPM}} e2e'
+
+  ui:ci:
+    desc: Full UI CI — install, gen, lint, typecheck, test, build
+    dir: ui
+    cmds:
+      - '{{.PNPM}} install'
+      - '{{.PNPM}} gen:api'
+      - '{{.PNPM}} lint'
+      - '{{.PNPM}} typecheck'
+      - '{{.PNPM}} test'
+      - '{{.PNPM}} build'
 
   # --- Housekeeping ---
 

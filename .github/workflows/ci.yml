@@ -213,9 +213,49 @@ jobs:
       - name: Build keleustesctl
         run: go -C tools tool task -d .. build-ctl
 
+  ui:
+    name: UI (lint · test · build · e2e)
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    permissions:
+      contents: read
+    defaults:
+      run:
+        working-directory: ui
+    steps:
+      - uses: actions/checkout@v6
+      - name: Set up pnpm
+        # Third-party action pinned to a commit SHA (first-party actions/* use
+        # major tags per repo convention). Bump deliberately.
+        uses: pnpm/action-setup@b906affcce14559ad1aafd4ab0e942779e9f58b1 # v4.4.0
+        with:
+          version: 11
+      - name: Set up Node
+        uses: actions/setup-node@v6
+        with:
+          node-version: 24
+          cache: pnpm
+          cache-dependency-path: ui/pnpm-lock.yaml
+      - name: Install
+        run: pnpm install --frozen-lockfile
+      - name: Generate API client
+        run: pnpm gen:api
+      - name: Lint
+        run: pnpm lint
+      - name: Type-check
+        run: pnpm typecheck
+      - name: Unit + component tests
+        run: pnpm test
+      - name: Build
+        run: pnpm build
+      - name: Install Playwright browser
+        run: pnpm exec playwright install --with-deps chromium
+      - name: End-to-end (Playwright)
+        run: pnpm e2e
+
   summary:
     name: CI summary
-    needs: [reuse, lint, staticcheck, test, vuln, licenses, build]
+    needs: [reuse, lint, staticcheck, test, vuln, licenses, build, ui]
     if: always() && github.event_name == 'push' && github.ref == 'refs/heads/main'
     runs-on: ubuntu-24.04
     timeout-minutes: 5
@@ -230,6 +270,7 @@ jobs:
           VULN_RESULT: ${{ needs.vuln.result }}
           LICENSES_RESULT: ${{ needs.licenses.result }}
           BUILD_RESULT: ${{ needs.build.result }}
+          UI_RESULT: ${{ needs.ui.result }}
         run: |
           {
             echo "## CI Summary"
@@ -243,4 +284,5 @@ jobs:
             echo "| vuln (advisory) | ${VULN_RESULT} |"
             echo "| licenses | ${LICENSES_RESULT} |"
             echo "| build | ${BUILD_RESULT} |"
+            echo "| ui | ${UI_RESULT} |"
           } >> "$GITHUB_STEP_SUMMARY"
