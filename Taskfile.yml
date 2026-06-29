@@ -281,6 +281,29 @@ tasks:
       - '{{.PNPM}} test'
       - '{{.PNPM}} build'
 
+  # --- Local stack ---
+  # Runs the whole system on your machine. At scaffold stage the system is the
+  # operator (controller manager, reconciling real CRDs in your cluster) plus
+  # the UI (Vite dev server on MSW fixtures). The API server that will bridge
+  # them (internal/api) and NATS/agents arrive in later MVPs; until then the UI
+  # is driven by its mock backend, not the live operator.
+
+  dev:
+    desc: >-
+      Run the system locally and concurrently — operator + UI dev server.
+      Ctrl-C stops both. CRDs must already be installed (run `task install`, or
+      use `task dev:full` which installs them first). Needs a reachable cluster
+      and kubeconfig for the operator.
+    deps:
+      - run
+      - ui:dev
+
+  dev:full:
+    desc: Install CRDs, then run the full local stack (operator + UI). Needs a reachable cluster.
+    cmds:
+      - task: install
+      - task: dev
+
   # --- Housekeeping ---
 
   clean:

@@ -1,16 +1,16 @@
-# Graph Report - chore+full-deps-update  (2026-06-28)
+# Graph Report - chore+full-deps-update  (2026-06-29)
 
 ## Corpus Check
-- 155 files · ~171,919 words
+- 153 files · ~171,886 words
 - Verdict: corpus is large enough that graph structure adds value.
 
 ## Summary
-- 2096 nodes · 2486 edges · 159 communities (122 shown, 37 thin omitted)
-- Extraction: 96% EXTRACTED · 4% INFERRED · 0% AMBIGUOUS · INFERRED: 98 edges (avg confidence: 0.79)
+- 1783 nodes · 2065 edges · 135 communities (110 shown, 25 thin omitted)
+- Extraction: 97% EXTRACTED · 3% INFERRED · 0% AMBIGUOUS · INFERRED: 68 edges (avg confidence: 0.8)
 - Token cost: 0 input · 0 output
 
 ## Graph Freshness
-- Built from commit: `838ddee4`
+- Built from commit: `16bf576d`
 - Run `git rev-parse HEAD` and compare to check if the graph is stale.
 - Run `graphify update .` after code changes (no API cost).
 
@@ -96,7 +96,6 @@
 - [[_COMMUNITY_Community 78|Community 78]]
 - [[_COMMUNITY_Community 79|Community 79]]
 - [[_COMMUNITY_Community 80|Community 80]]
-- [[_COMMUNITY_Community 81|Community 81]]
 - [[_COMMUNITY_Community 82|Community 82]]
 - [[_COMMUNITY_Community 83|Community 83]]
 - [[_COMMUNITY_Community 84|Community 84]]
@@ -127,90 +126,54 @@
 - [[_COMMUNITY_Community 109|Community 109]]
 - [[_COMMUNITY_Community 110|Community 110]]
 - [[_COMMUNITY_Community 111|Community 111]]
-- [[_COMMUNITY_Community 112|Community 112]]
 - [[_COMMUNITY_Community 113|Community 113]]
-- [[_COMMUNITY_Community 114|Community 114]]
-- [[_COMMUNITY_Community 115|Community 115]]
 - [[_COMMUNITY_Community 116|Community 116]]
 - [[_COMMUNITY_Community 117|Community 117]]
 - [[_COMMUNITY_Community 118|Community 118]]
 - [[_COMMUNITY_Community 119|Community 119]]
 - [[_COMMUNITY_Community 120|Community 120]]
+- [[_COMMUNITY_Community 121|Community 121]]
 - [[_COMMUNITY_Community 122|Community 122]]
 - [[_COMMUNITY_Community 123|Community 123]]
 - [[_COMMUNITY_Community 124|Community 124]]
-- [[_COMMUNITY_Community 125|Community 125]]
-- [[_COMMUNITY_Community 126|Community 126]]
-- [[_COMMUNITY_Community 127|Community 127]]
-- [[_COMMUNITY_Community 128|Community 128]]
-- [[_COMMUNITY_Community 129|Community 129]]
-- [[_COMMUNITY_Community 130|Community 130]]
-- [[_COMMUNITY_Community 131|Community 131]]
-- [[_COMMUNITY_Community 132|Community 132]]
-- [[_COMMUNITY_Community 133|Community 133]]
-- [[_COMMUNITY_Community 134|Community 134]]
-- [[_COMMUNITY_Community 135|Community 135]]
-- [[_COMMUNITY_Community 150|Community 150]]
-- [[_COMMUNITY_Community 151|Community 151]]
-- [[_COMMUNITY_Community 152|Community 152]]
-- [[_COMMUNITY_Community 153|Community 153]]
-- [[_COMMUNITY_Community 154|Community 154]]
-- [[_COMMUNITY_Community 155|Community 155]]
-- [[_COMMUNITY_Community 156|Community 156]]
-- [[_COMMUNITY_Community 157|Community 157]]
-- [[_COMMUNITY_Community 158|Community 158]]
 
 ## God Nodes (most connected - your core abstractions)
 1. `Keleustes Proposal (Draft)` - 26 edges
-2. `Agent Transport Interface` - 20 edges
-3. `Audit Event Schema (Versioned)` - 20 edges
-4. `Scale Benchmark Harness — Design` - 18 edges
-5. `RBAC CRD Shapes` - 18 edges
-6. `JetStream Subject and Stream Layout` - 17 edges
-7. `Distributed Runtime Architecture Plan` - 17 edges
-8. `Repo Layout Golden Paths + the `Addon` CRD` - 17 edges
-9. `Observability Stack Plan` - 16 edges
-10. `Sharded Controller Pattern` - 16 edges
+2. `Agent Transport Interface` - 19 edges
+3. `Audit Event Schema (Versioned)` - 18 edges
+4. `Scale Benchmark Harness — Design` - 17 edges
+5. `Repo Layout Golden Paths + the `Addon` CRD` - 17 edges
+6. `RBAC CRD Shapes` - 17 edges
+7. `Observability Stack Plan` - 16 edges
+8. `JetStream Subject and Stream Layout` - 16 edges
+9. `Distributed Runtime Architecture Plan` - 16 edges
+10. `Value-Change Promotion (`Promotion.spec.valueChanges[]`)` - 16 edges
 
 ## Surprising Connections (you probably didn't know these)
-- `Application Manifest Rendering` --conceptually_related_to--> `Git Desired State Boundary`  [INFERRED]
-  api/v1alpha1/application_types.go → README.md
-- `Planned Operational UI Screens` --conceptually_related_to--> `Application Environment Matrix Command`  [INFERRED]
-  ui/README.md → internal/cli/commands.go
-- `Planned Operational UI Screens` --conceptually_related_to--> `Promotion Request Command`  [INFERRED]
-  ui/README.md → internal/cli/commands.go
-- `Planned Operational UI Screens` --conceptually_related_to--> `Application Environment Diff Command`  [INFERRED]
-  ui/README.md → internal/cli/commands.go
 - `main()` --calls--> `NewRootCommand()`  [INFERRED]
   cmd/keleustesctl/main.go → internal/cli/root.go
+- `TestNewEventID_GeneratesUniqueIDs()` --calls--> `NewEventID()`  [INFERRED]
+  internal/audit/ulid_test.go → internal/audit/ulid.go
+- `NewRootCommand()` --calls--> `newGetCommand()`  [INFERRED]
+  internal/cli/root.go → internal/cli/get.go
+- `TestExtractColumn_ArrayFlatten()` --calls--> `extractColumn()`  [INFERRED]
+  internal/cli/output_test.go → internal/cli/output.go
+- `NewRootCommand()` --calls--> `newDescribeCommand()`  [INFERRED]
+  internal/cli/root.go → internal/cli/describe.go
 
-## Hyperedges (group relationships)
-- **Core Delivery Abstractions** — application_application, source_source, release_release, deployment_deployment, promotion_promotion [EXTRACTED 1.00]
-- **Topology Model** — environment_environment, cell_cell, deploymenttarget_deployment_target, application_topology [EXTRACTED 1.00]
-- **Promotion Governance Flow** — promotion_promotion, promotionpolicy_promotion_policy, approval_approval, freezewindow_freeze_window, environment_change_control [INFERRED 0.86]
-- **Keleustes API Group CRD Family** — applications_application_crd, sources_source_crd, releases_release_crd, environments_environment_crd, cells_cell_crd, deploymenttargets_deploymenttarget_crd, deployments_deployment_crd, promotions_promotion_crd, promotionpolicies_promotionpolicy_crd, approvals_approval_crd, freezewindows_freezewindow_crd, syncplans_syncplan_crd, syncruns_syncrun_crd, healthchecks_healthcheck_crd [EXTRACTED 1.00]
-- **Controller Manager Reconciler Setup Set** — manager_controller_manager, manager_application_reconciler, manager_source_reconciler, manager_release_reconciler, manager_environment_reconciler, manager_cell_reconciler, manager_deploymenttarget_reconciler, manager_deployment_reconciler, manager_promotion_reconciler, manager_promotionpolicy_reconciler, manager_approval_reconciler, manager_freezewindow_reconciler, manager_syncplan_reconciler, manager_syncrun_reconciler, manager_healthcheck_reconciler [EXTRACTED 1.00]
-- **Promotion Governance Model** — promotions_promotion_crd, promotionpolicies_promotionpolicy_crd, approvals_approval_crd, freezewindows_freezewindow_crd, environments_change_control, promotions_change_reference [INFERRED 0.86]
-- **Sample Promotion Path** — keleustes_v1alpha1_application_marshaller_api_marshaller_api_application, keleustes_v1alpha1_release_marshaller_api_1_8_2_marshaller_api_release, keleustes_v1alpha1_promotion_marshaller_api_to_prod_marshaller_api_prod_promotion, keleustes_v1alpha1_environment_prod_prod_environment, keleustes_v1alpha1_cell_guest_prod_guest_prod_cell [EXTRACTED 1.00]
-- **Proposal Engine Stack** — PROPOSAL_source_engine, PROPOSAL_sync_engine, PROPOSAL_promotion_engine, PROPOSAL_git_mutation_engine, PROPOSAL_policy_engine, PROPOSAL_health_engine, PROPOSAL_diff_engine [EXTRACTED 1.00]
-- **Five Plugin Surfaces** — 2026_05_extensibility_plugin_surfaces_notifier, 2026_05_extensibility_plugin_surfaces_signatureverifier, 2026_05_extensibility_plugin_surfaces_scanner, 2026_05_extensibility_plugin_surfaces_policygate, 2026_05_extensibility_plugin_surfaces_auditdestination [EXTRACTED 1.00]
-- **keleustesctl Operational Surface** — root_keleustesctl_root_command, commands_app_command, commands_matrix_command, commands_release_command, commands_promote_command, commands_diff_command, commands_blockers_command, commands_rollback_command, commands_version_command [EXTRACTED 1.00]
-- **Scaffold Reconciler Status Contract** — doc_controller_scaffold_package, controller_observed_generation_status, controller_accepted_condition, controller_scaffold_reason [EXTRACTED 1.00]
-- **Controller Scaffold Test Matrix** — controllers_scaffold_cases, controllers_shared_scaffold_assertion, suite_envtest_environment, suite_k8s_client [EXTRACTED 1.00]
-
-## Communities (159 total, 37 thin omitted)
+## Communities (135 total, 25 thin omitted)
 
 ### Community 0 - "Community 0"
-Cohesion: 0.05
-Nodes (53): api, setAuthToken(), AuthContext, AuthProvider(), AuthState, getActiveToken(), Identity, STUB_IDENTITY (+45 more)
+Cohesion: 0.07
+Nodes (43): api, setAuthToken(), AuthContext, AuthProvider(), AuthState, getActiveToken(), Identity, STUB_IDENTITY (+35 more)
 
 ### Community 1 - "Community 1"
-Cohesion: 0.05
-Nodes (55): newKubeContext(), column, newAppCommand(), newBlockersCommand(), newDiffCommand(), newMatrixCommand(), newPromoteCommand(), newReleaseCommand() (+47 more)
+Cohesion: 0.07
+Nodes (45): newKubeContext(), column, newDescribeCommand(), renderConditions(), renderDescribe(), sortedKeys(), splitDescribeArgs(), writeIndentedYAML() (+37 more)
 
 ### Community 2 - "Community 2"
-Cohesion: 0.1
-Nodes (32): Emitter, Emit(), NewInMemoryEmitter(), NewLogEmitter(), newCRDWriteEnv(), TestEmit_FillsEventIDAndOccurredAt(), TestEmit_PayloadWrappedWithAtType(), TestEmit_RejectsUnregisteredVerb() (+24 more)
+Cohesion: 0.08
+Nodes (37): Emitter, Emit(), NewInMemoryEmitter(), NewLogEmitter(), newCRDWriteEnv(), TestEmit_FillsEventIDAndOccurredAt(), TestEmit_PayloadWrappedWithAtType(), TestEmit_RejectsUnregisteredVerb() (+29 more)
 
 ### Community 3 - "Community 3"
 Cohesion: 0.04
@@ -226,39 +189,39 @@ Nodes (45): 10.1 Absolute thresholds per MVP, 10.2 Relative regression detection
 
 ### Community 6 - "Community 6"
 Cohesion: 0.05
-Nodes (42): 10. Key Interfaces & Contracts to Define Early, 11.1 Hard constraint: restorable from zero, no backups, 11.2 Storage tiers, 11.3 Consistency model, 11.4 Recovery from zero (target time budgets, indicative), 11.5 Horizontal Scaling and Sharding, 11. Data, Consistency, and Restorability, 12. Failure Modes & Partition Behavior (Critical) (+34 more)
+Nodes (43): 10.1 CLI, 10.2 UI, 10. UI / CLI Affordances (Contract Only), 11.1 Non-Git-expressible changes, 11.2 Schema additions, 11.3 Rollback semantics, 11.4 Drift between value-change Promotion intent and actual live state, 11. Hard Cases (+35 more)
 
 ### Community 7 - "Community 7"
 Cohesion: 0.05
-Nodes (43): 10.1 CLI, 10.2 UI, 10. UI / CLI Affordances (Contract Only), 11.1 Non-Git-expressible changes, 11.2 Schema additions, 11.3 Rollback semantics, 11.4 Drift between value-change Promotion intent and actual live state, 11. Hard Cases (+35 more)
+Nodes (42): 10. Key Interfaces & Contracts to Define Early, 11.1 Hard constraint: restorable from zero, no backups, 11.2 Storage tiers, 11.3 Consistency model, 11.4 Recovery from zero (target time budgets, indicative), 11.5 Horizontal Scaling and Sharding, 11. Data, Consistency, and Restorability, 12. Failure Modes & Partition Behavior (Critical) (+34 more)
 
 ### Community 8 - "Community 8"
 Cohesion: 0.05
-Nodes (42): Building, code:block1 (api/v1alpha1/          # CRD type definitions (Application, ), code:bash (cd tools && go mod tidy   # one-time), code:bash (go -C tools tool task manifests        # regenerate CRDs + R), Core CRDs (group `keleustes.skaphos.io`), Design principles, License, MVP roadmap (+34 more)
-
-### Community 9 - "Community 9"
-Cohesion: 0.07
-Nodes (43): Application CRD, Application Deployment Strategy, Application Manifest Rendering, Application Topology, Approval CRD, Approval Decision, Cell CRD, LocalObjectReference (+35 more)
-
-### Community 10 - "Community 10"
-Cohesion: 0.05
 Nodes (39): 10. Open Questions, 11. Compliance with prior decisions, 12. Concrete follow-ups this plan enables, 1. Purpose and Scope, 2. Where the Render Boundary Sits, 3. `RenderRequest`, 4. `RenderResult`, 5.1 Why inventory exists (+31 more)
 
-### Community 11 - "Community 11"
-Cohesion: 0.07
-Nodes (41): Application Reconciler, Approval Reconciler, Cell Reconciler, App Inspection Command, Promotion Blockers Command, Application Environment Diff Command, Application Environment Matrix Command, Shared Not Implemented Command Handler (+33 more)
-
-### Community 12 - "Community 12"
+### Community 9 - "Community 9"
 Cohesion: 0.05
 Nodes (39): 10. Compliance with Prior Decisions, 11. Open questions, 12. Phased Rollout, 13. Concrete Follow-ups, 1. Purpose and Scope, 2. Why a single attribution mode fails, 3.1 `user-to-server` (default), 3.2 `bot-with-trailer` (+31 more)
 
+### Community 10 - "Community 10"
+Cohesion: 0.08
+Nodes (10): ApplicationSpec, FreezeWindow, FreezeWindowList, FreezeWindowSpec, FreezeWindowStatus, NotifierEndpoint, NotifierSpec, NotifierStatus (+2 more)
+
+### Community 11 - "Community 11"
+Cohesion: 0.06
+Nodes (34): 10. Operator Version Migration, 11. Compliance with Prior Decisions, 12. Open questions, 13. Concrete Follow-ups, 14. Phased Rollout, 1. Purpose and Scope, 2. Why this is load-bearing for everything else, 3. CRD Discovery (Automatic) (+26 more)
+
+### Community 12 - "Community 12"
+Cohesion: 0.06
+Nodes (34): 1. Why This Matters Now, 2.5 Reuse: `gitops-engine`, 2.6 The Dependency Model (Cross-Application Ordering), 2. Named Engines (from PROPOSAL §9), 3. Proposed Internal Package Structure, 4. Engine Ownership & Dependency Rules, 5.1 Rendering & Manifest Technologies, 5.2 Git & Mutation Providers (+26 more)
+
 ### Community 13 - "Community 13"
-Cohesion: 0.07
-Nodes (11): ApplicationSpec, ApplicationStatus, FreezeWindow, FreezeWindowList, FreezeWindowSpec, FreezeWindowStatus, NotifierEndpoint, NotifierSpec (+3 more)
+Cohesion: 0.06
+Nodes (34): 10. Open Questions for the Eventual ADR, 11. Phased Rollout, 12. What This Plan Replaces, 13. Next Steps, 1. Why This Matters Now, 2. What Is and Is Not a Plugin, 3.1 Notifier, 3.2 SignatureVerifier (+26 more)
 
 ### Community 14 - "Community 14"
 Cohesion: 0.06
-Nodes (34): 10. Open Questions for the Eventual ADR, 11. Phased Rollout, 12. What This Plan Replaces, 13. Next Steps, 1. Why This Matters Now, 2. What Is and Is Not a Plugin, 3.1 Notifier, 3.2 SignatureVerifier (+26 more)
+Nodes (33): 10. Tying Telemetry to Audit, 11. Bundling and Packaging, 12. Open Questions for the Eventual ADR, 13. Phased Rollout, 14. What This Plan Replaces / Refines, 15. Next Steps, 1. Why This Matters Now, 2. Scope (+25 more)
 
 ### Community 15 - "Community 15"
 Cohesion: 0.06
@@ -266,387 +229,343 @@ Nodes (33): 10. Phased Rollout, 11. Open Decisions & Future ADRs, 12. References
 
 ### Community 16 - "Community 16"
 Cohesion: 0.06
-Nodes (34): 10. Operator Version Migration, 11. Compliance with Prior Decisions, 12. Open questions, 13. Concrete Follow-ups, 14. Phased Rollout, 1. Purpose and Scope, 2. Why this is load-bearing for everything else, 3. CRD Discovery (Automatic) (+26 more)
-
-### Community 17 - "Community 17"
-Cohesion: 0.06
-Nodes (34): 1. Why This Matters Now, 2.5 Reuse: `gitops-engine`, 2.6 The Dependency Model (Cross-Application Ordering), 2. Named Engines (from PROPOSAL §9), 3. Proposed Internal Package Structure, 4. Engine Ownership & Dependency Rules, 5.1 Rendering & Manifest Technologies, 5.2 Git & Mutation Providers (+26 more)
-
-### Community 18 - "Community 18"
-Cohesion: 0.06
-Nodes (33): 10. Tying Telemetry to Audit, 11. Bundling and Packaging, 12. Open Questions for the Eventual ADR, 13. Phased Rollout, 14. What This Plan Replaces / Refines, 15. Next Steps, 1. Why This Matters Now, 2. Scope (+25 more)
-
-### Community 19 - "Community 19"
-Cohesion: 0.06
 Nodes (30): 10. For the design pass — what to add, 1. Product context, 2. Hard constraints (ADR-derived — non-negotiable), 3.1 Status vocabulary (load-bearing — keep consistent everywhere), 3.2 Density, type, layout, 3.3 Open for design, 3. Visual language, 4. Information architecture & navigation (+22 more)
 
-### Community 20 - "Community 20"
+### Community 17 - "Community 17"
 Cohesion: 0.08
-Nodes (31): Cross-Application Dependency Ordering, Engine Ownership Boundaries, gitops-engine Reuse, Proposed Internal Package Structure, Render Engine Boundary, Application Concept, Keleustes Architecture, Cell Concept (+23 more)
+Nodes (8): Promotion, PromotionChange, PromotionFrom, PromotionList, PromotionMode, PromotionPhase, PromotionSpec, PromotionTo
 
-### Community 21 - "Community 21"
-Cohesion: 0.07
-Nodes (27): Branching and Commits, code:bash (cd tools && go mod tidy), code:bash (go -C tools tool task --list), Coding Standards, Contributing to Keleustes, Development Setup, Pull Requests, Safety Expectations (+19 more)
-
-### Community 22 - "Community 22"
-Cohesion: 0.07
-Nodes (26): Architecture Documents, Build, Test, and Development Commands, Coding Standards, Commit & Pull Request Guidelines, Engineering Guardrails, Hard invariants, Knowledge Graph (`graphify`), Project Structure & Module Organization (+18 more)
-
-### Community 23 - "Community 23"
-Cohesion: 0.17
-Nodes (17): Marker, Apply(), indexSegment(), joinPath(), matchRule(), pathMatches(), TestApply_PreservesNonSensitiveValues(), TestApply_RedactsSecretDataBlanket() (+9 more)
-
-### Community 24 - "Community 24"
+### Community 18 - "Community 18"
 Cohesion: 0.08
-Nodes (23): 10. Validation Webhook Outline, 11. RBAC of the RBAC CRDs Themselves, 12. Why `Agent` is Not in This Alphabet, 13. Sample CRs, 14. Open Questions, 15. Compliance with Prior Decisions, 16. Concrete Follow-ups, 1. Purpose and Scope (+15 more)
+Nodes (8): Application, ApplicationDeployment, ApplicationDeploymentStrategy, ApplicationList, ApplicationManifest, ApplicationManifestType, ApplicationStatus, ApplicationTopology
 
-### Community 25 - "Community 25"
+### Community 19 - "Community 19"
 Cohesion: 0.08
 Nodes (8): Notifier, NotifierBackoff, NotifierDelivery, NotifierDeliveryMode, NotifierEventSelector, NotifierFilters, NotifierList, NotifierWebhookEndpoint
 
-### Community 26 - "Community 26"
+### Community 20 - "Community 20"
 Cohesion: 0.08
+Nodes (23): 10. Validation Webhook Outline, 11. RBAC of the RBAC CRDs Themselves, 12. Why `Agent` is Not in This Alphabet, 13. Sample CRs, 14. Open Questions, 15. Compliance with Prior Decisions, 16. Concrete Follow-ups, 1. Purpose and Scope (+15 more)
+
+### Community 21 - "Community 21"
+Cohesion: 0.09
+Nodes (7): Release, SourceObservedRevision, SyncRun, SyncRunList, SyncRunPhase, SyncRunSpec, SyncRunStatus
+
+### Community 22 - "Community 22"
+Cohesion: 0.09
 Nodes (20): code:block1 (modules total    k8s.io modules), code:go (AnnotationSyncWave            = "argocd.argoproj.io/sync-wav), code:go (autoscalingv2beta1 "k8s.io/api/autoscaling/v2beta1"), Concrete follow-ups, Decision: adoption strategy, F1. Repository archived; canonical import path changed, F2. k8s.io ≤ v0.34 ceiling (load-bearing), F3. Mandatory `replace` block (+12 more)
 
-### Community 27 - "Community 27"
-Cohesion: 0.08
+### Community 23 - "Community 23"
+Cohesion: 0.09
 Nodes (22): 10. Dependency pinning strategy, 11. Helm chart repository authentication in a distributed world, 1. Seven engines plus a shared `Render` package, 2026-05-17 (afternoon) — Soft-fork strategy abandoned, 2026-05-17 — SKA-327 spike findings, 2. Package layout, 3. Engine ownership and dependency rules, 4. `gitops-engine` reuse — yes, with a containment rule (+14 more)
 
-### Community 28 - "Community 28"
-Cohesion: 0.09
-Nodes (7): Release, ReleaseArtifact, ReleaseArtifactType, ReleaseList, ReleaseProvenance, ReleaseSpec, ReleaseStatus
-
-### Community 29 - "Community 29"
-Cohesion: 0.09
-Nodes (20): 10. Schema versioning, 11. Multi-tenant scope enforcement, 1. Five extension surfaces, governed by CRDs, 2. Mechanism: webhook-only in v1alpha1, 3. Built-in implementations live in-tree, 4. Shared envelope schema, 5. Authentication: mTLS preferred, JWT fallback, 6. Default failure semantics, per surface (+12 more)
-
-### Community 30 - "Community 30"
+### Community 24 - "Community 24"
 Cohesion: 0.09
 Nodes (21): 10. Horizontal scaling and sharding, 11. Render and Git mutation distribution, 12. Local autonomy for emergency operations, 13. DuckDB freshness model, 14. Reference SQL consumer, 1. Hub + regional-agent topology, 2. NATS JetStream is the canonical event/state bus, 3. No RDBMS on the critical path (+13 more)
 
-### Community 31 - "Community 31"
+### Community 25 - "Community 25"
 Cohesion: 0.09
 Nodes (21): 10. Default-deny, 11. Policy evaluator: custom-over-CRDs, not Casbin, 12. UI deep-linking with stable identifiers, 13. Multi-tenant alignment with ADR 0001, 1. Five RBAC CRDs in `keleustes.skaphos.io/v1alpha1`, 2. `Project` is the delegation boundary, 3. Layered with native Kubernetes RBAC, not replaced, 4. Action verbs (+13 more)
 
-### Community 32 - "Community 32"
+### Community 26 - "Community 26"
 Cohesion: 0.1
-Nodes (7): Promotion, PromotionChange, PromotionFrom, PromotionList, PromotionMode, PromotionPhase, PromotionTo
+Nodes (20): 10. Schema versioning, 11. Multi-tenant scope enforcement, 1. Five extension surfaces, governed by CRDs, 2. Mechanism: webhook-only in v1alpha1, 3. Built-in implementations live in-tree, 4. Shared envelope schema, 5. Authentication: mTLS preferred, JWT fallback, 6. Default failure semantics, per surface (+12 more)
 
-### Community 33 - "Community 33"
-Cohesion: 0.1
-Nodes (7): Application, ApplicationDeployment, ApplicationDeploymentStrategy, ApplicationList, ApplicationManifest, ApplicationManifestType, ApplicationTopology
-
-### Community 34 - "Community 34"
+### Community 27 - "Community 27"
 Cohesion: 0.1
 Nodes (20): 10. Multi-region: regional scrape, federate aggregates, 11. Kubernetes Events: narrow by default, 12. Audit ≠ telemetry, 13. Bundle layout and gating, 1. Dual export is the default, 2. Prometheus Operator is the supported wiring path, 3. OpenTelemetry SDK with conventional wiring, 4. Logging: structured stdout by default, OTel logs opt-in (+12 more)
 
-### Community 35 - "Community 35"
-Cohesion: 0.17
-Nodes (21): Application CustomResourceDefinition, Application Spec, Approval CustomResourceDefinition, Cell CustomResourceDefinition, Deployment CustomResourceDefinition, DeploymentTarget Cluster Access, DeploymentTarget CustomResourceDefinition, Environment Change Control (+13 more)
-
-### Community 36 - "Community 36"
+### Community 28 - "Community 28"
 Cohesion: 0.1
 Nodes (6): Source, SourceList, SourceSpec, SourceStatus, SourceType, SourceVerify
 
-### Community 37 - "Community 37"
+### Community 29 - "Community 29"
 Cohesion: 0.1
-Nodes (19): 11. Sync engine approach, 12. Health model, 13. Diff model, 14. Git mutation model, 15. Policy model, 17. CLI requirements, 1. Executive summary, 21. Build strategy (+11 more)
+Nodes (19): 11. Sync engine approach, 12. Health model, 13. Diff model, 14. Git mutation model, 15. Policy model, 17. CLI requirements, 21. Build strategy, 22. Design principles (+11 more)
 
-### Community 38 - "Community 38"
-Cohesion: 0.12
-Nodes (6): SourceObservedRevision, SyncRun, SyncRunList, SyncRunPhase, SyncRunSpec, SyncRunStatus
-
-### Community 39 - "Community 39"
-Cohesion: 0.11
-Nodes (5): DeploymentTarget, DeploymentTargetCluster, DeploymentTargetList, DeploymentTargetSpec, DeploymentTargetStatus
-
-### Community 40 - "Community 40"
+### Community 30 - "Community 30"
 Cohesion: 0.11
 Nodes (5): Environment, EnvironmentChangeControl, EnvironmentList, EnvironmentSpec, EnvironmentStatus
 
-### Community 41 - "Community 41"
+### Community 31 - "Community 31"
+Cohesion: 0.11
+Nodes (5): DeploymentTarget, DeploymentTargetCluster, DeploymentTargetList, DeploymentTargetSpec, DeploymentTargetStatus
+
+### Community 32 - "Community 32"
 Cohesion: 0.11
 Nodes (17): 1. Natural key for addressing, durable ULID underneath (surrogate-key pattern), 2. The ULID is keyed by source path + target cluster, 3. Engine-resolved via NATS KV, never written to Git, 4. Rename semantics, 5. Best-effort durability, A — Name as sole identity, ADR 0008 — Resource identity: natural key for addressing, durable engine-side ULID, B — `metadata.uid` (+9 more)
 
-### Community 42 - "Community 42"
+### Community 33 - "Community 33"
 Cohesion: 0.12
 Nodes (5): Approval, ApprovalDecision, ApprovalList, ApprovalSpec, ApprovalStatus
 
-### Community 43 - "Community 43"
+### Community 34 - "Community 34"
 Cohesion: 0.12
 Nodes (5): HealthCheck, HealthCheckList, HealthCheckSpec, HealthCheckStatus, HealthState
 
-### Community 44 - "Community 44"
+### Community 35 - "Community 35"
 Cohesion: 0.12
 Nodes (17): 8.1 `Application`, 8.2 `Source`, 8.3 `Environment`, 8.4 `Cell`, 8.5 `DeploymentTarget`, 8.6 `Release`, 8.7 `Promotion`, 8.8 `PromotionPolicy` (+9 more)
 
-### Community 45 - "Community 45"
-Cohesion: 0.2
-Nodes (17): marshaller-api Kustomize Manifest Deployment, marshaller-api Application, guest-prod Cell, aks-prod-guest-westus2-001 Cluster, prod-guest-westus2 DeploymentTarget, prod Environment, marshaller-api 1.8.2 to prod wave4 Promotion, ServiceNow CRQ123456 Change (+9 more)
+### Community 36 - "Community 36"
+Cohesion: 0.15
+Nodes (10): worker, applications, audit, environments, matrix, promotions, releases, handlers (+2 more)
 
-### Community 46 - "Community 46"
-Cohesion: 0.12
-Nodes (4): Deployment, DeploymentList, DeploymentSpec, DeploymentStatus
-
-### Community 47 - "Community 47"
-Cohesion: 0.12
-Nodes (4): PromotionPolicy, PromotionPolicyList, PromotionPolicySpec, PromotionPolicyStatus
-
-### Community 48 - "Community 48"
-Cohesion: 0.12
-Nodes (4): SyncPlan, SyncPlanList, SyncPlanSpec, SyncPlanStatus
-
-### Community 49 - "Community 49"
+### Community 37 - "Community 37"
 Cohesion: 0.12
 Nodes (4): Cell, CellList, CellSpec, CellStatus
 
-### Community 50 - "Community 50"
+### Community 38 - "Community 38"
+Cohesion: 0.12
+Nodes (4): PromotionPolicy, PromotionPolicyList, PromotionPolicySpec, PromotionPolicyStatus
+
+### Community 39 - "Community 39"
+Cohesion: 0.12
+Nodes (4): Deployment, DeploymentList, DeploymentSpec, DeploymentStatus
+
+### Community 40 - "Community 40"
+Cohesion: 0.12
+Nodes (4): SyncPlan, SyncPlanList, SyncPlanSpec, SyncPlanStatus
+
+### Community 41 - "Community 41"
 Cohesion: 0.12
 Nodes (16): 5.1 Repository structure, 5.2 Source CRDs, 5.3 The `Addon` CRD (preview — full spec in §11), 5.4 Promotion semantics for Addons, 5.5 Upgrade gates (default-on), 5.6 Per-K8s-version compatibility, 5.7 Consumer enumeration via annotations (scalable), 5. Golden Path 3: Library + Integration Two-Repo (+8 more)
 
-### Community 51 - "Community 51"
+### Community 42 - "Community 42"
 Cohesion: 0.12
 Nodes (15): 1. Repository structure, 2026-05-18 — Friendly-fork posture clarification, 2. License and attribution, 3. Backport workflow, 4. Containment rule and engine boundaries (unchanged), 5. k8s.io ceiling — still pinned, but now liftable, ADR 0007 — Hard-fork `gitops-engine` into `skaphos/gitops-engine`, Amendments (+7 more)
 
-### Community 52 - "Community 52"
+### Community 43 - "Community 43"
 Cohesion: 0.13
-Nodes (15): Controller Generated CRD Bases Directory, CRD Kustomization, Default Kustomization Overlay, skaphos-keleustes-system Namespace, Manager Container Manifest, Controller Manager Deployment Manifest, Manager Kustomization, Manager Namespace Manifest (+7 more)
+Nodes (5): ReleaseArtifact, ReleaseArtifactType, ReleaseProvenance, ReleaseSpec, ReleaseStatus
 
-### Community 53 - "Community 53"
+### Community 44 - "Community 44"
+Cohesion: 0.13
+Nodes (14): Building, code:block1 (api/v1alpha1/          # CRD type definitions (Application, ), code:bash (cd tools && go mod tidy   # one-time), code:bash (go -C tools tool task manifests        # regenerate CRDs + R), Core CRDs (group `keleustes.skaphos.io`), Design principles, License, MVP roadmap (+6 more)
+
+### Community 45 - "Community 45"
+Cohesion: 0.22
+Nodes (10): newAppCommand(), newBlockersCommand(), newDiffCommand(), newMatrixCommand(), newPromoteCommand(), newReleaseCommand(), newRollbackCommand(), newVersionCommand() (+2 more)
+
+### Community 46 - "Community 46"
 Cohesion: 0.14
 Nodes (13): Architecture Documents, Build, Test, and Development Commands, Coding Standards, Commit & Pull Request Guidelines, Engineering Guardrails, Hard invariants, Knowledge Graph (`graphify`), Project Structure & Module Organization (+5 more)
 
-### Community 54 - "Community 54"
+### Community 47 - "Community 47"
 Cohesion: 0.14
-Nodes (11): 10. Persistence — What the Schema Demands, 14. Failure Modes, 15. Open Questions, 16. Compliance with Prior Decisions, 17. Concrete Follow-ups, 1. Purpose and Scope, 2. Why the Stable Envelope Wins, 3. The Envelope (+3 more)
+Nodes (13): Architecture Documents, Build, Test, and Development Commands, Coding Standards, Commit & Pull Request Guidelines, Engineering Guardrails, Hard invariants, Knowledge Graph (`graphify`), Project Structure & Module Organization (+5 more)
 
-### Community 55 - "Community 55"
+### Community 48 - "Community 48"
 Cohesion: 0.14
 Nodes (13): 1. The hard rule, 2. What the rule forbids, 3. What the rule guarantees, 4. Break-glass: the single sanctioned exception, 5. Enforcement is structural, not policy, 6. UI shape, 7. Render inputs and the invariant, ADR 0003 — Git-source-of-truth invariant (+5 more)
 
-### Community 56 - "Community 56"
+### Community 49 - "Community 49"
 Cohesion: 0.24
 Nodes (12): activeClientIds, clientId, getResponse(), handleRequest(), IS_MOCKED_RESPONSE, remainingClients, requestId, requestInterceptedAt (+4 more)
 
-### Community 57 - "Community 57"
-Cohesion: 0.15
-Nodes (11): 10. Multi-Region Supercluster, 12. Failure Modes, 13. Open Questions, 14. Compliance with Prior Decisions, 15. Concrete Follow-ups, 1. Purpose and Scope, 2. Design Principles, 6. NATS KV Buckets (+3 more)
-
-### Community 58 - "Community 58"
+### Community 50 - "Community 50"
 Cohesion: 0.15
 Nodes (12): 10. Migration Paths Between Layouts, 12. Audit Verb Routing per Layout, 13. Compliance with Prior Decisions, 14. Open Questions, 15. Concrete Follow-ups, 16. Phased Rollout, 1. Purpose and Scope, 2. Why Three (Maximum) Golden Paths (+4 more)
 
-### Community 59 - "Community 59"
-Cohesion: 0.15
-Nodes (11): Active interim contracts (cite-as-authoritative), Architecture / runtime, Cross-cutting, Current Plans, How to Use These Plans, Lifecycle, Naming Convention, Planning Documents (+3 more)
-
-### Community 60 - "Community 60"
-Cohesion: 0.24
-Nodes (8): main(), ObserveReconcileEvent(), ObserveReconcileGeneration(), Register(), TestObserveReconcileEvent_AccumulatesCounter(), TestObserveReconcileGeneration_SetsGauge(), TestRegister_AttachesToControllerRuntimeRegistry(), TestRegister_IsIdempotent()
-
-### Community 61 - "Community 61"
+### Community 51 - "Community 51"
 Cohesion: 0.17
 Nodes (11): Apply, code:bash (kubectl apply -k config/observability/), code:yaml (# kustomization.yaml in your downstream overlay), code:yaml (patches:), code:bash (# 1. kind cluster + Prom-Operator), Keleustes observability bundle, Layout, Override examples (+3 more)
 
-### Community 62 - "Community 62"
+### Community 52 - "Community 52"
 Cohesion: 0.17
 Nodes (11): Boundaries, Collision review (2026-05-14), Conceptual components, Core API concepts, Deployment models, External references, Identity, Initial scope (+3 more)
 
-### Community 63 - "Community 63"
+### Community 53 - "Community 53"
+Cohesion: 0.17
+Nodes (11): 10. Persistence — What the Schema Demands, 14. Failure Modes, 15. Open Questions, 16. Compliance with Prior Decisions, 17. Concrete Follow-ups, 1. Purpose and Scope, 2. Why the Stable Envelope Wins, 3. The Envelope (+3 more)
+
+### Community 54 - "Community 54"
+Cohesion: 0.17
+Nodes (11): 10. Multi-Region Supercluster, 12. Failure Modes, 13. Open Questions, 14. Compliance with Prior Decisions, 15. Concrete Follow-ups, 1. Purpose and Scope, 2. Design Principles, 6. NATS KV Buckets (+3 more)
+
+### Community 55 - "Community 55"
 Cohesion: 0.17
 Nodes (12): 4.1 Repository structure, 4.2 Source CRD configuration, 4.3 Promotion semantics, 4.4 Wave ordering, 4.5 Multi-environment scope, 4.6 Value-change Promotion (SKA-432) under this layout, 4. Golden Path 2: Flat Repo + Directory-per-Env with Waves, code:yaml (spec:) (+4 more)
 
-### Community 64 - "Community 64"
+### Community 56 - "Community 56"
+Cohesion: 0.17
+Nodes (11): Active interim contracts (cite-as-authoritative), Architecture / runtime, Cross-cutting, Current Plans, How to Use These Plans, Lifecycle, Naming Convention, Planning Documents (+3 more)
+
+### Community 57 - "Community 57"
 Cohesion: 0.18
 Nodes (10): code:bash (kubectl apply -f https://github.com/kubernetes-sigs/gateway-), code:yaml (# kustomization.yaml in your downstream overlay), code:bash (# 1. kind cluster), Compatible controllers, Customer overrides, Files, Keleustes Gateway API skeleton, Smoke test with Envoy Gateway on kind (+2 more)
 
-### Community 65 - "Community 65"
+### Community 58 - "Community 58"
 Cohesion: 0.18
 Nodes (11): 13.10 Adding a new verb, 13.1 CRD lifecycle (every Keleustes CRD), 13.2 RBAC / Identity, 13.3 Promotion, 13.4 Sync, 13.5 Render (reserved by SKA-320), 13.6 Git mutation, 13.7 Break-glass (+3 more)
 
-### Community 66 - "Community 66"
+### Community 59 - "Community 59"
 Cohesion: 0.18
 Nodes (11): 3.1 Repository structure, 3.2 Source CRD configuration, 3.3 Promotion semantics, 3.4 Drift and merge-back, 3.5 Multi-environment scope, 3. Golden Path 1: Branch-per-env with Merge Promotion, code:text (my-app/                              # one repo), code:text (main      ← dev environment lives here (or a `dev` branch al) (+3 more)
 
-### Community 67 - "Community 67"
+### Community 60 - "Community 60"
 Cohesion: 0.2
 Nodes (3): LocalObjectReference, OwnerInfo, SecretKeyRef
 
-### Community 68 - "Community 68"
+### Community 61 - "Community 61"
 Cohesion: 0.2
-Nodes (9): Backend strategy (staged), code:block1 (go -C tools tool task ui:install   # pnpm install), code:block2 (ui/), Commands, Keleustes UI, Keleustes UI (placeholder), Layout, Notes (+1 more)
+Nodes (9): Branching and Commits, code:bash (cd tools && go mod tidy), code:bash (go -C tools tool task --list), Coding Standards, Contributing to Keleustes, Development Setup, Pull Requests, Safety Expectations (+1 more)
 
-### Community 69 - "Community 69"
+### Community 62 - "Community 62"
 Cohesion: 0.2
 Nodes (10): 8.1 Durable consumers (the default), 8.2 Per-shard subscription pattern, 8.3 Ephemeral consumers, 8.4 UI live tail, 8.5 Cursor preservation across redeploys, 8. Consumer Patterns, code:block5 (<consumer-name> = <role>.<shard>), code:block6 (keleustes.events.shard-1f.application.>) (+2 more)
 
-### Community 70 - "Community 70"
-Cohesion: 0.39
-Nodes (7): Action, ActionSubject, Actor, Context, Envelope, Evidence, Result
+### Community 63 - "Community 63"
+Cohesion: 0.25
+Nodes (4): ObserveReconcileEvent(), ObserveReconcileGeneration(), TestObserveReconcileEvent_AccumulatesCounter(), TestObserveReconcileGeneration_SetsGauge()
 
-### Community 71 - "Community 71"
+### Community 64 - "Community 64"
+Cohesion: 0.36
+Nodes (8): Marker, Apply(), indexSegment(), joinPath(), matchRule(), pathMatches(), walk(), Rule
+
+### Community 65 - "Community 65"
 Cohesion: 0.22
-Nodes (9): kube-state-metrics CRD State Metrics, Grafana Dashboard ConfigMaps, Observability Stack Plan, OpenTelemetry Dual Export, Agent PodMonitor Bundle, PrometheusRule Alerts, Runbook-backed Alerts, ServiceMonitor Bundle (+1 more)
+Nodes (8): Backend strategy (staged), code:block1 (go -C tools tool task ui:install   # pnpm install), code:block2 (ui/), Commands, Keleustes UI, Layout, Notes, Stack
 
-### Community 72 - "Community 72"
+### Community 66 - "Community 66"
 Cohesion: 0.36
 Nodes (6): newJSONLogger(), TestWithFields_AppendsBoundedKeys(), TestWithResource_EmitsEngineKindAndName(), WithFields(), WithResource(), LogFields
 
-### Community 73 - "Community 73"
+### Community 67 - "Community 67"
 Cohesion: 0.25
-Nodes (6): Accepted ADRs, Active interim contracts, Architecture Decisions — Living Index, Plans that have not yet stabilized, Process: keeping this index honest, Spikes and historical reports
+Nodes (7): Action, ActionSubject, Actor, Context, Envelope, Evidence, Result
 
-### Community 74 - "Community 74"
+### Community 68 - "Community 68"
 Cohesion: 0.25
 Nodes (8): 9.1 Subject convention, 9.2 How A's controller discovers B's shard, 9.3 What about transient consumers?, 9.4 Hand-off events for Application moves (SKA-320 §8.2), 9. Cross-Shard Dependency Events, code:block10 (subscribe to: keleustes.dependency.shard-2-for-B.application), code:block11 (keleustes.dependency.<A-shard>.application.<A-ulid>.handoff-), code:block9 (publish to: keleustes.dependency.shard-2-for-B.application.<)
 
-### Community 75 - "Community 75"
+### Community 69 - "Community 69"
 Cohesion: 0.25
 Nodes (8): 11.1 Schema, 11.2 Reconciler responsibilities, 11.3 RBAC, 11.4 `Application.spec.addonRefs[]`, 11.5 keleustesctl coverage, 11. The `Addon` CRD (Full Spec), code:yaml (apiVersion: keleustes.skaphos.io/v1alpha1), code:yaml (spec:)
 
-### Community 76 - "Community 76"
-Cohesion: 0.33
-Nodes (3): PhaseFromOperation(), TestPhaseFromOperation(), SyncRunPhase
+### Community 70 - "Community 70"
+Cohesion: 0.29
+Nodes (6): Accepted ADRs, Active interim contracts, Architecture Decisions — Living Index, Plans that have not yet stabilized, Process: keeping this index honest, Spikes and historical reports
 
-### Community 77 - "Community 77"
+### Community 71 - "Community 71"
 Cohesion: 0.29
 Nodes (7): 6.1 Why this needs explicit rules, 6.2 `actor.type` (closed enum), 6.3 `actor.subject` normalization, 6.4 `actor.groups`, 6.5 `actor.delegatedFrom` — system-on-behalf-of-human, 6. Actor Normalization, code:block2 (human   — a person, authenticated via an OIDC IdP marked hum)
 
-### Community 78 - "Community 78"
+### Community 72 - "Community 72"
 Cohesion: 0.29
 Nodes (7): 4.1 The hash function, 4.2 Default partition counts, 4.3 Growing the partition count, 4.4 Resolution of SKA-322 §15 Q1 — partition value semantics, 4.5 Origin of `subject.ulid` — the resource-identity registry, 4. Partitioning, code:go (// internal/events/partition/shard.go)
 
-### Community 79 - "Community 79"
-Cohesion: 0.29
-Nodes (7): Keleustes Conceptual Components, Keleustes Core API Concepts, Keleustes Deployment Models, GitOps Delivery Control Plane Purpose, Keleustes Identity, Keleustes Collision Review, Keleustes Name
-
-### Community 80 - "Community 80"
+### Community 73 - "Community 73"
 Cohesion: 0.33
 Nodes (5): components, $defs, operations, paths, webhooks
 
-### Community 81 - "Community 81"
+### Community 74 - "Community 74"
 Cohesion: 0.33
 Nodes (5): Adopting an Apache-2.0 dep with its own NOTICE, Implementation, License attribution, Regenerate after dep changes, Why generate rather than scan at build time
 
-### Community 82 - "Community 82"
+### Community 75 - "Community 75"
 Cohesion: 0.33
 Nodes (6): 20. MVP roadmap, MVP 0: Read-only replacement UI, MVP 1: Keleustes-managed sync, MVP 2: Releases and promotions, MVP 3: Enterprise topology, MVP 4: Policy and audit
 
-### Community 83 - "Community 83"
+### Community 76 - "Community 76"
 Cohesion: 0.33
 Nodes (6): 10.1 Management cluster mode, 10.2 Cluster-local mode, 10.3 Future federation, 10. Deployment model, code:text (skaphos-keleustes-system), code:text (Keleustes Hub)
 
-### Community 84 - "Community 84"
-Cohesion: 0.33
-Nodes (6): 7.1 Discriminated union via `payload.@type`, 7.2 The payload type registry, 7.3 Unknown payload handling, 7.4 Producer-side validation, 7. Per-Verb Payloads — the Verb Registry, code:jsonc ("action": { "verb": "promote", ... },)
-
-### Community 85 - "Community 85"
+### Community 77 - "Community 77"
 Cohesion: 0.33
 Nodes (6): 8.1 `result.before` / `result.after`, 8.2 Redaction rules, 8.3 `evidence` entries, 8. Snapshots, Redaction, and Evidence, code:jsonc ("before": {), code:jsonc ({)
 
-### Community 86 - "Community 86"
+### Community 78 - "Community 78"
 Cohesion: 0.33
 Nodes (6): 11.1 Write-then-act, 11.2 Emit interface (Go), 11.3 Ordering and idempotency, 11.4 Failure modes, 11. Producer Contracts, code:go (// internal/audit/emit.go)
 
-### Community 87 - "Community 87"
+### Community 79 - "Community 79"
+Cohesion: 0.33
+Nodes (6): 7.1 Discriminated union via `payload.@type`, 7.2 The payload type registry, 7.3 Unknown payload handling, 7.4 Producer-side validation, 7. Per-Verb Payloads — the Verb Registry, code:jsonc ("action": { "verb": "promote", ... },)
+
+### Community 80 - "Community 80"
 Cohesion: 0.33
 Nodes (6): 3.1 Tokens, 3.2 Event classes (closed set), 3.3 Why the scope token is the shard, not the namespace, 3. Subject Grammar, code:block1 (keleustes.<event-class>.<scope>.<resource-kind>.<key>[.<sub-), code:block2 (keleustes.audit.shard-3a.promotion.01HQ8FQA7Z4M2N1P3K9F8X6Y7)
 
-### Community 88 - "Community 88"
-Cohesion: 0.33
-Nodes (4): Architecture Decision Records, Authoring conventions, code:markdown (> **Superseded by [ADR 00XX](../adr/00XX-short-name.md).** <), When an ADR supersedes earlier text
+### Community 82 - "Community 82"
+Cohesion: 0.4
+Nodes (3): PhaseFromOperation(), TestPhaseFromOperation(), SyncRunPhase
 
-### Community 89 - "Community 89"
-Cohesion: 0.33
-Nodes (6): leader-election-role, leader-election-rolebinding, controller-manager ServiceAccount, manager-rolebinding, Keleustes CRD Permissions, manager-role
-
-### Community 90 - "Community 90"
-Cohesion: 0.6
-Nodes (3): ActorType, Outcome, Verb
-
-### Community 92 - "Community 92"
+### Community 83 - "Community 83"
 Cohesion: 0.4
 Nodes (5): 6.1 Platform engineer, 6.2 Application developer, 6.3 Operations engineer, 6.4 Security and compliance, 6. Target users
 
-### Community 93 - "Community 93"
+### Community 84 - "Community 84"
 Cohesion: 0.4
 Nodes (4): Collision review (2026-05-14), Identity, Naming, Rationale
 
-### Community 94 - "Community 94"
+### Community 85 - "Community 85"
 Cohesion: 0.4
 Nodes (5): 5.1 Additive forever, 5.2 Required fields are forever, 5.3 Breaking changes — the deprecation lane, 5.4 Reserved fields, 5. Versioning Policy
 
-### Community 95 - "Community 95"
+### Community 86 - "Community 86"
 Cohesion: 0.4
 Nodes (5): 11.1 Subject construction, 11.2 Publish ordering and idempotency, 11.3 Backpressure, 11. Producer Contracts, code:go (// internal/events/subject/subject.go)
 
-### Community 112 - "Community 112"
-Cohesion: 0.5
-Nodes (3): Third-Party Licenses, Third-Party Licenses, Third-Party Licenses
+### Community 87 - "Community 87"
+Cohesion: 0.4
+Nodes (4): Architecture Decision Records, Authoring conventions, code:markdown (> **Superseded by [ADR 00XX](../adr/00XX-short-name.md).** <), When an ADR supersedes earlier text
 
-### Community 113 - "Community 113"
+### Community 103 - "Community 103"
+Cohesion: 0.5
+Nodes (3): ActorType, Outcome, Verb
+
+### Community 105 - "Community 105"
 Cohesion: 0.5
 Nodes (4): 9.1 Components, 9.2 Cross-cutting concerns: extension surfaces and observability, 9. Architecture, code:text (+-------------------------------+)
 
-### Community 114 - "Community 114"
+### Community 106 - "Community 106"
 Cohesion: 0.5
 Nodes (4): 19. Data model, code:text (Kubernetes CRDs = active desired/control state), code:text (keleustes.skaphos.io), code:text (skaphos-keleustes-system)
 
-### Community 115 - "Community 115"
+### Community 107 - "Community 107"
 Cohesion: 0.5
 Nodes (4): 4.1 Decision: canonical JSON on the bus, 4.2 CBOR as the at-rest option (MVP 3+), 4.3 What about Protobuf?, 4. Wire Format
 
-### Community 116 - "Community 116"
+### Community 108 - "Community 108"
 Cohesion: 0.5
 Nodes (4): 12.1 The four canonical consumers, 12.2 Schema-version handling, 12.3 Backfill from the archive, 12. Consumer Contracts
 
-### Community 117 - "Community 117"
+### Community 109 - "Community 109"
 Cohesion: 0.5
 Nodes (4): 5.1 Stream definitions, 5.2 Per-stream retention rationale, 5.3 What about a single super-stream?, 5. Streams
 
-### Community 118 - "Community 118"
+### Community 110 - "Community 110"
 Cohesion: 0.5
 Nodes (4): 6.1 Defaults, 6. The `repoLayout` Configuration Field, code:yaml (repoLayout:), code:yaml (repoLayout:)
 
-### Community 123 - "Community 123"
+### Community 116 - "Community 116"
 Cohesion: 0.67
 Nodes (3): 3. Problem statement, code:text (Argo CD = sync + UI), code:text (What applications exist?)
 
-### Community 124 - "Community 124"
+### Community 117 - "Community 117"
 Cohesion: 0.67
 Nodes (3): 8. Per-Layout Value-Change Promotion Resolution (Amends SKA-432 §5), code:yaml (spec:), code:yaml (spec:)
 
-### Community 125 - "Community 125"
-Cohesion: 0.67
-Nodes (3): Internal CLI Root Command, keleustesctl Command Entrypoint, PROPOSAL Section 17 CLI Surface
-
-### Community 126 - "Community 126"
-Cohesion: 0.67
-Nodes (3): Extension Surfaces, Policy Engine, Policy Model
-
-### Community 127 - "Community 127"
-Cohesion: 0.67
-Nodes (3): Go Mod Download Bootstrap, Pinned Developer Tooling Module, Task Tool Invocation Workflow
-
 ## Knowledge Gaps
-- **947 isolated node(s):** `IS_MOCKED_RESPONSE`, `activeClientIds`, `clientId`, `remainingClients`, `requestInterceptedAt` (+942 more)
+- **818 isolated node(s):** `IS_MOCKED_RESPONSE`, `activeClientIds`, `clientId`, `remainingClients`, `requestInterceptedAt` (+813 more)
   These have ≤1 connection - possible missing edges or undocumented components.
-- **37 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
+- **25 thin communities (<3 nodes) omitted from report** — run `graphify query` to explore isolated nodes.
 
 ## Suggested Questions
 _Questions this graph is uniquely positioned to answer:_
 
+- **Why does `Repo Layout Golden Paths + the `Addon` CRD` connect `Community 50` to `Community 69`, `Community 41`, `Community 110`, `Community 117`, `Community 55`, `Community 59`?**
+  _High betweenness centrality (0.001) - this node is a cross-community bridge._
 - **What connects `IS_MOCKED_RESPONSE`, `activeClientIds`, `clientId` to the rest of the system?**
-  _947 weakly-connected nodes found - possible documentation gaps or missing edges._
+  _818 weakly-connected nodes found - possible documentation gaps or missing edges._
 - **Should `Community 0` be split into smaller, more focused modules?**
-  _Cohesion score 0.05 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.07 - nodes in this community are weakly interconnected._
 - **Should `Community 1` be split into smaller, more focused modules?**
-  _Cohesion score 0.05 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.07 - nodes in this community are weakly interconnected._
 - **Should `Community 2` be split into smaller, more focused modules?**
-  _Cohesion score 0.1 - nodes in this community are weakly interconnected._
+  _Cohesion score 0.08 - nodes in this community are weakly interconnected._
 - **Should `Community 3` be split into smaller, more focused modules?**
   _Cohesion score 0.04 - nodes in this community are weakly interconnected._
 - **Should `Community 4` be split into smaller, more focused modules?**
-  _Cohesion score 0.04 - nodes in this community are weakly interconnected._
-- **Should `Community 5` be split into smaller, more focused modules?**
   _Cohesion score 0.04 - nodes in this community are weakly interconnected._
