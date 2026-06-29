@@ -9,7 +9,7 @@ import type { Status } from '@/lib/status'
 
 // Promotions list + approvals queue (ui-design-spec §6.4). Data-backed.
 export function Promotions() {
-  const { data, isLoading } = useQuery({
+  const { data, isLoading, isError } = useQuery({
     queryKey: ['promotions'],
     queryFn: async () => {
       const { data, error } = await api.GET('/promotions', {})
@@ -25,6 +25,11 @@ export function Promotions() {
         description="Proposed moves of a release between environments — gates, approvals, audit."
       />
       {isLoading && <div className="h-40 animate-pulse rounded-lg bg-muted" aria-label="Loading" />}
+      {isError && (
+        <div className="rounded-md border border-status-failed/40 p-4 text-sm text-status-failed">
+          Failed to load promotions. Retry.
+        </div>
+      )}
       <div className="overflow-hidden rounded-lg border">
         <table className="w-full text-sm">
           <thead className="bg-card text-left text-muted-foreground">

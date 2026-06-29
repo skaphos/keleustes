@@ -77,8 +77,17 @@ export function Applications() {
                           <span className={cn('text-base leading-none', meta.color)} aria-hidden>
                             {meta.glyph}
                           </span>
-                          <span title={meta.label}>{cell.version}</span>
-                          {cell.drift && <span className="text-status-drifted">⤳</span>}
+                          <span>{cell.version}</span>
+                          {/* Status conveyed by color/glyph — announce it for screen readers. */}
+                          <span className="sr-only">
+                            {meta.label}
+                            {cell.drift ? ', drifted' : ''}
+                          </span>
+                          {cell.drift && (
+                            <span className="text-status-drifted" aria-hidden>
+                              ⤳
+                            </span>
+                          )}
                         </span>
                       </td>
                     )

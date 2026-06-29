@@ -78,7 +78,15 @@ paths:
     get:
       tags: [applications]
       summary: Application deployment matrix (env × region cells)
-      parameters: [ { $ref: '#/components/parameters/name' } ]
+      parameters:
+        - name: name
+          in: path
+          required: true
+          description: >
+            Application name, or the reserved sentinel `all` to return the
+            whole fleet's matrix (every application as a row). `all` is not a
+            valid application name.
+          schema: { type: string }
       responses:
         '200':
           description: Matrix rows of cells. Served from the precomputed snapshot.

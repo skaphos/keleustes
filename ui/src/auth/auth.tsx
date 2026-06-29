@@ -9,7 +9,7 @@
 // This stub provides a fake identity + a permissive `can()` so the shell is
 // navigable offline. Real OIDC (PKCE redirect to the IdentityProvider, token
 // refresh, /whoami + verb set) lands with SKA-330.
-import { createContext, use, useMemo, useState, type ReactNode } from 'react'
+import { createContext, use, useEffect, useMemo, useState, type ReactNode } from 'react'
 
 export interface Identity {
   subject: string
@@ -35,6 +35,14 @@ const STUB_IDENTITY: Identity = {
 
 const AuthContext = createContext<AuthState | null>(null)
 
+// The current bearer token, mirrored out of React state so the (non-React) API
+// client can read it lazily on each request. Kept in sync by AuthProvider, so
+// sign-out actually drops the token instead of the client holding a stale one.
+let activeToken: string | null = null
+export function getActiveToken(): string | null {
+  return activeToken
+}
+
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [identity, setIdentity] = useState<Identity | null>(STUB_IDENTITY)
 
@@ -49,7 +57,11 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     [identity],
   )
 
-  return <AuthContext value={value}>{children}</AuthContext>
+  useEffect(() => {
+    activeToken = value.token
+  }, [value.token])
+
+  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
 }
 
 export function useAuth(): AuthState {
