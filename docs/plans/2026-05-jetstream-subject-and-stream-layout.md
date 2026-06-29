@@ -250,6 +250,43 @@ Producers populate `partition` themselves; the value matches the
 `partition` field as canonical; the subject token is the routing
 expression, the envelope field is the data.
 
+### 4.5 Origin of `subject.ulid` — the resource-identity registry
+
+§4.4 keys partitioning on `subject.ulid`, and the `audit-index`
+bucket (§6) keys on it too — but the resource ULID has to come from
+somewhere stable, or a rename silently fragments a resource's audit
+trail. Resource identity is resolved as follows; the decision and its
+rationale are recorded in
+[ADR 0008](../adr/0008-resource-identity-model.md).
+
+- **Natural key for addressing, durable ULID underneath.** Humans,
+  `keleustesctl`, the REST contract, and `kubectl` address resources
+  by name. Separately, every audit-subject resource carries a durable
+  ULID — the `subject.ulid` every event above depends on.
+- **Keyed by source path + target cluster, not by name.** The ULID is
+  resolved from `xxhash64(sourcePath + targetCluster)` — the Git
+  source coordinates (`spec.source` repo + path) of the resource and
+  the cluster it deploys to, i.e. the deployment unit (the matrix
+  cell). A rename changes `metadata.name` but not the path, so the
+  ULID — and the audit trail keyed on it — survives. (In Kubernetes a
+  rename is delete-old + create-new; the `uid` changes, the path-keyed
+  ULID does not.)
+- **Engine-resolved, never written to Git.** The reconciler computes
+  the key and looks the ULID up in the `resource-identity` KV bucket
+  (§6); on a miss it mints a ULID, writes it to the bucket, and caches
+  it in the resource's `status`. The user's Git repository is never
+  mutated to carry the ULID — consistent with ADR 0003 (the ULID is
+  derived runtime state, not desired state).
+- **Best-effort durability.** The mapping is NATS KV (hot) backed by
+  the event log; a control-plane reset that loses the bucket may
+  re-mint, which is accepted. Identity is stable in steady state, not
+  eternal.
+- **Path move = new identity, by design.** If a team renames *and*
+  relocates the source path (or retargets the cluster), the key
+  changes and a fresh ULID is minted. Carrying continuity across a
+  path move is the team's responsibility, not the engine's — a
+  deliberate, documented boundary.
+
 ## 5. Streams
 
 Streams are operator-config; consumers and producers never name
@@ -321,6 +358,7 @@ the durable streams.
 | `agent-presence`      | `<deploymentTargetName>.<agentInstance>`               | `{lastHeartbeat, nkeyFingerprint, version}`    | 5 min  | Hub's "is the agent alive?" check + UI agent health row.  |
 | `controller-locks`    | `<controllerName>/<shardId>`                           | `{holder, validUntil}` (≤ 128 B)              | 30 s (heartbeat-extended) | Sharded controller leader election per shard.            |
 | `deployment-snapshots`| `<deploymentName>` (one entry per Deployment CR)       | Latest reconciled snapshot — small JSON        | none   | UI matrix live view; alternative to live CRD list at scale. |
+| `resource-identity`   | `<xxhash64(sourcePath + targetCluster)>`               | `{ulid, sourcePath, targetCluster, mintedAt}` (≤ 256 B) | none   | Engine resolves the durable `subject.ulid` for audit-subject resources (§4.5, ADR 0008). |
 | `webhook-dedup`       | `<provider>/<delivery-id>`                              | `{firstSeen, processed}`                       | 24 h   | Webhook receiver dedup window.                            |
 
 KV TTLs are enforced by the JetStream consumer underneath; consumers

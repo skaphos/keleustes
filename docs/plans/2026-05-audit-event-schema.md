@@ -9,7 +9,7 @@ SPDX-License-Identifier: MIT
 - **Linear:** SKA-322 (this plan). Blocks SKA-332 (MVP 0 audit envelope emission), SKA-347 (MVP 1 audit pipeline JetStream end-to-end), SKA-385 (MVP 4 hash-chained audit). Related: SKA-320 (Render Contract) reserved five `render.*` event types here; SKA-324 (JetStream subject and stream layout) will pick up the stream side.
 - **Promotes into:** a future ADR co-located with ADR 0004. Until then, this document is authoritative for any code that writes or reads audit events.
 - **Supersedes:** [RBAC plan §6.2](./2026-05-rbac-audit-and-git-invariant.md) (envelope JSON sketch — formalized and extended here), and the audit-shape paragraph in the same plan's §11 next-steps ("Define the audit event Protobuf / JSON schema and version it…").
-- **Related:** [ADR 0003](../adr/0003-git-source-of-truth-invariant.md) (Git invariant — audit is the only path that records non-Git mutations), [ADR 0004](../adr/0004-crd-based-rbac.md) (RBAC — ULID requirement, actor identity), [ADR 0005](../adr/0005-distributed-runtime.md) (JetStream + object storage tiers; "audit history beyond CRD-status reach is not recoverable" if both lost), [ADR 0006](../adr/0006-engine-boundaries.md) (engine boundaries — each engine emits its own audit events from its own package), [SKA-320 Render Contract](./2026-05-render-contract-and-inventory-model.md) (`render.*` event types).
+- **Related:** [ADR 0003](../adr/0003-git-source-of-truth-invariant.md) (Git invariant — audit is the only path that records non-Git mutations), [ADR 0004](../adr/0004-crd-based-rbac.md) (RBAC — ULID requirement, actor identity), [ADR 0005](../adr/0005-distributed-runtime.md) (JetStream + object storage tiers; "audit history beyond CRD-status reach is not recoverable" if both lost), [ADR 0006](../adr/0006-engine-boundaries.md) (engine boundaries — each engine emits its own audit events from its own package), [ADR 0008](../adr/0008-resource-identity-model.md) (resource identity — origin of `action.subject.ulid`), [SKA-320 Render Contract](./2026-05-render-contract-and-inventory-model.md) (`render.*` event types).
 
 ## 1. Purpose and Scope
 
@@ -113,8 +113,8 @@ Every Keleustes audit event, regardless of verb, has this shape:
       "apiGroup":  "keleustes.skaphos.io",
       "kind":      "Promotion",
       "namespace": "payments",
-      "name":      "checkout-api-to-prod-2026-05-15",
-      "ulid":      "01HQ8FQA7Z4M2N1P3K9F8X6Y7B" // ADR 0004 — stable id
+      "name":      "checkout-api-to-prod-2026-05-15", // natural key — addressing only
+      "ulid":      "01HQ8FQA7Z4M2N1P3K9F8X6Y7B" // durable id — ADR 0008; origin in SKA-324 §4.5
     }
   },
 
