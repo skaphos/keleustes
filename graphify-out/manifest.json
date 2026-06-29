@@ -1,518 +1,818 @@
 {
-  "/home/sstratton/work/skaphos/keleustes/cmd/keleustesctl/main.go": {
-    "mtime": 1778819071.6897392,
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/ui/vite.config.ts": {
+    "mtime": 1782705818.6486437,
+    "hash": "35467b1a35c98cbb8c91f25801d35af1"
+  },
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/ui/playwright.config.ts": {
+    "mtime": 1782705818.634572,
+    "hash": "a0638126d01d4edc9dad4e518027fdd9"
+  },
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/ui/tailwind.config.ts": {
+    "mtime": 1782705818.6486437,
+    "hash": "6e391a5b2537b39c70baf4b573f8820a"
+  },
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/ui/postcss.config.js": {
+    "mtime": 1782705818.634572,
+    "hash": "f8d13755e66412db020d0782c66a35fc"
+  },
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/ui/eslint.config.js": {
+    "mtime": 1782705818.634572,
+    "hash": "3c4c459cdf9f53d24882e46f0b7ac3aa"
+  },
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/ui/e2e/smoke.spec.ts": {
+    "mtime": 1782705818.634572,
+    "hash": "266ec3589cb1d795c0dba092fbce8a65"
+  },
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/ui/public/mockServiceWorker.js": {
+    "mtime": 1782675163.7664175,
+    "hash": "f51d191363e170f7c355cacf3844cfe3"
+  },
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/ui/src/router.tsx": {
+    "mtime": 1782705818.643646,
+    "hash": "4711cb86bc906016d8e7dec244835b3f"
+  },
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/ui/src/main.tsx": {
+    "mtime": 1782705878.6969783,
+    "hash": "08adc6d41cebb8ce3d539fec490c8e34"
+  },
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/ui/src/vite-env.d.ts": {
+    "mtime": 1782705818.6486437,
+    "hash": "f373aef8e5ac9f9a5b0a919387335d74"
+  },
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/ui/src/auth/auth.tsx": {
+    "mtime": 1782705860.371146,
+    "hash": "a77f3af900aa19ec6f1189aff1c3203c"
+  },
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/ui/src/api/client.ts": {
+    "mtime": 1782705818.634572,
+    "hash": "4c39a22c70018b5d338f6acb1e4426d8"
+  },
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/ui/src/api/schema.d.ts": {
+    "mtime": 1782705968.5162115,
+    "hash": "5054e06d65e2c848041e0d38220a8499"
+  },
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/ui/src/components/PageHeader.tsx": {
+    "mtime": 1782705818.6350417,
+    "hash": "d3a2ce2fc21f8c351614d55e9f733e81"
+  },
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/ui/src/components/StatusBadge.tsx": {
+    "mtime": 1782705818.6387143,
+    "hash": "30246afdce30fd8660c346d6f153c24a"
+  },
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/ui/src/components/ui/button.tsx": {
+    "mtime": 1782705818.6411436,
+    "hash": "98ea1771332566443735c52518200116"
+  },
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/ui/src/components/ui/badge.tsx": {
+    "mtime": 1782705818.6396475,
+    "hash": "cff7909055262e5dac554dd40bff152d"
+  },
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/ui/src/components/shell/nav.ts": {
+    "mtime": 1782705818.6396475,
+    "hash": "449436d83021418abb6f16960819757d"
+  },
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/ui/src/components/shell/ContextBar.tsx": {
+    "mtime": 1782705818.6396475,
+    "hash": "6743869e3b302d192f753c06ac965eda"
+  },
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/ui/src/components/shell/NavRail.tsx": {
+    "mtime": 1782705818.6396475,
+    "hash": "712b00cf61268c16b5bb95566e06c8c6"
+  },
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/ui/src/components/shell/AppShell.tsx": {
+    "mtime": 1782705818.6387143,
+    "hash": "82e9ce2b58e016c9ff298c8f7cf0ad67"
+  },
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/ui/src/mocks/browser.ts": {
+    "mtime": 1782705818.6433268,
+    "hash": "f1f961fbe988519c49d90d3beb29ff68"
+  },
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/ui/src/mocks/server.ts": {
+    "mtime": 1782705818.643646,
+    "hash": "397b99d5493efdf18b72d1d86d5da69e"
+  },
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/ui/src/mocks/handlers.ts": {
+    "mtime": 1782705818.643646,
+    "hash": "507f32b7a3c749d48a3288ed58914674"
+  },
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/ui/src/mocks/fixtures.ts": {
+    "mtime": 1782705818.643646,
+    "hash": "d0682877e18b00de73fed6768d4d12fb"
+  },
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/ui/src/lib/status.test.ts": {
+    "mtime": 1782705818.6411436,
+    "hash": "b2683735c515bfe34cdcfc1006ded093"
+  },
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/ui/src/lib/utils.ts": {
+    "mtime": 1782705818.64245,
+    "hash": "2dca79cdffd91026ef7adc4a967c592a"
+  },
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/ui/src/lib/status.ts": {
+    "mtime": 1782705818.64245,
+    "hash": "cb14587f7bd21399ebe2f9b937973744"
+  },
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/ui/src/test/utils.tsx": {
+    "mtime": 1782705818.6486437,
+    "hash": "2f6fbb88d381555a3d2619949f5f155a"
+  },
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/ui/src/test/setup.ts": {
+    "mtime": 1782705818.6471212,
+    "hash": "b76418d432cf21068cab79ee195c248d"
+  },
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/ui/src/routes/Audit.tsx": {
+    "mtime": 1782705910.642151,
+    "hash": "3c8da3c52fb2b662659eca31ce592f96"
+  },
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/ui/src/routes/Applications.test.tsx": {
+    "mtime": 1782705818.6454759,
+    "hash": "bb094da285c9f8e6741c24be70dc1afd"
+  },
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/ui/src/routes/Environments.tsx": {
+    "mtime": 1782705818.6462657,
+    "hash": "0fc7076a2ac90b6187d23f5a4019a4c5"
+  },
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/ui/src/routes/PromotionDetail.tsx": {
+    "mtime": 1782705818.6471212,
+    "hash": "dc7ae45e658f578a845a01af50bea837"
+  },
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/ui/src/routes/ApplicationDetail.tsx": {
+    "mtime": 1782705818.6454759,
+    "hash": "8c6b37c4148884b616bdda64a50e2db9"
+  },
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/ui/src/routes/Promotions.tsx": {
+    "mtime": 1782705893.358951,
+    "hash": "9ba0f5bdf46f743cdc740931ba3a1464"
+  },
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/ui/src/routes/DiffView.tsx": {
+    "mtime": 1782705818.6462657,
+    "hash": "e46ce2f04540ab2ffb190fd6ed266e85"
+  },
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/ui/src/routes/Overview.tsx": {
+    "mtime": 1782705818.6462657,
+    "hash": "173248c7e0ff9e56978f5964ca5fece1"
+  },
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/ui/src/routes/Releases.tsx": {
+    "mtime": 1782705818.6471212,
+    "hash": "618abf7a8a5fb378a0b64d851011b6f5"
+  },
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/ui/src/routes/NotFound.tsx": {
+    "mtime": 1782705818.6462657,
+    "hash": "eb3e55e733259dea9cb838a5a2835aac"
+  },
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/ui/src/routes/Admin.tsx": {
+    "mtime": 1782705818.6438417,
+    "hash": "a5d6fe26d0e32424cf56f800cfc32b30"
+  },
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/ui/src/routes/Applications.tsx": {
+    "mtime": 1782705927.9303193,
+    "hash": "5673d36b1f962c894efecde3bd552122"
+  },
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/cmd/keleustesctl/main.go": {
+    "mtime": 1782669913.5623536,
     "hash": "6b22329764d4bacb17bf50c00b076a06"
   },
-  "/home/sstratton/work/skaphos/keleustes/cmd/manager/main.go": {
-    "mtime": 1779057225.2756517,
-    "hash": "0dfa84d188c134f4bcdf83dc4e1d4bcf"
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/cmd/manager/main.go": {
+    "mtime": 1782669913.5623536,
+    "hash": "c1c42526b94d595cfcd77bdb4216cfee"
   },
-  "/home/sstratton/work/skaphos/keleustes/api/v1alpha1/cell_types.go": {
-    "mtime": 1778818911.6453013,
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/api/v1alpha1/cell_types.go": {
+    "mtime": 1782669913.5608969,
     "hash": "13f330b51979ae111804e879fb8a1085"
   },
-  "/home/sstratton/work/skaphos/keleustes/api/v1alpha1/deploymenttarget_types.go": {
-    "mtime": 1778818924.0960906,
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/api/v1alpha1/deploymenttarget_types.go": {
+    "mtime": 1782669913.5608969,
     "hash": "fd49d6d148b91329db94ae2e7929304f"
   },
-  "/home/sstratton/work/skaphos/keleustes/api/v1alpha1/syncplan_types.go": {
-    "mtime": 1778818986.51737,
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/api/v1alpha1/syncplan_types.go": {
+    "mtime": 1782669913.5608969,
     "hash": "ac6e837ad0e6a4e79d45d98372712b41"
   },
-  "/home/sstratton/work/skaphos/keleustes/api/v1alpha1/healthcheck_types.go": {
-    "mtime": 1778819023.322349,
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/api/v1alpha1/healthcheck_types.go": {
+    "mtime": 1782669913.5608969,
     "hash": "e6ad7a5ba85132609c49cba9ba967e39"
   },
-  "/home/sstratton/work/skaphos/keleustes/api/v1alpha1/promotion_types.go": {
-    "mtime": 1778818967.6270566,
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/api/v1alpha1/promotion_types.go": {
+    "mtime": 1782669913.5608969,
     "hash": "53d4342c132f6d77ca14ec0e5c5d0596"
   },
-  "/home/sstratton/work/skaphos/keleustes/api/v1alpha1/source_types.go": {
-    "mtime": 1778818888.962251,
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/api/v1alpha1/source_types.go": {
+    "mtime": 1782669913.5608969,
     "hash": "8e48af7d189d11700271ff4dbbc0dd82"
   },
-  "/home/sstratton/work/skaphos/keleustes/api/v1alpha1/groupversion_info.go": {
-    "mtime": 1778880627.4793591,
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/api/v1alpha1/groupversion_info.go": {
+    "mtime": 1782669913.5608969,
     "hash": "4d02fdb4ecdf24d59cd5bab64c924b46"
   },
-  "/home/sstratton/work/skaphos/keleustes/api/v1alpha1/common_types.go": {
-    "mtime": 1778818852.5138009,
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/api/v1alpha1/common_types.go": {
+    "mtime": 1782669913.5608969,
     "hash": "8a902c6bb7aeff804fff20b927248f92"
   },
-  "/home/sstratton/work/skaphos/keleustes/api/v1alpha1/promotionpolicy_types.go": {
-    "mtime": 1778818976.032857,
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/api/v1alpha1/promotionpolicy_types.go": {
+    "mtime": 1782669913.5608969,
     "hash": "3d1979ab4b3115ad00cdc1db81176dbf"
   },
-  "/home/sstratton/work/skaphos/keleustes/api/v1alpha1/approval_types.go": {
-    "mtime": 1778819045.7838266,
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/api/v1alpha1/notifier_types.go": {
+    "mtime": 1782669913.5608969,
+    "hash": "9d89b27ff6deacd4c455b8b65046e729"
+  },
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/api/v1alpha1/approval_types.go": {
+    "mtime": 1782669913.5608969,
     "hash": "774ce86dd1d1d99d1206157b7a3fe45f"
   },
-  "/home/sstratton/work/skaphos/keleustes/api/v1alpha1/release_types.go": {
-    "mtime": 1778981296.6478844,
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/api/v1alpha1/release_types.go": {
+    "mtime": 1782669913.5608969,
     "hash": "9381d8e88f85ba7a7dace4ad5548dfc7"
   },
-  "/home/sstratton/work/skaphos/keleustes/api/v1alpha1/freezewindow_types.go": {
-    "mtime": 1778819035.454864,
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/api/v1alpha1/freezewindow_types.go": {
+    "mtime": 1782669913.5608969,
     "hash": "cbd555b957ceb2526e3ba2ecf340bd8a"
   },
-  "/home/sstratton/work/skaphos/keleustes/api/v1alpha1/deployment_types.go": {
-    "mtime": 1778819010.7187932,
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/api/v1alpha1/deployment_types.go": {
+    "mtime": 1782669913.5608969,
     "hash": "7052ad610a6711d68fbfb557b44fef98"
   },
-  "/home/sstratton/work/skaphos/keleustes/api/v1alpha1/syncrun_types.go": {
-    "mtime": 1778819000.808077,
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/api/v1alpha1/syncrun_types.go": {
+    "mtime": 1782669913.5608969,
     "hash": "f09f7ea276ecaae402919b39b8de1fb4"
   },
-  "/home/sstratton/work/skaphos/keleustes/api/v1alpha1/zz_generated.deepcopy.go": {
-    "mtime": 1779057749.8944495,
-    "hash": "637d8442ea2e2d0e9b7b7988e77b1e4d"
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/api/v1alpha1/zz_generated.deepcopy.go": {
+    "mtime": 1782671730.9430854,
+    "hash": "dcc74aa82dd80609b8379bafc544531e"
   },
-  "/home/sstratton/work/skaphos/keleustes/api/v1alpha1/application_types.go": {
-    "mtime": 1778818873.115732,
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/api/v1alpha1/application_types.go": {
+    "mtime": 1782669913.5608137,
     "hash": "f79c40ad9db103da75784332c344143e"
   },
-  "/home/sstratton/work/skaphos/keleustes/api/v1alpha1/environment_types.go": {
-    "mtime": 1778818900.5319517,
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/api/v1alpha1/environment_types.go": {
+    "mtime": 1782669913.5608969,
     "hash": "0eacb281fcb6c86cb36ab88d93c7e61c"
   },
-  "/home/sstratton/work/skaphos/keleustes/internal/observability/log_test.go": {
-    "mtime": 1779057225.2800517,
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/internal/observability/log_test.go": {
+    "mtime": 1782669913.587024,
     "hash": "2e3c76297b686f7e862f36a2f1eb5120"
   },
-  "/home/sstratton/work/skaphos/keleustes/internal/observability/metrics_test.go": {
-    "mtime": 1779057225.2800517,
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/internal/observability/metrics_test.go": {
+    "mtime": 1782669913.587024,
     "hash": "16570d70d75b0d9722bb37e31698ef78"
   },
-  "/home/sstratton/work/skaphos/keleustes/internal/observability/doc.go": {
-    "mtime": 1779057225.2800517,
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/internal/observability/doc.go": {
+    "mtime": 1782669913.5858445,
     "hash": "04b5d6c6a813981674ab9668694b40d3"
   },
-  "/home/sstratton/work/skaphos/keleustes/internal/observability/labels.go": {
-    "mtime": 1779057225.2800517,
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/internal/observability/labels.go": {
+    "mtime": 1782669913.587024,
     "hash": "a179fe7dd8ed9e4de51f430b87a1c776"
   },
-  "/home/sstratton/work/skaphos/keleustes/internal/observability/metrics.go": {
-    "mtime": 1779057225.2800517,
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/internal/observability/metrics.go": {
+    "mtime": 1782669913.587024,
     "hash": "a744099f849acc4f3177129056e85a67"
   },
-  "/home/sstratton/work/skaphos/keleustes/internal/observability/log.go": {
-    "mtime": 1779057225.2800517,
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/internal/observability/log.go": {
+    "mtime": 1782669913.587024,
     "hash": "32d27e92ca9cd2d60583e8a7f64e229a"
   },
-  "/home/sstratton/work/skaphos/keleustes/internal/controller/application_controller.go": {
-    "mtime": 1778980929.6446898,
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/internal/controller/application_controller.go": {
+    "mtime": 1782669913.5853183,
     "hash": "048e086ce406d6760690d5177fd9550b"
   },
-  "/home/sstratton/work/skaphos/keleustes/internal/controller/deployment_controller.go": {
-    "mtime": 1778981040.9338126,
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/internal/controller/deployment_controller.go": {
+    "mtime": 1782669913.5858445,
     "hash": "9a3db9bc0989126821994c314e4fc3aa"
   },
-  "/home/sstratton/work/skaphos/keleustes/internal/controller/approval_controller.go": {
-    "mtime": 1778981061.8514123,
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/internal/controller/approval_controller.go": {
+    "mtime": 1782669913.5858445,
     "hash": "bbb48aed81d8401b63173259405c6592"
   },
-  "/home/sstratton/work/skaphos/keleustes/internal/controller/source_controller.go": {
-    "mtime": 1778981023.2078547,
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/internal/controller/source_controller.go": {
+    "mtime": 1782669913.5858445,
     "hash": "9f7ff1214c27a881d9dc50e972fb5c8e"
   },
-  "/home/sstratton/work/skaphos/keleustes/internal/controller/promotion_controller.go": {
-    "mtime": 1778980934.34389,
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/internal/controller/promotion_controller.go": {
+    "mtime": 1782669913.5858445,
     "hash": "a5d9401e3ad93d808ba51c719ea7e73c"
   },
-  "/home/sstratton/work/skaphos/keleustes/internal/controller/cell_controller.go": {
-    "mtime": 1778980934.34389,
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/internal/controller/cell_controller.go": {
+    "mtime": 1782669913.5858445,
     "hash": "7d200fa7ebec79f064e85256f4ee9156"
   },
-  "/home/sstratton/work/skaphos/keleustes/internal/controller/suite_test.go": {
-    "mtime": 1778819169.1567445,
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/internal/controller/suite_test.go": {
+    "mtime": 1782669913.5858445,
     "hash": "89ec70dded8b7694710bc806851bec70"
   },
-  "/home/sstratton/work/skaphos/keleustes/internal/controller/doc.go": {
-    "mtime": 1778880629.3216045,
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/internal/controller/doc.go": {
+    "mtime": 1782669913.5858445,
     "hash": "be2fb38a4b26c083867836754a3f608c"
   },
-  "/home/sstratton/work/skaphos/keleustes/internal/controller/syncplan_controller.go": {
-    "mtime": 1778980934.34389,
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/internal/controller/syncplan_controller.go": {
+    "mtime": 1782669913.5858445,
     "hash": "98d2ed89ff903e4495700ea34d79adf2"
   },
-  "/home/sstratton/work/skaphos/keleustes/internal/controller/syncrun_controller.go": {
-    "mtime": 1778981080.3198755,
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/internal/controller/syncrun_controller.go": {
+    "mtime": 1782669913.5858445,
     "hash": "7215c0a9f64fc56b9247b857f793b328"
   },
-  "/home/sstratton/work/skaphos/keleustes/internal/controller/release_controller.go": {
-    "mtime": 1778981033.4202547,
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/internal/controller/release_controller.go": {
+    "mtime": 1782669913.5858445,
     "hash": "62134b73caabf5d06c35e482d8dfb434"
   },
-  "/home/sstratton/work/skaphos/keleustes/internal/controller/deploymenttarget_controller.go": {
-    "mtime": 1778980934.34389,
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/internal/controller/deploymenttarget_controller.go": {
+    "mtime": 1782669913.5858445,
     "hash": "11904dd3393659187322541e7d442e0f"
   },
-  "/home/sstratton/work/skaphos/keleustes/internal/controller/promotionpolicy_controller.go": {
-    "mtime": 1778981051.3970125,
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/internal/controller/promotionpolicy_controller.go": {
+    "mtime": 1782669913.5858445,
     "hash": "ef0e116984cebe641c3b9c47406b4387"
   },
-  "/home/sstratton/work/skaphos/keleustes/internal/controller/controllers_test.go": {
-    "mtime": 1778981342.7574751,
-    "hash": "fc28b6fa6efcbb035ba5f2bed1ee8d2b"
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/internal/controller/controllers_test.go": {
+    "mtime": 1782669913.5858445,
+    "hash": "a09780a3ceddece1a347cc9a457eef0f"
   },
-  "/home/sstratton/work/skaphos/keleustes/internal/controller/environment_controller.go": {
-    "mtime": 1778980934.34389,
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/internal/controller/environment_controller.go": {
+    "mtime": 1782669913.5858445,
     "hash": "2af01c6bae7e67c2d43f69ec4cc6f7fa"
   },
-  "/home/sstratton/work/skaphos/keleustes/internal/controller/freezewindow_controller.go": {
-    "mtime": 1778981069.5838754,
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/internal/controller/notifier_controller.go": {
+    "mtime": 1782669913.5858445,
+    "hash": "edc74c55aaade1982582334e33f9dc54"
+  },
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/internal/controller/freezewindow_controller.go": {
+    "mtime": 1782669913.5858445,
     "hash": "8fdb5a1175ce72447705082e71a3e0bf"
   },
-  "/home/sstratton/work/skaphos/keleustes/internal/controller/healthcheck_controller.go": {
-    "mtime": 1778981087.596415,
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/internal/controller/healthcheck_controller.go": {
+    "mtime": 1782669913.5858445,
     "hash": "da1ce043181f20afa33c40d3e03cdb59"
   },
-  "/home/sstratton/work/skaphos/keleustes/internal/audit/types.go": {
-    "mtime": 1779057338.1399705,
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/internal/audit/types.go": {
+    "mtime": 1782669913.584015,
     "hash": "362b32354b8fc1bd9acf136740ef7bf3"
   },
-  "/home/sstratton/work/skaphos/keleustes/internal/audit/doc.go": {
-    "mtime": 1779057330.8491707,
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/internal/audit/doc.go": {
+    "mtime": 1782669913.5827227,
     "hash": "b7857e15e3957ac22fade8e5097bd731"
   },
-  "/home/sstratton/work/skaphos/keleustes/internal/audit/emitter.go": {
-    "mtime": 1779057514.9939513,
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/internal/audit/emitter.go": {
+    "mtime": 1782669913.582799,
     "hash": "35fec8834366dd46b2fbdadda62671ad"
   },
-  "/home/sstratton/work/skaphos/keleustes/internal/audit/envelope_test.go": {
-    "mtime": 1779057543.2454107,
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/internal/audit/envelope_test.go": {
+    "mtime": 1782669913.582799,
     "hash": "57902bcf1be1996658e5c6b4ad82cc05"
   },
-  "/home/sstratton/work/skaphos/keleustes/internal/audit/ulid_test.go": {
-    "mtime": 1779057580.450294,
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/internal/audit/ulid_test.go": {
+    "mtime": 1782669913.584015,
     "hash": "03b2d9861bcb9d1ffd24ea973176aae3"
   },
-  "/home/sstratton/work/skaphos/keleustes/internal/audit/ulid.go": {
-    "mtime": 1779057419.4315696,
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/internal/audit/ulid.go": {
+    "mtime": 1782669913.584015,
     "hash": "51b4a343136db8a44f86c9986cc11c0a"
   },
-  "/home/sstratton/work/skaphos/keleustes/internal/audit/envelope.go": {
-    "mtime": 1779057472.8294797,
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/internal/audit/envelope.go": {
+    "mtime": 1782669913.582799,
     "hash": "3fcd12f3eeeac2e3c788277d61cc8e0f"
   },
-  "/home/sstratton/work/skaphos/keleustes/internal/audit/payload.go": {
-    "mtime": 1779057381.4551764,
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/internal/audit/payload.go": {
+    "mtime": 1782669913.582799,
     "hash": "1e98bb10cdd031da3565da5e65f62b4d"
   },
-  "/home/sstratton/work/skaphos/keleustes/internal/audit/emitter_test.go": {
-    "mtime": 1779057559.2583902,
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/internal/audit/emitter_test.go": {
+    "mtime": 1782669913.582799,
     "hash": "dca316099fae5efa94891a23d0059c9e"
   },
-  "/home/sstratton/work/skaphos/keleustes/internal/audit/payloads/registry.go": {
-    "mtime": 1779057490.5024323,
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/internal/audit/payloads/registry.go": {
+    "mtime": 1782669913.5834198,
     "hash": "b859196cc55fd424f24d86c7e8c1d7db"
   },
-  "/home/sstratton/work/skaphos/keleustes/internal/audit/payloads/crd_write.go": {
-    "mtime": 1779057483.9447262,
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/internal/audit/payloads/crd_write.go": {
+    "mtime": 1782669913.582799,
     "hash": "a431d760d1e2c75b3fb247110acddabf"
   },
-  "/home/sstratton/work/skaphos/keleustes/internal/audit/redaction/redact.go": {
-    "mtime": 1779057614.584671,
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/internal/audit/redaction/redact.go": {
+    "mtime": 1782669913.5834198,
     "hash": "83914de91e1bc81aa33ff70b3f06e6d5"
   },
-  "/home/sstratton/work/skaphos/keleustes/internal/audit/redaction/redact_test.go": {
-    "mtime": 1779057573.5422943,
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/internal/audit/redaction/redact_test.go": {
+    "mtime": 1782669913.584015,
     "hash": "a24d3860588d0ec6e025bf74c7238d9c"
   },
-  "/home/sstratton/work/skaphos/keleustes/internal/audit/webhook/doc.go": {
-    "mtime": 1779057637.1308692,
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/internal/audit/webhook/doc.go": {
+    "mtime": 1782669913.584015,
     "hash": "edd1aee280d05af8b185b5a3e43afe03"
   },
-  "/home/sstratton/work/skaphos/keleustes/internal/audit/webhook/handler.go": {
-    "mtime": 1779057675.1498168,
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/internal/audit/webhook/handler.go": {
+    "mtime": 1782669913.584728,
     "hash": "59f2e508c5e05d214d8ec9fcd1787b8a"
   },
-  "/home/sstratton/work/skaphos/keleustes/internal/audit/webhook/handler_test.go": {
-    "mtime": 1779057716.332032,
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/internal/audit/webhook/handler_test.go": {
+    "mtime": 1782669913.584728,
     "hash": "31a6623b635fbb839eef28fcfcec8b2d"
   },
-  "/home/sstratton/work/skaphos/keleustes/internal/cli/root.go": {
-    "mtime": 1778819076.925812,
-    "hash": "cd416356506c9830f1d05a180aa89149"
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/internal/cli/get.go": {
+    "mtime": 1782669952.0349417,
+    "hash": "c43c71adc6510e8cbc454846762da20a"
   },
-  "/home/sstratton/work/skaphos/keleustes/internal/cli/commands.go": {
-    "mtime": 1778981367.9213712,
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/internal/cli/output.go": {
+    "mtime": 1782669952.0349417,
+    "hash": "ca0d8d0250c4d773b5dcb77c4b432cf8"
+  },
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/internal/cli/root.go": {
+    "mtime": 1782669952.0349417,
+    "hash": "10a958cd4b7942fb0275d06fdb520976"
+  },
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/internal/cli/kinds.go": {
+    "mtime": 1782669952.0349417,
+    "hash": "4a8437d4713459a118c4be44dad83be8"
+  },
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/internal/cli/clientutil.go": {
+    "mtime": 1782669952.0349417,
+    "hash": "a4dd265605c6ff799bde8e0ae1ebfe0d"
+  },
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/internal/cli/output_test.go": {
+    "mtime": 1782669952.0349417,
+    "hash": "db56ac583d4b9e6a6785f07efd6d3685"
+  },
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/internal/cli/commands.go": {
+    "mtime": 1782669913.584728,
     "hash": "72828ad1b3a18e240d7a021c152ad76c"
   },
-  "/home/sstratton/work/skaphos/keleustes/internal/sync/engine.go": {
-    "mtime": 1779000198.3943548,
-    "hash": "2dbf1fa029a6ade3facb79d4782722ae"
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/internal/cli/describe.go": {
+    "mtime": 1782669952.0349417,
+    "hash": "7469bbb6b4b1a50f54e53d03725246d1"
   },
-  "/home/sstratton/work/skaphos/keleustes/internal/sync/engine_test.go": {
-    "mtime": 1779000198.3943548,
-    "hash": "d4995179da1e0c472b81262e6baa9ade"
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/internal/cli/kinds_test.go": {
+    "mtime": 1782669952.0349417,
+    "hash": "b12981b6cfe7190b66310d66c64d0288"
   },
-  "/home/sstratton/work/skaphos/keleustes/CONTRIBUTING.md": {
-    "mtime": 1778819299.274448,
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/internal/sync/engine.go": {
+    "mtime": 1782702916.672745,
+    "hash": "9ae8c2124c7ec16c0edba0ee9e9bb280"
+  },
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/internal/sync/engine_test.go": {
+    "mtime": 1782702916.672745,
+    "hash": "de65c64feea47cc02df7e9641773944c"
+  },
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/CONTRIBUTING.md": {
+    "mtime": 1782669913.5577085,
     "hash": "92fa50b670817c09bc156b8d78013cd2"
   },
-  "/home/sstratton/work/skaphos/keleustes/Taskfile.yml": {
-    "mtime": 1779000198.3943548,
-    "hash": "3fcdab38d2412fe45aae637e35d12ab4"
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/Taskfile.yml": {
+    "mtime": 1782705818.6262417,
+    "hash": "55b7672a4cef50958b63b7750c060f5e"
   },
-  "/home/sstratton/work/skaphos/keleustes/AGENTS.md": {
-    "mtime": 1779009022.7842362,
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/AGENTS.md": {
+    "mtime": 1782669913.5577085,
     "hash": "e53b9646ead6239ec4bda86d4b79195e"
   },
-  "/home/sstratton/work/skaphos/keleustes/CLAUDE.md": {
-    "mtime": 1779009022.7842362,
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/CLAUDE.md": {
+    "mtime": 1782669913.5577085,
     "hash": "e53b9646ead6239ec4bda86d4b79195e"
   },
-  "/home/sstratton/work/skaphos/keleustes/README.md": {
-    "mtime": 1778880632.3681223,
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/README.md": {
+    "mtime": 1782669913.5577085,
     "hash": "f6a871a5e0c1929e24b130531bf3c7a4"
   },
-  "/home/sstratton/work/skaphos/keleustes/THIRD_PARTY_LICENSES.md": {
-    "mtime": 1779000198.3943548,
-    "hash": "2eea9cd59b35cd84745354e2ee456c35"
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/THIRD_PARTY_LICENSES.md": {
+    "mtime": 1782702916.672745,
+    "hash": "2576657a88e5d8618e3a151c77e78812"
   },
-  "/home/sstratton/work/skaphos/keleustes/ui/README.md": {
-    "mtime": 1778819319.2592828,
-    "hash": "b9077222d2ee850b3fe108236e888c90"
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/ui/index.html": {
+    "mtime": 1782705818.634572,
+    "hash": "c7ba5934476cc8038665dcc83567526d"
   },
-  "/home/sstratton/work/skaphos/keleustes/tools/README.md": {
-    "mtime": 1778818822.6298578,
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/ui/pnpm-workspace.yaml": {
+    "mtime": 1782705818.634572,
+    "hash": "d97318f42ae9b83f4e681b455ec1d3ad"
+  },
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/ui/README.md": {
+    "mtime": 1782705818.6306417,
+    "hash": "49c450b19c483c5d740df1f88f123c8f"
+  },
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/tools/README.md": {
+    "mtime": 1782669913.5876782,
     "hash": "db2428c54c913d2d66e64f92a25d0624"
   },
-  "/home/sstratton/work/skaphos/keleustes/config/crd/kustomization.yaml": {
-    "mtime": 1778819178.7529407,
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/config/observability/kustomization.yaml": {
+    "mtime": 1782669913.5691085,
+    "hash": "2f4823b9c9c5b6ece57180d73cf7485d"
+  },
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/config/observability/README.md": {
+    "mtime": 1782669913.5669582,
+    "hash": "f798aca543cb20c3823b8f216d58a00a"
+  },
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/config/observability/prometheus/kustomization.yaml": {
+    "mtime": 1782669913.5703626,
+    "hash": "7755fc071329429e48bb818b9ba3db08"
+  },
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/config/observability/prometheus/prometheusrule-keleustes-manager.yaml": {
+    "mtime": 1782669913.5703626,
+    "hash": "49c735591f37704ebebe973600251d9d"
+  },
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/config/observability/prometheus/customresource-state.yaml": {
+    "mtime": 1782669913.5691085,
+    "hash": "eb2a39c9d8690d5fdc766953fda93a93"
+  },
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/config/observability/prometheus/servicemonitor-manager.yaml": {
+    "mtime": 1782669913.5703626,
+    "hash": "947221adaa4bbde65731b3ac30ee037d"
+  },
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/config/observability/dashboards/kustomization.yaml": {
+    "mtime": 1782669913.568761,
+    "hash": "001b7f7e0bfd22a59944a129508f7b8d"
+  },
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/config/crd/kustomization.yaml": {
+    "mtime": 1782669913.5642672,
     "hash": "b70bcf7ec12ed72fe0d5544d9eab6bb1"
   },
-  "/home/sstratton/work/skaphos/keleustes/config/crd/bases/keleustes.skaphos.io_syncruns.yaml": {
-    "mtime": 1779057747.5951614,
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/config/crd/bases/keleustes.skaphos.io_syncruns.yaml": {
+    "mtime": 1782671726.8686855,
     "hash": "45c3872bfb06d0d464663d487bf76f05"
   },
-  "/home/sstratton/work/skaphos/keleustes/config/crd/bases/keleustes.skaphos.io_promotionpolicies.yaml": {
-    "mtime": 1779057747.5951614,
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/config/crd/bases/keleustes.skaphos.io_promotionpolicies.yaml": {
+    "mtime": 1782671726.8598855,
     "hash": "c7f5bdbadb170d8ea00238211b64eafe"
   },
-  "/home/sstratton/work/skaphos/keleustes/config/crd/bases/keleustes.skaphos.io_environments.yaml": {
-    "mtime": 1779057747.5863686,
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/config/crd/bases/keleustes.skaphos.io_environments.yaml": {
+    "mtime": 1782671726.8554854,
     "hash": "af23b38ea546080c67e1518b1aafec5e"
   },
-  "/home/sstratton/work/skaphos/keleustes/config/crd/bases/keleustes.skaphos.io_promotions.yaml": {
-    "mtime": 1779057747.5951614,
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/config/crd/bases/keleustes.skaphos.io_promotions.yaml": {
+    "mtime": 1782671726.8598855,
     "hash": "45a773d426055a9570d07716fa26b824"
   },
-  "/home/sstratton/work/skaphos/keleustes/config/crd/bases/keleustes.skaphos.io_deploymenttargets.yaml": {
-    "mtime": 1779057747.5863686,
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/config/crd/bases/keleustes.skaphos.io_deploymenttargets.yaml": {
+    "mtime": 1782671726.8554854,
     "hash": "5417e3f1ab74e7ae10e62ff14732da3a"
   },
-  "/home/sstratton/work/skaphos/keleustes/config/crd/bases/keleustes.skaphos.io_deployments.yaml": {
-    "mtime": 1779057747.5863686,
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/config/crd/bases/keleustes.skaphos.io_deployments.yaml": {
+    "mtime": 1782671726.8554854,
     "hash": "32219390a6311026ec04bd19868c4288"
   },
-  "/home/sstratton/work/skaphos/keleustes/config/crd/bases/keleustes.skaphos.io_cells.yaml": {
-    "mtime": 1779057747.5863686,
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/config/crd/bases/keleustes.skaphos.io_cells.yaml": {
+    "mtime": 1782671726.8554854,
     "hash": "f6c11b35b1620027061d4d37507c4a20"
   },
-  "/home/sstratton/work/skaphos/keleustes/config/crd/bases/keleustes.skaphos.io_healthchecks.yaml": {
-    "mtime": 1779057747.590765,
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/config/crd/bases/keleustes.skaphos.io_healthchecks.yaml": {
+    "mtime": 1782671726.8598855,
     "hash": "4832adb571f0099f4e0eed969c0fff55"
   },
-  "/home/sstratton/work/skaphos/keleustes/config/crd/bases/keleustes.skaphos.io_releases.yaml": {
-    "mtime": 1779057747.5951614,
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/config/crd/bases/keleustes.skaphos.io_notifiers.yaml": {
+    "mtime": 1782671726.8598855,
+    "hash": "ef5c51d204da50480b0043238818f903"
+  },
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/config/crd/bases/keleustes.skaphos.io_releases.yaml": {
+    "mtime": 1782671726.8642855,
     "hash": "69a488e124777f5e80f522231ef8dc51"
   },
-  "/home/sstratton/work/skaphos/keleustes/config/crd/bases/keleustes.skaphos.io_freezewindows.yaml": {
-    "mtime": 1779057747.590765,
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/config/crd/bases/keleustes.skaphos.io_freezewindows.yaml": {
+    "mtime": 1782671726.8598855,
     "hash": "3e816c6ccc8c3dc147224fd2ed7c7182"
   },
-  "/home/sstratton/work/skaphos/keleustes/config/crd/bases/keleustes.skaphos.io_syncplans.yaml": {
-    "mtime": 1779057747.5951614,
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/config/crd/bases/keleustes.skaphos.io_syncplans.yaml": {
+    "mtime": 1782671726.8686855,
     "hash": "738afabbd9b0ff76776c98638d636731"
   },
-  "/home/sstratton/work/skaphos/keleustes/config/crd/bases/keleustes.skaphos.io_applications.yaml": {
-    "mtime": 1779057747.5863686,
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/config/crd/bases/keleustes.skaphos.io_applications.yaml": {
+    "mtime": 1782671726.8510854,
     "hash": "400f8e806c481d6e1083323f8873d854"
   },
-  "/home/sstratton/work/skaphos/keleustes/config/crd/bases/keleustes.skaphos.io_sources.yaml": {
-    "mtime": 1779057747.5951614,
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/config/crd/bases/keleustes.skaphos.io_sources.yaml": {
+    "mtime": 1782671726.8642855,
     "hash": "e620769106539e8091eaf6d86fef2fce"
   },
-  "/home/sstratton/work/skaphos/keleustes/config/crd/bases/keleustes.skaphos.io_approvals.yaml": {
-    "mtime": 1779057747.5863686,
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/config/crd/bases/keleustes.skaphos.io_approvals.yaml": {
+    "mtime": 1782671726.8510854,
     "hash": "33333f7de9477c26c1fc39287cf8fb20"
   },
-  "/home/sstratton/work/skaphos/keleustes/config/default/kustomization.yaml": {
-    "mtime": 1778819190.047185,
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/config/default/kustomization.yaml": {
+    "mtime": 1782669913.5642672,
     "hash": "e7f3113161f09af8db0a9a5adbf4a727"
   },
-  "/home/sstratton/work/skaphos/keleustes/config/samples/keleustes_v1alpha1_release_marshaller_api_1_8_2.yaml": {
-    "mtime": 1778880631.2577543,
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/config/samples/keleustes_v1alpha1_release_marshaller_api_1_8_2.yaml": {
+    "mtime": 1782669913.572235,
     "hash": "6a5f1e06e697b21f856d4a0b11802837"
   },
-  "/home/sstratton/work/skaphos/keleustes/config/samples/keleustes_v1alpha1_application_marshaller_api.yaml": {
-    "mtime": 1778880631.25358,
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/config/samples/keleustes_v1alpha1_application_marshaller_api.yaml": {
+    "mtime": 1782669913.5715744,
     "hash": "8dd991fd0a388adaa7d069cf0328fa9d"
   },
-  "/home/sstratton/work/skaphos/keleustes/config/samples/kustomization.yaml": {
-    "mtime": 1778819206.106023,
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/config/samples/kustomization.yaml": {
+    "mtime": 1782669913.572235,
     "hash": "becc5fb75ef19795fb9594ec68b27ed4"
   },
-  "/home/sstratton/work/skaphos/keleustes/config/samples/keleustes_v1alpha1_promotionpolicy_prod_standard.yaml": {
-    "mtime": 1778880631.25358,
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/config/samples/keleustes_v1alpha1_promotionpolicy_prod_standard.yaml": {
+    "mtime": 1782669913.572235,
     "hash": "d8394cb43e72dcafce36e6551c1ea6d1"
   },
-  "/home/sstratton/work/skaphos/keleustes/config/samples/keleustes_v1alpha1_environment_prod.yaml": {
-    "mtime": 1778880631.25358,
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/config/samples/keleustes_v1alpha1_environment_prod.yaml": {
+    "mtime": 1782669913.572235,
     "hash": "ad40a37a476c66da1ac0398e5546ccde"
   },
-  "/home/sstratton/work/skaphos/keleustes/config/samples/keleustes_v1alpha1_promotion_marshaller_api_to_prod.yaml": {
-    "mtime": 1778880631.25358,
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/config/samples/keleustes_v1alpha1_promotion_marshaller_api_to_prod.yaml": {
+    "mtime": 1782669913.572235,
     "hash": "c0b80b24d2715b4600c8bf0292a04fb8"
   },
-  "/home/sstratton/work/skaphos/keleustes/config/samples/keleustes_v1alpha1_deploymenttarget_prod_guest_westus2.yaml": {
-    "mtime": 1778880631.25358,
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/config/samples/keleustes_v1alpha1_deploymenttarget_prod_guest_westus2.yaml": {
+    "mtime": 1782669913.572235,
     "hash": "2d1807f73b1403a7c14d0faaf4f9ddd6"
   },
-  "/home/sstratton/work/skaphos/keleustes/config/samples/keleustes_v1alpha1_source_marshaller_api.yaml": {
-    "mtime": 1778880631.2577543,
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/config/samples/keleustes_v1alpha1_source_marshaller_api.yaml": {
+    "mtime": 1782669913.572235,
     "hash": "f8c6acdff981f8772d75b6f0524a0665"
   },
-  "/home/sstratton/work/skaphos/keleustes/config/samples/keleustes_v1alpha1_cell_guest_prod.yaml": {
-    "mtime": 1778880631.2577543,
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/config/samples/keleustes_v1alpha1_cell_guest_prod.yaml": {
+    "mtime": 1782669913.572235,
     "hash": "58bdba329deb0e6c93946c4265a17de1"
   },
-  "/home/sstratton/work/skaphos/keleustes/config/rbac/role_binding.yaml": {
-    "mtime": 1778819198.2038677,
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/config/rbac/role_binding.yaml": {
+    "mtime": 1782669913.5715744,
     "hash": "99ed8b4cf5b68694b66cfb3b9ba59f18"
   },
-  "/home/sstratton/work/skaphos/keleustes/config/rbac/kustomization.yaml": {
-    "mtime": 1778819190.5190492,
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/config/rbac/kustomization.yaml": {
+    "mtime": 1782669913.5703626,
     "hash": "8e01e78c51d687d384be2e479d9675de"
   },
-  "/home/sstratton/work/skaphos/keleustes/config/rbac/role.yaml": {
-    "mtime": 1779057747.5511978,
-    "hash": "d15464f4d7810b9869f226171198e149"
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/config/rbac/role.yaml": {
+    "mtime": 1782671726.8114855,
+    "hash": "a76498581a3bb8ab65b7405edd122984"
   },
-  "/home/sstratton/work/skaphos/keleustes/config/rbac/leader_election_role.yaml": {
-    "mtime": 1778819200.3044868,
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/config/rbac/leader_election_role.yaml": {
+    "mtime": 1782669913.5715744,
     "hash": "c7c1715e58128761f816644127770c1f"
   },
-  "/home/sstratton/work/skaphos/keleustes/config/rbac/leader_election_role_binding.yaml": {
-    "mtime": 1778819202.5021904,
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/config/rbac/leader_election_role_binding.yaml": {
+    "mtime": 1782669913.5715744,
     "hash": "f07a11aee1562277ebf2dd3eb2063051"
   },
-  "/home/sstratton/work/skaphos/keleustes/config/manager/manager.yaml": {
-    "mtime": 1778819187.7047157,
-    "hash": "46e0affce694a26224fce02b9e8efa83"
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/config/gateway/gateway.yaml": {
+    "mtime": 1782669913.5659494,
+    "hash": "55791cdda7a0e6937494e1abee34c93a"
   },
-  "/home/sstratton/work/skaphos/keleustes/config/manager/kustomization.yaml": {
-    "mtime": 1778819180.8629405,
-    "hash": "f3ed15523127326c70b1ec8ef9c79b23"
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/config/gateway/kustomization.yaml": {
+    "mtime": 1782669913.5659494,
+    "hash": "0fde28c647076822302c1e01a9f21707"
   },
-  "/home/sstratton/work/skaphos/keleustes/hack/boilerplate.go.txt": {
-    "mtime": 1778818763.8428817,
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/config/gateway/httproute-api.yaml": {
+    "mtime": 1782669913.5659494,
+    "hash": "1bfe0394d1d746308bfbc5b477219615"
+  },
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/config/gateway/README.md": {
+    "mtime": 1782669913.5642672,
+    "hash": "436adca1b2b84fb069c4f6cc7332527b"
+  },
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/config/manager/manager.yaml": {
+    "mtime": 1782669913.5669582,
+    "hash": "bbf1a210fb441294f2da31144780729b"
+  },
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/config/manager/kustomization.yaml": {
+    "mtime": 1782669913.5659494,
+    "hash": "fa82316db11ce0f8e722ab394ae7f187"
+  },
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/config/manager/service.yaml": {
+    "mtime": 1782669913.5669582,
+    "hash": "4ea55ae52dc61240ae3fb41d7fe3ae8c"
+  },
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/hack/boilerplate.go.txt": {
+    "mtime": 1782669913.5781393,
     "hash": "ded978aeb0bb46b71449bc612ebdcccd"
   },
-  "/home/sstratton/work/skaphos/keleustes/docs/FACTS.md": {
-    "mtime": 1778819472.6925185,
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/docs/FACTS.md": {
+    "mtime": 1782669913.5729928,
     "hash": "e5233dd3c9ded53b1bdbe8062b0e4419"
   },
-  "/home/sstratton/work/skaphos/keleustes/docs/licenses.md": {
-    "mtime": 1779000198.3943548,
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/docs/licenses.md": {
+    "mtime": 1782669913.573821,
     "hash": "9c94420c20eab52d3f32b604be10d99f"
   },
-  "/home/sstratton/work/skaphos/keleustes/docs/PROPOSAL.md": {
-    "mtime": 1779008992.0209858,
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/docs/PROPOSAL.md": {
+    "mtime": 1782669913.5729928,
     "hash": "398e927e91a90fa5edff049b147065b7"
   },
-  "/home/sstratton/work/skaphos/keleustes/docs/DECISIONS.md": {
-    "mtime": 1779008682.3819003,
-    "hash": "d3fb7059ebfa66899fe47519d1c2d8c5"
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/docs/DECISIONS.md": {
+    "mtime": 1782706745.3798144,
+    "hash": "c42c172018fbc9fd6667b1b76cdda63a"
   },
-  "/home/sstratton/work/skaphos/keleustes/docs/NAMING.md": {
-    "mtime": 1778819313.5776038,
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/docs/NAMING.md": {
+    "mtime": 1782669913.5729928,
     "hash": "169efe1fffdca9078d5be1337f4b7a51"
   },
-  "/home/sstratton/work/skaphos/keleustes/docs/plans/2026-05-agent-transport-interface.md": {
-    "mtime": 1779008654.314474,
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/docs/plans/2026-05-agent-transport-interface.md": {
+    "mtime": 1782669913.573821,
     "hash": "9eab76eaebfc405a670f484e6b6edf30"
   },
-  "/home/sstratton/work/skaphos/keleustes/docs/plans/2026-05-gitops-engine-spike.md": {
-    "mtime": 1779002185.5666902,
-    "hash": "1d9b16235c069696758162dce376b1c6"
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/docs/plans/2026-05-git-mutation-attribution.md": {
+    "mtime": 1782669952.0305417,
+    "hash": "329364aeed3e304397021ce8f7829121"
   },
-  "/home/sstratton/work/skaphos/keleustes/docs/plans/2026-05-observability-stack.md": {
-    "mtime": 1778994056.2449193,
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/docs/plans/2026-05-gitops-engine-spike.md": {
+    "mtime": 1782669913.5748832,
+    "hash": "d5199854325e4bfb0b5f4057b6dba921"
+  },
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/docs/plans/2026-05-observability-stack.md": {
+    "mtime": 1782669913.5748832,
     "hash": "750e2f693b0c8f5bc82fc819de6122e7"
   },
-  "/home/sstratton/work/skaphos/keleustes/docs/plans/2026-05-audit-event-schema.md": {
-    "mtime": 1779006642.6296484,
-    "hash": "51614c14b2442b1aa0af89b556c9d24a"
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/docs/plans/2026-05-audit-event-schema.md": {
+    "mtime": 1782706745.3798144,
+    "hash": "dbde83e0ad0281196a0090183ef93873"
   },
-  "/home/sstratton/work/skaphos/keleustes/docs/plans/2026-05-render-contract-and-inventory-model.md": {
-    "mtime": 1779003388.5269246,
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/docs/plans/2026-05-render-contract-and-inventory-model.md": {
+    "mtime": 1782669913.5748832,
     "hash": "698732acb0a09dda2e8edfa9962862a5"
   },
-  "/home/sstratton/work/skaphos/keleustes/docs/plans/2026-05-scale-benchmark-harness.md": {
-    "mtime": 1779008003.1375146,
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/docs/plans/2026-05-scale-benchmark-harness.md": {
+    "mtime": 1782669913.5748832,
     "hash": "84f114e060dd850154cfcf6418bc607c"
   },
-  "/home/sstratton/work/skaphos/keleustes/docs/plans/2026-05-sharded-controller-pattern.md": {
-    "mtime": 1779007409.2794187,
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/docs/plans/2026-05-sharded-controller-pattern.md": {
+    "mtime": 1782669913.5748832,
     "hash": "750ceb28354b23491718ea948f8f3143"
   },
-  "/home/sstratton/work/skaphos/keleustes/docs/plans/2026-05-jetstream-subject-and-stream-layout.md": {
-    "mtime": 1779006572.6520967,
-    "hash": "d568090f092757a3dc8e668600827874"
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/docs/plans/2026-05-jetstream-subject-and-stream-layout.md": {
+    "mtime": 1782706745.3798144,
+    "hash": "8e54520922603627f5b7f357ccd9fe98"
   },
-  "/home/sstratton/work/skaphos/keleustes/docs/plans/2026-05-distributed-runtime-architecture.md": {
-    "mtime": 1779008701.0176642,
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/docs/plans/2026-05-distributed-runtime-architecture.md": {
+    "mtime": 1782669913.5748832,
     "hash": "b907b5dbc9d9ac312801137de4492040"
   },
-  "/home/sstratton/work/skaphos/keleustes/docs/plans/2026-05-rbac-audit-and-git-invariant.md": {
-    "mtime": 1779004998.3649006,
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/docs/plans/2026-05-rbac-audit-and-git-invariant.md": {
+    "mtime": 1782669913.5748832,
     "hash": "76230a27452dee8fde00a187000c1522"
   },
-  "/home/sstratton/work/skaphos/keleustes/docs/plans/README.md": {
-    "mtime": 1779008692.4705365,
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/docs/plans/2026-05-repo-layout-and-branch-promotion.md": {
+    "mtime": 1782669952.0305417,
+    "hash": "7f78e825f704d4f54df13bfe2ffcec97"
+  },
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/docs/plans/README.md": {
+    "mtime": 1782669913.5748832,
     "hash": "c02479a42de46e8b62bcda99a93c3ba3"
   },
-  "/home/sstratton/work/skaphos/keleustes/docs/plans/2026-05-engine-boundaries-and-technology-integration.md": {
-    "mtime": 1778994754.3963542,
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/docs/plans/2026-05-operator-crd-integration.md": {
+    "mtime": 1782669913.5748832,
+    "hash": "cecd966c0167da21aa2cbdf5e25dbe6d"
+  },
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/docs/plans/2026-05-value-change-promotion.md": {
+    "mtime": 1782669913.5748832,
+    "hash": "d8f171616368000af359c5cc1d80b245"
+  },
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/docs/plans/2026-05-engine-boundaries-and-technology-integration.md": {
+    "mtime": 1782669913.5748832,
     "hash": "b073cc3f7ccd09a859932286c36425bf"
   },
-  "/home/sstratton/work/skaphos/keleustes/docs/plans/2026-05-rbac-crd-shapes.md": {
-    "mtime": 1779004946.2075977,
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/docs/plans/2026-05-rbac-crd-shapes.md": {
+    "mtime": 1782669913.5748832,
     "hash": "f9742499f241cd805b1d0f33861240dd"
   },
-  "/home/sstratton/work/skaphos/keleustes/docs/plans/2026-05-extensibility-plugin-surfaces.md": {
-    "mtime": 1778985101.2451506,
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/docs/plans/2026-05-extensibility-plugin-surfaces.md": {
+    "mtime": 1782669913.5748832,
     "hash": "897456a6c21ec91de8e1922569754337"
   },
-  "/home/sstratton/work/skaphos/keleustes/docs/adr/0001-plugin-extension-model.md": {
-    "mtime": 1778985079.2363508,
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/docs/adr/0001-plugin-extension-model.md": {
+    "mtime": 1782669913.5729928,
     "hash": "dee0c6cf70cecdc63951e5b22147a566"
   },
-  "/home/sstratton/work/skaphos/keleustes/docs/adr/0003-git-source-of-truth-invariant.md": {
-    "mtime": 1778994314.5723314,
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/docs/adr/0003-git-source-of-truth-invariant.md": {
+    "mtime": 1782669913.573821,
     "hash": "627042f92795ba2efc3bb4bd0e87758b"
   },
-  "/home/sstratton/work/skaphos/keleustes/docs/adr/0005-distributed-runtime.md": {
-    "mtime": 1778994600.9979014,
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/docs/adr/0005-distributed-runtime.md": {
+    "mtime": 1782669913.573821,
     "hash": "035814622d357b0fbe15326524749153"
   },
-  "/home/sstratton/work/skaphos/keleustes/docs/adr/0002-default-observability-stack.md": {
-    "mtime": 1778994023.878371,
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/docs/adr/0008-resource-identity-model.md": {
+    "mtime": 1782706745.3798144,
+    "hash": "48f40d94ec77e3255c2a51252e31978d"
+  },
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/docs/adr/0002-default-observability-stack.md": {
+    "mtime": 1782669913.573821,
     "hash": "ecef3491d4f74caff3a64c3f7761200a"
   },
-  "/home/sstratton/work/skaphos/keleustes/docs/adr/0006-engine-boundaries.md": {
-    "mtime": 1779002138.3148723,
-    "hash": "9f6a0cc3fd05008d2878a089ed243bf3"
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/docs/adr/0006-engine-boundaries.md": {
+    "mtime": 1782669913.573821,
+    "hash": "2e8db6e94e226a79797adaa5e6af3d46"
   },
-  "/home/sstratton/work/skaphos/keleustes/docs/adr/README.md": {
-    "mtime": 1779004493.8887198,
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/docs/adr/0007-hard-fork-gitops-engine.md": {
+    "mtime": 1782669913.573821,
+    "hash": "94370674073086f014d0f80778ed1b8d"
+  },
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/docs/adr/README.md": {
+    "mtime": 1782669913.573821,
     "hash": "b5eaa6dd848cb8ef8f2f977d5470f54d"
   },
-  "/home/sstratton/work/skaphos/keleustes/docs/adr/0004-crd-based-rbac.md": {
-    "mtime": 1778994443.958543,
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/docs/adr/0004-crd-based-rbac.md": {
+    "mtime": 1782669913.573821,
     "hash": "6270bf06f24c46dad4ce928c1c1cf6a5"
+  },
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/docs/design/ui-design-spec.md": {
+    "mtime": 1782706794.373213,
+    "hash": "7121e7342a1c99b8e8db8780a9b67d99"
+  },
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/LICENSES/MIT.txt": {
+    "mtime": 1782669913.5577085,
+    "hash": "9e911597e678943cde54111f7518e299"
+  },
+  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+graphify-refresh-main/openapi/keleustes.v1.yaml": {
+    "mtime": 1782705954.0754116,
+    "hash": "c6d05a135f5c8de02051afcf44d89718"
   }
 }
