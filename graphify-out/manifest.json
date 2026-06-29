@@ -1,19 +1,11 @@
 {
   "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+full-deps-update/ui/vite.config.ts": {
-    "mtime": 1782707609.176791,
-    "hash": "35467b1a35c98cbb8c91f25801d35af1"
+    "mtime": 1782709689.7224562,
+    "hash": "2bda877c8a1efb688951998f4a2ade85"
   },
   "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+full-deps-update/ui/playwright.config.ts": {
     "mtime": 1782707609.1638427,
     "hash": "a0638126d01d4edc9dad4e518027fdd9"
-  },
-  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+full-deps-update/ui/tailwind.config.ts": {
-    "mtime": 1782707609.176791,
-    "hash": "6e391a5b2537b39c70baf4b573f8820a"
-  },
-  "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+full-deps-update/ui/postcss.config.js": {
-    "mtime": 1782707609.1638427,
-    "hash": "f8d13755e66412db020d0782c66a35fc"
   },
   "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+full-deps-update/ui/eslint.config.js": {
     "mtime": 1782707609.1638427,
@@ -48,7 +40,7 @@
     "hash": "4c39a22c70018b5d338f6acb1e4426d8"
   },
   "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+full-deps-update/ui/src/api/schema.d.ts": {
-    "mtime": 1782709026.540721,
+    "mtime": 1782709825.9025643,
     "hash": "5054e06d65e2c848041e0d38220a8499"
   },
   "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+full-deps-update/ui/src/components/PageHeader.tsx": {
@@ -108,8 +100,8 @@
     "hash": "2dca79cdffd91026ef7adc4a967c592a"
   },
   "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+full-deps-update/ui/src/lib/status.ts": {
-    "mtime": 1782707609.1716657,
-    "hash": "cb14587f7bd21399ebe2f9b937973744"
+    "mtime": 1782709922.9091578,
+    "hash": "463e9f5e6020447cea31b404491ab6eb"
   },
   "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+full-deps-update/ui/src/test/utils.tsx": {
     "mtime": 1782707609.176791,
@@ -236,7 +228,7 @@
     "hash": "f09f7ea276ecaae402919b39b8de1fb4"
   },
   "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+full-deps-update/api/v1alpha1/zz_generated.deepcopy.go": {
-    "mtime": 1782709008.6497402,
+    "mtime": 1782710091.4499009,
     "hash": "dcc74aa82dd80609b8379bafc544531e"
   },
   "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+full-deps-update/api/v1alpha1/application_types.go": {
@@ -456,8 +448,8 @@
     "hash": "92fa50b670817c09bc156b8d78013cd2"
   },
   "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+full-deps-update/Taskfile.yml": {
-    "mtime": 1782708686.523316,
-    "hash": "0d0ed916a70fddfc850d7a2bab7290c8"
+    "mtime": 1782710049.7649739,
+    "hash": "9290d5fa9fb6b63a2a90b9049ddfaf4c"
   },
   "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+full-deps-update/AGENTS.md": {
     "mtime": 1782707609.097964,
@@ -524,63 +516,63 @@
     "hash": "b70bcf7ec12ed72fe0d5544d9eab6bb1"
   },
   "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+full-deps-update/config/crd/bases/keleustes.skaphos.io_syncruns.yaml": {
-    "mtime": 1782709005.677549,
+    "mtime": 1782710088.4159582,
     "hash": "d70f6d97402af03459b0cd7d74aa0d35"
   },
   "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+full-deps-update/config/crd/bases/keleustes.skaphos.io_promotionpolicies.yaml": {
-    "mtime": 1782709005.6695404,
+    "mtime": 1782710088.4119475,
     "hash": "3cbd5bb08476d3e035e2b95bc0565ba0"
   },
   "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+full-deps-update/config/crd/bases/keleustes.skaphos.io_environments.yaml": {
-    "mtime": 1782709005.6655362,
+    "mtime": 1782710088.4039264,
     "hash": "e214cb216ea2b2138e17e5ecce66d3d1"
   },
   "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+full-deps-update/config/crd/bases/keleustes.skaphos.io_promotions.yaml": {
-    "mtime": 1782709005.6695404,
+    "mtime": 1782710088.407937,
     "hash": "90ada0b2f07c24d117c7ae321a4d4e1b"
   },
   "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+full-deps-update/config/crd/bases/keleustes.skaphos.io_deploymenttargets.yaml": {
-    "mtime": 1782709005.6655362,
+    "mtime": 1782710088.4039264,
     "hash": "14a7fb278884827ad4f1f4c7939f3f74"
   },
   "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+full-deps-update/config/crd/bases/keleustes.skaphos.io_deployments.yaml": {
-    "mtime": 1782709005.6655362,
+    "mtime": 1782710088.4039264,
     "hash": "bc048ddd6d7f34cfa804678169ff824b"
   },
   "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+full-deps-update/config/crd/bases/keleustes.skaphos.io_cells.yaml": {
-    "mtime": 1782709005.6655362,
+    "mtime": 1782710088.4039264,
     "hash": "abf4e15b4d5c75ef5825ee139cc193c9"
   },
   "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+full-deps-update/config/crd/bases/keleustes.skaphos.io_healthchecks.yaml": {
-    "mtime": 1782709005.6695404,
+    "mtime": 1782710088.407937,
     "hash": "93815edb2e1ea3535cf362a595ddb3ec"
   },
   "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+full-deps-update/config/crd/bases/keleustes.skaphos.io_notifiers.yaml": {
-    "mtime": 1782709005.6695404,
+    "mtime": 1782710088.407937,
     "hash": "653a763843a46116ce5d35aae0a33494"
   },
   "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+full-deps-update/config/crd/bases/keleustes.skaphos.io_releases.yaml": {
-    "mtime": 1782709005.6735446,
+    "mtime": 1782710088.4119475,
     "hash": "f28b8946b63cdeb6e5301eb5b4f01726"
   },
   "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+full-deps-update/config/crd/bases/keleustes.skaphos.io_freezewindows.yaml": {
-    "mtime": 1782709005.6695404,
+    "mtime": 1782710088.4039264,
     "hash": "dc2aef0f76b7ae8e4da3ddfe4488be9f"
   },
   "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+full-deps-update/config/crd/bases/keleustes.skaphos.io_syncplans.yaml": {
-    "mtime": 1782709005.6735446,
+    "mtime": 1782710088.4119475,
     "hash": "448ada4a27b9faba39720eaf76f5c6cf"
   },
   "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+full-deps-update/config/crd/bases/keleustes.skaphos.io_applications.yaml": {
-    "mtime": 1782709005.661532,
+    "mtime": 1782710088.3999157,
     "hash": "8515e92a0a41a8b31287314772e3834a"
   },
   "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+full-deps-update/config/crd/bases/keleustes.skaphos.io_sources.yaml": {
-    "mtime": 1782709005.6735446,
+    "mtime": 1782710088.4119475,
     "hash": "69635989cf0abb0a7b43eee1d7a51380"
   },
   "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+full-deps-update/config/crd/bases/keleustes.skaphos.io_approvals.yaml": {
-    "mtime": 1782709005.6655362,
+    "mtime": 1782710088.3999157,
     "hash": "af460ee79827600765c09918cce7a1b9"
   },
   "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+full-deps-update/config/default/kustomization.yaml": {
@@ -632,7 +624,7 @@
     "hash": "8e01e78c51d687d384be2e479d9675de"
   },
   "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+full-deps-update/config/rbac/role.yaml": {
-    "mtime": 1782709005.6375067,
+    "mtime": 1782710088.3718414,
     "hash": "a76498581a3bb8ab65b7405edd122984"
   },
   "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/chore+full-deps-update/config/rbac/leader_election_role.yaml": {
