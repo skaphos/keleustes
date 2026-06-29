@@ -1,3 +1,19 @@
 # This kustomization aggregates the controller-gen produced CRDs under
-# config/crd/bases. Run `task manifests` to populate the bases directory.
-resources: []
+# config/crd/bases. Run `task manifests` to (re)generate the base files; this
+# list is maintained by hand — add an entry here when a new CRD is scaffolded.
+resources:
+  - bases/keleustes.skaphos.io_applications.yaml
+  - bases/keleustes.skaphos.io_approvals.yaml
+  - bases/keleustes.skaphos.io_cells.yaml
+  - bases/keleustes.skaphos.io_deployments.yaml
+  - bases/keleustes.skaphos.io_deploymenttargets.yaml
+  - bases/keleustes.skaphos.io_environments.yaml
+  - bases/keleustes.skaphos.io_freezewindows.yaml
+  - bases/keleustes.skaphos.io_healthchecks.yaml
+  - bases/keleustes.skaphos.io_notifiers.yaml
+  - bases/keleustes.skaphos.io_promotionpolicies.yaml
+  - bases/keleustes.skaphos.io_promotions.yaml
+  - bases/keleustes.skaphos.io_releases.yaml
+  - bases/keleustes.skaphos.io_sources.yaml
+  - bases/keleustes.skaphos.io_syncplans.yaml
+  - bases/keleustes.skaphos.io_syncruns.yaml
