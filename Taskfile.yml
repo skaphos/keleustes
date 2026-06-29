@@ -9,6 +9,7 @@ vars:
   GOIMPORTS_RUNNER: go run golang.org/x/tools/cmd/goimports@v0.47.0
   STATICCHECK_RUNNER: go run honnef.co/go/tools/cmd/staticcheck@v0.7.0
   GOVULNCHECK_RUNNER: go run golang.org/x/vuln/cmd/govulncheck@v1.5.0
+  OAPI_CODEGEN: go run github.com/oapi-codegen/oapi-codegen/v2/cmd/oapi-codegen@v2.7.1
   PNPM: pnpm
   ENVTEST_K8S_VERSION: "1.33"
   IMG: '{{.IMG | default "controller:latest"}}'
@@ -41,6 +42,22 @@ tasks:
     desc: Generate DeepCopy implementations via controller-gen
     cmds:
       - '{{.CONTROLLER_GEN}} object:headerFile="hack/boilerplate.go.txt" paths="./..."'
+
+  gen:api:
+    desc: Generate the Go API models/server/client from openapi/keleustes.v1.yaml
+    cmds:
+      - '{{.OAPI_CODEGEN}} -config internal/api/openapi/oapi-codegen.yaml openapi/keleustes.v1.yaml'
+
+  gen:check:
+    desc: Fail if internal/api/openapi/keleustes.gen.go is stale relative to the contract
+    cmds:
+      - task: gen:api
+      - |
+        if ! git diff --quiet -- internal/api/openapi/keleustes.gen.go; then
+          echo "internal/api/openapi/keleustes.gen.go is out of date — run 'go -C tools tool task gen:api' and commit the result (and 'ui:gen' for the TS client)." >&2
+          git diff -- internal/api/openapi/keleustes.gen.go >&2
+          exit 1
+        fi
 
   # --- Quality ---
 
@@ -151,6 +168,18 @@ tasks:
     desc: Build keleustesctl binary
     cmds:
       - go build -o bin/keleustesctl ./cmd/keleustesctl
+
+  build-api:
+    desc: Build apiserver binary
+    cmds:
+      - task: gen:api
+      - go build -o bin/apiserver ./cmd/apiserver
+
+  run-api:
+    desc: Run the API server from your host (in-memory fixtures backend; no cluster needed)
+    cmds:
+      - task: gen:api
+      - go run ./cmd/apiserver --read-model=fixtures
 
   run:
     desc: Run the controller from your host
@@ -284,9 +313,12 @@ tasks:
   # --- Local stack ---
   # Runs the whole system on your machine. At scaffold stage the system is the
   # operator (controller manager, reconciling real CRDs in your cluster) plus
-  # the UI (Vite dev server on MSW fixtures). The API server that will bridge
-  # them (internal/api) and NATS/agents arrive in later MVPs; until then the UI
-  # is driven by its mock backend, not the live operator.
+  # the UI (Vite dev server on MSW fixtures). The bridging API server
+  # (internal/api) is now scaffolded — run it standalone with `task run-api`,
+  # which serves the contract on :8443 from an in-memory fixtures backend.
+  # NATS/agents and the live read-data tiers that back it at scale still arrive
+  # in later MVPs, so `dev` keeps driving the UI from its mock backend, not the
+  # live operator.
 
   dev:
     desc: >-
@@ -316,6 +348,7 @@ tasks:
   ci:
     desc: Run standard CI workflow locally
     cmds:
+      - task: gen:check
       - task: lint
       - task: test
       - task: staticcheck
@@ -323,3 +356,4 @@ tasks:
       - task: licenses:check
       - task: build
       - task: build-ctl
+      - task: build-api

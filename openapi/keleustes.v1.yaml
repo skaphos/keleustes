@@ -396,7 +396,7 @@ components:
       type: object
       required: [code, message]
       properties:
-        code: { type: string, enum: [not_found, forbidden, unauthenticated, conflict, degraded, invalid] }
+        code: { type: string, enum: [not_found, forbidden, unauthenticated, conflict, degraded, invalid, not_implemented] }
         message: { type: string }
 
     SourceRef:

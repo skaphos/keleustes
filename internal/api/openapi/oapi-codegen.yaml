@@ -1,0 +1,29 @@
+# SPDX-FileCopyrightText: 2026 Skaphos
+# SPDX-License-Identifier: MIT
+#
+# oapi-codegen config for the Keleustes API server.
+#
+# Generates models + a std net/http strict server + a typed client + the
+# embedded spec into a single package, all from openapi/keleustes.v1.yaml —
+# the same contract the UI generates its TypeScript client from. The Go server
+# (internal/api) and the keleustesctl client (internal/cli) both depend on the
+# generated package, so the contract stays the single source of truth.
+#
+# Regenerate with `go -C tools tool task gen:api`. The output is committed
+# (like controller-gen's zz_generated*.go); CI's gen:check fails if it drifts.
+# Generated files carry no in-file SPDX header — REUSE.toml's `**` aggregate
+# annotation covers them.
+package: openapi
+output: internal/api/openapi/keleustes.gen.go
+generate:
+  models: true
+  std-http-server: true
+  strict-server: true
+  client: true
+  embedded-spec: true
+output-options:
+  skip-prune: true
+  # Emit Go initialisms (Id -> ID, Url -> URL, ...) so generated identifiers and
+  # the hand-written handlers that implement them are both idiomatic and pass
+  # staticcheck's ST1003.
+  name-normalizer: ToCamelCaseWithInitialisms

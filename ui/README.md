@@ -25,11 +25,22 @@ testable before the real API server exists.
 
 ## Backend strategy (staged)
 
-The UI talks to `/api/v1` (the contract). Today those requests are served by
-**MSW fixtures** (`src/mocks`) so you can click around and we can test. When the
-**Go API server** lands (`internal/api`, phase 2), it implements the **same**
-`openapi/keleustes.v1.yaml`; the UI just stops mocking (`VITE_USE_MSW=false`) and
-points at the real server. The contract is the constant.
+The UI talks to `/api/v1` (the contract); the contract is the constant. Two
+backends now satisfy it:
+
+- **MSW fixtures** (`src/mocks`) — the default for `ui:dev`/`ui:test`
+  (`VITE_USE_MSW=true`), so you can click around and we can test with no server
+  running.
+- **The Go API server** — now scaffolded (`internal/api`; run it standalone with
+  `go -C tools tool task run-api`, which serves `:8443`). It implements the
+  **same** `openapi/keleustes.v1.yaml` and defaults to an in-memory **fixtures**
+  read-model. Point the UI at it with `VITE_USE_MSW=false`.
+
+Honest about what the server is *not* yet: the write path (promote / approve /
+cancel / retry) returns **501** until the Git-mutation engine lands (ADR 0003),
+its live-CRD read-model is scaffold-sparse, and the NATS-KV / DuckDB read tiers
+that back the matrix at fleet scale are later-MVP (ADR 0005). Design notes:
+[`docs/design/api-server.md`](../docs/design/api-server.md).
 
 ## Commands
 

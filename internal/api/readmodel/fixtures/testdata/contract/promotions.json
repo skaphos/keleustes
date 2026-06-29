@@ -1,0 +1,41 @@
+[
+  {
+    "ulid": "01J0PROM00000000000000001",
+    "application": "api",
+    "from": "staging",
+    "to": "prod",
+    "mode": "standard",
+    "release": "1.4.2",
+    "status": "Blocked",
+    "requestedBy": "alice",
+    "requestedAt": "2026-06-28T14:01:00Z",
+    "prUrl": "",
+    "gates": [
+      { "name": "image-signed", "passed": true, "detail": "cosign verified" },
+      { "name": "vuln-scan", "passed": true, "detail": "no criticals" },
+      { "name": "approvals", "passed": false, "detail": "1 of 2 approvals" }
+    ],
+    "approvals": [
+      { "approver": "alice", "decision": "approve", "comment": "LGTM", "at": "2026-06-28T14:02:00Z" },
+      { "approver": "bob", "decision": "pending", "comment": "" }
+    ],
+    "sync": "Pending"
+  },
+  {
+    "ulid": "01J0PROM00000000000000002",
+    "application": "web",
+    "from": "dev",
+    "to": "staging",
+    "mode": "standard",
+    "release": "2.0.0",
+    "status": "Progressing",
+    "requestedBy": "carol",
+    "requestedAt": "2026-06-28T13:40:00Z",
+    "prUrl": "https://github.com/acme/web/pull/318",
+    "gates": [
+      { "name": "image-signed", "passed": true, "detail": "cosign verified" }
+    ],
+    "approvals": [],
+    "sync": "Running"
+  }
+]
