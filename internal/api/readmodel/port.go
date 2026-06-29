@@ -14,9 +14,9 @@ import (
 )
 
 // Sentinel errors returned by adapters. The API server's error handler
-// (internal/api/server) maps these to the contract's Error codes:
-// ErrNotFound -> 404/not_found, ErrForbidden -> 403/forbidden. Any other error
-// maps to 500/degraded.
+// (internal/api/server) maps these onto RFC 9457 problem responses (ADR 0009):
+// ErrNotFound -> 404 type=not_found, ErrForbidden -> 403 type=forbidden. Any
+// other error maps to 500 type=degraded.
 var (
 	// ErrNotFound is returned when a named/identified resource does not exist.
 	ErrNotFound = errors.New("readmodel: not found")

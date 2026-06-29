@@ -340,16 +340,16 @@
     "hash": "253c5fc2eb8adf383da2747d35d714d2"
   },
   "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/api-server-scaffold/internal/api/auth/auth.go": {
-    "mtime": 1782742234.9405732,
-    "hash": "4f9e4057a02322c41d7385de4ff47fd9"
+    "mtime": 1782745894.9738986,
+    "hash": "7c306971152e6cb548134229dc72ed4c"
   },
   "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/api-server-scaffold/internal/api/server/server_test.go": {
     "mtime": 1782743137.2199292,
     "hash": "24ff66ac1cd71a7d4437b3bad18e6b78"
   },
   "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/api-server-scaffold/internal/api/server/authz.go": {
-    "mtime": 1782742234.9405732,
-    "hash": "39cb13c3ba81255973b4ed884d173972"
+    "mtime": 1782745886.4562411,
+    "hash": "11ac50b2c1506ecb29a7c24f0a5bcf1e"
   },
   "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/api-server-scaffold/internal/api/server/middleware.go": {
     "mtime": 1782742234.9405732,
@@ -376,8 +376,8 @@
     "hash": "043d1441e3e92fb5c8a4ce0c294c3f10"
   },
   "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/api-server-scaffold/internal/api/readmodel/port.go": {
-    "mtime": 1782712024.0834215,
-    "hash": "1662f6e1468012b8960d21d9f99c420a"
+    "mtime": 1782745877.7626016,
+    "hash": "34a3a68c0ec1a84471e3daaf63ba7d5c"
   },
   "/home/sstratton/work/skaphos/keleustes/.claude/worktrees/api-server-scaffold/internal/api/readmodel/doc.go": {
     "mtime": 1782712002.9148195,

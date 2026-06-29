@@ -18,7 +18,8 @@ import (
 // handler middleware, so every operation flows through it before its handler:
 // it resolves the caller's Identity (stamped by auth.Middleware), derives the
 // (verb, resource) the operation requires from its id, and asks the Authorizer.
-// A deny becomes readmodel.ErrForbidden, which onError maps to 403/forbidden.
+// A deny becomes a forbiddenError carrying the verb+resource, which onError maps
+// to a 403 problem (type=forbidden) whose body names them (ADR 0009 §1).
 //
 // The default Authorizer is AllowAll, so this is permissive today and changes
 // no behavior. The point is that the enforcement seam now exists: the real

@@ -96,9 +96,10 @@ type Config struct {
 // handlers can resolve an identity offline.
 //
 // Required=true: a "Authorization: Bearer <token>" header is mandatory; an
-// absent or empty one yields a 401 JSON Error. The token signature is NOT
-// validated here — real OIDC/JWKS lands with SKA-330; for now a presented
-// bearer synthesizes an identity.
+// absent or empty one yields a 401 RFC 9457 problem (application/problem+json,
+// type=unauthenticated — ADR 0009). The token signature is NOT validated here —
+// real OIDC/JWKS lands with SKA-330; for now a presented bearer synthesizes an
+// identity.
 func Middleware(cfg Config) func(http.Handler) http.Handler {
 	return func(next http.Handler) http.Handler {
 		return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
