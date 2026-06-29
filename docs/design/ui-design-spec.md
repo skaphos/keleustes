@@ -69,20 +69,25 @@ These come from accepted ADRs. When in doubt, the ADR wins over any visual idea.
    roles client-side; it asks the server what the user may do and renders
    actions accordingly (disabled/hidden when not permitted), but never *enforces*
    on its own.
-5. **Identity model: natural key for addressing, durable ULID underneath**
-   (surrogate-key pattern). All human- and machine-facing interaction —
-   UI routes, `keleustesctl`, the REST contract (PROPOSAL §18,
-   `/applications/{name}`), and `kubectl` — addresses resources by their
-   **natural key (name)**. Names are ergonomic, shareable, and match the
-   Kubernetes object handle. *Separately*, every primary resource carries a
-   **durable ULID** minted at creation, immutable, and carried in Git so it is
-   reconstructable. The ULID is the background identity: it keys the audit/event
-   log, cross-CRD references, and history, so those survive a rename
-   (in Kubernetes a rename is delete-old + create-new — the name changes and the
-   object's `uid` changes, but the Git-carried ULID does not). Practical split:
-   deep-links into **live** resources use the name (it exists under that name
-   now); deep-links into **immutable history** (promotions, audit events) use the
-   ULID. The UI never asks a human to type or read a ULID.
+5. **Identity model: natural key for addressing, durable engine-side ULID**
+   (surrogate-key pattern — see [ADR 0008](../adr/0008-resource-identity-model.md)).
+   All human- and machine-facing interaction — UI routes, `keleustesctl`, the
+   REST contract (PROPOSAL §18, `/applications/{name}`), and `kubectl` —
+   addresses resources by their **natural key (name)**. Names are ergonomic,
+   shareable, and match the Kubernetes object handle. *Separately*, every
+   audit-subject resource carries a **durable ULID** that the engine mints and
+   keys by **source path + target cluster**, holds in NATS KV + CRD status, and
+   **never writes to the customer's Git** (it is derived state, not desired
+   state — ADR 0003). The ULID is the background identity: it keys the
+   audit/event log, cross-CRD references, and history. Because the key is the
+   source path (not the name), a rename — which in Kubernetes is delete-old +
+   create-new, changing the name and the object's `uid` — keeps the ULID and its
+   history; a rename that *also* moves the path is a new identity, by design.
+   Durability is best-effort (a control-plane reset may re-mint) and
+   reconstructable from CRDs + the event log (ADR 0005), not from Git. Practical
+   split: deep-links into **live** resources use the name (it exists under that
+   name now); deep-links into **immutable history** (promotions, audit events)
+   use the ULID. The UI never asks a human to type or read a ULID.
 6. **The matrix is eventually consistent.** At fleet scale (10k+ Applications)
    the app×env×region matrix is served from a **pre-computed snapshot**
    (DuckDB-on-parquet materialized from the event log), *not* live aggregation.
