@@ -1,0 +1,55 @@
+[
+  {
+    "name": "prod",
+    "regions": ["us", "eu"],
+    "cells": [
+      {
+        "name": "prod-us-1",
+        "region": "us",
+        "status": "Healthy",
+        "targets": [
+          {
+            "name": "prod-us/api",
+            "ulid": "01J0TGT0000000000000PRODUS",
+            "env": "prod",
+            "region": "us",
+            "cell": "prod-us-1",
+            "cluster": "gke-prod-us-1",
+            "version": "1.4.1",
+            "status": "Progressing",
+            "drift": false,
+            "frozen": false,
+            "lastSync": "2026-06-28T14:30:00Z"
+          }
+        ]
+      },
+      {
+        "name": "prod-eu-1",
+        "region": "eu",
+        "status": "Degraded",
+        "targets": [
+          {
+            "name": "prod-eu/api",
+            "ulid": "01J0TGT0000000000000PRODEU",
+            "env": "prod",
+            "region": "eu",
+            "cell": "prod-eu-1",
+            "cluster": "gke-prod-eu-1",
+            "version": "1.3.9",
+            "status": "Degraded",
+            "drift": true,
+            "frozen": true,
+            "lastSync": "2026-06-28T13:55:00Z"
+          }
+        ]
+      }
+    ],
+    "freeze": {
+      "active": true,
+      "scope": "prod-eu",
+      "start": "2026-06-28T00:00:00Z",
+      "end": "2026-06-29T00:00:00Z",
+      "reason": "EU change freeze (quarter close)"
+    }
+  }
+]

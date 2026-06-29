@@ -1,5 +1,10 @@
 # Binaries
 bin/
+# Ad-hoc `go build -o <name>` artifacts at the repo root (the Taskfile builds
+# under bin/; these guard against stray multi-MB binaries being staged).
+/apiserver
+/keleustesctl
+/manager
 *.exe
 *.exe~
 *.dll

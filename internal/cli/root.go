@@ -22,6 +22,11 @@ func NewRootCommand() *cobra.Command {
 		SilenceUsage: true,
 	}
 
+	// --api-url is global: product verbs (app/matrix/release/diff/blockers)
+	// talk to the API server, while get/describe keep their own --kubeconfig.
+	root.PersistentFlags().String("api-url", "",
+		"Keleustes API server base URL (overrides $KELEUSTES_API; default "+defaultAPIBaseURL+")")
+
 	root.AddCommand(newGetCommand())
 	root.AddCommand(newDescribeCommand())
 	root.AddCommand(newAppCommand())

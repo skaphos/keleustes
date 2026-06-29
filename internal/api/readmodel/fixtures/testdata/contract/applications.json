@@ -1,0 +1,29 @@
+[
+  {
+    "ulid": "01J0AAA0000000000000000API",
+    "name": "api",
+    "project": "payments",
+    "owner": "team-payments",
+    "status": "Degraded",
+    "source": { "repo": "git@github.com:acme/api", "path": "deploy", "ref": "main", "commit": "abc123d" },
+    "addonRefs": []
+  },
+  {
+    "ulid": "01J0AAA0000000000000000WEB",
+    "name": "web",
+    "project": "storefront",
+    "owner": "team-web",
+    "status": "Healthy",
+    "source": { "repo": "git@github.com:acme/web", "path": "deploy", "ref": "main", "commit": "def456a" },
+    "addonRefs": []
+  },
+  {
+    "ulid": "01J0AAA000000000000000WRK",
+    "name": "worker",
+    "project": "payments",
+    "owner": "team-payments",
+    "status": "Healthy",
+    "source": { "repo": "git@github.com:acme/worker", "path": "deploy", "ref": "main", "commit": "789beef" },
+    "addonRefs": []
+  }
+]

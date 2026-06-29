@@ -1,0 +1,20 @@
+[
+  {
+    "ulid": "01J0REL000000000000000142",
+    "version": "1.4.2",
+    "app": "api",
+    "source": { "repo": "git@github.com:acme/api", "path": "deploy", "ref": "main", "commit": "abc123d" },
+    "created": "2026-06-28T12:00:00Z",
+    "provenance": { "signed": true, "sbom": true, "attestation": true },
+    "deployedOn": ["dev-us/api", "staging-us/api"]
+  },
+  {
+    "ulid": "01J0REL000000000000000200",
+    "version": "2.0.0",
+    "app": "web",
+    "source": { "repo": "git@github.com:acme/web", "path": "deploy", "ref": "main", "commit": "def456a" },
+    "created": "2026-06-28T11:00:00Z",
+    "provenance": { "signed": true, "sbom": false, "attestation": false },
+    "deployedOn": ["dev-us/web", "staging-us/web"]
+  }
+]

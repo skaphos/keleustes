@@ -17,6 +17,7 @@ Apache-2.0 §4(d). See `docs/licenses.md` for the full contract.
 
 | Module | License | Source |
 |--------|---------|--------|
+| `github.com/apapsch/go-jsonmerge/v2` | MIT | [link](https://github.com/apapsch/go-jsonmerge/blob/v2.0.0/LICENSE) |
 | `github.com/beorn7/perks/quantile` | MIT | [link](https://github.com/beorn7/perks/blob/v1.0.1/LICENSE) |
 | `github.com/cespare/xxhash/v2` | MIT | [link](https://github.com/cespare/xxhash/blob/v2.3.0/LICENSE.txt) |
 | `github.com/davecgh/go-spew/spew` | ISC | [link](https://github.com/davecgh/go-spew/blob/d8f796af33cc/LICENSE) |
@@ -24,11 +25,13 @@ Apache-2.0 §4(d). See `docs/licenses.md` for the full contract.
 | `github.com/evanphx/json-patch/v5` | BSD-3-Clause | [link](https://github.com/evanphx/json-patch/blob/v5.9.11/v5/LICENSE) |
 | `github.com/fsnotify/fsnotify` | BSD-3-Clause | [link](https://github.com/fsnotify/fsnotify/blob/v1.9.0/LICENSE) |
 | `github.com/fxamacker/cbor/v2` | MIT | [link](https://github.com/fxamacker/cbor/blob/v2.9.0/LICENSE) |
+| `github.com/getkin/kin-openapi/openapi3` | MIT | [link](https://github.com/getkin/kin-openapi/blob/v0.140.0/LICENSE) |
 | `github.com/go-logr/logr` | Apache-2.0 | [link](https://github.com/go-logr/logr/blob/v1.4.3/LICENSE) |
 | `github.com/go-logr/zapr` | Apache-2.0 | [link](https://github.com/go-logr/zapr/blob/v1.3.0/LICENSE) |
-| `github.com/go-openapi/jsonpointer` | Apache-2.0 | [link](https://github.com/go-openapi/jsonpointer/blob/v0.21.1/LICENSE) |
+| `github.com/go-openapi/jsonpointer` | Apache-2.0 | [link](https://github.com/go-openapi/jsonpointer/blob/v0.22.5/LICENSE) |
 | `github.com/go-openapi/jsonreference` | Apache-2.0 | [link](https://github.com/go-openapi/jsonreference/blob/v0.21.0/LICENSE) |
 | `github.com/go-openapi/swag` | Apache-2.0 | [link](https://github.com/go-openapi/swag/blob/v0.23.1/LICENSE) |
+| `github.com/go-openapi/swag/jsonname` | Apache-2.0 | [link](https://github.com/go-openapi/swag/blob/jsonname/v0.25.5/jsonname/LICENSE) |
 | `github.com/google/gnostic-models` | Apache-2.0 | [link](https://github.com/google/gnostic-models/blob/v0.7.0/LICENSE) |
 | `github.com/google/uuid` | BSD-3-Clause | [link](https://github.com/google/uuid/blob/2d3c2a9cc518/LICENSE) |
 | `github.com/josharian/intern` | MIT | [link](https://github.com/josharian/intern/blob/v1.0.0/license.md) |
@@ -37,12 +40,16 @@ Apache-2.0 §4(d). See `docs/licenses.md` for the full contract.
 | `github.com/modern-go/concurrent` | Apache-2.0 | [link](https://github.com/modern-go/concurrent/blob/bacd9c7ef1dd/LICENSE) |
 | `github.com/modern-go/reflect2` | Apache-2.0 | [link](https://github.com/modern-go/reflect2/blob/35a7c28c31ee/LICENSE) |
 | `github.com/munnerz/goautoneg` | BSD-3-Clause | [link](https://github.com/munnerz/goautoneg/blob/a7dc8b61c822/LICENSE) |
+| `github.com/oapi-codegen/runtime` | Apache-2.0 | [link](https://github.com/oapi-codegen/runtime/blob/v1.4.2/LICENSE) |
+| `github.com/oasdiff/yaml` | MIT | [link](https://github.com/oasdiff/yaml/blob/v0.1.0/LICENSE) |
+| `github.com/oasdiff/yaml3` | MIT | [link](https://github.com/oasdiff/yaml3/blob/v0.0.13/LICENSE) |
 | `github.com/pmezard/go-difflib/difflib` | BSD-3-Clause | [link](https://github.com/pmezard/go-difflib/blob/5d4384ee4fb2/LICENSE) |
 | `github.com/prometheus/client_golang/internal/github.com/golang/gddo/httputil` | BSD-3-Clause | [link](https://github.com/prometheus/client_golang/blob/v1.23.2/internal/github.com/golang/gddo/LICENSE) |
 | `github.com/prometheus/client_golang/prometheus` | Apache-2.0 | [link](https://github.com/prometheus/client_golang/blob/v1.23.2/LICENSE) |
 | `github.com/prometheus/client_model/go` | Apache-2.0 | [link](https://github.com/prometheus/client_model/blob/v0.6.2/LICENSE) |
 | `github.com/prometheus/common` | Apache-2.0 | [link](https://github.com/prometheus/common/blob/v0.67.5/LICENSE) |
 | `github.com/prometheus/procfs` | Apache-2.0 | [link](https://github.com/prometheus/procfs/blob/v0.19.2/LICENSE) |
+| `github.com/santhosh-tekuri/jsonschema/v6` | Apache-2.0 | [link](https://github.com/santhosh-tekuri/jsonschema/blob/v6.0.2/LICENSE) |
 | `github.com/skaphos/keleustes` | MIT | [link](https://github.com/skaphos/keleustes/blob/HEAD/LICENSE) |
 | `github.com/spf13/cobra` | Apache-2.0 | [link](https://github.com/spf13/cobra/blob/v1.10.2/LICENSE.txt) |
 | `github.com/spf13/pflag` | BSD-3-Clause | [link](https://github.com/spf13/pflag/blob/v1.0.10/LICENSE) |

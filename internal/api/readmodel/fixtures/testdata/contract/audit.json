@@ -1,0 +1,29 @@
+[
+  {
+    "ulid": "01J0AUD000000000000000003",
+    "actor": "alice",
+    "verb": "approve",
+    "target": "Promotion 01J0PROM00000000000000001 (api staging→prod)",
+    "at": "2026-06-28T14:03:00Z",
+    "result": { "before": { "approvals": 0 }, "after": { "approvals": 1 } },
+    "evidence": ["cosign:verified", "vuln:clean"]
+  },
+  {
+    "ulid": "01J0AUD000000000000000002",
+    "actor": "alice",
+    "verb": "promote",
+    "target": "Application api",
+    "at": "2026-06-28T14:01:00Z",
+    "result": { "before": { "env": "staging" }, "after": { "env": "prod (requested)" } },
+    "evidence": []
+  },
+  {
+    "ulid": "01J0AUD000000000000000001",
+    "actor": "system",
+    "verb": "sync",
+    "target": "DeploymentTarget prod-us/api",
+    "at": "2026-06-28T13:58:00Z",
+    "result": { "before": { "version": "1.4.0" }, "after": { "version": "1.4.1" } },
+    "evidence": []
+  }
+]

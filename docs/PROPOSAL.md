@@ -817,6 +817,11 @@ The CLI should support machine-readable output for automation and should remain 
 
 ## 18. API requirements
 
+> **See [ADR 0009](./adr/0009-rest-api-status-code-contract.md).** The response
+> contract — HTTP status codes for the read and write surfaces, plus the
+> `application/problem+json` (RFC 9457) error body — is decided there; this
+> section lists only the endpoints.
+
 External API should be REST first.
 
 Core endpoints:
