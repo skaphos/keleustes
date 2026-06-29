@@ -15,7 +15,7 @@ SPDX-License-Identifier: MIT
 package sync
 
 import (
-	syncCommon "github.com/argoproj/argo-cd/gitops-engine/pkg/sync/common"
+	syncCommon "github.com/skaphos/gitops-engine/pkg/sync/common"
 )
 
 // SyncRunPhase mirrors SyncRun.status.phase. Keeping this type local to
