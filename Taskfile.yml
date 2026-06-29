@@ -2,13 +2,13 @@ version: "3"
 
 vars:
   TASK_RUNNER: go -C tools tool task -d ..
-  CONTROLLER_GEN: go run sigs.k8s.io/controller-tools/cmd/controller-gen@v0.18.0
-  KUSTOMIZE: go run sigs.k8s.io/kustomize/kustomize/v5@v5.6.0
+  CONTROLLER_GEN: go run sigs.k8s.io/controller-tools/cmd/controller-gen@v0.21.0
+  KUSTOMIZE: go run sigs.k8s.io/kustomize/kustomize/v5@v5.8.1
   SETUP_ENVTEST: go run sigs.k8s.io/controller-runtime/tools/setup-envtest@v0.24.1
-  GOLANGCI_RUNNER: go run github.com/golangci/golangci-lint/v2/cmd/golangci-lint@v2.11.4
-  GOIMPORTS_RUNNER: go run golang.org/x/tools/cmd/goimports@v0.42.0
+  GOLANGCI_RUNNER: go run github.com/golangci/golangci-lint/v2/cmd/golangci-lint@v2.12.2
+  GOIMPORTS_RUNNER: go run golang.org/x/tools/cmd/goimports@v0.47.0
   STATICCHECK_RUNNER: go run honnef.co/go/tools/cmd/staticcheck@v0.7.0
-  GOVULNCHECK_RUNNER: go run golang.org/x/vuln/cmd/govulncheck@v1.1.4
+  GOVULNCHECK_RUNNER: go run golang.org/x/vuln/cmd/govulncheck@v1.5.0
   PNPM: pnpm
   ENVTEST_K8S_VERSION: "1.33"
   IMG: '{{.IMG | default "controller:latest"}}'
@@ -84,9 +84,9 @@ tasks:
       - '{{.STATICCHECK_RUNNER}} ./...'
 
   vuln:
-    desc: Run vulnerability scan
+    desc: Run vulnerability scan (govulncheck + reviewed allowlist in hack/vuln/allow.txt)
     cmds:
-      - '{{.GOVULNCHECK_RUNNER}} ./...'
+      - GOVULNCHECK='{{.GOVULNCHECK_RUNNER}}' bash hack/vuln/check.sh
 
   # --- License attribution ---
 

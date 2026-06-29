@@ -1,0 +1,20 @@
+# Reviewed govulncheck allowlist — vulnerabilities waived with rationale.
+# One GO-ID per line; blank lines and # comments ignored. Consumed by
+# hack/vuln/check.sh, which fails CI on any *unwaived* affecting vulnerability.
+#
+# Both entries below are in k8s.io/kubernetes, which publishes no consumable
+# library version ("Fixed in: N/A"), and is linked transitively only through the
+# gitops-engine fork's scheme registration (admissionregistration conversion /
+# DeepCopy boilerplate reached via AddToScheme). Neither vulnerable *runtime*
+# path is reachable in Keleustes:
+#
+#   GO-2025-3547 (CVE-2024-7598) — kube-apiserver race condition. Keleustes does
+#     not run kube-apiserver.
+#   GO-2025-3521 (CVE-2025-1767) — kubelet GitRepo-volume local repository
+#     access. Keleustes is not a kubelet and mounts no GitRepo volumes.
+#
+# Root-cause removal (dropping k8s.io/kubernetes from the fork's scheme path,
+# i.e. legacyscheme → client-go scheme) is tracked as fork work; see ADR 0007
+# and SKA-421. Remove these lines once that lands.
+GO-2025-3547
+GO-2025-3521
