@@ -52,12 +52,13 @@ func TestRequiredWithoutHeaderReturns401(t *testing.T) {
 	if rec.Code != http.StatusUnauthorized {
 		t.Fatalf("status = %d, want 401", rec.Code)
 	}
-	var body openapi.Error
+	var body openapi.Problem
 	if err := json.NewDecoder(rec.Body).Decode(&body); err != nil {
 		t.Fatalf("decode error body: %v", err)
 	}
-	if body.Code != openapi.ErrorCodeUnauthenticated {
-		t.Errorf("code = %q, want %q", body.Code, openapi.ErrorCodeUnauthenticated)
+	const want = "https://keleustes.skaphos.io/errors/unauthenticated"
+	if body.Type != want {
+		t.Errorf("type = %q, want %q", body.Type, want)
 	}
 }
 

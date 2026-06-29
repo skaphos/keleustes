@@ -233,7 +233,7 @@ func runBlockers(cmd *cobra.Command, args []string) error {
 	// There is no dedicated blockers endpoint yet; GET /promotions?state=blocked
 	// is the closest contract surface. Narrow to the requested application
 	// (and destination env when --to is given) on the client side.
-	state := openapi.Blocked
+	state := openapi.GetPromotionsParamsStateBlocked
 	resp, err := client.GetPromotionsWithResponse(cmd.Context(), &openapi.GetPromotionsParams{State: &state})
 	if err != nil {
 		return err
@@ -432,12 +432,17 @@ func printTable(w io.Writer, headers []string, rows [][]string) error {
 	return nil
 }
 
-// apiError turns a non-2xx response into a Go error, preferring the structured
-// openapi.Error message the server returns over a bare status code.
+// apiError turns a non-2xx response into a Go error, preferring the RFC 9457
+// problem the server returns (ADR 0009) — its detail/title and `type` slug —
+// over a bare status code.
 func apiError(op string, status int, body []byte) error {
-	var e openapi.Error
-	if err := json.Unmarshal(body, &e); err == nil && e.Message != "" {
-		return fmt.Errorf("%s: %s (code=%s, http %d)", op, e.Message, e.Code, status)
+	var p openapi.Problem
+	if err := json.Unmarshal(body, &p); err == nil && p.Type != "" {
+		msg := p.Title
+		if p.Detail != nil && *p.Detail != "" {
+			msg = *p.Detail
+		}
+		return fmt.Errorf("%s: %s (type=%s, http %d)", op, msg, p.Type, status)
 	}
 	return fmt.Errorf("%s: unexpected status %d", op, status)
 }

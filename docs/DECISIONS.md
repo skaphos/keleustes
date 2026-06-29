@@ -20,7 +20,7 @@ Two kinds of entries appear below:
   an ADR. Treat them as authoritative until they promote or are
   rewritten.
 
-Last updated: 2026-06-28.
+Last updated: 2026-06-29.
 
 ## Accepted ADRs
 
@@ -34,6 +34,7 @@ Last updated: 2026-06-28.
 | [0006](./adr/0006-engine-boundaries.md) | Engine boundaries and `gitops-engine` reuse                              | Accepted — amended twice on 2026-05-17 (SKA-327 spike findings; soft-fork strategy abandoned). Afternoon amendment's *Decision* paragraph **partially superseded by ADR 0007** (k8s.io ceiling no longer steady-state). | `2026-05-engine-boundaries-and-technology-integration.md` §7 questions 1–8 and 14–15. **Refines PROPOSAL §9 (architecture — 7 engines + Render, not 3), §11 (sync engine — `gitops-engine` reuse), §13 (diff model), §12 (health model).** |
 | [0007](./adr/0007-hard-fork-gitops-engine.md) | Hard-fork `gitops-engine` into `skaphos/gitops-engine`                  | Accepted — amended 2026-05-18 (friendly-fork posture clarification — §3 "fork does not ship patches back" superseded; outbound now tracked in [`UPSTREAMING.md`](https://github.com/skaphos/gitops-engine/blob/main/UPSTREAMING.md) on the fork repo) | ADR 0006 "Soft-fork strategy abandoned" amendment's *Decision* paragraph (frozen v0.34 ceiling). ADR 0006 §4's "vanilla upstream" import-path implication. Refines `docs/plans/2026-05-gitops-engine-spike.md` (extraction strategy + backport workflow now in-tree). |
 | [0008](./adr/0008-resource-identity-model.md) | Resource identity (natural key for addressing, durable engine-side ULID) | Accepted | Specifies the `subject.ulid` origin assumed by [SKA-322](./plans/2026-05-audit-event-schema.md) §6 and [SKA-324](./plans/2026-05-jetstream-subject-and-stream-layout.md) §4.4 (resolution now in SKA-324 §4.5 + `resource-identity` KV bucket). **Refines ADR 0003** (durable identity is derived state, never written to the customer's Git) and **ADR 0005** (identity registry lives in the NATS KV tier). |
+| [0009](./adr/0009-rest-api-status-code-contract.md) | REST API status-code and error-body contract (RFC 9457 Problem Details) | Accepted | Replaces the ad-hoc per-endpoint status codes and the `{code,message}` `Error` schema in `openapi/keleustes.v1.yaml` with `application/problem+json` and a full read/write status matrix (live vs. reserved). **Refines PROPOSAL §18** (adds the response contract the endpoint list omits). Encodes the HTTP semantics of **ADR 0003** (`202`/`501` for async/inert writes), **ADR 0004** (`403` on missing verb), **ADR 0005** (stale reads stay `200`, not `503`), and **ADR 0008** (`/{name}` `404` addressing). |
 
 ## Active interim contracts
 

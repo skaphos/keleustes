@@ -139,12 +139,18 @@ func bearerToken(r *http.Request) (string, bool) {
 	return tok, true
 }
 
+// writeUnauthenticated emits the 401 RFC 9457 problem (ADR 0009 §1) when a
+// required bearer is absent. The `type` slug is the machine discriminator the
+// UI branches on to start a re-auth flow.
 func writeUnauthenticated(w http.ResponseWriter) {
-	w.Header().Set("Content-Type", "application/json")
+	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(http.StatusUnauthorized)
-	_ = json.NewEncoder(w).Encode(openapi.Error{
-		Code:    openapi.ErrorCodeUnauthenticated,
-		Message: "authentication required",
+	detail := "authentication required"
+	_ = json.NewEncoder(w).Encode(openapi.Problem{
+		Type:   "https://keleustes.skaphos.io/errors/unauthenticated",
+		Title:  "Unauthenticated",
+		Status: http.StatusUnauthorized,
+		Detail: &detail,
 	})
 }
 

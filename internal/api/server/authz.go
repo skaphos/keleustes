@@ -12,7 +12,6 @@ import (
 
 	"github.com/skaphos/keleustes/internal/api/auth"
 	"github.com/skaphos/keleustes/internal/api/openapi"
-	"github.com/skaphos/keleustes/internal/api/readmodel"
 )
 
 // authzMiddleware is the single authorization checkpoint. It runs as a strict
@@ -32,7 +31,9 @@ func (s *Server) authzMiddleware(f openapi.StrictHandlerFunc, operationID string
 		// SKA-330 will derive per-resource scope from its claims.
 		_, _ = auth.FromContext(ctx)
 		if !s.authz.Can(ctx, verb, resource, "") {
-			return nil, readmodel.ErrForbidden
+			// forbiddenError carries verb+resource so the problem body can name
+			// them (ADR 0009 §1); onError maps it to 403/forbidden.
+			return nil, &forbiddenError{verb: verb, resource: resource}
 		}
 		return f(ctx, w, r, request)
 	}

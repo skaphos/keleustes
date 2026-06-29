@@ -15,8 +15,6 @@ import (
 	"time"
 
 	"github.com/go-logr/logr"
-
-	"github.com/skaphos/keleustes/internal/api/openapi"
 )
 
 // headerRequestID is the correlation header read from the client or minted here
@@ -90,7 +88,7 @@ func recoverMiddleware(log logr.Logger) func(http.Handler) http.Handler {
 					"requestId", requestIDFromContext(r.Context()),
 					"stack", string(debug.Stack()),
 				)
-				writeError(w, http.StatusInternalServerError, openapi.ErrorCodeDegraded, "internal error")
+				writeProblemStatus(w, http.StatusInternalServerError, "degraded", "Internal error", "internal error")
 			}()
 			next.ServeHTTP(w, r)
 		})

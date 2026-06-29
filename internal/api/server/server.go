@@ -91,12 +91,12 @@ func (s *Server) Handler() http.Handler {
 func (s *Server) handleSpec(w http.ResponseWriter, _ *http.Request) {
 	swagger, err := openapi.GetSpec()
 	if err != nil {
-		writeError(w, http.StatusInternalServerError, openapi.ErrorCodeDegraded, "failed to load API spec")
+		writeProblemStatus(w, http.StatusInternalServerError, "degraded", "Internal error", "internal error")
 		return
 	}
 	out, err := yaml.Marshal(swagger)
 	if err != nil {
-		writeError(w, http.StatusInternalServerError, openapi.ErrorCodeDegraded, "failed to encode API spec")
+		writeProblemStatus(w, http.StatusInternalServerError, "degraded", "Internal error", "internal error")
 		return
 	}
 	w.Header().Set("Content-Type", "application/yaml")

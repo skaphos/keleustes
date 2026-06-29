@@ -107,8 +107,8 @@ boundary — it is a placeholder for one.
 The contract carries the **read + exactly three write actions** the UI is
 allowed (Approve, Promote, Break-glass — ADR 0003 §6), surfaced as the
 promotion `POST` operations (create / approve / cancel / retry). At scaffold
-stage every one of them returns **`501 Not Implemented`** with a typed `Error`
-body.
+stage every one of them returns **`501 Not Implemented`** with an
+`application/problem+json` body (§7).
 
 This is faithful to the Git-source-of-truth invariant
 ([ADR 0003](../adr/0003-git-source-of-truth-invariant.md)): a write must produce
@@ -119,14 +119,28 @@ and quietly breaks the invariant. The handlers and contract for these
 operations are in place so the UI can render the actions (disabled / with the
 expected error) before the engine lands.
 
-> **Follow-up — contract error responses.** The contract currently declares
-> only the success (and `403`) responses per operation; the `not_implemented`
-> code was added to the `Error` schema, but the `501` — and the cross-cutting
-> `400`/`401`/`500` the server can emit — are not yet declared on each
-> operation. The server returns them correctly today and the read-path
-> conformance test validates the declared responses; declaring a shared error
-> response set so codegen produces typed handling on both sides is a tracked
-> tidy-up, not a behavior change.
+## 7. Status codes and errors — RFC 9457 ([ADR 0009](../adr/0009-rest-api-status-code-contract.md))
+
+The status-code and error-body contract is decided in
+[ADR 0009](../adr/0009-rest-api-status-code-contract.md), and the server
+conforms to it:
+
+- **Error body is `application/problem+json`** (RFC 9457 Problem Details). The
+  `type` URI (`https://keleustes.skaphos.io/errors/<slug>`) is the stable machine
+  discriminator clients branch on — never `detail` prose. The single error sink
+  `internal/api/server/errors.go` (`classify` → `writeProblem`) maps every
+  sentinel to one `type`/status: `not_found`→404, `forbidden`→403 (body carries
+  `verb`+`resource`), `unauthenticated`→401, `invalid`→400 (with per-field
+  `errors[]`), `not_implemented`→501, `degraded`→500 (cause hidden on the wire,
+  logged with the request id).
+- **Async writes are `202`, inert writes are `501`.** `POST /promotions` and the
+  `cancel`/`retry` actions are `202` (effect lands later as a Git PR + reconcile,
+  ADR 0003); `approve` is `200` (the decision is recorded synchronously). All
+  four return `501` today (engine pending) and accept an `Idempotency-Key`.
+- **Stale reads stay `200`** with `asOf` (ADR 0005) — staleness is not an error;
+  `503` is reserved for an *unreachable* backend.
+- **Reserved codes** (`401 step_up_required`, `409`, `429`, `503`) are named in
+  the contract now so a future engine can emit them without a breaking change.
 
 ---
 
@@ -139,6 +153,8 @@ expected error) before the engine lands.
   §11 evaluator).
 - [ADR 0005](../adr/0005-distributed-runtime.md) — distributed runtime
   (component shape §9, scaling §10, read tiers §13, no RDBMS).
+- [ADR 0009](../adr/0009-rest-api-status-code-contract.md) — REST status-code and
+  `application/problem+json` error-body contract (§7).
 - [`docs/design/ui-design-spec.md`](./ui-design-spec.md) — the consumer of this
   contract.
 - [`openapi/keleustes.v1.yaml`](../../openapi/keleustes.v1.yaml) — the contract

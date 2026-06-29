@@ -298,9 +298,9 @@ func TestPostPromotionsNotImplemented(t *testing.T) {
 	if rec.Code != http.StatusNotImplemented {
 		t.Fatalf("status = %d, want 501 (body: %s)", rec.Code, rec.Body.String())
 	}
-	e := decodeJSON[openapi.Error](t, rec.Body.Bytes())
-	if e.Code != openapi.ErrorCodeNotImplemented {
-		t.Errorf("code = %q, want %q", e.Code, openapi.ErrorCodeNotImplemented)
+	e := decodeJSON[openapi.Problem](t, rec.Body.Bytes())
+	if e.Type != "https://keleustes.skaphos.io/errors/not_implemented" {
+		t.Errorf("type = %q, want .../not_implemented", e.Type)
 	}
 }
 
@@ -313,9 +313,9 @@ func TestGetApplicationUnknownReturns404(t *testing.T) {
 	if rec.Code != http.StatusNotFound {
 		t.Fatalf("status = %d, want 404 (body: %s)", rec.Code, rec.Body.String())
 	}
-	e := decodeJSON[openapi.Error](t, rec.Body.Bytes())
-	if e.Code != openapi.ErrorCodeNotFound {
-		t.Errorf("code = %q, want %q", e.Code, openapi.ErrorCodeNotFound)
+	e := decodeJSON[openapi.Problem](t, rec.Body.Bytes())
+	if e.Type != "https://keleustes.skaphos.io/errors/not_found" {
+		t.Errorf("type = %q, want .../not_found", e.Type)
 	}
 }
 

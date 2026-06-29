@@ -73,39 +73,6 @@ func (e DiffEntryChange) Valid() bool {
 	}
 }
 
-// Defines values for ErrorCode.
-const (
-	ErrorCodeConflict        ErrorCode = "conflict"
-	ErrorCodeDegraded        ErrorCode = "degraded"
-	ErrorCodeForbidden       ErrorCode = "forbidden"
-	ErrorCodeInvalid         ErrorCode = "invalid"
-	ErrorCodeNotFound        ErrorCode = "not_found"
-	ErrorCodeNotImplemented  ErrorCode = "not_implemented"
-	ErrorCodeUnauthenticated ErrorCode = "unauthenticated"
-)
-
-// Valid indicates whether the value is a known member of the ErrorCode enum.
-func (e ErrorCode) Valid() bool {
-	switch e {
-	case ErrorCodeConflict:
-		return true
-	case ErrorCodeDegraded:
-		return true
-	case ErrorCodeForbidden:
-		return true
-	case ErrorCodeInvalid:
-		return true
-	case ErrorCodeNotFound:
-		return true
-	case ErrorCodeNotImplemented:
-		return true
-	case ErrorCodeUnauthenticated:
-		return true
-	default:
-		return false
-	}
-}
-
 // Defines values for Status.
 const (
 	StatusBlocked     Status = "Blocked"
@@ -198,22 +165,22 @@ func (e GetDiffParamsMode) Valid() bool {
 
 // Defines values for GetPromotionsParamsState.
 const (
-	Active  GetPromotionsParamsState = "active"
-	Blocked GetPromotionsParamsState = "blocked"
-	History GetPromotionsParamsState = "history"
-	Mine    GetPromotionsParamsState = "mine"
+	GetPromotionsParamsStateActive  GetPromotionsParamsState = "active"
+	GetPromotionsParamsStateBlocked GetPromotionsParamsState = "blocked"
+	GetPromotionsParamsStateHistory GetPromotionsParamsState = "history"
+	GetPromotionsParamsStateMine    GetPromotionsParamsState = "mine"
 )
 
 // Valid indicates whether the value is a known member of the GetPromotionsParamsState enum.
 func (e GetPromotionsParamsState) Valid() bool {
 	switch e {
-	case Active:
+	case GetPromotionsParamsStateActive:
 		return true
-	case Blocked:
+	case GetPromotionsParamsStateBlocked:
 		return true
-	case History:
+	case GetPromotionsParamsStateHistory:
 		return true
-	case Mine:
+	case GetPromotionsParamsStateMine:
 		return true
 	default:
 		return false
@@ -342,15 +309,6 @@ type Environment struct {
 	Regions *[]string     `json:"regions,omitempty"`
 }
 
-// Error defines model for Error.
-type Error struct {
-	Code    ErrorCode `json:"code"`
-	Message string    `json:"message"`
-}
-
-// ErrorCode defines model for Error.Code.
-type ErrorCode string
-
 // FreezeWindow defines model for FreezeWindow.
 type FreezeWindow struct {
 	Active *bool      `json:"active,omitempty"`
@@ -414,6 +372,48 @@ type MatrixRow struct {
 
 	// Ulid Durable identity for history-linking; survives rename. Not used for addressing.
 	Ulid *string `json:"ulid,omitempty"`
+}
+
+// Problem RFC 9457 Problem Details (application/problem+json). `type` is the stable machine discriminator (ADR 0009 §1); clients branch on it, never on the human-readable `detail`.
+type Problem struct {
+	// AsOf On 503: freshness of the last good snapshot.
+	AsOf *time.Time `json:"asOf,omitempty"`
+
+	// Detail Human-readable explanation specific to this occurrence.
+	Detail *string `json:"detail,omitempty"`
+
+	// Errors On 400 (invalid): per-field validation problems.
+	Errors *[]ProblemError `json:"errors,omitempty"`
+
+	// Instance URI reference (the request path) for this occurrence.
+	Instance *string `json:"instance,omitempty"`
+
+	// Region On 503: the lagging/unreachable region, when known.
+	Region *string `json:"region,omitempty"`
+
+	// Resource On 403 (forbidden): the resource the verb was checked against.
+	Resource *string `json:"resource,omitempty"`
+
+	// Status HTTP status code, duplicated per RFC 9457.
+	Status int `json:"status"`
+
+	// Title Short, stable, human-readable summary of the error class.
+	Title string `json:"title"`
+
+	// Type Stable error-class URI under https://keleustes.skaphos.io/errors/<slug>, where <slug> is one of not_found, forbidden, unauthenticated, invalid, conflict, degraded, not_implemented, too_many_requests, step_up_required.
+	Type string `json:"type"`
+
+	// Verb On 403 (forbidden): the action verb the caller lacks (ADR 0004).
+	Verb *string `json:"verb,omitempty"`
+}
+
+// ProblemError defines model for ProblemError.
+type ProblemError struct {
+	// Detail What is wrong with this field.
+	Detail string `json:"detail"`
+
+	// Pointer JSON Pointer to the offending field.
+	Pointer *string `json:"pointer,omitempty"`
 }
 
 // Promotion defines model for Promotion.
@@ -485,6 +485,9 @@ type Env = string
 // ID defines model for id.
 type ID = string
 
+// IdempotencyKey defines model for idempotencyKey.
+type IdempotencyKey = string
+
 // Limit defines model for limit.
 type Limit = int
 
@@ -500,11 +503,32 @@ type Q = string
 // Region defines model for region.
 type Region = string
 
-// Forbidden defines model for Forbidden.
-type Forbidden = Error
+// BadRequest RFC 9457 Problem Details (application/problem+json). `type` is the stable machine discriminator (ADR 0009 §1); clients branch on it, never on the human-readable `detail`.
+type BadRequest = Problem
 
-// NotFound defines model for NotFound.
-type NotFound = Error
+// Conflict RFC 9457 Problem Details (application/problem+json). `type` is the stable machine discriminator (ADR 0009 §1); clients branch on it, never on the human-readable `detail`.
+type Conflict = Problem
+
+// Degraded RFC 9457 Problem Details (application/problem+json). `type` is the stable machine discriminator (ADR 0009 §1); clients branch on it, never on the human-readable `detail`.
+type Degraded = Problem
+
+// Forbidden RFC 9457 Problem Details (application/problem+json). `type` is the stable machine discriminator (ADR 0009 §1); clients branch on it, never on the human-readable `detail`.
+type Forbidden = Problem
+
+// NotFound RFC 9457 Problem Details (application/problem+json). `type` is the stable machine discriminator (ADR 0009 §1); clients branch on it, never on the human-readable `detail`.
+type NotFound = Problem
+
+// NotImplemented RFC 9457 Problem Details (application/problem+json). `type` is the stable machine discriminator (ADR 0009 §1); clients branch on it, never on the human-readable `detail`.
+type NotImplemented = Problem
+
+// TooManyRequests RFC 9457 Problem Details (application/problem+json). `type` is the stable machine discriminator (ADR 0009 §1); clients branch on it, never on the human-readable `detail`.
+type TooManyRequests = Problem
+
+// Unauthenticated RFC 9457 Problem Details (application/problem+json). `type` is the stable machine discriminator (ADR 0009 §1); clients branch on it, never on the human-readable `detail`.
+type Unauthenticated = Problem
+
+// Unavailable RFC 9457 Problem Details (application/problem+json). `type` is the stable machine discriminator (ADR 0009 §1); clients branch on it, never on the human-readable `detail`.
+type Unavailable = Problem
 
 // oidcContextKey is the context key for oidc security scheme
 type oidcContextKey string
@@ -547,14 +571,38 @@ type GetPromotionsParams struct {
 // GetPromotionsParamsState defines parameters for GetPromotions.
 type GetPromotionsParamsState string
 
+// PostPromotionsParams defines parameters for PostPromotions.
+type PostPromotionsParams struct {
+	// IdempotencyKey Client-chosen idempotency key (ADR 0009 §3). Replaying a key returns the original response without repeating the effect; reuse with a different body yields 409.
+	IdempotencyKey *IdempotencyKey `json:"Idempotency-Key,omitempty"`
+}
+
 // PostPromotionsIDApproveJSONBody defines parameters for PostPromotionsIDApprove.
 type PostPromotionsIDApproveJSONBody struct {
 	Comment  *string                                 `json:"comment,omitempty"`
 	Decision PostPromotionsIDApproveJSONBodyDecision `json:"decision"`
 }
 
+// PostPromotionsIDApproveParams defines parameters for PostPromotionsIDApprove.
+type PostPromotionsIDApproveParams struct {
+	// IdempotencyKey Client-chosen idempotency key (ADR 0009 §3). Replaying a key returns the original response without repeating the effect; reuse with a different body yields 409.
+	IdempotencyKey *IdempotencyKey `json:"Idempotency-Key,omitempty"`
+}
+
 // PostPromotionsIDApproveJSONBodyDecision defines parameters for PostPromotionsIDApprove.
 type PostPromotionsIDApproveJSONBodyDecision string
+
+// PostPromotionsIDCancelParams defines parameters for PostPromotionsIDCancel.
+type PostPromotionsIDCancelParams struct {
+	// IdempotencyKey Client-chosen idempotency key (ADR 0009 §3). Replaying a key returns the original response without repeating the effect; reuse with a different body yields 409.
+	IdempotencyKey *IdempotencyKey `json:"Idempotency-Key,omitempty"`
+}
+
+// PostPromotionsIDRetryParams defines parameters for PostPromotionsIDRetry.
+type PostPromotionsIDRetryParams struct {
+	// IdempotencyKey Client-chosen idempotency key (ADR 0009 §3). Replaying a key returns the original response without repeating the effect; reuse with a different body yields 409.
+	IdempotencyKey *IdempotencyKey `json:"Idempotency-Key,omitempty"`
+}
 
 // GetReleasesParams defines parameters for GetReleases.
 type GetReleasesParams struct {
@@ -668,23 +716,23 @@ type ClientInterface interface {
 	GetPromotions(ctx context.Context, params *GetPromotionsParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// PostPromotionsWithBody request with any body
-	PostPromotionsWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+	PostPromotionsWithBody(ctx context.Context, params *PostPromotionsParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	PostPromotions(ctx context.Context, body PostPromotionsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	PostPromotions(ctx context.Context, params *PostPromotionsParams, body PostPromotionsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// GetPromotionsID request
 	GetPromotionsID(ctx context.Context, id ID, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// PostPromotionsIDApproveWithBody request with any body
-	PostPromotionsIDApproveWithBody(ctx context.Context, id ID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
+	PostPromotionsIDApproveWithBody(ctx context.Context, id ID, params *PostPromotionsIDApproveParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error)
 
-	PostPromotionsIDApprove(ctx context.Context, id ID, body PostPromotionsIDApproveJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
+	PostPromotionsIDApprove(ctx context.Context, id ID, params *PostPromotionsIDApproveParams, body PostPromotionsIDApproveJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// PostPromotionsIDCancel request
-	PostPromotionsIDCancel(ctx context.Context, id ID, reqEditors ...RequestEditorFn) (*http.Response, error)
+	PostPromotionsIDCancel(ctx context.Context, id ID, params *PostPromotionsIDCancelParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// PostPromotionsIDRetry request
-	PostPromotionsIDRetry(ctx context.Context, id ID, reqEditors ...RequestEditorFn) (*http.Response, error)
+	PostPromotionsIDRetry(ctx context.Context, id ID, params *PostPromotionsIDRetryParams, reqEditors ...RequestEditorFn) (*http.Response, error)
 
 	// GetReleases request
 	GetReleases(ctx context.Context, params *GetReleasesParams, reqEditors ...RequestEditorFn) (*http.Response, error)
@@ -807,8 +855,8 @@ func (c *Client) GetPromotions(ctx context.Context, params *GetPromotionsParams,
 	return c.Client.Do(req)
 }
 
-func (c *Client) PostPromotionsWithBody(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewPostPromotionsRequestWithBody(c.Server, contentType, body)
+func (c *Client) PostPromotionsWithBody(ctx context.Context, params *PostPromotionsParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewPostPromotionsRequestWithBody(c.Server, params, contentType, body)
 	if err != nil {
 		return nil, err
 	}
@@ -819,8 +867,8 @@ func (c *Client) PostPromotionsWithBody(ctx context.Context, contentType string,
 	return c.Client.Do(req)
 }
 
-func (c *Client) PostPromotions(ctx context.Context, body PostPromotionsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewPostPromotionsRequest(c.Server, body)
+func (c *Client) PostPromotions(ctx context.Context, params *PostPromotionsParams, body PostPromotionsJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewPostPromotionsRequest(c.Server, params, body)
 	if err != nil {
 		return nil, err
 	}
@@ -843,8 +891,8 @@ func (c *Client) GetPromotionsID(ctx context.Context, id ID, reqEditors ...Reque
 	return c.Client.Do(req)
 }
 
-func (c *Client) PostPromotionsIDApproveWithBody(ctx context.Context, id ID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewPostPromotionsIDApproveRequestWithBody(c.Server, id, contentType, body)
+func (c *Client) PostPromotionsIDApproveWithBody(ctx context.Context, id ID, params *PostPromotionsIDApproveParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewPostPromotionsIDApproveRequestWithBody(c.Server, id, params, contentType, body)
 	if err != nil {
 		return nil, err
 	}
@@ -855,8 +903,8 @@ func (c *Client) PostPromotionsIDApproveWithBody(ctx context.Context, id ID, con
 	return c.Client.Do(req)
 }
 
-func (c *Client) PostPromotionsIDApprove(ctx context.Context, id ID, body PostPromotionsIDApproveJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewPostPromotionsIDApproveRequest(c.Server, id, body)
+func (c *Client) PostPromotionsIDApprove(ctx context.Context, id ID, params *PostPromotionsIDApproveParams, body PostPromotionsIDApproveJSONRequestBody, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewPostPromotionsIDApproveRequest(c.Server, id, params, body)
 	if err != nil {
 		return nil, err
 	}
@@ -867,8 +915,8 @@ func (c *Client) PostPromotionsIDApprove(ctx context.Context, id ID, body PostPr
 	return c.Client.Do(req)
 }
 
-func (c *Client) PostPromotionsIDCancel(ctx context.Context, id ID, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewPostPromotionsIDCancelRequest(c.Server, id)
+func (c *Client) PostPromotionsIDCancel(ctx context.Context, id ID, params *PostPromotionsIDCancelParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewPostPromotionsIDCancelRequest(c.Server, id, params)
 	if err != nil {
 		return nil, err
 	}
@@ -879,8 +927,8 @@ func (c *Client) PostPromotionsIDCancel(ctx context.Context, id ID, reqEditors .
 	return c.Client.Do(req)
 }
 
-func (c *Client) PostPromotionsIDRetry(ctx context.Context, id ID, reqEditors ...RequestEditorFn) (*http.Response, error) {
-	req, err := NewPostPromotionsIDRetryRequest(c.Server, id)
+func (c *Client) PostPromotionsIDRetry(ctx context.Context, id ID, params *PostPromotionsIDRetryParams, reqEditors ...RequestEditorFn) (*http.Response, error) {
+	req, err := NewPostPromotionsIDRetryRequest(c.Server, id, params)
 	if err != nil {
 		return nil, err
 	}
@@ -1435,18 +1483,18 @@ func NewGetPromotionsRequest(server string, params *GetPromotionsParams) (*http.
 }
 
 // NewPostPromotionsRequest calls the generic PostPromotions builder with application/json body
-func NewPostPromotionsRequest(server string, body PostPromotionsJSONRequestBody) (*http.Request, error) {
+func NewPostPromotionsRequest(server string, params *PostPromotionsParams, body PostPromotionsJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
 	buf, err := json.Marshal(body)
 	if err != nil {
 		return nil, err
 	}
 	bodyReader = bytes.NewReader(buf)
-	return NewPostPromotionsRequestWithBody(server, "application/json", bodyReader)
+	return NewPostPromotionsRequestWithBody(server, params, "application/json", bodyReader)
 }
 
 // NewPostPromotionsRequestWithBody generates requests for PostPromotions with any type of body
-func NewPostPromotionsRequestWithBody(server string, contentType string, body io.Reader) (*http.Request, error) {
+func NewPostPromotionsRequestWithBody(server string, params *PostPromotionsParams, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	serverURL, err := url.Parse(server)
@@ -1470,6 +1518,21 @@ func NewPostPromotionsRequestWithBody(server string, contentType string, body io
 	}
 
 	req.Header.Add("Content-Type", contentType)
+
+	if params != nil {
+
+		if params.IdempotencyKey != nil {
+			var headerParam0 string
+
+			headerParam0, err = runtime.StyleParamWithOptions("simple", false, "Idempotency-Key", *params.IdempotencyKey, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationHeader, Type: "string", Format: ""})
+			if err != nil {
+				return nil, err
+			}
+
+			req.Header.Set("Idempotency-Key", headerParam0)
+		}
+
+	}
 
 	return req, nil
 }
@@ -1509,18 +1572,18 @@ func NewGetPromotionsIDRequest(server string, id ID) (*http.Request, error) {
 }
 
 // NewPostPromotionsIDApproveRequest calls the generic PostPromotionsIDApprove builder with application/json body
-func NewPostPromotionsIDApproveRequest(server string, id ID, body PostPromotionsIDApproveJSONRequestBody) (*http.Request, error) {
+func NewPostPromotionsIDApproveRequest(server string, id ID, params *PostPromotionsIDApproveParams, body PostPromotionsIDApproveJSONRequestBody) (*http.Request, error) {
 	var bodyReader io.Reader
 	buf, err := json.Marshal(body)
 	if err != nil {
 		return nil, err
 	}
 	bodyReader = bytes.NewReader(buf)
-	return NewPostPromotionsIDApproveRequestWithBody(server, id, "application/json", bodyReader)
+	return NewPostPromotionsIDApproveRequestWithBody(server, id, params, "application/json", bodyReader)
 }
 
 // NewPostPromotionsIDApproveRequestWithBody generates requests for PostPromotionsIDApprove with any type of body
-func NewPostPromotionsIDApproveRequestWithBody(server string, id ID, contentType string, body io.Reader) (*http.Request, error) {
+func NewPostPromotionsIDApproveRequestWithBody(server string, id ID, params *PostPromotionsIDApproveParams, contentType string, body io.Reader) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -1552,11 +1615,26 @@ func NewPostPromotionsIDApproveRequestWithBody(server string, id ID, contentType
 
 	req.Header.Add("Content-Type", contentType)
 
+	if params != nil {
+
+		if params.IdempotencyKey != nil {
+			var headerParam0 string
+
+			headerParam0, err = runtime.StyleParamWithOptions("simple", false, "Idempotency-Key", *params.IdempotencyKey, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationHeader, Type: "string", Format: ""})
+			if err != nil {
+				return nil, err
+			}
+
+			req.Header.Set("Idempotency-Key", headerParam0)
+		}
+
+	}
+
 	return req, nil
 }
 
 // NewPostPromotionsIDCancelRequest generates requests for PostPromotionsIDCancel
-func NewPostPromotionsIDCancelRequest(server string, id ID) (*http.Request, error) {
+func NewPostPromotionsIDCancelRequest(server string, id ID, params *PostPromotionsIDCancelParams) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -1586,11 +1664,26 @@ func NewPostPromotionsIDCancelRequest(server string, id ID) (*http.Request, erro
 		return nil, err
 	}
 
+	if params != nil {
+
+		if params.IdempotencyKey != nil {
+			var headerParam0 string
+
+			headerParam0, err = runtime.StyleParamWithOptions("simple", false, "Idempotency-Key", *params.IdempotencyKey, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationHeader, Type: "string", Format: ""})
+			if err != nil {
+				return nil, err
+			}
+
+			req.Header.Set("Idempotency-Key", headerParam0)
+		}
+
+	}
+
 	return req, nil
 }
 
 // NewPostPromotionsIDRetryRequest generates requests for PostPromotionsIDRetry
-func NewPostPromotionsIDRetryRequest(server string, id ID) (*http.Request, error) {
+func NewPostPromotionsIDRetryRequest(server string, id ID, params *PostPromotionsIDRetryParams) (*http.Request, error) {
 	var err error
 
 	var pathParam0 string
@@ -1618,6 +1711,21 @@ func NewPostPromotionsIDRetryRequest(server string, id ID) (*http.Request, error
 	req, err := http.NewRequest(http.MethodPost, queryURL.String(), nil)
 	if err != nil {
 		return nil, err
+	}
+
+	if params != nil {
+
+		if params.IdempotencyKey != nil {
+			var headerParam0 string
+
+			headerParam0, err = runtime.StyleParamWithOptions("simple", false, "Idempotency-Key", *params.IdempotencyKey, runtime.StyleParamOptions{ParamLocation: runtime.ParamLocationHeader, Type: "string", Format: ""})
+			if err != nil {
+				return nil, err
+			}
+
+			req.Header.Set("Idempotency-Key", headerParam0)
+		}
+
 	}
 
 	return req, nil
@@ -1843,23 +1951,23 @@ type ClientWithResponsesInterface interface {
 	GetPromotionsWithResponse(ctx context.Context, params *GetPromotionsParams, reqEditors ...RequestEditorFn) (*GetPromotionsResponse, error)
 
 	// PostPromotionsWithBodyWithResponse request with any body
-	PostPromotionsWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*PostPromotionsResponse, error)
+	PostPromotionsWithBodyWithResponse(ctx context.Context, params *PostPromotionsParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*PostPromotionsResponse, error)
 
-	PostPromotionsWithResponse(ctx context.Context, body PostPromotionsJSONRequestBody, reqEditors ...RequestEditorFn) (*PostPromotionsResponse, error)
+	PostPromotionsWithResponse(ctx context.Context, params *PostPromotionsParams, body PostPromotionsJSONRequestBody, reqEditors ...RequestEditorFn) (*PostPromotionsResponse, error)
 
 	// GetPromotionsIDWithResponse request
 	GetPromotionsIDWithResponse(ctx context.Context, id ID, reqEditors ...RequestEditorFn) (*GetPromotionsIDResponse, error)
 
 	// PostPromotionsIDApproveWithBodyWithResponse request with any body
-	PostPromotionsIDApproveWithBodyWithResponse(ctx context.Context, id ID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*PostPromotionsIDApproveResponse, error)
+	PostPromotionsIDApproveWithBodyWithResponse(ctx context.Context, id ID, params *PostPromotionsIDApproveParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*PostPromotionsIDApproveResponse, error)
 
-	PostPromotionsIDApproveWithResponse(ctx context.Context, id ID, body PostPromotionsIDApproveJSONRequestBody, reqEditors ...RequestEditorFn) (*PostPromotionsIDApproveResponse, error)
+	PostPromotionsIDApproveWithResponse(ctx context.Context, id ID, params *PostPromotionsIDApproveParams, body PostPromotionsIDApproveJSONRequestBody, reqEditors ...RequestEditorFn) (*PostPromotionsIDApproveResponse, error)
 
 	// PostPromotionsIDCancelWithResponse request
-	PostPromotionsIDCancelWithResponse(ctx context.Context, id ID, reqEditors ...RequestEditorFn) (*PostPromotionsIDCancelResponse, error)
+	PostPromotionsIDCancelWithResponse(ctx context.Context, id ID, params *PostPromotionsIDCancelParams, reqEditors ...RequestEditorFn) (*PostPromotionsIDCancelResponse, error)
 
 	// PostPromotionsIDRetryWithResponse request
-	PostPromotionsIDRetryWithResponse(ctx context.Context, id ID, reqEditors ...RequestEditorFn) (*PostPromotionsIDRetryResponse, error)
+	PostPromotionsIDRetryWithResponse(ctx context.Context, id ID, params *PostPromotionsIDRetryParams, reqEditors ...RequestEditorFn) (*PostPromotionsIDRetryResponse, error)
 
 	// GetReleasesWithResponse request
 	GetReleasesWithResponse(ctx context.Context, params *GetReleasesParams, reqEditors ...RequestEditorFn) (*GetReleasesResponse, error)
@@ -1882,6 +1990,11 @@ type GetApplicationsResponse struct {
 		AsOf  time.Time     `json:"asOf"`
 		Items []Application `json:"items"`
 	}
+	ApplicationProblemJSON400 *BadRequest
+	ApplicationProblemJSON401 *Unauthenticated
+	ApplicationProblemJSON403 *Forbidden
+	ApplicationProblemJSON500 *Degraded
+	ApplicationProblemJSON503 *Unavailable
 }
 
 // Status returns HTTPResponse.Status
@@ -1909,10 +2022,15 @@ func (r GetApplicationsResponse) ContentType() string {
 }
 
 type GetApplicationsNameResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *Application
-	JSON404      *NotFound
+	Body                      []byte
+	HTTPResponse              *http.Response
+	JSON200                   *Application
+	ApplicationProblemJSON400 *BadRequest
+	ApplicationProblemJSON401 *Unauthenticated
+	ApplicationProblemJSON403 *Forbidden
+	ApplicationProblemJSON404 *NotFound
+	ApplicationProblemJSON500 *Degraded
+	ApplicationProblemJSON503 *Unavailable
 }
 
 // Status returns HTTPResponse.Status
@@ -1940,9 +2058,15 @@ func (r GetApplicationsNameResponse) ContentType() string {
 }
 
 type GetApplicationsNameMatrixResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *Matrix
+	Body                      []byte
+	HTTPResponse              *http.Response
+	JSON200                   *Matrix
+	ApplicationProblemJSON400 *BadRequest
+	ApplicationProblemJSON401 *Unauthenticated
+	ApplicationProblemJSON403 *Forbidden
+	ApplicationProblemJSON404 *NotFound
+	ApplicationProblemJSON500 *Degraded
+	ApplicationProblemJSON503 *Unavailable
 }
 
 // Status returns HTTPResponse.Status
@@ -1970,9 +2094,14 @@ func (r GetApplicationsNameMatrixResponse) ContentType() string {
 }
 
 type GetApplicationsNamePromotionsResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *[]Promotion
+	Body                      []byte
+	HTTPResponse              *http.Response
+	JSON200                   *[]Promotion
+	ApplicationProblemJSON400 *BadRequest
+	ApplicationProblemJSON401 *Unauthenticated
+	ApplicationProblemJSON403 *Forbidden
+	ApplicationProblemJSON500 *Degraded
+	ApplicationProblemJSON503 *Unavailable
 }
 
 // Status returns HTTPResponse.Status
@@ -2000,9 +2129,14 @@ func (r GetApplicationsNamePromotionsResponse) ContentType() string {
 }
 
 type GetApplicationsNameReleasesResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *[]Release
+	Body                      []byte
+	HTTPResponse              *http.Response
+	JSON200                   *[]Release
+	ApplicationProblemJSON400 *BadRequest
+	ApplicationProblemJSON401 *Unauthenticated
+	ApplicationProblemJSON403 *Forbidden
+	ApplicationProblemJSON500 *Degraded
+	ApplicationProblemJSON503 *Unavailable
 }
 
 // Status returns HTTPResponse.Status
@@ -2036,6 +2170,11 @@ type GetAuditResponse struct {
 		Items      []AuditEvent `json:"items"`
 		NextCursor *string      `json:"nextCursor,omitempty"`
 	}
+	ApplicationProblemJSON400 *BadRequest
+	ApplicationProblemJSON401 *Unauthenticated
+	ApplicationProblemJSON403 *Forbidden
+	ApplicationProblemJSON500 *Degraded
+	ApplicationProblemJSON503 *Unavailable
 }
 
 // Status returns HTTPResponse.Status
@@ -2063,9 +2202,14 @@ func (r GetAuditResponse) ContentType() string {
 }
 
 type GetDiffResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *Diff
+	Body                      []byte
+	HTTPResponse              *http.Response
+	JSON200                   *Diff
+	ApplicationProblemJSON400 *BadRequest
+	ApplicationProblemJSON401 *Unauthenticated
+	ApplicationProblemJSON403 *Forbidden
+	ApplicationProblemJSON500 *Degraded
+	ApplicationProblemJSON503 *Unavailable
 }
 
 // Status returns HTTPResponse.Status
@@ -2093,9 +2237,14 @@ func (r GetDiffResponse) ContentType() string {
 }
 
 type GetEnvironmentsResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *[]Environment
+	Body                      []byte
+	HTTPResponse              *http.Response
+	JSON200                   *[]Environment
+	ApplicationProblemJSON400 *BadRequest
+	ApplicationProblemJSON401 *Unauthenticated
+	ApplicationProblemJSON403 *Forbidden
+	ApplicationProblemJSON500 *Degraded
+	ApplicationProblemJSON503 *Unavailable
 }
 
 // Status returns HTTPResponse.Status
@@ -2123,9 +2272,14 @@ func (r GetEnvironmentsResponse) ContentType() string {
 }
 
 type GetPromotionsResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *[]Promotion
+	Body                      []byte
+	HTTPResponse              *http.Response
+	JSON200                   *[]Promotion
+	ApplicationProblemJSON400 *BadRequest
+	ApplicationProblemJSON401 *Unauthenticated
+	ApplicationProblemJSON403 *Forbidden
+	ApplicationProblemJSON500 *Degraded
+	ApplicationProblemJSON503 *Unavailable
 }
 
 // Status returns HTTPResponse.Status
@@ -2153,10 +2307,17 @@ func (r GetPromotionsResponse) ContentType() string {
 }
 
 type PostPromotionsResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON202      *Promotion
-	JSON403      *Forbidden
+	Body                      []byte
+	HTTPResponse              *http.Response
+	JSON202                   *Promotion
+	ApplicationProblemJSON400 *BadRequest
+	ApplicationProblemJSON401 *Unauthenticated
+	ApplicationProblemJSON403 *Forbidden
+	ApplicationProblemJSON404 *NotFound
+	ApplicationProblemJSON409 *Conflict
+	ApplicationProblemJSON429 *TooManyRequests
+	ApplicationProblemJSON500 *Degraded
+	ApplicationProblemJSON501 *NotImplemented
 }
 
 // Status returns HTTPResponse.Status
@@ -2184,10 +2345,15 @@ func (r PostPromotionsResponse) ContentType() string {
 }
 
 type GetPromotionsIDResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *Promotion
-	JSON404      *NotFound
+	Body                      []byte
+	HTTPResponse              *http.Response
+	JSON200                   *Promotion
+	ApplicationProblemJSON400 *BadRequest
+	ApplicationProblemJSON401 *Unauthenticated
+	ApplicationProblemJSON403 *Forbidden
+	ApplicationProblemJSON404 *NotFound
+	ApplicationProblemJSON500 *Degraded
+	ApplicationProblemJSON503 *Unavailable
 }
 
 // Status returns HTTPResponse.Status
@@ -2215,10 +2381,17 @@ func (r GetPromotionsIDResponse) ContentType() string {
 }
 
 type PostPromotionsIDApproveResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *Promotion
-	JSON403      *Forbidden
+	Body                      []byte
+	HTTPResponse              *http.Response
+	JSON200                   *Promotion
+	ApplicationProblemJSON400 *BadRequest
+	ApplicationProblemJSON401 *Unauthenticated
+	ApplicationProblemJSON403 *Forbidden
+	ApplicationProblemJSON404 *NotFound
+	ApplicationProblemJSON409 *Conflict
+	ApplicationProblemJSON429 *TooManyRequests
+	ApplicationProblemJSON500 *Degraded
+	ApplicationProblemJSON501 *NotImplemented
 }
 
 // Status returns HTTPResponse.Status
@@ -2246,9 +2419,17 @@ func (r PostPromotionsIDApproveResponse) ContentType() string {
 }
 
 type PostPromotionsIDCancelResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *Promotion
+	Body                      []byte
+	HTTPResponse              *http.Response
+	JSON202                   *Promotion
+	ApplicationProblemJSON400 *BadRequest
+	ApplicationProblemJSON401 *Unauthenticated
+	ApplicationProblemJSON403 *Forbidden
+	ApplicationProblemJSON404 *NotFound
+	ApplicationProblemJSON409 *Conflict
+	ApplicationProblemJSON429 *TooManyRequests
+	ApplicationProblemJSON500 *Degraded
+	ApplicationProblemJSON501 *NotImplemented
 }
 
 // Status returns HTTPResponse.Status
@@ -2276,9 +2457,17 @@ func (r PostPromotionsIDCancelResponse) ContentType() string {
 }
 
 type PostPromotionsIDRetryResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *Promotion
+	Body                      []byte
+	HTTPResponse              *http.Response
+	JSON202                   *Promotion
+	ApplicationProblemJSON400 *BadRequest
+	ApplicationProblemJSON401 *Unauthenticated
+	ApplicationProblemJSON403 *Forbidden
+	ApplicationProblemJSON404 *NotFound
+	ApplicationProblemJSON409 *Conflict
+	ApplicationProblemJSON429 *TooManyRequests
+	ApplicationProblemJSON500 *Degraded
+	ApplicationProblemJSON501 *NotImplemented
 }
 
 // Status returns HTTPResponse.Status
@@ -2306,9 +2495,14 @@ func (r PostPromotionsIDRetryResponse) ContentType() string {
 }
 
 type GetReleasesResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *[]Release
+	Body                      []byte
+	HTTPResponse              *http.Response
+	JSON200                   *[]Release
+	ApplicationProblemJSON400 *BadRequest
+	ApplicationProblemJSON401 *Unauthenticated
+	ApplicationProblemJSON403 *Forbidden
+	ApplicationProblemJSON500 *Degraded
+	ApplicationProblemJSON503 *Unavailable
 }
 
 // Status returns HTTPResponse.Status
@@ -2336,9 +2530,14 @@ func (r GetReleasesResponse) ContentType() string {
 }
 
 type GetTargetsResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *[]DeploymentTarget
+	Body                      []byte
+	HTTPResponse              *http.Response
+	JSON200                   *[]DeploymentTarget
+	ApplicationProblemJSON400 *BadRequest
+	ApplicationProblemJSON401 *Unauthenticated
+	ApplicationProblemJSON403 *Forbidden
+	ApplicationProblemJSON500 *Degraded
+	ApplicationProblemJSON503 *Unavailable
 }
 
 // Status returns HTTPResponse.Status
@@ -2366,9 +2565,15 @@ func (r GetTargetsResponse) ContentType() string {
 }
 
 type GetTargetsNameDriftResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *Diff
+	Body                      []byte
+	HTTPResponse              *http.Response
+	JSON200                   *Diff
+	ApplicationProblemJSON400 *BadRequest
+	ApplicationProblemJSON401 *Unauthenticated
+	ApplicationProblemJSON403 *Forbidden
+	ApplicationProblemJSON404 *NotFound
+	ApplicationProblemJSON500 *Degraded
+	ApplicationProblemJSON503 *Unavailable
 }
 
 // Status returns HTTPResponse.Status
@@ -2396,9 +2601,15 @@ func (r GetTargetsNameDriftResponse) ContentType() string {
 }
 
 type GetTargetsNameHealthResponse struct {
-	Body         []byte
-	HTTPResponse *http.Response
-	JSON200      *[]HealthCheck
+	Body                      []byte
+	HTTPResponse              *http.Response
+	JSON200                   *[]HealthCheck
+	ApplicationProblemJSON400 *BadRequest
+	ApplicationProblemJSON401 *Unauthenticated
+	ApplicationProblemJSON403 *Forbidden
+	ApplicationProblemJSON404 *NotFound
+	ApplicationProblemJSON500 *Degraded
+	ApplicationProblemJSON503 *Unavailable
 }
 
 // Status returns HTTPResponse.Status
@@ -2507,16 +2718,16 @@ func (c *ClientWithResponses) GetPromotionsWithResponse(ctx context.Context, par
 }
 
 // PostPromotionsWithBodyWithResponse request with arbitrary body returning *PostPromotionsResponse
-func (c *ClientWithResponses) PostPromotionsWithBodyWithResponse(ctx context.Context, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*PostPromotionsResponse, error) {
-	rsp, err := c.PostPromotionsWithBody(ctx, contentType, body, reqEditors...)
+func (c *ClientWithResponses) PostPromotionsWithBodyWithResponse(ctx context.Context, params *PostPromotionsParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*PostPromotionsResponse, error) {
+	rsp, err := c.PostPromotionsWithBody(ctx, params, contentType, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
 	return ParsePostPromotionsResponse(rsp)
 }
 
-func (c *ClientWithResponses) PostPromotionsWithResponse(ctx context.Context, body PostPromotionsJSONRequestBody, reqEditors ...RequestEditorFn) (*PostPromotionsResponse, error) {
-	rsp, err := c.PostPromotions(ctx, body, reqEditors...)
+func (c *ClientWithResponses) PostPromotionsWithResponse(ctx context.Context, params *PostPromotionsParams, body PostPromotionsJSONRequestBody, reqEditors ...RequestEditorFn) (*PostPromotionsResponse, error) {
+	rsp, err := c.PostPromotions(ctx, params, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -2533,16 +2744,16 @@ func (c *ClientWithResponses) GetPromotionsIDWithResponse(ctx context.Context, i
 }
 
 // PostPromotionsIDApproveWithBodyWithResponse request with arbitrary body returning *PostPromotionsIDApproveResponse
-func (c *ClientWithResponses) PostPromotionsIDApproveWithBodyWithResponse(ctx context.Context, id ID, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*PostPromotionsIDApproveResponse, error) {
-	rsp, err := c.PostPromotionsIDApproveWithBody(ctx, id, contentType, body, reqEditors...)
+func (c *ClientWithResponses) PostPromotionsIDApproveWithBodyWithResponse(ctx context.Context, id ID, params *PostPromotionsIDApproveParams, contentType string, body io.Reader, reqEditors ...RequestEditorFn) (*PostPromotionsIDApproveResponse, error) {
+	rsp, err := c.PostPromotionsIDApproveWithBody(ctx, id, params, contentType, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
 	return ParsePostPromotionsIDApproveResponse(rsp)
 }
 
-func (c *ClientWithResponses) PostPromotionsIDApproveWithResponse(ctx context.Context, id ID, body PostPromotionsIDApproveJSONRequestBody, reqEditors ...RequestEditorFn) (*PostPromotionsIDApproveResponse, error) {
-	rsp, err := c.PostPromotionsIDApprove(ctx, id, body, reqEditors...)
+func (c *ClientWithResponses) PostPromotionsIDApproveWithResponse(ctx context.Context, id ID, params *PostPromotionsIDApproveParams, body PostPromotionsIDApproveJSONRequestBody, reqEditors ...RequestEditorFn) (*PostPromotionsIDApproveResponse, error) {
+	rsp, err := c.PostPromotionsIDApprove(ctx, id, params, body, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -2550,8 +2761,8 @@ func (c *ClientWithResponses) PostPromotionsIDApproveWithResponse(ctx context.Co
 }
 
 // PostPromotionsIDCancelWithResponse request returning *PostPromotionsIDCancelResponse
-func (c *ClientWithResponses) PostPromotionsIDCancelWithResponse(ctx context.Context, id ID, reqEditors ...RequestEditorFn) (*PostPromotionsIDCancelResponse, error) {
-	rsp, err := c.PostPromotionsIDCancel(ctx, id, reqEditors...)
+func (c *ClientWithResponses) PostPromotionsIDCancelWithResponse(ctx context.Context, id ID, params *PostPromotionsIDCancelParams, reqEditors ...RequestEditorFn) (*PostPromotionsIDCancelResponse, error) {
+	rsp, err := c.PostPromotionsIDCancel(ctx, id, params, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -2559,8 +2770,8 @@ func (c *ClientWithResponses) PostPromotionsIDCancelWithResponse(ctx context.Con
 }
 
 // PostPromotionsIDRetryWithResponse request returning *PostPromotionsIDRetryResponse
-func (c *ClientWithResponses) PostPromotionsIDRetryWithResponse(ctx context.Context, id ID, reqEditors ...RequestEditorFn) (*PostPromotionsIDRetryResponse, error) {
-	rsp, err := c.PostPromotionsIDRetry(ctx, id, reqEditors...)
+func (c *ClientWithResponses) PostPromotionsIDRetryWithResponse(ctx context.Context, id ID, params *PostPromotionsIDRetryParams, reqEditors ...RequestEditorFn) (*PostPromotionsIDRetryResponse, error) {
+	rsp, err := c.PostPromotionsIDRetry(ctx, id, params, reqEditors...)
 	if err != nil {
 		return nil, err
 	}
@@ -2628,6 +2839,41 @@ func ParseGetApplicationsResponse(rsp *http.Response) (*GetApplicationsResponse,
 		}
 		response.JSON200 = &dest
 
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest BadRequest
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationProblemJSON400 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest Unauthenticated
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationProblemJSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
+		var dest Forbidden
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationProblemJSON403 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest Degraded
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationProblemJSON500 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 503:
+		var dest Unavailable
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationProblemJSON503 = &dest
+
 	}
 
 	return response, nil
@@ -2654,12 +2900,47 @@ func ParseGetApplicationsNameResponse(rsp *http.Response) (*GetApplicationsNameR
 		}
 		response.JSON200 = &dest
 
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest BadRequest
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationProblemJSON400 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest Unauthenticated
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationProblemJSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
+		var dest Forbidden
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationProblemJSON403 = &dest
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
 		var dest NotFound
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.JSON404 = &dest
+		response.ApplicationProblemJSON404 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest Degraded
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationProblemJSON500 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 503:
+		var dest Unavailable
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationProblemJSON503 = &dest
 
 	}
 
@@ -2687,6 +2968,48 @@ func ParseGetApplicationsNameMatrixResponse(rsp *http.Response) (*GetApplication
 		}
 		response.JSON200 = &dest
 
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest BadRequest
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationProblemJSON400 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest Unauthenticated
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationProblemJSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
+		var dest Forbidden
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationProblemJSON403 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest NotFound
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationProblemJSON404 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest Degraded
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationProblemJSON500 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 503:
+		var dest Unavailable
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationProblemJSON503 = &dest
+
 	}
 
 	return response, nil
@@ -2713,6 +3036,41 @@ func ParseGetApplicationsNamePromotionsResponse(rsp *http.Response) (*GetApplica
 		}
 		response.JSON200 = &dest
 
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest BadRequest
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationProblemJSON400 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest Unauthenticated
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationProblemJSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
+		var dest Forbidden
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationProblemJSON403 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest Degraded
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationProblemJSON500 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 503:
+		var dest Unavailable
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationProblemJSON503 = &dest
+
 	}
 
 	return response, nil
@@ -2738,6 +3096,41 @@ func ParseGetApplicationsNameReleasesResponse(rsp *http.Response) (*GetApplicati
 			return nil, err
 		}
 		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest BadRequest
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationProblemJSON400 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest Unauthenticated
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationProblemJSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
+		var dest Forbidden
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationProblemJSON403 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest Degraded
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationProblemJSON500 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 503:
+		var dest Unavailable
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationProblemJSON503 = &dest
 
 	}
 
@@ -2768,6 +3161,41 @@ func ParseGetAuditResponse(rsp *http.Response) (*GetAuditResponse, error) {
 		}
 		response.JSON200 = &dest
 
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest BadRequest
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationProblemJSON400 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest Unauthenticated
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationProblemJSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
+		var dest Forbidden
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationProblemJSON403 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest Degraded
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationProblemJSON500 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 503:
+		var dest Unavailable
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationProblemJSON503 = &dest
+
 	}
 
 	return response, nil
@@ -2793,6 +3221,41 @@ func ParseGetDiffResponse(rsp *http.Response) (*GetDiffResponse, error) {
 			return nil, err
 		}
 		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest BadRequest
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationProblemJSON400 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest Unauthenticated
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationProblemJSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
+		var dest Forbidden
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationProblemJSON403 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest Degraded
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationProblemJSON500 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 503:
+		var dest Unavailable
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationProblemJSON503 = &dest
 
 	}
 
@@ -2820,6 +3283,41 @@ func ParseGetEnvironmentsResponse(rsp *http.Response) (*GetEnvironmentsResponse,
 		}
 		response.JSON200 = &dest
 
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest BadRequest
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationProblemJSON400 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest Unauthenticated
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationProblemJSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
+		var dest Forbidden
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationProblemJSON403 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest Degraded
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationProblemJSON500 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 503:
+		var dest Unavailable
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationProblemJSON503 = &dest
+
 	}
 
 	return response, nil
@@ -2845,6 +3343,41 @@ func ParseGetPromotionsResponse(rsp *http.Response) (*GetPromotionsResponse, err
 			return nil, err
 		}
 		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest BadRequest
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationProblemJSON400 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest Unauthenticated
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationProblemJSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
+		var dest Forbidden
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationProblemJSON403 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest Degraded
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationProblemJSON500 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 503:
+		var dest Unavailable
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationProblemJSON503 = &dest
 
 	}
 
@@ -2872,12 +3405,61 @@ func ParsePostPromotionsResponse(rsp *http.Response) (*PostPromotionsResponse, e
 		}
 		response.JSON202 = &dest
 
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest BadRequest
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationProblemJSON400 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest Unauthenticated
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationProblemJSON401 = &dest
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
 		var dest Forbidden
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.JSON403 = &dest
+		response.ApplicationProblemJSON403 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest NotFound
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationProblemJSON404 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 409:
+		var dest Conflict
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationProblemJSON409 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 429:
+		var dest TooManyRequests
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationProblemJSON429 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest Degraded
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationProblemJSON500 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 501:
+		var dest NotImplemented
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationProblemJSON501 = &dest
 
 	}
 
@@ -2905,12 +3487,47 @@ func ParseGetPromotionsIDResponse(rsp *http.Response) (*GetPromotionsIDResponse,
 		}
 		response.JSON200 = &dest
 
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest BadRequest
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationProblemJSON400 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest Unauthenticated
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationProblemJSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
+		var dest Forbidden
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationProblemJSON403 = &dest
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
 		var dest NotFound
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.JSON404 = &dest
+		response.ApplicationProblemJSON404 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest Degraded
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationProblemJSON500 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 503:
+		var dest Unavailable
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationProblemJSON503 = &dest
 
 	}
 
@@ -2938,12 +3555,61 @@ func ParsePostPromotionsIDApproveResponse(rsp *http.Response) (*PostPromotionsID
 		}
 		response.JSON200 = &dest
 
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest BadRequest
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationProblemJSON400 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest Unauthenticated
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationProblemJSON401 = &dest
+
 	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
 		var dest Forbidden
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.JSON403 = &dest
+		response.ApplicationProblemJSON403 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest NotFound
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationProblemJSON404 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 409:
+		var dest Conflict
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationProblemJSON409 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 429:
+		var dest TooManyRequests
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationProblemJSON429 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest Degraded
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationProblemJSON500 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 501:
+		var dest NotImplemented
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationProblemJSON501 = &dest
 
 	}
 
@@ -2964,12 +3630,68 @@ func ParsePostPromotionsIDCancelResponse(rsp *http.Response) (*PostPromotionsIDC
 	}
 
 	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 202:
 		var dest Promotion
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.JSON200 = &dest
+		response.JSON202 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest BadRequest
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationProblemJSON400 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest Unauthenticated
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationProblemJSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
+		var dest Forbidden
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationProblemJSON403 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest NotFound
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationProblemJSON404 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 409:
+		var dest Conflict
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationProblemJSON409 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 429:
+		var dest TooManyRequests
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationProblemJSON429 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest Degraded
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationProblemJSON500 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 501:
+		var dest NotImplemented
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationProblemJSON501 = &dest
 
 	}
 
@@ -2990,12 +3712,68 @@ func ParsePostPromotionsIDRetryResponse(rsp *http.Response) (*PostPromotionsIDRe
 	}
 
 	switch {
-	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 200:
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 202:
 		var dest Promotion
 		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
 			return nil, err
 		}
-		response.JSON200 = &dest
+		response.JSON202 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest BadRequest
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationProblemJSON400 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest Unauthenticated
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationProblemJSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
+		var dest Forbidden
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationProblemJSON403 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest NotFound
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationProblemJSON404 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 409:
+		var dest Conflict
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationProblemJSON409 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 429:
+		var dest TooManyRequests
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationProblemJSON429 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest Degraded
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationProblemJSON500 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 501:
+		var dest NotImplemented
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationProblemJSON501 = &dest
 
 	}
 
@@ -3023,6 +3801,41 @@ func ParseGetReleasesResponse(rsp *http.Response) (*GetReleasesResponse, error) 
 		}
 		response.JSON200 = &dest
 
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest BadRequest
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationProblemJSON400 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest Unauthenticated
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationProblemJSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
+		var dest Forbidden
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationProblemJSON403 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest Degraded
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationProblemJSON500 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 503:
+		var dest Unavailable
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationProblemJSON503 = &dest
+
 	}
 
 	return response, nil
@@ -3048,6 +3861,41 @@ func ParseGetTargetsResponse(rsp *http.Response) (*GetTargetsResponse, error) {
 			return nil, err
 		}
 		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest BadRequest
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationProblemJSON400 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest Unauthenticated
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationProblemJSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
+		var dest Forbidden
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationProblemJSON403 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest Degraded
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationProblemJSON500 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 503:
+		var dest Unavailable
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationProblemJSON503 = &dest
 
 	}
 
@@ -3075,6 +3923,48 @@ func ParseGetTargetsNameDriftResponse(rsp *http.Response) (*GetTargetsNameDriftR
 		}
 		response.JSON200 = &dest
 
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest BadRequest
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationProblemJSON400 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest Unauthenticated
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationProblemJSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
+		var dest Forbidden
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationProblemJSON403 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest NotFound
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationProblemJSON404 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest Degraded
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationProblemJSON500 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 503:
+		var dest Unavailable
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationProblemJSON503 = &dest
+
 	}
 
 	return response, nil
@@ -3100,6 +3990,48 @@ func ParseGetTargetsNameHealthResponse(rsp *http.Response) (*GetTargetsNameHealt
 			return nil, err
 		}
 		response.JSON200 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 400:
+		var dest BadRequest
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationProblemJSON400 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 401:
+		var dest Unauthenticated
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationProblemJSON401 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 403:
+		var dest Forbidden
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationProblemJSON403 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 404:
+		var dest NotFound
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationProblemJSON404 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 500:
+		var dest Degraded
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationProblemJSON500 = &dest
+
+	case strings.Contains(rsp.Header.Get("Content-Type"), "json") && rsp.StatusCode == 503:
+		var dest Unavailable
+		if err := json.Unmarshal(bodyBytes, &dest); err != nil {
+			return nil, err
+		}
+		response.ApplicationProblemJSON503 = &dest
 
 	}
 
@@ -3137,19 +4069,19 @@ type ServerInterface interface {
 	GetPromotions(w http.ResponseWriter, r *http.Request, params GetPromotionsParams)
 	// Request a promotion (opens a Git PR on approval — ADR 0003)
 	// (POST /promotions)
-	PostPromotions(w http.ResponseWriter, r *http.Request)
+	PostPromotions(w http.ResponseWriter, r *http.Request, params PostPromotionsParams)
 	// Get a promotion (by ULID)
 	// (GET /promotions/{id})
 	GetPromotionsID(w http.ResponseWriter, r *http.Request, id ID)
 	// Approve or reject a promotion (state transition — ADR 0003)
 	// (POST /promotions/{id}/approve)
-	PostPromotionsIDApprove(w http.ResponseWriter, r *http.Request, id ID)
+	PostPromotionsIDApprove(w http.ResponseWriter, r *http.Request, id ID, params PostPromotionsIDApproveParams)
 	// Cancel a promotion
 	// (POST /promotions/{id}/cancel)
-	PostPromotionsIDCancel(w http.ResponseWriter, r *http.Request, id ID)
+	PostPromotionsIDCancel(w http.ResponseWriter, r *http.Request, id ID, params PostPromotionsIDCancelParams)
 	// Retry a failed promotion
 	// (POST /promotions/{id}/retry)
-	PostPromotionsIDRetry(w http.ResponseWriter, r *http.Request, id ID)
+	PostPromotionsIDRetry(w http.ResponseWriter, r *http.Request, id ID, params PostPromotionsIDRetryParams)
 	// Release inventory
 	// (GET /releases)
 	GetReleases(w http.ResponseWriter, r *http.Request, params GetReleasesParams)
@@ -3610,14 +4542,41 @@ func (siw *ServerInterfaceWrapper) GetPromotions(w http.ResponseWriter, r *http.
 // PostPromotions operation middleware
 func (siw *ServerInterfaceWrapper) PostPromotions(w http.ResponseWriter, r *http.Request) {
 
+	var err error
+	_ = err
+
 	ctx := r.Context()
 
 	ctx = context.WithValue(ctx, OidcScopes, []string{})
 
 	r = r.WithContext(ctx)
 
+	// Parameter object where we will unmarshal all parameters from the context
+	var params PostPromotionsParams
+
+	headers := r.Header
+
+	// ------------- Optional header parameter "Idempotency-Key" -------------
+	if valueList, found := headers[http.CanonicalHeaderKey("Idempotency-Key")]; found {
+		var IdempotencyKey IdempotencyKey
+		n := len(valueList)
+		if n != 1 {
+			siw.ErrorHandlerFunc(w, r, &TooManyValuesForParamError{ParamName: "Idempotency-Key", Count: n})
+			return
+		}
+
+		err = runtime.BindStyledParameterWithOptions("simple", "Idempotency-Key", valueList[0], &IdempotencyKey, runtime.BindStyledParameterOptions{ParamLocation: runtime.ParamLocationHeader, Explode: false, Required: false, Type: "string", Format: ""})
+		if err != nil {
+			siw.ErrorHandlerFunc(w, r, &InvalidParamFormatError{ParamName: "Idempotency-Key", Err: err})
+			return
+		}
+
+		params.IdempotencyKey = &IdempotencyKey
+
+	}
+
 	handler := http.Handler(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		siw.Handler.PostPromotions(w, r)
+		siw.Handler.PostPromotions(w, r, params)
 	}))
 
 	for _, middleware := range siw.HandlerMiddlewares {
@@ -3680,8 +4639,32 @@ func (siw *ServerInterfaceWrapper) PostPromotionsIDApprove(w http.ResponseWriter
 
 	r = r.WithContext(ctx)
 
+	// Parameter object where we will unmarshal all parameters from the context
+	var params PostPromotionsIDApproveParams
+
+	headers := r.Header
+
+	// ------------- Optional header parameter "Idempotency-Key" -------------
+	if valueList, found := headers[http.CanonicalHeaderKey("Idempotency-Key")]; found {
+		var IdempotencyKey IdempotencyKey
+		n := len(valueList)
+		if n != 1 {
+			siw.ErrorHandlerFunc(w, r, &TooManyValuesForParamError{ParamName: "Idempotency-Key", Count: n})
+			return
+		}
+
+		err = runtime.BindStyledParameterWithOptions("simple", "Idempotency-Key", valueList[0], &IdempotencyKey, runtime.BindStyledParameterOptions{ParamLocation: runtime.ParamLocationHeader, Explode: false, Required: false, Type: "string", Format: ""})
+		if err != nil {
+			siw.ErrorHandlerFunc(w, r, &InvalidParamFormatError{ParamName: "Idempotency-Key", Err: err})
+			return
+		}
+
+		params.IdempotencyKey = &IdempotencyKey
+
+	}
+
 	handler := http.Handler(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		siw.Handler.PostPromotionsIDApprove(w, r, id)
+		siw.Handler.PostPromotionsIDApprove(w, r, id, params)
 	}))
 
 	for _, middleware := range siw.HandlerMiddlewares {
@@ -3712,8 +4695,32 @@ func (siw *ServerInterfaceWrapper) PostPromotionsIDCancel(w http.ResponseWriter,
 
 	r = r.WithContext(ctx)
 
+	// Parameter object where we will unmarshal all parameters from the context
+	var params PostPromotionsIDCancelParams
+
+	headers := r.Header
+
+	// ------------- Optional header parameter "Idempotency-Key" -------------
+	if valueList, found := headers[http.CanonicalHeaderKey("Idempotency-Key")]; found {
+		var IdempotencyKey IdempotencyKey
+		n := len(valueList)
+		if n != 1 {
+			siw.ErrorHandlerFunc(w, r, &TooManyValuesForParamError{ParamName: "Idempotency-Key", Count: n})
+			return
+		}
+
+		err = runtime.BindStyledParameterWithOptions("simple", "Idempotency-Key", valueList[0], &IdempotencyKey, runtime.BindStyledParameterOptions{ParamLocation: runtime.ParamLocationHeader, Explode: false, Required: false, Type: "string", Format: ""})
+		if err != nil {
+			siw.ErrorHandlerFunc(w, r, &InvalidParamFormatError{ParamName: "Idempotency-Key", Err: err})
+			return
+		}
+
+		params.IdempotencyKey = &IdempotencyKey
+
+	}
+
 	handler := http.Handler(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		siw.Handler.PostPromotionsIDCancel(w, r, id)
+		siw.Handler.PostPromotionsIDCancel(w, r, id, params)
 	}))
 
 	for _, middleware := range siw.HandlerMiddlewares {
@@ -3744,8 +4751,32 @@ func (siw *ServerInterfaceWrapper) PostPromotionsIDRetry(w http.ResponseWriter, 
 
 	r = r.WithContext(ctx)
 
+	// Parameter object where we will unmarshal all parameters from the context
+	var params PostPromotionsIDRetryParams
+
+	headers := r.Header
+
+	// ------------- Optional header parameter "Idempotency-Key" -------------
+	if valueList, found := headers[http.CanonicalHeaderKey("Idempotency-Key")]; found {
+		var IdempotencyKey IdempotencyKey
+		n := len(valueList)
+		if n != 1 {
+			siw.ErrorHandlerFunc(w, r, &TooManyValuesForParamError{ParamName: "Idempotency-Key", Count: n})
+			return
+		}
+
+		err = runtime.BindStyledParameterWithOptions("simple", "Idempotency-Key", valueList[0], &IdempotencyKey, runtime.BindStyledParameterOptions{ParamLocation: runtime.ParamLocationHeader, Explode: false, Required: false, Type: "string", Format: ""})
+		if err != nil {
+			siw.ErrorHandlerFunc(w, r, &InvalidParamFormatError{ParamName: "Idempotency-Key", Err: err})
+			return
+		}
+
+		params.IdempotencyKey = &IdempotencyKey
+
+	}
+
 	handler := http.Handler(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		siw.Handler.PostPromotionsIDRetry(w, r, id)
+		siw.Handler.PostPromotionsIDRetry(w, r, id, params)
 	}))
 
 	for _, middleware := range siw.HandlerMiddlewares {
@@ -4020,9 +5051,23 @@ func HandlerWithOptions(si ServerInterface, options StdHTTPServerOptions) http.H
 	return m
 }
 
-type ForbiddenJSONResponse Error
+type BadRequestApplicationProblemPlusJSONResponse Problem
 
-type NotFoundJSONResponse Error
+type ConflictApplicationProblemPlusJSONResponse Problem
+
+type DegradedApplicationProblemPlusJSONResponse Problem
+
+type ForbiddenApplicationProblemPlusJSONResponse Problem
+
+type NotFoundApplicationProblemPlusJSONResponse Problem
+
+type NotImplementedApplicationProblemPlusJSONResponse Problem
+
+type TooManyRequestsApplicationProblemPlusJSONResponse Problem
+
+type UnauthenticatedApplicationProblemPlusJSONResponse Problem
+
+type UnavailableApplicationProblemPlusJSONResponse Problem
 
 type GetApplicationsRequestObject struct {
 	Params GetApplicationsParams
@@ -4050,6 +5095,86 @@ func (response GetApplications200JSONResponse) VisitGetApplicationsResponse(w ht
 	return err
 }
 
+type GetApplications400ApplicationProblemPlusJSONResponse struct {
+	BadRequestApplicationProblemPlusJSONResponse
+}
+
+func (response GetApplications400ApplicationProblemPlusJSONResponse) VisitGetApplicationsResponse(w http.ResponseWriter) error {
+
+	var buf bytes.Buffer
+	if err := json.NewEncoder(&buf).Encode(response); err != nil {
+		return err
+	}
+	w.Header().Set("Content-Type", "application/problem+json")
+	w.WriteHeader(400)
+	_, err := buf.WriteTo(w)
+	return err
+}
+
+type GetApplications401ApplicationProblemPlusJSONResponse struct {
+	UnauthenticatedApplicationProblemPlusJSONResponse
+}
+
+func (response GetApplications401ApplicationProblemPlusJSONResponse) VisitGetApplicationsResponse(w http.ResponseWriter) error {
+
+	var buf bytes.Buffer
+	if err := json.NewEncoder(&buf).Encode(response); err != nil {
+		return err
+	}
+	w.Header().Set("Content-Type", "application/problem+json")
+	w.WriteHeader(401)
+	_, err := buf.WriteTo(w)
+	return err
+}
+
+type GetApplications403ApplicationProblemPlusJSONResponse struct {
+	ForbiddenApplicationProblemPlusJSONResponse
+}
+
+func (response GetApplications403ApplicationProblemPlusJSONResponse) VisitGetApplicationsResponse(w http.ResponseWriter) error {
+
+	var buf bytes.Buffer
+	if err := json.NewEncoder(&buf).Encode(response); err != nil {
+		return err
+	}
+	w.Header().Set("Content-Type", "application/problem+json")
+	w.WriteHeader(403)
+	_, err := buf.WriteTo(w)
+	return err
+}
+
+type GetApplications500ApplicationProblemPlusJSONResponse struct {
+	DegradedApplicationProblemPlusJSONResponse
+}
+
+func (response GetApplications500ApplicationProblemPlusJSONResponse) VisitGetApplicationsResponse(w http.ResponseWriter) error {
+
+	var buf bytes.Buffer
+	if err := json.NewEncoder(&buf).Encode(response); err != nil {
+		return err
+	}
+	w.Header().Set("Content-Type", "application/problem+json")
+	w.WriteHeader(500)
+	_, err := buf.WriteTo(w)
+	return err
+}
+
+type GetApplications503ApplicationProblemPlusJSONResponse struct {
+	UnavailableApplicationProblemPlusJSONResponse
+}
+
+func (response GetApplications503ApplicationProblemPlusJSONResponse) VisitGetApplicationsResponse(w http.ResponseWriter) error {
+
+	var buf bytes.Buffer
+	if err := json.NewEncoder(&buf).Encode(response); err != nil {
+		return err
+	}
+	w.Header().Set("Content-Type", "application/problem+json")
+	w.WriteHeader(503)
+	_, err := buf.WriteTo(w)
+	return err
+}
+
 type GetApplicationsNameRequestObject struct {
 	Name Name `json:"name"`
 }
@@ -4072,16 +5197,98 @@ func (response GetApplicationsName200JSONResponse) VisitGetApplicationsNameRespo
 	return err
 }
 
-type GetApplicationsName404JSONResponse struct{ NotFoundJSONResponse }
+type GetApplicationsName400ApplicationProblemPlusJSONResponse struct {
+	BadRequestApplicationProblemPlusJSONResponse
+}
 
-func (response GetApplicationsName404JSONResponse) VisitGetApplicationsNameResponse(w http.ResponseWriter) error {
+func (response GetApplicationsName400ApplicationProblemPlusJSONResponse) VisitGetApplicationsNameResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response); err != nil {
 		return err
 	}
-	w.Header().Set("Content-Type", "application/json")
+	w.Header().Set("Content-Type", "application/problem+json")
+	w.WriteHeader(400)
+	_, err := buf.WriteTo(w)
+	return err
+}
+
+type GetApplicationsName401ApplicationProblemPlusJSONResponse struct {
+	UnauthenticatedApplicationProblemPlusJSONResponse
+}
+
+func (response GetApplicationsName401ApplicationProblemPlusJSONResponse) VisitGetApplicationsNameResponse(w http.ResponseWriter) error {
+
+	var buf bytes.Buffer
+	if err := json.NewEncoder(&buf).Encode(response); err != nil {
+		return err
+	}
+	w.Header().Set("Content-Type", "application/problem+json")
+	w.WriteHeader(401)
+	_, err := buf.WriteTo(w)
+	return err
+}
+
+type GetApplicationsName403ApplicationProblemPlusJSONResponse struct {
+	ForbiddenApplicationProblemPlusJSONResponse
+}
+
+func (response GetApplicationsName403ApplicationProblemPlusJSONResponse) VisitGetApplicationsNameResponse(w http.ResponseWriter) error {
+
+	var buf bytes.Buffer
+	if err := json.NewEncoder(&buf).Encode(response); err != nil {
+		return err
+	}
+	w.Header().Set("Content-Type", "application/problem+json")
+	w.WriteHeader(403)
+	_, err := buf.WriteTo(w)
+	return err
+}
+
+type GetApplicationsName404ApplicationProblemPlusJSONResponse struct {
+	NotFoundApplicationProblemPlusJSONResponse
+}
+
+func (response GetApplicationsName404ApplicationProblemPlusJSONResponse) VisitGetApplicationsNameResponse(w http.ResponseWriter) error {
+
+	var buf bytes.Buffer
+	if err := json.NewEncoder(&buf).Encode(response); err != nil {
+		return err
+	}
+	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(404)
+	_, err := buf.WriteTo(w)
+	return err
+}
+
+type GetApplicationsName500ApplicationProblemPlusJSONResponse struct {
+	DegradedApplicationProblemPlusJSONResponse
+}
+
+func (response GetApplicationsName500ApplicationProblemPlusJSONResponse) VisitGetApplicationsNameResponse(w http.ResponseWriter) error {
+
+	var buf bytes.Buffer
+	if err := json.NewEncoder(&buf).Encode(response); err != nil {
+		return err
+	}
+	w.Header().Set("Content-Type", "application/problem+json")
+	w.WriteHeader(500)
+	_, err := buf.WriteTo(w)
+	return err
+}
+
+type GetApplicationsName503ApplicationProblemPlusJSONResponse struct {
+	UnavailableApplicationProblemPlusJSONResponse
+}
+
+func (response GetApplicationsName503ApplicationProblemPlusJSONResponse) VisitGetApplicationsNameResponse(w http.ResponseWriter) error {
+
+	var buf bytes.Buffer
+	if err := json.NewEncoder(&buf).Encode(response); err != nil {
+		return err
+	}
+	w.Header().Set("Content-Type", "application/problem+json")
+	w.WriteHeader(503)
 	_, err := buf.WriteTo(w)
 	return err
 }
@@ -4108,6 +5315,102 @@ func (response GetApplicationsNameMatrix200JSONResponse) VisitGetApplicationsNam
 	return err
 }
 
+type GetApplicationsNameMatrix400ApplicationProblemPlusJSONResponse struct {
+	BadRequestApplicationProblemPlusJSONResponse
+}
+
+func (response GetApplicationsNameMatrix400ApplicationProblemPlusJSONResponse) VisitGetApplicationsNameMatrixResponse(w http.ResponseWriter) error {
+
+	var buf bytes.Buffer
+	if err := json.NewEncoder(&buf).Encode(response); err != nil {
+		return err
+	}
+	w.Header().Set("Content-Type", "application/problem+json")
+	w.WriteHeader(400)
+	_, err := buf.WriteTo(w)
+	return err
+}
+
+type GetApplicationsNameMatrix401ApplicationProblemPlusJSONResponse struct {
+	UnauthenticatedApplicationProblemPlusJSONResponse
+}
+
+func (response GetApplicationsNameMatrix401ApplicationProblemPlusJSONResponse) VisitGetApplicationsNameMatrixResponse(w http.ResponseWriter) error {
+
+	var buf bytes.Buffer
+	if err := json.NewEncoder(&buf).Encode(response); err != nil {
+		return err
+	}
+	w.Header().Set("Content-Type", "application/problem+json")
+	w.WriteHeader(401)
+	_, err := buf.WriteTo(w)
+	return err
+}
+
+type GetApplicationsNameMatrix403ApplicationProblemPlusJSONResponse struct {
+	ForbiddenApplicationProblemPlusJSONResponse
+}
+
+func (response GetApplicationsNameMatrix403ApplicationProblemPlusJSONResponse) VisitGetApplicationsNameMatrixResponse(w http.ResponseWriter) error {
+
+	var buf bytes.Buffer
+	if err := json.NewEncoder(&buf).Encode(response); err != nil {
+		return err
+	}
+	w.Header().Set("Content-Type", "application/problem+json")
+	w.WriteHeader(403)
+	_, err := buf.WriteTo(w)
+	return err
+}
+
+type GetApplicationsNameMatrix404ApplicationProblemPlusJSONResponse struct {
+	NotFoundApplicationProblemPlusJSONResponse
+}
+
+func (response GetApplicationsNameMatrix404ApplicationProblemPlusJSONResponse) VisitGetApplicationsNameMatrixResponse(w http.ResponseWriter) error {
+
+	var buf bytes.Buffer
+	if err := json.NewEncoder(&buf).Encode(response); err != nil {
+		return err
+	}
+	w.Header().Set("Content-Type", "application/problem+json")
+	w.WriteHeader(404)
+	_, err := buf.WriteTo(w)
+	return err
+}
+
+type GetApplicationsNameMatrix500ApplicationProblemPlusJSONResponse struct {
+	DegradedApplicationProblemPlusJSONResponse
+}
+
+func (response GetApplicationsNameMatrix500ApplicationProblemPlusJSONResponse) VisitGetApplicationsNameMatrixResponse(w http.ResponseWriter) error {
+
+	var buf bytes.Buffer
+	if err := json.NewEncoder(&buf).Encode(response); err != nil {
+		return err
+	}
+	w.Header().Set("Content-Type", "application/problem+json")
+	w.WriteHeader(500)
+	_, err := buf.WriteTo(w)
+	return err
+}
+
+type GetApplicationsNameMatrix503ApplicationProblemPlusJSONResponse struct {
+	UnavailableApplicationProblemPlusJSONResponse
+}
+
+func (response GetApplicationsNameMatrix503ApplicationProblemPlusJSONResponse) VisitGetApplicationsNameMatrixResponse(w http.ResponseWriter) error {
+
+	var buf bytes.Buffer
+	if err := json.NewEncoder(&buf).Encode(response); err != nil {
+		return err
+	}
+	w.Header().Set("Content-Type", "application/problem+json")
+	w.WriteHeader(503)
+	_, err := buf.WriteTo(w)
+	return err
+}
+
 type GetApplicationsNamePromotionsRequestObject struct {
 	Name Name `json:"name"`
 }
@@ -4130,6 +5433,86 @@ func (response GetApplicationsNamePromotions200JSONResponse) VisitGetApplication
 	return err
 }
 
+type GetApplicationsNamePromotions400ApplicationProblemPlusJSONResponse struct {
+	BadRequestApplicationProblemPlusJSONResponse
+}
+
+func (response GetApplicationsNamePromotions400ApplicationProblemPlusJSONResponse) VisitGetApplicationsNamePromotionsResponse(w http.ResponseWriter) error {
+
+	var buf bytes.Buffer
+	if err := json.NewEncoder(&buf).Encode(response); err != nil {
+		return err
+	}
+	w.Header().Set("Content-Type", "application/problem+json")
+	w.WriteHeader(400)
+	_, err := buf.WriteTo(w)
+	return err
+}
+
+type GetApplicationsNamePromotions401ApplicationProblemPlusJSONResponse struct {
+	UnauthenticatedApplicationProblemPlusJSONResponse
+}
+
+func (response GetApplicationsNamePromotions401ApplicationProblemPlusJSONResponse) VisitGetApplicationsNamePromotionsResponse(w http.ResponseWriter) error {
+
+	var buf bytes.Buffer
+	if err := json.NewEncoder(&buf).Encode(response); err != nil {
+		return err
+	}
+	w.Header().Set("Content-Type", "application/problem+json")
+	w.WriteHeader(401)
+	_, err := buf.WriteTo(w)
+	return err
+}
+
+type GetApplicationsNamePromotions403ApplicationProblemPlusJSONResponse struct {
+	ForbiddenApplicationProblemPlusJSONResponse
+}
+
+func (response GetApplicationsNamePromotions403ApplicationProblemPlusJSONResponse) VisitGetApplicationsNamePromotionsResponse(w http.ResponseWriter) error {
+
+	var buf bytes.Buffer
+	if err := json.NewEncoder(&buf).Encode(response); err != nil {
+		return err
+	}
+	w.Header().Set("Content-Type", "application/problem+json")
+	w.WriteHeader(403)
+	_, err := buf.WriteTo(w)
+	return err
+}
+
+type GetApplicationsNamePromotions500ApplicationProblemPlusJSONResponse struct {
+	DegradedApplicationProblemPlusJSONResponse
+}
+
+func (response GetApplicationsNamePromotions500ApplicationProblemPlusJSONResponse) VisitGetApplicationsNamePromotionsResponse(w http.ResponseWriter) error {
+
+	var buf bytes.Buffer
+	if err := json.NewEncoder(&buf).Encode(response); err != nil {
+		return err
+	}
+	w.Header().Set("Content-Type", "application/problem+json")
+	w.WriteHeader(500)
+	_, err := buf.WriteTo(w)
+	return err
+}
+
+type GetApplicationsNamePromotions503ApplicationProblemPlusJSONResponse struct {
+	UnavailableApplicationProblemPlusJSONResponse
+}
+
+func (response GetApplicationsNamePromotions503ApplicationProblemPlusJSONResponse) VisitGetApplicationsNamePromotionsResponse(w http.ResponseWriter) error {
+
+	var buf bytes.Buffer
+	if err := json.NewEncoder(&buf).Encode(response); err != nil {
+		return err
+	}
+	w.Header().Set("Content-Type", "application/problem+json")
+	w.WriteHeader(503)
+	_, err := buf.WriteTo(w)
+	return err
+}
+
 type GetApplicationsNameReleasesRequestObject struct {
 	Name Name `json:"name"`
 }
@@ -4148,6 +5531,86 @@ func (response GetApplicationsNameReleases200JSONResponse) VisitGetApplicationsN
 	}
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
+	_, err := buf.WriteTo(w)
+	return err
+}
+
+type GetApplicationsNameReleases400ApplicationProblemPlusJSONResponse struct {
+	BadRequestApplicationProblemPlusJSONResponse
+}
+
+func (response GetApplicationsNameReleases400ApplicationProblemPlusJSONResponse) VisitGetApplicationsNameReleasesResponse(w http.ResponseWriter) error {
+
+	var buf bytes.Buffer
+	if err := json.NewEncoder(&buf).Encode(response); err != nil {
+		return err
+	}
+	w.Header().Set("Content-Type", "application/problem+json")
+	w.WriteHeader(400)
+	_, err := buf.WriteTo(w)
+	return err
+}
+
+type GetApplicationsNameReleases401ApplicationProblemPlusJSONResponse struct {
+	UnauthenticatedApplicationProblemPlusJSONResponse
+}
+
+func (response GetApplicationsNameReleases401ApplicationProblemPlusJSONResponse) VisitGetApplicationsNameReleasesResponse(w http.ResponseWriter) error {
+
+	var buf bytes.Buffer
+	if err := json.NewEncoder(&buf).Encode(response); err != nil {
+		return err
+	}
+	w.Header().Set("Content-Type", "application/problem+json")
+	w.WriteHeader(401)
+	_, err := buf.WriteTo(w)
+	return err
+}
+
+type GetApplicationsNameReleases403ApplicationProblemPlusJSONResponse struct {
+	ForbiddenApplicationProblemPlusJSONResponse
+}
+
+func (response GetApplicationsNameReleases403ApplicationProblemPlusJSONResponse) VisitGetApplicationsNameReleasesResponse(w http.ResponseWriter) error {
+
+	var buf bytes.Buffer
+	if err := json.NewEncoder(&buf).Encode(response); err != nil {
+		return err
+	}
+	w.Header().Set("Content-Type", "application/problem+json")
+	w.WriteHeader(403)
+	_, err := buf.WriteTo(w)
+	return err
+}
+
+type GetApplicationsNameReleases500ApplicationProblemPlusJSONResponse struct {
+	DegradedApplicationProblemPlusJSONResponse
+}
+
+func (response GetApplicationsNameReleases500ApplicationProblemPlusJSONResponse) VisitGetApplicationsNameReleasesResponse(w http.ResponseWriter) error {
+
+	var buf bytes.Buffer
+	if err := json.NewEncoder(&buf).Encode(response); err != nil {
+		return err
+	}
+	w.Header().Set("Content-Type", "application/problem+json")
+	w.WriteHeader(500)
+	_, err := buf.WriteTo(w)
+	return err
+}
+
+type GetApplicationsNameReleases503ApplicationProblemPlusJSONResponse struct {
+	UnavailableApplicationProblemPlusJSONResponse
+}
+
+func (response GetApplicationsNameReleases503ApplicationProblemPlusJSONResponse) VisitGetApplicationsNameReleasesResponse(w http.ResponseWriter) error {
+
+	var buf bytes.Buffer
+	if err := json.NewEncoder(&buf).Encode(response); err != nil {
+		return err
+	}
+	w.Header().Set("Content-Type", "application/problem+json")
+	w.WriteHeader(503)
 	_, err := buf.WriteTo(w)
 	return err
 }
@@ -4177,6 +5640,86 @@ func (response GetAudit200JSONResponse) VisitGetAuditResponse(w http.ResponseWri
 	return err
 }
 
+type GetAudit400ApplicationProblemPlusJSONResponse struct {
+	BadRequestApplicationProblemPlusJSONResponse
+}
+
+func (response GetAudit400ApplicationProblemPlusJSONResponse) VisitGetAuditResponse(w http.ResponseWriter) error {
+
+	var buf bytes.Buffer
+	if err := json.NewEncoder(&buf).Encode(response); err != nil {
+		return err
+	}
+	w.Header().Set("Content-Type", "application/problem+json")
+	w.WriteHeader(400)
+	_, err := buf.WriteTo(w)
+	return err
+}
+
+type GetAudit401ApplicationProblemPlusJSONResponse struct {
+	UnauthenticatedApplicationProblemPlusJSONResponse
+}
+
+func (response GetAudit401ApplicationProblemPlusJSONResponse) VisitGetAuditResponse(w http.ResponseWriter) error {
+
+	var buf bytes.Buffer
+	if err := json.NewEncoder(&buf).Encode(response); err != nil {
+		return err
+	}
+	w.Header().Set("Content-Type", "application/problem+json")
+	w.WriteHeader(401)
+	_, err := buf.WriteTo(w)
+	return err
+}
+
+type GetAudit403ApplicationProblemPlusJSONResponse struct {
+	ForbiddenApplicationProblemPlusJSONResponse
+}
+
+func (response GetAudit403ApplicationProblemPlusJSONResponse) VisitGetAuditResponse(w http.ResponseWriter) error {
+
+	var buf bytes.Buffer
+	if err := json.NewEncoder(&buf).Encode(response); err != nil {
+		return err
+	}
+	w.Header().Set("Content-Type", "application/problem+json")
+	w.WriteHeader(403)
+	_, err := buf.WriteTo(w)
+	return err
+}
+
+type GetAudit500ApplicationProblemPlusJSONResponse struct {
+	DegradedApplicationProblemPlusJSONResponse
+}
+
+func (response GetAudit500ApplicationProblemPlusJSONResponse) VisitGetAuditResponse(w http.ResponseWriter) error {
+
+	var buf bytes.Buffer
+	if err := json.NewEncoder(&buf).Encode(response); err != nil {
+		return err
+	}
+	w.Header().Set("Content-Type", "application/problem+json")
+	w.WriteHeader(500)
+	_, err := buf.WriteTo(w)
+	return err
+}
+
+type GetAudit503ApplicationProblemPlusJSONResponse struct {
+	UnavailableApplicationProblemPlusJSONResponse
+}
+
+func (response GetAudit503ApplicationProblemPlusJSONResponse) VisitGetAuditResponse(w http.ResponseWriter) error {
+
+	var buf bytes.Buffer
+	if err := json.NewEncoder(&buf).Encode(response); err != nil {
+		return err
+	}
+	w.Header().Set("Content-Type", "application/problem+json")
+	w.WriteHeader(503)
+	_, err := buf.WriteTo(w)
+	return err
+}
+
 type GetDiffRequestObject struct {
 	Params GetDiffParams
 }
@@ -4199,6 +5742,86 @@ func (response GetDiff200JSONResponse) VisitGetDiffResponse(w http.ResponseWrite
 	return err
 }
 
+type GetDiff400ApplicationProblemPlusJSONResponse struct {
+	BadRequestApplicationProblemPlusJSONResponse
+}
+
+func (response GetDiff400ApplicationProblemPlusJSONResponse) VisitGetDiffResponse(w http.ResponseWriter) error {
+
+	var buf bytes.Buffer
+	if err := json.NewEncoder(&buf).Encode(response); err != nil {
+		return err
+	}
+	w.Header().Set("Content-Type", "application/problem+json")
+	w.WriteHeader(400)
+	_, err := buf.WriteTo(w)
+	return err
+}
+
+type GetDiff401ApplicationProblemPlusJSONResponse struct {
+	UnauthenticatedApplicationProblemPlusJSONResponse
+}
+
+func (response GetDiff401ApplicationProblemPlusJSONResponse) VisitGetDiffResponse(w http.ResponseWriter) error {
+
+	var buf bytes.Buffer
+	if err := json.NewEncoder(&buf).Encode(response); err != nil {
+		return err
+	}
+	w.Header().Set("Content-Type", "application/problem+json")
+	w.WriteHeader(401)
+	_, err := buf.WriteTo(w)
+	return err
+}
+
+type GetDiff403ApplicationProblemPlusJSONResponse struct {
+	ForbiddenApplicationProblemPlusJSONResponse
+}
+
+func (response GetDiff403ApplicationProblemPlusJSONResponse) VisitGetDiffResponse(w http.ResponseWriter) error {
+
+	var buf bytes.Buffer
+	if err := json.NewEncoder(&buf).Encode(response); err != nil {
+		return err
+	}
+	w.Header().Set("Content-Type", "application/problem+json")
+	w.WriteHeader(403)
+	_, err := buf.WriteTo(w)
+	return err
+}
+
+type GetDiff500ApplicationProblemPlusJSONResponse struct {
+	DegradedApplicationProblemPlusJSONResponse
+}
+
+func (response GetDiff500ApplicationProblemPlusJSONResponse) VisitGetDiffResponse(w http.ResponseWriter) error {
+
+	var buf bytes.Buffer
+	if err := json.NewEncoder(&buf).Encode(response); err != nil {
+		return err
+	}
+	w.Header().Set("Content-Type", "application/problem+json")
+	w.WriteHeader(500)
+	_, err := buf.WriteTo(w)
+	return err
+}
+
+type GetDiff503ApplicationProblemPlusJSONResponse struct {
+	UnavailableApplicationProblemPlusJSONResponse
+}
+
+func (response GetDiff503ApplicationProblemPlusJSONResponse) VisitGetDiffResponse(w http.ResponseWriter) error {
+
+	var buf bytes.Buffer
+	if err := json.NewEncoder(&buf).Encode(response); err != nil {
+		return err
+	}
+	w.Header().Set("Content-Type", "application/problem+json")
+	w.WriteHeader(503)
+	_, err := buf.WriteTo(w)
+	return err
+}
+
 type GetEnvironmentsRequestObject struct {
 }
 
@@ -4216,6 +5839,86 @@ func (response GetEnvironments200JSONResponse) VisitGetEnvironmentsResponse(w ht
 	}
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
+	_, err := buf.WriteTo(w)
+	return err
+}
+
+type GetEnvironments400ApplicationProblemPlusJSONResponse struct {
+	BadRequestApplicationProblemPlusJSONResponse
+}
+
+func (response GetEnvironments400ApplicationProblemPlusJSONResponse) VisitGetEnvironmentsResponse(w http.ResponseWriter) error {
+
+	var buf bytes.Buffer
+	if err := json.NewEncoder(&buf).Encode(response); err != nil {
+		return err
+	}
+	w.Header().Set("Content-Type", "application/problem+json")
+	w.WriteHeader(400)
+	_, err := buf.WriteTo(w)
+	return err
+}
+
+type GetEnvironments401ApplicationProblemPlusJSONResponse struct {
+	UnauthenticatedApplicationProblemPlusJSONResponse
+}
+
+func (response GetEnvironments401ApplicationProblemPlusJSONResponse) VisitGetEnvironmentsResponse(w http.ResponseWriter) error {
+
+	var buf bytes.Buffer
+	if err := json.NewEncoder(&buf).Encode(response); err != nil {
+		return err
+	}
+	w.Header().Set("Content-Type", "application/problem+json")
+	w.WriteHeader(401)
+	_, err := buf.WriteTo(w)
+	return err
+}
+
+type GetEnvironments403ApplicationProblemPlusJSONResponse struct {
+	ForbiddenApplicationProblemPlusJSONResponse
+}
+
+func (response GetEnvironments403ApplicationProblemPlusJSONResponse) VisitGetEnvironmentsResponse(w http.ResponseWriter) error {
+
+	var buf bytes.Buffer
+	if err := json.NewEncoder(&buf).Encode(response); err != nil {
+		return err
+	}
+	w.Header().Set("Content-Type", "application/problem+json")
+	w.WriteHeader(403)
+	_, err := buf.WriteTo(w)
+	return err
+}
+
+type GetEnvironments500ApplicationProblemPlusJSONResponse struct {
+	DegradedApplicationProblemPlusJSONResponse
+}
+
+func (response GetEnvironments500ApplicationProblemPlusJSONResponse) VisitGetEnvironmentsResponse(w http.ResponseWriter) error {
+
+	var buf bytes.Buffer
+	if err := json.NewEncoder(&buf).Encode(response); err != nil {
+		return err
+	}
+	w.Header().Set("Content-Type", "application/problem+json")
+	w.WriteHeader(500)
+	_, err := buf.WriteTo(w)
+	return err
+}
+
+type GetEnvironments503ApplicationProblemPlusJSONResponse struct {
+	UnavailableApplicationProblemPlusJSONResponse
+}
+
+func (response GetEnvironments503ApplicationProblemPlusJSONResponse) VisitGetEnvironmentsResponse(w http.ResponseWriter) error {
+
+	var buf bytes.Buffer
+	if err := json.NewEncoder(&buf).Encode(response); err != nil {
+		return err
+	}
+	w.Header().Set("Content-Type", "application/problem+json")
+	w.WriteHeader(503)
 	_, err := buf.WriteTo(w)
 	return err
 }
@@ -4242,8 +5945,89 @@ func (response GetPromotions200JSONResponse) VisitGetPromotionsResponse(w http.R
 	return err
 }
 
+type GetPromotions400ApplicationProblemPlusJSONResponse struct {
+	BadRequestApplicationProblemPlusJSONResponse
+}
+
+func (response GetPromotions400ApplicationProblemPlusJSONResponse) VisitGetPromotionsResponse(w http.ResponseWriter) error {
+
+	var buf bytes.Buffer
+	if err := json.NewEncoder(&buf).Encode(response); err != nil {
+		return err
+	}
+	w.Header().Set("Content-Type", "application/problem+json")
+	w.WriteHeader(400)
+	_, err := buf.WriteTo(w)
+	return err
+}
+
+type GetPromotions401ApplicationProblemPlusJSONResponse struct {
+	UnauthenticatedApplicationProblemPlusJSONResponse
+}
+
+func (response GetPromotions401ApplicationProblemPlusJSONResponse) VisitGetPromotionsResponse(w http.ResponseWriter) error {
+
+	var buf bytes.Buffer
+	if err := json.NewEncoder(&buf).Encode(response); err != nil {
+		return err
+	}
+	w.Header().Set("Content-Type", "application/problem+json")
+	w.WriteHeader(401)
+	_, err := buf.WriteTo(w)
+	return err
+}
+
+type GetPromotions403ApplicationProblemPlusJSONResponse struct {
+	ForbiddenApplicationProblemPlusJSONResponse
+}
+
+func (response GetPromotions403ApplicationProblemPlusJSONResponse) VisitGetPromotionsResponse(w http.ResponseWriter) error {
+
+	var buf bytes.Buffer
+	if err := json.NewEncoder(&buf).Encode(response); err != nil {
+		return err
+	}
+	w.Header().Set("Content-Type", "application/problem+json")
+	w.WriteHeader(403)
+	_, err := buf.WriteTo(w)
+	return err
+}
+
+type GetPromotions500ApplicationProblemPlusJSONResponse struct {
+	DegradedApplicationProblemPlusJSONResponse
+}
+
+func (response GetPromotions500ApplicationProblemPlusJSONResponse) VisitGetPromotionsResponse(w http.ResponseWriter) error {
+
+	var buf bytes.Buffer
+	if err := json.NewEncoder(&buf).Encode(response); err != nil {
+		return err
+	}
+	w.Header().Set("Content-Type", "application/problem+json")
+	w.WriteHeader(500)
+	_, err := buf.WriteTo(w)
+	return err
+}
+
+type GetPromotions503ApplicationProblemPlusJSONResponse struct {
+	UnavailableApplicationProblemPlusJSONResponse
+}
+
+func (response GetPromotions503ApplicationProblemPlusJSONResponse) VisitGetPromotionsResponse(w http.ResponseWriter) error {
+
+	var buf bytes.Buffer
+	if err := json.NewEncoder(&buf).Encode(response); err != nil {
+		return err
+	}
+	w.Header().Set("Content-Type", "application/problem+json")
+	w.WriteHeader(503)
+	_, err := buf.WriteTo(w)
+	return err
+}
+
 type PostPromotionsRequestObject struct {
-	Body *PostPromotionsJSONRequestBody
+	Params PostPromotionsParams
+	Body   *PostPromotionsJSONRequestBody
 }
 
 type PostPromotionsResponseObject interface {
@@ -4264,16 +6048,130 @@ func (response PostPromotions202JSONResponse) VisitPostPromotionsResponse(w http
 	return err
 }
 
-type PostPromotions403JSONResponse struct{ ForbiddenJSONResponse }
+type PostPromotions400ApplicationProblemPlusJSONResponse struct {
+	BadRequestApplicationProblemPlusJSONResponse
+}
 
-func (response PostPromotions403JSONResponse) VisitPostPromotionsResponse(w http.ResponseWriter) error {
+func (response PostPromotions400ApplicationProblemPlusJSONResponse) VisitPostPromotionsResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response); err != nil {
 		return err
 	}
-	w.Header().Set("Content-Type", "application/json")
+	w.Header().Set("Content-Type", "application/problem+json")
+	w.WriteHeader(400)
+	_, err := buf.WriteTo(w)
+	return err
+}
+
+type PostPromotions401ApplicationProblemPlusJSONResponse struct {
+	UnauthenticatedApplicationProblemPlusJSONResponse
+}
+
+func (response PostPromotions401ApplicationProblemPlusJSONResponse) VisitPostPromotionsResponse(w http.ResponseWriter) error {
+
+	var buf bytes.Buffer
+	if err := json.NewEncoder(&buf).Encode(response); err != nil {
+		return err
+	}
+	w.Header().Set("Content-Type", "application/problem+json")
+	w.WriteHeader(401)
+	_, err := buf.WriteTo(w)
+	return err
+}
+
+type PostPromotions403ApplicationProblemPlusJSONResponse struct {
+	ForbiddenApplicationProblemPlusJSONResponse
+}
+
+func (response PostPromotions403ApplicationProblemPlusJSONResponse) VisitPostPromotionsResponse(w http.ResponseWriter) error {
+
+	var buf bytes.Buffer
+	if err := json.NewEncoder(&buf).Encode(response); err != nil {
+		return err
+	}
+	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(403)
+	_, err := buf.WriteTo(w)
+	return err
+}
+
+type PostPromotions404ApplicationProblemPlusJSONResponse struct {
+	NotFoundApplicationProblemPlusJSONResponse
+}
+
+func (response PostPromotions404ApplicationProblemPlusJSONResponse) VisitPostPromotionsResponse(w http.ResponseWriter) error {
+
+	var buf bytes.Buffer
+	if err := json.NewEncoder(&buf).Encode(response); err != nil {
+		return err
+	}
+	w.Header().Set("Content-Type", "application/problem+json")
+	w.WriteHeader(404)
+	_, err := buf.WriteTo(w)
+	return err
+}
+
+type PostPromotions409ApplicationProblemPlusJSONResponse struct {
+	ConflictApplicationProblemPlusJSONResponse
+}
+
+func (response PostPromotions409ApplicationProblemPlusJSONResponse) VisitPostPromotionsResponse(w http.ResponseWriter) error {
+
+	var buf bytes.Buffer
+	if err := json.NewEncoder(&buf).Encode(response); err != nil {
+		return err
+	}
+	w.Header().Set("Content-Type", "application/problem+json")
+	w.WriteHeader(409)
+	_, err := buf.WriteTo(w)
+	return err
+}
+
+type PostPromotions429ApplicationProblemPlusJSONResponse struct {
+	TooManyRequestsApplicationProblemPlusJSONResponse
+}
+
+func (response PostPromotions429ApplicationProblemPlusJSONResponse) VisitPostPromotionsResponse(w http.ResponseWriter) error {
+
+	var buf bytes.Buffer
+	if err := json.NewEncoder(&buf).Encode(response); err != nil {
+		return err
+	}
+	w.Header().Set("Content-Type", "application/problem+json")
+	w.WriteHeader(429)
+	_, err := buf.WriteTo(w)
+	return err
+}
+
+type PostPromotions500ApplicationProblemPlusJSONResponse struct {
+	DegradedApplicationProblemPlusJSONResponse
+}
+
+func (response PostPromotions500ApplicationProblemPlusJSONResponse) VisitPostPromotionsResponse(w http.ResponseWriter) error {
+
+	var buf bytes.Buffer
+	if err := json.NewEncoder(&buf).Encode(response); err != nil {
+		return err
+	}
+	w.Header().Set("Content-Type", "application/problem+json")
+	w.WriteHeader(500)
+	_, err := buf.WriteTo(w)
+	return err
+}
+
+type PostPromotions501ApplicationProblemPlusJSONResponse struct {
+	NotImplementedApplicationProblemPlusJSONResponse
+}
+
+func (response PostPromotions501ApplicationProblemPlusJSONResponse) VisitPostPromotionsResponse(w http.ResponseWriter) error {
+
+	var buf bytes.Buffer
+	if err := json.NewEncoder(&buf).Encode(response); err != nil {
+		return err
+	}
+	w.Header().Set("Content-Type", "application/problem+json")
+	w.WriteHeader(501)
 	_, err := buf.WriteTo(w)
 	return err
 }
@@ -4300,23 +6198,106 @@ func (response GetPromotionsID200JSONResponse) VisitGetPromotionsIDResponse(w ht
 	return err
 }
 
-type GetPromotionsID404JSONResponse struct{ NotFoundJSONResponse }
+type GetPromotionsID400ApplicationProblemPlusJSONResponse struct {
+	BadRequestApplicationProblemPlusJSONResponse
+}
 
-func (response GetPromotionsID404JSONResponse) VisitGetPromotionsIDResponse(w http.ResponseWriter) error {
+func (response GetPromotionsID400ApplicationProblemPlusJSONResponse) VisitGetPromotionsIDResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response); err != nil {
 		return err
 	}
-	w.Header().Set("Content-Type", "application/json")
+	w.Header().Set("Content-Type", "application/problem+json")
+	w.WriteHeader(400)
+	_, err := buf.WriteTo(w)
+	return err
+}
+
+type GetPromotionsID401ApplicationProblemPlusJSONResponse struct {
+	UnauthenticatedApplicationProblemPlusJSONResponse
+}
+
+func (response GetPromotionsID401ApplicationProblemPlusJSONResponse) VisitGetPromotionsIDResponse(w http.ResponseWriter) error {
+
+	var buf bytes.Buffer
+	if err := json.NewEncoder(&buf).Encode(response); err != nil {
+		return err
+	}
+	w.Header().Set("Content-Type", "application/problem+json")
+	w.WriteHeader(401)
+	_, err := buf.WriteTo(w)
+	return err
+}
+
+type GetPromotionsID403ApplicationProblemPlusJSONResponse struct {
+	ForbiddenApplicationProblemPlusJSONResponse
+}
+
+func (response GetPromotionsID403ApplicationProblemPlusJSONResponse) VisitGetPromotionsIDResponse(w http.ResponseWriter) error {
+
+	var buf bytes.Buffer
+	if err := json.NewEncoder(&buf).Encode(response); err != nil {
+		return err
+	}
+	w.Header().Set("Content-Type", "application/problem+json")
+	w.WriteHeader(403)
+	_, err := buf.WriteTo(w)
+	return err
+}
+
+type GetPromotionsID404ApplicationProblemPlusJSONResponse struct {
+	NotFoundApplicationProblemPlusJSONResponse
+}
+
+func (response GetPromotionsID404ApplicationProblemPlusJSONResponse) VisitGetPromotionsIDResponse(w http.ResponseWriter) error {
+
+	var buf bytes.Buffer
+	if err := json.NewEncoder(&buf).Encode(response); err != nil {
+		return err
+	}
+	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(404)
 	_, err := buf.WriteTo(w)
 	return err
 }
 
+type GetPromotionsID500ApplicationProblemPlusJSONResponse struct {
+	DegradedApplicationProblemPlusJSONResponse
+}
+
+func (response GetPromotionsID500ApplicationProblemPlusJSONResponse) VisitGetPromotionsIDResponse(w http.ResponseWriter) error {
+
+	var buf bytes.Buffer
+	if err := json.NewEncoder(&buf).Encode(response); err != nil {
+		return err
+	}
+	w.Header().Set("Content-Type", "application/problem+json")
+	w.WriteHeader(500)
+	_, err := buf.WriteTo(w)
+	return err
+}
+
+type GetPromotionsID503ApplicationProblemPlusJSONResponse struct {
+	UnavailableApplicationProblemPlusJSONResponse
+}
+
+func (response GetPromotionsID503ApplicationProblemPlusJSONResponse) VisitGetPromotionsIDResponse(w http.ResponseWriter) error {
+
+	var buf bytes.Buffer
+	if err := json.NewEncoder(&buf).Encode(response); err != nil {
+		return err
+	}
+	w.Header().Set("Content-Type", "application/problem+json")
+	w.WriteHeader(503)
+	_, err := buf.WriteTo(w)
+	return err
+}
+
 type PostPromotionsIDApproveRequestObject struct {
-	ID   ID `json:"id"`
-	Body *PostPromotionsIDApproveJSONRequestBody
+	ID     ID `json:"id"`
+	Params PostPromotionsIDApproveParams
+	Body   *PostPromotionsIDApproveJSONRequestBody
 }
 
 type PostPromotionsIDApproveResponseObject interface {
@@ -4337,60 +6318,432 @@ func (response PostPromotionsIDApprove200JSONResponse) VisitPostPromotionsIDAppr
 	return err
 }
 
-type PostPromotionsIDApprove403JSONResponse struct{ ForbiddenJSONResponse }
+type PostPromotionsIDApprove400ApplicationProblemPlusJSONResponse struct {
+	BadRequestApplicationProblemPlusJSONResponse
+}
 
-func (response PostPromotionsIDApprove403JSONResponse) VisitPostPromotionsIDApproveResponse(w http.ResponseWriter) error {
+func (response PostPromotionsIDApprove400ApplicationProblemPlusJSONResponse) VisitPostPromotionsIDApproveResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response); err != nil {
 		return err
 	}
-	w.Header().Set("Content-Type", "application/json")
+	w.Header().Set("Content-Type", "application/problem+json")
+	w.WriteHeader(400)
+	_, err := buf.WriteTo(w)
+	return err
+}
+
+type PostPromotionsIDApprove401ApplicationProblemPlusJSONResponse struct {
+	UnauthenticatedApplicationProblemPlusJSONResponse
+}
+
+func (response PostPromotionsIDApprove401ApplicationProblemPlusJSONResponse) VisitPostPromotionsIDApproveResponse(w http.ResponseWriter) error {
+
+	var buf bytes.Buffer
+	if err := json.NewEncoder(&buf).Encode(response); err != nil {
+		return err
+	}
+	w.Header().Set("Content-Type", "application/problem+json")
+	w.WriteHeader(401)
+	_, err := buf.WriteTo(w)
+	return err
+}
+
+type PostPromotionsIDApprove403ApplicationProblemPlusJSONResponse struct {
+	ForbiddenApplicationProblemPlusJSONResponse
+}
+
+func (response PostPromotionsIDApprove403ApplicationProblemPlusJSONResponse) VisitPostPromotionsIDApproveResponse(w http.ResponseWriter) error {
+
+	var buf bytes.Buffer
+	if err := json.NewEncoder(&buf).Encode(response); err != nil {
+		return err
+	}
+	w.Header().Set("Content-Type", "application/problem+json")
 	w.WriteHeader(403)
 	_, err := buf.WriteTo(w)
 	return err
 }
 
+type PostPromotionsIDApprove404ApplicationProblemPlusJSONResponse struct {
+	NotFoundApplicationProblemPlusJSONResponse
+}
+
+func (response PostPromotionsIDApprove404ApplicationProblemPlusJSONResponse) VisitPostPromotionsIDApproveResponse(w http.ResponseWriter) error {
+
+	var buf bytes.Buffer
+	if err := json.NewEncoder(&buf).Encode(response); err != nil {
+		return err
+	}
+	w.Header().Set("Content-Type", "application/problem+json")
+	w.WriteHeader(404)
+	_, err := buf.WriteTo(w)
+	return err
+}
+
+type PostPromotionsIDApprove409ApplicationProblemPlusJSONResponse struct {
+	ConflictApplicationProblemPlusJSONResponse
+}
+
+func (response PostPromotionsIDApprove409ApplicationProblemPlusJSONResponse) VisitPostPromotionsIDApproveResponse(w http.ResponseWriter) error {
+
+	var buf bytes.Buffer
+	if err := json.NewEncoder(&buf).Encode(response); err != nil {
+		return err
+	}
+	w.Header().Set("Content-Type", "application/problem+json")
+	w.WriteHeader(409)
+	_, err := buf.WriteTo(w)
+	return err
+}
+
+type PostPromotionsIDApprove429ApplicationProblemPlusJSONResponse struct {
+	TooManyRequestsApplicationProblemPlusJSONResponse
+}
+
+func (response PostPromotionsIDApprove429ApplicationProblemPlusJSONResponse) VisitPostPromotionsIDApproveResponse(w http.ResponseWriter) error {
+
+	var buf bytes.Buffer
+	if err := json.NewEncoder(&buf).Encode(response); err != nil {
+		return err
+	}
+	w.Header().Set("Content-Type", "application/problem+json")
+	w.WriteHeader(429)
+	_, err := buf.WriteTo(w)
+	return err
+}
+
+type PostPromotionsIDApprove500ApplicationProblemPlusJSONResponse struct {
+	DegradedApplicationProblemPlusJSONResponse
+}
+
+func (response PostPromotionsIDApprove500ApplicationProblemPlusJSONResponse) VisitPostPromotionsIDApproveResponse(w http.ResponseWriter) error {
+
+	var buf bytes.Buffer
+	if err := json.NewEncoder(&buf).Encode(response); err != nil {
+		return err
+	}
+	w.Header().Set("Content-Type", "application/problem+json")
+	w.WriteHeader(500)
+	_, err := buf.WriteTo(w)
+	return err
+}
+
+type PostPromotionsIDApprove501ApplicationProblemPlusJSONResponse struct {
+	NotImplementedApplicationProblemPlusJSONResponse
+}
+
+func (response PostPromotionsIDApprove501ApplicationProblemPlusJSONResponse) VisitPostPromotionsIDApproveResponse(w http.ResponseWriter) error {
+
+	var buf bytes.Buffer
+	if err := json.NewEncoder(&buf).Encode(response); err != nil {
+		return err
+	}
+	w.Header().Set("Content-Type", "application/problem+json")
+	w.WriteHeader(501)
+	_, err := buf.WriteTo(w)
+	return err
+}
+
 type PostPromotionsIDCancelRequestObject struct {
-	ID ID `json:"id"`
+	ID     ID `json:"id"`
+	Params PostPromotionsIDCancelParams
 }
 
 type PostPromotionsIDCancelResponseObject interface {
 	VisitPostPromotionsIDCancelResponse(w http.ResponseWriter) error
 }
 
-type PostPromotionsIDCancel200JSONResponse Promotion
+type PostPromotionsIDCancel202JSONResponse Promotion
 
-func (response PostPromotionsIDCancel200JSONResponse) VisitPostPromotionsIDCancelResponse(w http.ResponseWriter) error {
+func (response PostPromotionsIDCancel202JSONResponse) VisitPostPromotionsIDCancelResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response); err != nil {
 		return err
 	}
 	w.Header().Set("Content-Type", "application/json")
-	w.WriteHeader(200)
+	w.WriteHeader(202)
+	_, err := buf.WriteTo(w)
+	return err
+}
+
+type PostPromotionsIDCancel400ApplicationProblemPlusJSONResponse struct {
+	BadRequestApplicationProblemPlusJSONResponse
+}
+
+func (response PostPromotionsIDCancel400ApplicationProblemPlusJSONResponse) VisitPostPromotionsIDCancelResponse(w http.ResponseWriter) error {
+
+	var buf bytes.Buffer
+	if err := json.NewEncoder(&buf).Encode(response); err != nil {
+		return err
+	}
+	w.Header().Set("Content-Type", "application/problem+json")
+	w.WriteHeader(400)
+	_, err := buf.WriteTo(w)
+	return err
+}
+
+type PostPromotionsIDCancel401ApplicationProblemPlusJSONResponse struct {
+	UnauthenticatedApplicationProblemPlusJSONResponse
+}
+
+func (response PostPromotionsIDCancel401ApplicationProblemPlusJSONResponse) VisitPostPromotionsIDCancelResponse(w http.ResponseWriter) error {
+
+	var buf bytes.Buffer
+	if err := json.NewEncoder(&buf).Encode(response); err != nil {
+		return err
+	}
+	w.Header().Set("Content-Type", "application/problem+json")
+	w.WriteHeader(401)
+	_, err := buf.WriteTo(w)
+	return err
+}
+
+type PostPromotionsIDCancel403ApplicationProblemPlusJSONResponse struct {
+	ForbiddenApplicationProblemPlusJSONResponse
+}
+
+func (response PostPromotionsIDCancel403ApplicationProblemPlusJSONResponse) VisitPostPromotionsIDCancelResponse(w http.ResponseWriter) error {
+
+	var buf bytes.Buffer
+	if err := json.NewEncoder(&buf).Encode(response); err != nil {
+		return err
+	}
+	w.Header().Set("Content-Type", "application/problem+json")
+	w.WriteHeader(403)
+	_, err := buf.WriteTo(w)
+	return err
+}
+
+type PostPromotionsIDCancel404ApplicationProblemPlusJSONResponse struct {
+	NotFoundApplicationProblemPlusJSONResponse
+}
+
+func (response PostPromotionsIDCancel404ApplicationProblemPlusJSONResponse) VisitPostPromotionsIDCancelResponse(w http.ResponseWriter) error {
+
+	var buf bytes.Buffer
+	if err := json.NewEncoder(&buf).Encode(response); err != nil {
+		return err
+	}
+	w.Header().Set("Content-Type", "application/problem+json")
+	w.WriteHeader(404)
+	_, err := buf.WriteTo(w)
+	return err
+}
+
+type PostPromotionsIDCancel409ApplicationProblemPlusJSONResponse struct {
+	ConflictApplicationProblemPlusJSONResponse
+}
+
+func (response PostPromotionsIDCancel409ApplicationProblemPlusJSONResponse) VisitPostPromotionsIDCancelResponse(w http.ResponseWriter) error {
+
+	var buf bytes.Buffer
+	if err := json.NewEncoder(&buf).Encode(response); err != nil {
+		return err
+	}
+	w.Header().Set("Content-Type", "application/problem+json")
+	w.WriteHeader(409)
+	_, err := buf.WriteTo(w)
+	return err
+}
+
+type PostPromotionsIDCancel429ApplicationProblemPlusJSONResponse struct {
+	TooManyRequestsApplicationProblemPlusJSONResponse
+}
+
+func (response PostPromotionsIDCancel429ApplicationProblemPlusJSONResponse) VisitPostPromotionsIDCancelResponse(w http.ResponseWriter) error {
+
+	var buf bytes.Buffer
+	if err := json.NewEncoder(&buf).Encode(response); err != nil {
+		return err
+	}
+	w.Header().Set("Content-Type", "application/problem+json")
+	w.WriteHeader(429)
+	_, err := buf.WriteTo(w)
+	return err
+}
+
+type PostPromotionsIDCancel500ApplicationProblemPlusJSONResponse struct {
+	DegradedApplicationProblemPlusJSONResponse
+}
+
+func (response PostPromotionsIDCancel500ApplicationProblemPlusJSONResponse) VisitPostPromotionsIDCancelResponse(w http.ResponseWriter) error {
+
+	var buf bytes.Buffer
+	if err := json.NewEncoder(&buf).Encode(response); err != nil {
+		return err
+	}
+	w.Header().Set("Content-Type", "application/problem+json")
+	w.WriteHeader(500)
+	_, err := buf.WriteTo(w)
+	return err
+}
+
+type PostPromotionsIDCancel501ApplicationProblemPlusJSONResponse struct {
+	NotImplementedApplicationProblemPlusJSONResponse
+}
+
+func (response PostPromotionsIDCancel501ApplicationProblemPlusJSONResponse) VisitPostPromotionsIDCancelResponse(w http.ResponseWriter) error {
+
+	var buf bytes.Buffer
+	if err := json.NewEncoder(&buf).Encode(response); err != nil {
+		return err
+	}
+	w.Header().Set("Content-Type", "application/problem+json")
+	w.WriteHeader(501)
 	_, err := buf.WriteTo(w)
 	return err
 }
 
 type PostPromotionsIDRetryRequestObject struct {
-	ID ID `json:"id"`
+	ID     ID `json:"id"`
+	Params PostPromotionsIDRetryParams
 }
 
 type PostPromotionsIDRetryResponseObject interface {
 	VisitPostPromotionsIDRetryResponse(w http.ResponseWriter) error
 }
 
-type PostPromotionsIDRetry200JSONResponse Promotion
+type PostPromotionsIDRetry202JSONResponse Promotion
 
-func (response PostPromotionsIDRetry200JSONResponse) VisitPostPromotionsIDRetryResponse(w http.ResponseWriter) error {
+func (response PostPromotionsIDRetry202JSONResponse) VisitPostPromotionsIDRetryResponse(w http.ResponseWriter) error {
 
 	var buf bytes.Buffer
 	if err := json.NewEncoder(&buf).Encode(response); err != nil {
 		return err
 	}
 	w.Header().Set("Content-Type", "application/json")
-	w.WriteHeader(200)
+	w.WriteHeader(202)
+	_, err := buf.WriteTo(w)
+	return err
+}
+
+type PostPromotionsIDRetry400ApplicationProblemPlusJSONResponse struct {
+	BadRequestApplicationProblemPlusJSONResponse
+}
+
+func (response PostPromotionsIDRetry400ApplicationProblemPlusJSONResponse) VisitPostPromotionsIDRetryResponse(w http.ResponseWriter) error {
+
+	var buf bytes.Buffer
+	if err := json.NewEncoder(&buf).Encode(response); err != nil {
+		return err
+	}
+	w.Header().Set("Content-Type", "application/problem+json")
+	w.WriteHeader(400)
+	_, err := buf.WriteTo(w)
+	return err
+}
+
+type PostPromotionsIDRetry401ApplicationProblemPlusJSONResponse struct {
+	UnauthenticatedApplicationProblemPlusJSONResponse
+}
+
+func (response PostPromotionsIDRetry401ApplicationProblemPlusJSONResponse) VisitPostPromotionsIDRetryResponse(w http.ResponseWriter) error {
+
+	var buf bytes.Buffer
+	if err := json.NewEncoder(&buf).Encode(response); err != nil {
+		return err
+	}
+	w.Header().Set("Content-Type", "application/problem+json")
+	w.WriteHeader(401)
+	_, err := buf.WriteTo(w)
+	return err
+}
+
+type PostPromotionsIDRetry403ApplicationProblemPlusJSONResponse struct {
+	ForbiddenApplicationProblemPlusJSONResponse
+}
+
+func (response PostPromotionsIDRetry403ApplicationProblemPlusJSONResponse) VisitPostPromotionsIDRetryResponse(w http.ResponseWriter) error {
+
+	var buf bytes.Buffer
+	if err := json.NewEncoder(&buf).Encode(response); err != nil {
+		return err
+	}
+	w.Header().Set("Content-Type", "application/problem+json")
+	w.WriteHeader(403)
+	_, err := buf.WriteTo(w)
+	return err
+}
+
+type PostPromotionsIDRetry404ApplicationProblemPlusJSONResponse struct {
+	NotFoundApplicationProblemPlusJSONResponse
+}
+
+func (response PostPromotionsIDRetry404ApplicationProblemPlusJSONResponse) VisitPostPromotionsIDRetryResponse(w http.ResponseWriter) error {
+
+	var buf bytes.Buffer
+	if err := json.NewEncoder(&buf).Encode(response); err != nil {
+		return err
+	}
+	w.Header().Set("Content-Type", "application/problem+json")
+	w.WriteHeader(404)
+	_, err := buf.WriteTo(w)
+	return err
+}
+
+type PostPromotionsIDRetry409ApplicationProblemPlusJSONResponse struct {
+	ConflictApplicationProblemPlusJSONResponse
+}
+
+func (response PostPromotionsIDRetry409ApplicationProblemPlusJSONResponse) VisitPostPromotionsIDRetryResponse(w http.ResponseWriter) error {
+
+	var buf bytes.Buffer
+	if err := json.NewEncoder(&buf).Encode(response); err != nil {
+		return err
+	}
+	w.Header().Set("Content-Type", "application/problem+json")
+	w.WriteHeader(409)
+	_, err := buf.WriteTo(w)
+	return err
+}
+
+type PostPromotionsIDRetry429ApplicationProblemPlusJSONResponse struct {
+	TooManyRequestsApplicationProblemPlusJSONResponse
+}
+
+func (response PostPromotionsIDRetry429ApplicationProblemPlusJSONResponse) VisitPostPromotionsIDRetryResponse(w http.ResponseWriter) error {
+
+	var buf bytes.Buffer
+	if err := json.NewEncoder(&buf).Encode(response); err != nil {
+		return err
+	}
+	w.Header().Set("Content-Type", "application/problem+json")
+	w.WriteHeader(429)
+	_, err := buf.WriteTo(w)
+	return err
+}
+
+type PostPromotionsIDRetry500ApplicationProblemPlusJSONResponse struct {
+	DegradedApplicationProblemPlusJSONResponse
+}
+
+func (response PostPromotionsIDRetry500ApplicationProblemPlusJSONResponse) VisitPostPromotionsIDRetryResponse(w http.ResponseWriter) error {
+
+	var buf bytes.Buffer
+	if err := json.NewEncoder(&buf).Encode(response); err != nil {
+		return err
+	}
+	w.Header().Set("Content-Type", "application/problem+json")
+	w.WriteHeader(500)
+	_, err := buf.WriteTo(w)
+	return err
+}
+
+type PostPromotionsIDRetry501ApplicationProblemPlusJSONResponse struct {
+	NotImplementedApplicationProblemPlusJSONResponse
+}
+
+func (response PostPromotionsIDRetry501ApplicationProblemPlusJSONResponse) VisitPostPromotionsIDRetryResponse(w http.ResponseWriter) error {
+
+	var buf bytes.Buffer
+	if err := json.NewEncoder(&buf).Encode(response); err != nil {
+		return err
+	}
+	w.Header().Set("Content-Type", "application/problem+json")
+	w.WriteHeader(501)
 	_, err := buf.WriteTo(w)
 	return err
 }
@@ -4417,6 +6770,86 @@ func (response GetReleases200JSONResponse) VisitGetReleasesResponse(w http.Respo
 	return err
 }
 
+type GetReleases400ApplicationProblemPlusJSONResponse struct {
+	BadRequestApplicationProblemPlusJSONResponse
+}
+
+func (response GetReleases400ApplicationProblemPlusJSONResponse) VisitGetReleasesResponse(w http.ResponseWriter) error {
+
+	var buf bytes.Buffer
+	if err := json.NewEncoder(&buf).Encode(response); err != nil {
+		return err
+	}
+	w.Header().Set("Content-Type", "application/problem+json")
+	w.WriteHeader(400)
+	_, err := buf.WriteTo(w)
+	return err
+}
+
+type GetReleases401ApplicationProblemPlusJSONResponse struct {
+	UnauthenticatedApplicationProblemPlusJSONResponse
+}
+
+func (response GetReleases401ApplicationProblemPlusJSONResponse) VisitGetReleasesResponse(w http.ResponseWriter) error {
+
+	var buf bytes.Buffer
+	if err := json.NewEncoder(&buf).Encode(response); err != nil {
+		return err
+	}
+	w.Header().Set("Content-Type", "application/problem+json")
+	w.WriteHeader(401)
+	_, err := buf.WriteTo(w)
+	return err
+}
+
+type GetReleases403ApplicationProblemPlusJSONResponse struct {
+	ForbiddenApplicationProblemPlusJSONResponse
+}
+
+func (response GetReleases403ApplicationProblemPlusJSONResponse) VisitGetReleasesResponse(w http.ResponseWriter) error {
+
+	var buf bytes.Buffer
+	if err := json.NewEncoder(&buf).Encode(response); err != nil {
+		return err
+	}
+	w.Header().Set("Content-Type", "application/problem+json")
+	w.WriteHeader(403)
+	_, err := buf.WriteTo(w)
+	return err
+}
+
+type GetReleases500ApplicationProblemPlusJSONResponse struct {
+	DegradedApplicationProblemPlusJSONResponse
+}
+
+func (response GetReleases500ApplicationProblemPlusJSONResponse) VisitGetReleasesResponse(w http.ResponseWriter) error {
+
+	var buf bytes.Buffer
+	if err := json.NewEncoder(&buf).Encode(response); err != nil {
+		return err
+	}
+	w.Header().Set("Content-Type", "application/problem+json")
+	w.WriteHeader(500)
+	_, err := buf.WriteTo(w)
+	return err
+}
+
+type GetReleases503ApplicationProblemPlusJSONResponse struct {
+	UnavailableApplicationProblemPlusJSONResponse
+}
+
+func (response GetReleases503ApplicationProblemPlusJSONResponse) VisitGetReleasesResponse(w http.ResponseWriter) error {
+
+	var buf bytes.Buffer
+	if err := json.NewEncoder(&buf).Encode(response); err != nil {
+		return err
+	}
+	w.Header().Set("Content-Type", "application/problem+json")
+	w.WriteHeader(503)
+	_, err := buf.WriteTo(w)
+	return err
+}
+
 type GetTargetsRequestObject struct {
 }
 
@@ -4434,6 +6867,86 @@ func (response GetTargets200JSONResponse) VisitGetTargetsResponse(w http.Respons
 	}
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
+	_, err := buf.WriteTo(w)
+	return err
+}
+
+type GetTargets400ApplicationProblemPlusJSONResponse struct {
+	BadRequestApplicationProblemPlusJSONResponse
+}
+
+func (response GetTargets400ApplicationProblemPlusJSONResponse) VisitGetTargetsResponse(w http.ResponseWriter) error {
+
+	var buf bytes.Buffer
+	if err := json.NewEncoder(&buf).Encode(response); err != nil {
+		return err
+	}
+	w.Header().Set("Content-Type", "application/problem+json")
+	w.WriteHeader(400)
+	_, err := buf.WriteTo(w)
+	return err
+}
+
+type GetTargets401ApplicationProblemPlusJSONResponse struct {
+	UnauthenticatedApplicationProblemPlusJSONResponse
+}
+
+func (response GetTargets401ApplicationProblemPlusJSONResponse) VisitGetTargetsResponse(w http.ResponseWriter) error {
+
+	var buf bytes.Buffer
+	if err := json.NewEncoder(&buf).Encode(response); err != nil {
+		return err
+	}
+	w.Header().Set("Content-Type", "application/problem+json")
+	w.WriteHeader(401)
+	_, err := buf.WriteTo(w)
+	return err
+}
+
+type GetTargets403ApplicationProblemPlusJSONResponse struct {
+	ForbiddenApplicationProblemPlusJSONResponse
+}
+
+func (response GetTargets403ApplicationProblemPlusJSONResponse) VisitGetTargetsResponse(w http.ResponseWriter) error {
+
+	var buf bytes.Buffer
+	if err := json.NewEncoder(&buf).Encode(response); err != nil {
+		return err
+	}
+	w.Header().Set("Content-Type", "application/problem+json")
+	w.WriteHeader(403)
+	_, err := buf.WriteTo(w)
+	return err
+}
+
+type GetTargets500ApplicationProblemPlusJSONResponse struct {
+	DegradedApplicationProblemPlusJSONResponse
+}
+
+func (response GetTargets500ApplicationProblemPlusJSONResponse) VisitGetTargetsResponse(w http.ResponseWriter) error {
+
+	var buf bytes.Buffer
+	if err := json.NewEncoder(&buf).Encode(response); err != nil {
+		return err
+	}
+	w.Header().Set("Content-Type", "application/problem+json")
+	w.WriteHeader(500)
+	_, err := buf.WriteTo(w)
+	return err
+}
+
+type GetTargets503ApplicationProblemPlusJSONResponse struct {
+	UnavailableApplicationProblemPlusJSONResponse
+}
+
+func (response GetTargets503ApplicationProblemPlusJSONResponse) VisitGetTargetsResponse(w http.ResponseWriter) error {
+
+	var buf bytes.Buffer
+	if err := json.NewEncoder(&buf).Encode(response); err != nil {
+		return err
+	}
+	w.Header().Set("Content-Type", "application/problem+json")
+	w.WriteHeader(503)
 	_, err := buf.WriteTo(w)
 	return err
 }
@@ -4460,6 +6973,102 @@ func (response GetTargetsNameDrift200JSONResponse) VisitGetTargetsNameDriftRespo
 	return err
 }
 
+type GetTargetsNameDrift400ApplicationProblemPlusJSONResponse struct {
+	BadRequestApplicationProblemPlusJSONResponse
+}
+
+func (response GetTargetsNameDrift400ApplicationProblemPlusJSONResponse) VisitGetTargetsNameDriftResponse(w http.ResponseWriter) error {
+
+	var buf bytes.Buffer
+	if err := json.NewEncoder(&buf).Encode(response); err != nil {
+		return err
+	}
+	w.Header().Set("Content-Type", "application/problem+json")
+	w.WriteHeader(400)
+	_, err := buf.WriteTo(w)
+	return err
+}
+
+type GetTargetsNameDrift401ApplicationProblemPlusJSONResponse struct {
+	UnauthenticatedApplicationProblemPlusJSONResponse
+}
+
+func (response GetTargetsNameDrift401ApplicationProblemPlusJSONResponse) VisitGetTargetsNameDriftResponse(w http.ResponseWriter) error {
+
+	var buf bytes.Buffer
+	if err := json.NewEncoder(&buf).Encode(response); err != nil {
+		return err
+	}
+	w.Header().Set("Content-Type", "application/problem+json")
+	w.WriteHeader(401)
+	_, err := buf.WriteTo(w)
+	return err
+}
+
+type GetTargetsNameDrift403ApplicationProblemPlusJSONResponse struct {
+	ForbiddenApplicationProblemPlusJSONResponse
+}
+
+func (response GetTargetsNameDrift403ApplicationProblemPlusJSONResponse) VisitGetTargetsNameDriftResponse(w http.ResponseWriter) error {
+
+	var buf bytes.Buffer
+	if err := json.NewEncoder(&buf).Encode(response); err != nil {
+		return err
+	}
+	w.Header().Set("Content-Type", "application/problem+json")
+	w.WriteHeader(403)
+	_, err := buf.WriteTo(w)
+	return err
+}
+
+type GetTargetsNameDrift404ApplicationProblemPlusJSONResponse struct {
+	NotFoundApplicationProblemPlusJSONResponse
+}
+
+func (response GetTargetsNameDrift404ApplicationProblemPlusJSONResponse) VisitGetTargetsNameDriftResponse(w http.ResponseWriter) error {
+
+	var buf bytes.Buffer
+	if err := json.NewEncoder(&buf).Encode(response); err != nil {
+		return err
+	}
+	w.Header().Set("Content-Type", "application/problem+json")
+	w.WriteHeader(404)
+	_, err := buf.WriteTo(w)
+	return err
+}
+
+type GetTargetsNameDrift500ApplicationProblemPlusJSONResponse struct {
+	DegradedApplicationProblemPlusJSONResponse
+}
+
+func (response GetTargetsNameDrift500ApplicationProblemPlusJSONResponse) VisitGetTargetsNameDriftResponse(w http.ResponseWriter) error {
+
+	var buf bytes.Buffer
+	if err := json.NewEncoder(&buf).Encode(response); err != nil {
+		return err
+	}
+	w.Header().Set("Content-Type", "application/problem+json")
+	w.WriteHeader(500)
+	_, err := buf.WriteTo(w)
+	return err
+}
+
+type GetTargetsNameDrift503ApplicationProblemPlusJSONResponse struct {
+	UnavailableApplicationProblemPlusJSONResponse
+}
+
+func (response GetTargetsNameDrift503ApplicationProblemPlusJSONResponse) VisitGetTargetsNameDriftResponse(w http.ResponseWriter) error {
+
+	var buf bytes.Buffer
+	if err := json.NewEncoder(&buf).Encode(response); err != nil {
+		return err
+	}
+	w.Header().Set("Content-Type", "application/problem+json")
+	w.WriteHeader(503)
+	_, err := buf.WriteTo(w)
+	return err
+}
+
 type GetTargetsNameHealthRequestObject struct {
 	Name Name `json:"name"`
 }
@@ -4478,6 +7087,102 @@ func (response GetTargetsNameHealth200JSONResponse) VisitGetTargetsNameHealthRes
 	}
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(200)
+	_, err := buf.WriteTo(w)
+	return err
+}
+
+type GetTargetsNameHealth400ApplicationProblemPlusJSONResponse struct {
+	BadRequestApplicationProblemPlusJSONResponse
+}
+
+func (response GetTargetsNameHealth400ApplicationProblemPlusJSONResponse) VisitGetTargetsNameHealthResponse(w http.ResponseWriter) error {
+
+	var buf bytes.Buffer
+	if err := json.NewEncoder(&buf).Encode(response); err != nil {
+		return err
+	}
+	w.Header().Set("Content-Type", "application/problem+json")
+	w.WriteHeader(400)
+	_, err := buf.WriteTo(w)
+	return err
+}
+
+type GetTargetsNameHealth401ApplicationProblemPlusJSONResponse struct {
+	UnauthenticatedApplicationProblemPlusJSONResponse
+}
+
+func (response GetTargetsNameHealth401ApplicationProblemPlusJSONResponse) VisitGetTargetsNameHealthResponse(w http.ResponseWriter) error {
+
+	var buf bytes.Buffer
+	if err := json.NewEncoder(&buf).Encode(response); err != nil {
+		return err
+	}
+	w.Header().Set("Content-Type", "application/problem+json")
+	w.WriteHeader(401)
+	_, err := buf.WriteTo(w)
+	return err
+}
+
+type GetTargetsNameHealth403ApplicationProblemPlusJSONResponse struct {
+	ForbiddenApplicationProblemPlusJSONResponse
+}
+
+func (response GetTargetsNameHealth403ApplicationProblemPlusJSONResponse) VisitGetTargetsNameHealthResponse(w http.ResponseWriter) error {
+
+	var buf bytes.Buffer
+	if err := json.NewEncoder(&buf).Encode(response); err != nil {
+		return err
+	}
+	w.Header().Set("Content-Type", "application/problem+json")
+	w.WriteHeader(403)
+	_, err := buf.WriteTo(w)
+	return err
+}
+
+type GetTargetsNameHealth404ApplicationProblemPlusJSONResponse struct {
+	NotFoundApplicationProblemPlusJSONResponse
+}
+
+func (response GetTargetsNameHealth404ApplicationProblemPlusJSONResponse) VisitGetTargetsNameHealthResponse(w http.ResponseWriter) error {
+
+	var buf bytes.Buffer
+	if err := json.NewEncoder(&buf).Encode(response); err != nil {
+		return err
+	}
+	w.Header().Set("Content-Type", "application/problem+json")
+	w.WriteHeader(404)
+	_, err := buf.WriteTo(w)
+	return err
+}
+
+type GetTargetsNameHealth500ApplicationProblemPlusJSONResponse struct {
+	DegradedApplicationProblemPlusJSONResponse
+}
+
+func (response GetTargetsNameHealth500ApplicationProblemPlusJSONResponse) VisitGetTargetsNameHealthResponse(w http.ResponseWriter) error {
+
+	var buf bytes.Buffer
+	if err := json.NewEncoder(&buf).Encode(response); err != nil {
+		return err
+	}
+	w.Header().Set("Content-Type", "application/problem+json")
+	w.WriteHeader(500)
+	_, err := buf.WriteTo(w)
+	return err
+}
+
+type GetTargetsNameHealth503ApplicationProblemPlusJSONResponse struct {
+	UnavailableApplicationProblemPlusJSONResponse
+}
+
+func (response GetTargetsNameHealth503ApplicationProblemPlusJSONResponse) VisitGetTargetsNameHealthResponse(w http.ResponseWriter) error {
+
+	var buf bytes.Buffer
+	if err := json.NewEncoder(&buf).Encode(response); err != nil {
+		return err
+	}
+	w.Header().Set("Content-Type", "application/problem+json")
+	w.WriteHeader(503)
 	_, err := buf.WriteTo(w)
 	return err
 }
@@ -4802,8 +7507,10 @@ func (sh *strictHandler) GetPromotions(w http.ResponseWriter, r *http.Request, p
 }
 
 // PostPromotions operation middleware
-func (sh *strictHandler) PostPromotions(w http.ResponseWriter, r *http.Request) {
+func (sh *strictHandler) PostPromotions(w http.ResponseWriter, r *http.Request, params PostPromotionsParams) {
 	var request PostPromotionsRequestObject
+
+	request.Params = params
 
 	var body PostPromotionsJSONRequestBody
 	if err := json.NewDecoder(r.Body).Decode(&body); err != nil {
@@ -4859,10 +7566,11 @@ func (sh *strictHandler) GetPromotionsID(w http.ResponseWriter, r *http.Request,
 }
 
 // PostPromotionsIDApprove operation middleware
-func (sh *strictHandler) PostPromotionsIDApprove(w http.ResponseWriter, r *http.Request, id ID) {
+func (sh *strictHandler) PostPromotionsIDApprove(w http.ResponseWriter, r *http.Request, id ID, params PostPromotionsIDApproveParams) {
 	var request PostPromotionsIDApproveRequestObject
 
 	request.ID = id
+	request.Params = params
 
 	var body PostPromotionsIDApproveJSONRequestBody
 	if err := json.NewDecoder(r.Body).Decode(&body); err != nil {
@@ -4892,10 +7600,11 @@ func (sh *strictHandler) PostPromotionsIDApprove(w http.ResponseWriter, r *http.
 }
 
 // PostPromotionsIDCancel operation middleware
-func (sh *strictHandler) PostPromotionsIDCancel(w http.ResponseWriter, r *http.Request, id ID) {
+func (sh *strictHandler) PostPromotionsIDCancel(w http.ResponseWriter, r *http.Request, id ID, params PostPromotionsIDCancelParams) {
 	var request PostPromotionsIDCancelRequestObject
 
 	request.ID = id
+	request.Params = params
 
 	handler := func(ctx context.Context, w http.ResponseWriter, r *http.Request, request interface{}) (interface{}, error) {
 		return sh.ssi.PostPromotionsIDCancel(ctx, request.(PostPromotionsIDCancelRequestObject))
@@ -4918,10 +7627,11 @@ func (sh *strictHandler) PostPromotionsIDCancel(w http.ResponseWriter, r *http.R
 }
 
 // PostPromotionsIDRetry operation middleware
-func (sh *strictHandler) PostPromotionsIDRetry(w http.ResponseWriter, r *http.Request, id ID) {
+func (sh *strictHandler) PostPromotionsIDRetry(w http.ResponseWriter, r *http.Request, id ID, params PostPromotionsIDRetryParams) {
 	var request PostPromotionsIDRetryRequestObject
 
 	request.ID = id
+	request.Params = params
 
 	handler := func(ctx context.Context, w http.ResponseWriter, r *http.Request, request interface{}) (interface{}, error) {
 		return sh.ssi.PostPromotionsIDRetry(ctx, request.(PostPromotionsIDRetryRequestObject))
@@ -5050,59 +7760,80 @@ func (sh *strictHandler) GetTargetsNameHealth(w http.ResponseWriter, r *http.Req
 // const string: with thousands of chunks the chained `+` fold is several
 // times slower for the Go compiler than parsing a slice literal.
 var swaggerSpec = []string{
-	"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",
+	"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",
 }
 
 // decodeSpec returns the embedded OpenAPI spec as raw JSON bytes,
