@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# SPDX-FileCopyrightText: 2026 Skaphos
+# SPDX-FileCopyrightText: 2026 Rillan AI LLC
 # SPDX-License-Identifier: MIT
 #
 # Regenerate THIRD_PARTY_LICENSES.md from the current Go module graph.
@@ -28,7 +28,7 @@ go run github.com/google/go-licenses@v1.6.0 report "${TARGETS[@]}" 2>/dev/null \
 {
   cat <<'EOF'
 <!--
-SPDX-FileCopyrightText: 2026 Skaphos
+SPDX-FileCopyrightText: 2026 Rillan AI LLC
 SPDX-License-Identifier: MIT
 -->
 

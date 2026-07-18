@@ -1,4 +1,4 @@
-# SPDX-FileCopyrightText: 2026 Skaphos
+# SPDX-FileCopyrightText: 2026 Rillan AI LLC
 # SPDX-License-Identifier: MIT
 #
 # pnpm build-script allowlist (pnpm >= 11 reads it here, not from the

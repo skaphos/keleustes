@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2026 Skaphos
+// SPDX-FileCopyrightText: 2026 Rillan AI LLC
 // SPDX-License-Identifier: MIT
 import { createBrowserRouter } from 'react-router-dom'
 import { AppShell } from '@/components/shell/AppShell'

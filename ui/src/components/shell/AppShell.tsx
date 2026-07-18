@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2026 Skaphos
+// SPDX-FileCopyrightText: 2026 Rillan AI LLC
 // SPDX-License-Identifier: MIT
 import { Outlet } from 'react-router-dom'
 import { NavRail } from './NavRail'

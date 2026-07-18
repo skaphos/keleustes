@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# SPDX-FileCopyrightText: 2026 Skaphos
+# SPDX-FileCopyrightText: 2026 Rillan AI LLC
 # SPDX-License-Identifier: MIT
 #
 # Lint every PrometheusRule under config/ and assert that every alert
