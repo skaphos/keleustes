@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2026 Skaphos
+// SPDX-FileCopyrightText: 2026 Rillan AI LLC
 // SPDX-License-Identifier: MIT
 import { describe, expect, it } from 'vitest'
 import { STATUS_META, statusMeta, type Status } from './status'

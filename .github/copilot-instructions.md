@@ -1,5 +1,5 @@
 <!--
-SPDX-FileCopyrightText: 2026 Skaphos
+SPDX-FileCopyrightText: 2026 Rillan AI LLC
 SPDX-License-Identifier: MIT
 -->
 
@@ -73,7 +73,7 @@ worth a comment.
 <!-- REUSE-IgnoreStart -->
 - **REUSE 3.3 compliant.** Hand-written Go / YAML / Markdown source
   files carry inline SPDX headers (the standard two-line
-  `SPDX-FileCopyrightText: 2026 Skaphos` + `SPDX-License-Identifier: MIT`
+  `SPDX-FileCopyrightText: 2026 Rillan AI LLC` + `SPDX-License-Identifier: MIT`
   pair). Dotfiles, JSON configs, and other formats that can't carry
   comments (e.g. `.gitignore`, `.tool-versions`, `staticcheck.conf`,
   `.repokeeper-repo.yaml`) are covered by the blanket `**` annotation

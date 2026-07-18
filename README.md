@@ -1,5 +1,5 @@
 <!--
-SPDX-FileCopyrightText: 2026 Skaphos
+SPDX-FileCopyrightText: 2026 Rillan AI LLC
 SPDX-License-Identifier: MIT
 -->
 
@@ -144,3 +144,9 @@ go -C tools tool task deploy           # deploy the manager into the current clu
 ## License
 
 MIT. See `LICENSE` and `REUSE.toml`.
+
+---
+
+Skaphos is a project of [Rillan AI LLC](https://skaphos.io), a Missouri
+limited liability company. © 2026 Rillan AI LLC. Released under
+the [MIT License](./LICENSE).

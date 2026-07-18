@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2026 Skaphos
+// SPDX-FileCopyrightText: 2026 Rillan AI LLC
 // SPDX-License-Identifier: MIT
 import { setupWorker } from 'msw/browser'
 import { handlers } from './handlers'
