@@ -3,7 +3,7 @@ module github.com/skaphos/keleustes
 go 1.26.4
 
 require (
-	github.com/getkin/kin-openapi v0.142.0
+	github.com/getkin/kin-openapi v0.144.0
 	github.com/go-logr/logr v1.4.3
 	github.com/oapi-codegen/runtime v1.6.0
 	github.com/onsi/ginkgo/v2 v2.32.0
