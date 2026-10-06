@@ -2,7 +2,7 @@
 # SPDX-License-Identifier: MIT
 #
 # Dependabot config for the operator module, the pinned tooling module, and
-# the GitHub Actions ecosystem.
+# GitHub Actions, UI dependencies, and container base images.
 
 version: 2
 updates:
@@ -29,3 +29,25 @@ updates:
     schedule:
       interval: "weekly"
     open-pull-requests-limit: 3
+
+  # pnpm manifests and lockfile for the React/TypeScript UI.
+  - package-ecosystem: "npm"
+    directory: "/ui"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 3
+    groups:
+      ui-minor-patch:
+        patterns: ["*"]
+        update-types: ["minor", "patch"]
+
+  # Dockerfile and Dockerfile.keleustesctl both live at the repository root.
+  - package-ecosystem: "docker"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    open-pull-requests-limit: 3
+    groups:
+      docker-minor-patch:
+        patterns: ["*"]
+        update-types: ["minor", "patch"]
